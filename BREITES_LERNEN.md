@@ -33,3 +33,5 @@ Die breite Entwicklung nutzt kleine feste Stichproben und teilweise strenge Text
 ## Abgeschlossene Vorbereitung
 
 84 Tests bestanden, zusätzlich GPU-Gleichwertigkeit und Datenprüfung. Die Lernkontrolle endete nach 4.000 Schritten: 0/128 → 127/128 exakte Trainingsantworten; erste protokollierte Trainings-Loss 9,03497, letzte 0,029684. Auf der separaten Entwicklung: 14/144 bewertete Antworten korrekt, 186 insgesamt generiert. Das zeigt Lernfähigkeit, noch keine breite Generalisierung. Details: `runs/broad-control-2026-09-07/CONTROL_REPORT.md`. Der Größenvergleich ist in `experiments/next_stage.json` vorbereitet und nicht zusätzlich eingeplant.
+
+Die unabhängige Monitoring-Bestätigung bestand mit dokumentierter numerischer Toleranz; beobachteter Light-Overhead im kurzen Eager-Vergleich +0,78 %, erfolgreiche Metal-Aufzeichnung. Die breiten Hauptläufe bleiben auf `light`.
