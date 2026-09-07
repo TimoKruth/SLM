@@ -10,10 +10,11 @@ import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MODULES = {f'slm.{name}' for name in ('train','data','report','code_eval','interface_eval','prepare','prepare_v2','audit_v2','collect','rescore','overnight','sixhour')}
+MODULES = {f'slm.{name}' for name in ('train','data','report','code_eval','interface_eval','prepare','prepare_v2','audit_v2','collect','rescore','overnight','sixhour','inference','broad_eval','validation','campaign')}
 MODULES.add('slm_perf.workload')
+MODULES.update({'experiments.prepare_broad', 'experiments.prepare_checks'})
 FUNCTIONS = {'main','step','dev_eval','emit','atomic_json','checkpoint','restore','evaluate','generate',
-             'report','run_python','score','load_tasks','fetch','fetch_spider_schemas','write_catalog',
+             'prepare','build','context_key','sql_query','score_general','final_answer','run_job','wait_child','validate_plan','control_ready','greedy_generate','cached_forward','report','run_python','score','load_tasks','fetch','fetch_spider_schemas','write_catalog',
              'convert','converted','reference_solutions','exclude_shared_code_groups','audit',
              'Sampler.__init__','Sampler.batch','wait_until','write_json','sha',
              'CodeOverlap.add','CodeOverlap.overlaps'}
@@ -22,6 +23,7 @@ CALLS = {
     'mx.array': 'array.wrap_host',
     'grad_fn': 'graph.forward_backward',
     'grad': 'graph.forward_backward',
+    'update': 'graph.training_update',
     'optim.clip_grad_norm': 'graph.gradient_clip',
     'optimizer.update': 'graph.optimizer_update',
     'opt.update': 'graph.optimizer_update',

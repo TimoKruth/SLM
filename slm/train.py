@@ -96,20 +96,13 @@ def evaluate(model, data, context, batch_size=2, batches=2, deadline=None):
 
 
 def generate(model, tokenizer, prompt, max_tokens=96, deadline=None):
-    ids = tokenizer.encode('<bos><question>\n' + prompt + '\n<answer>\n').ids
-    generated = []
+    """Generate within the model context using the production KV cache."""
+    from .inference import greedy_generate
     model.eval()
-    for _ in range(max_tokens):
-        if deadline and time.time() >= deadline:
-            break
-        logits = model(mx.array([ids[-model.config.context:]], dtype=mx.int32))[:, -1, :]
-        token = int(mx.argmax(logits, axis=-1).item())
-        if token in [tokenizer.token_to_id(t) for t in ('<eos>', '<bos>', '<pad>', '<question>')]:
-            break
-        ids.append(token)
-        generated.append(token)
-    model.train()
-    return tokenizer.decode(generated)
+    try:
+        return greedy_generate(model, tokenizer, prompt, max_tokens, deadline=deadline)['generated']
+    finally:
+        model.train()
 
 
 def main():
@@ -125,6 +118,8 @@ def main():
     p.add_argument('--heads', type=int, default=12)
     p.add_argument('--hidden', type=int, default=2048)
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--execution', choices=['compiled', 'eager'], default='compiled')
+    p.add_argument('--seed', type=int, default=20260906)
     p.add_argument('--checkpoint-seconds', type=int, default=600)
     p.add_argument('--eval-seconds', type=int, default=1800)
     p.add_argument('--max-tokens', type=int, default=100000000)
@@ -146,14 +141,14 @@ def main():
     mx.set_default_device(mx.gpu)
     mx.set_memory_limit(32 * 1024 ** 3)
     mx.set_cache_limit(4 * 1024 ** 3)
-    mx.random.seed(20260906)
+    mx.random.seed(args.seed)
     config = ModelConfig(vocab_size=manifest['tokenizer']['vocab_size'], dim=args.dim, layers=args.layers, heads=args.heads, hidden=args.hidden, context=args.context)
     model = LanguageModel(config)
     optimizer = optim.AdamW(learning_rate=3e-4, betas=[0.9, 0.95], weight_decay=0.1, bias_correction=True)
-    sampler = Sampler(data, 'train', 20260906, args.context)
+    sampler = Sampler(data, 'train', args.seed, args.context)
     mx.eval(model.parameters())
     count = sum(x.size for _, x in tree_flatten(model.parameters()))
-    signature = digest(json.dumps({'config': asdict(config), 'manifest': digest((data / 'manifest.json').read_bytes()), 'batch_size': args.batch_size, 'weights': sampler.weights}, sort_keys=True))
+    signature = digest(json.dumps({'config': asdict(config), 'manifest': digest((data / 'manifest.json').read_bytes()), 'batch_size': args.batch_size, 'weights': sampler.weights, 'seed': args.seed}, sort_keys=True))
     state = {'step': 0, 'tokens': 0, 'started_at': time.time(), 'best_dev_loss': None, 'signature': signature}
     if args.resume and (run / 'latest.json').exists():
         state = restore(run, model, optimizer, sampler)
@@ -194,14 +189,14 @@ def main():
     emit({'event': 'start', 'parameters': count, 'resumed': state['step'] > 0})
     if state['step'] == 0 and not args.skip_initial_eval:
         dev_eval()
-    grad_fn = nn.value_and_grad(model, loss_fn)
-    # Eager MLX graph evaluation keeps memory bounded and makes checkpoint state explicit.
+    from .optimization import make_training_step
+    update = make_training_step(model, optimizer, compiled=args.execution == 'compiled')
+
     def step(x, y, mask):
-        loss, grads = grad_fn(model, x, y, mask)
-        grads, norm = optim.clip_grad_norm(grads, 1.0)
-        optimizer.update(model, grads)
+        loss, norm = update(x, y, mask, mx.array(optimizer.learning_rate))
         mx.eval(model.parameters(), optimizer.state, loss, norm)
         return float(loss.item()), float(norm.item())
+
     last_checkpoint = last_eval = time.time()
     interval_start = time.perf_counter()
     interval_tokens, interval_losses = 0, []
@@ -225,6 +220,9 @@ def main():
                 raise FloatingPointError(f'Nonfinite loss/gradient: {loss}, {norm}; prior checkpoint retained')
             state['step'] += 1
             state['tokens'] += actual_tokens
+            source_tokens = state.setdefault('source_tokens', {})
+            for name, count in sampler.last_batch_source_tokens.items():
+                source_tokens[name] = source_tokens.get(name, 0) + count
             interval_tokens += actual_tokens
             interval_losses.append(loss)
             if state['step'] % 10 == 0:

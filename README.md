@@ -1,6 +1,6 @@
 **SLM aus Benchmarks — Projektskizze**
 
-Stand: 7. September 2026. Status: Erster Trainingslauf und Code-Diagnose abgeschlossen. Der [zweite Lauf](LAUF_2.md) wurde am 7. September um 09:19 Uhr für sechs Stunden gestartet. Betriebsdetails stehen in [NACHTLAUF.md](NACHTLAUF.md).
+Stand: 7. September 2026. Die ersten beiden Trainingsläufe sind abgeschlossen. Die nächste [breite Versuchsreihe](BREITES_LERNEN.md) verwendet 32 Quellen und getrennte Fähigkeitsmessungen. Ziel ist ein vielseitiges Sprachmodell; Coding ist eine mögliche Fähigkeit unter mehreren. Historische Betriebsdetails stehen in [NACHTLAUF.md](NACHTLAUF.md) und [Lauf 2](LAUF_2.md).
 
 Wir untersuchen, ob die Aufgabenvielfalt bestehender Sprachmodell-Benchmarks ausreicht, um ein kleines Sprachmodell von Grund auf zu trainieren, das auf unbekannte Aufgaben transferiert. Die Hypothese: Aufgabenstellungen, Kontext, Referenzantworten und vorhandene Lösungswege enthalten verdichtete Lernsignale für Sprache, Schlussfolgern und Programmieren. Ein Netz könnte daraus wiederverwendbare Fähigkeiten entwickeln.
 
@@ -14,9 +14,9 @@ Als drei voneinander deutlich verschiedene Abschlusstests sind vorgesehen:
 - **IFBench:** neue, automatisch überprüfbare Ausgabevorgaben befolgen.
 - **BIG-Bench Extra Hard:** vielfältige sprachlich formulierte Denkaufgaben lösen.
 
-Diese Tests samt abgeleiteten Daten bleiben vom Training und von der Modellauswahl ausgeschlossen. Verglichen werden eine breite Benchmark-Mischung, ausschließlich Codeaufgaben und eine Mischung ohne Code. Dadurch lässt sich prüfen, ob Aufgabenvielfalt beim Coden hilft und wie weit Transfer zwischen Bereichen reicht.
+Diese Tests samt abgeleiteten Daten bleiben vom Training und von der Modellauswahl ausgeschlossen. Der nächste Vergleich verwendet dieselbe breite Mischung mit zwei Gewichtungen: gleiche Anteile je Fähigkeitsgruppe beziehungsweise je Quelle. Die Entwicklung wird nach Fähigkeiten getrennt gemessen.
 
-Ein interessantes erstes Ergebnis wäre reproduzierbarer Transfer auf unbekannte Aufgaben. Ein weitergehendes Ziel wären brauchbare Lösungen einfacher Python-Aufgaben. Ob daraus „mittelmäßiges Coden“ im Alltag entsteht, bleibt eine offene Forschungsfrage.
+Ein interessantes Ergebnis wäre reproduzierbarer Transfer auf unbekannte Aufgaben in unterschiedlichen Bereichen, etwa Lesen, Schlussfolgern, Mathematik oder Programmierung. Welche Fähigkeiten sich tatsächlich entwickeln, bleibt offen.
 
 Die Einordnung verwandter Arbeiten mit Primärquellen steht in [RECHERCHE.md](RECHERCHE.md). Hardwareabschätzung, Datentrennung und Auswertung sind in [EXPERIMENT.md](EXPERIMENT.md) konkretisiert.
 
@@ -26,7 +26,7 @@ Die ausführbare [Code-Diagnose](runs/code-eval-2026-09-07/REPORT.md) dieses bes
 
 Der aufbereitete Pool unter `data/v2/` umfasst 1.095.239 Trainingspaare und 190.909.332 Tokens aus **24 Quellen** und wird im [zweiten Lauf](LAUF_2.md) verwendet. Die dafür zusätzlich gesammelten 14 Quellen stehen im [Benchmark-Katalog](BENCHMARKS.md).
 
-Während Lauf 2 wurden **acht weitere Quellen mit 356.312 Original-Trainingszeilen** separat geladen. Damit sind **32 Benchmark-Datensätze gesammelt**, weiterhin 24 im laufenden Training. Zwei Performance-Kandidaten haben CPU-Prüfungen bestanden; ein GPU-Vergleich wartet auf das Ende von Training und Auswertung. Details und Statuspfade: [Vorbereitung für spätere Versuche](VORBEREITUNG_3.md).
+Während Lauf 2 wurden acht weitere Quellen separat geladen. Die geprüfte neue Datenversion enthält **32 Quellen und 1.416.390 Trainingspaare**. Kompilierter Trainingsschritt und KV-Cache haben CPU-Prüfungen und eine GPU-Prüfung mit Wiederaufnahme und echten Prompts bestanden. Aktuelles Protokoll: [Breites Lernen](BREITES_LERNEN.md); historische Vorbereitung: [Vorbereitung 3](VORBEREITUNG_3.md).
 
 Das [Performance-Monitoring](PERFORMANCE.md) ist für **künftige Läufe im Modus `light` aktiviert**. Neue Läufe über `.venv/bin/python run_slm.py --run runs/<neuer-lauf> --data data/v2` starten. Die Projektvorgaben stehen in `run_defaults.json`; mit `--monitoring off` lässt sich die Messung ausdrücklich ausschalten. Training und zugehörige Auswertung erhalten eigene Performance-Berichte. Der laufende Versuch bleibt unverändert; ein separater GPU-Test des Messaufwands ist nach den laufenden Aufgaben eingeplant.
 

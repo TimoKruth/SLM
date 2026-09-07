@@ -1,5 +1,6 @@
 """Pack complete examples into causal sequences; keep padding out of the loss."""
 import json
+from collections import Counter
 import numpy as np
 
 WEIGHTS = {'apps': .30, 'mbpp': .02, 'gsm8k': .12, 'math': .12, 'squad': .16, 'boolq': .04, 'hellaswag': .07, 'piqa': .07, 'winogrande': .06, 'arc': .04}
@@ -27,6 +28,7 @@ class Sampler:
                 raise ValueError(f'No complete examples fit {name} {split} context={context}')
 
     def batch(self, batch_size, source=None):
+        self.last_batch_source_tokens = Counter()
         arr = np.zeros((batch_size, self.context + 1), dtype=np.int32)
         real = np.zeros(arr.shape, dtype=np.float32)
         answer = np.zeros(arr.shape, dtype=np.float32)
@@ -43,4 +45,5 @@ class Sampler:
                 real[i, used:used+length] = 1
                 answer[i, used:used+length] = self.answers[name][start:start+length]
                 used += length
+            self.last_batch_source_tokens[name] += max(0, used - 1)
         return arr[:, :-1], arr[:, 1:], real[:, 1:], answer[:, 1:]

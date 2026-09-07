@@ -95,7 +95,7 @@ Die aktuelle Trainings-Lernrate hängt teilweise von der verstrichenen Zeit ab. 
 
 ## Bisherige Verifikation
 
-Aktuell bestehen **48 Performance- und Queue-Tests**: 45 unter `tests/performance/` (16 Runtime-, Vergleichs- und Schutztests, drei Projektstarter-Tests, zwei CPU-Trainingsäquivalenzfälle für `light` und `detail` und 24 zusätzliche Prozesssperren-/Queue-Fehlerfälle) sowie drei zusätzliche Queue-Schutztests unter `experiments/performance/test_queue.py`. Die Sitzungsnamen im Vergleichsbeispiel oben durch die tatsächlich erzeugten Ordnernamen ersetzen.
+Die Performance- und Queue-Tests decken Runtime, Vergleiche, Projektstarter, CPU-Trainingsäquivalenz, Prozesssperren und Abbruchpfade ab. Für die breite Versuchsreihe kommen eigene Scoring-, Sampling-, Checkpoint- und Kampagnentests hinzu; die aktuelle Testanzahl steht im jeweiligen Prüfprotokoll.
 
 Geprüft wurden verschachtelte Zeitrechnung, Fehlerweitergabe, Abschalten einschließlich des Detailprofils bei Monitoring-Schreibfehlern, unveränderte Kontrollflüsse, begrenzte Trace-Größe, Aufwärmtrennung, Vergleichsregeln, der unveränderte Off-Einstieg, Prozessschutz und vollständige Weitergabe der Monitoring-Einstellungen an überwachte Kindprozesse. Ein echter kleiner CPU-Trainingslauf liefert sowohl mit `light` als auch mit `detail` exakt dieselben Gewichte, Optimiererzustände und Sampler-Checkpoint-Zustände wie das Original – einschließlich Wiederaufnahme und bei fixiertem zeitabhängigem Lernratenplan.
 
@@ -106,4 +106,15 @@ Ein zusätzlicher CPU-Probelauf über den tatsächlichen Launcher schloss **12 S
 .venv/bin/python -m slm_perf inventory --output runs/performance-coverage.json
 ```
 
-Die Inventur kompiliert die Instrumentierung für 13 unterstützte Module, ohne deren Arbeitslast auszuführen. Bei neuen Pipeline-Funktionen die Phasenabdeckung in `slm_perf/instrument.py` ergänzen und mit diesen Tests prüfen. Die Instrumentierung verändert den Python-Syntaxbaum ausschließlich im ausdrücklich überwachten Prozess im Speicher; die Dateien unter `slm/` bleiben unverändert.
+Die Inventur kompiliert die Instrumentierung für die in `slm_perf/instrument.py` registrierten Module, ohne deren Arbeitslast auszuführen. Bei neuen Pipeline-Funktionen die Phasenabdeckung in `slm_perf/instrument.py` ergänzen und mit diesen Tests prüfen. Die Instrumentierung verändert den Python-Syntaxbaum ausschließlich im ausdrücklich überwachten Prozess im Speicher; die Dateien unter `slm/` bleiben unverändert.
+
+
+## Übernahme für die breite Versuchsreihe
+
+Ab `BREITES_LERNEN.md` nutzt der Trainer standardmäßig den geprüften kompilierten Schritt (`--execution eager` für Vergleiche); Generierung nutzt einen frischen KV-Cache pro Anfrage. Die Modell- und Checkpointdarstellung bleibt gleich. Kompilierter Graphaufbau wird als `graph.training_update` und die vorhandene Ausführung/Synchronisation separat gemessen. Einzelne Forward-/Backward-/Optimizer-Anteile innerhalb des kompilierten Graphen sind im Light-Modus keine getrennten GPU-Zeiten; dafür dient der separate Metal-Trace.
+
+Die neuen Entwicklungs- und Kampagnenmodule laufen ebenfalls über den Projektstarter. Zusätzliche Aufbereitungsmodule sind für künftige technische `slm_perf run`-Aufrufe instrumentierbar. Die erstmalige v3-Aufbereitung wurde vor dieser Erweiterung ausgeführt und hat keinen vollständigen Monitoring-Trace.
+
+Die ursprüngliche GPU-Monitoring-Kalibrierung meldete fehlende Bitgleichheit; bereits Off-Wiederholungen unterschieden sich. Die überarbeitete Kalibrierung vergleicht zusätzlich sämtliche Gewichte/Adam-Zustände mit `rtol=5e-4, atol=5e-6` und die Loss mit `rtol=2e-5, atol=2e-6`. Bitgleichheit bleibt ein eigener Befund. Kleine negative Zeitunterschiede in überlappenden Messbereichen belegen keine Beschleunigung durch Monitoring. Der Metal-Trace-Aufruf enthält nun die erforderliche explizite AdamW-Lernrate.
+
+Die 20-Schritt-Kalibrierung vom 7. September überschritt `atol=5e-6` auch zwischen unüberwachten Wiederholungen (maximal 1,23638e-5). Dieser fehlgeschlagene Pilot bleibt erhalten. Für einen separaten Bestätigungsversuch wurde vor dessen Start `--state-atol 0.00002` festgelegt; relative Toleranz und Loss-Prüfung bleiben unverändert. Die kürzere GPU-Integrationsprüfung behält ihre strengeren Grenzen. Begründung und Planrevision liegen in `runs/broad-campaign-2026-09-07/CALIBRATION_REVISION.md`. Die Kalibrierung misst den separaten Eager-Schritt; ihr Overhead ist keine Garantie für kompilierte oder längere Läufe.

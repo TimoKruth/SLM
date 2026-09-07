@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 import signal
 import subprocess
@@ -78,6 +79,10 @@ def same_output(actual, expected):
         return False
     for a, b in zip(aa, bb):
         if a == b:
+            continue
+        if re.fullmatch(r'[-+]?\d+', a) and re.fullmatch(r'[-+]?\d+', b):
+            if int(a) != int(b):
+                return False
             continue
         try:
             if not math.isclose(float(a), float(b), rel_tol=1e-6, abs_tol=1e-6):
@@ -151,19 +156,10 @@ def load_tasks():
     return sorted(tasks, key=lambda t: (t['source'], int(t['id']))), dict(excluded)
 
 
-def generate(model, tokenizer, prompt, maximum=512):
-    import mlx.core as mx
-    ids = tokenizer.encode('<bos><question>\n' + prompt + '\n<answer>\n').ids
-    budget = min(maximum, model.config.context - len(ids))
-    stop_ids = {tokenizer.token_to_id(t) for t in ('<eos>', '<bos>', '<pad>', '<question>')}
-    output, reason = [], 'token_limit'
-    for _ in range(budget):
-        token = int(mx.argmax(model(mx.array([ids], dtype=mx.int32))[:, -1, :], axis=-1).item())
-        if token in stop_ids:
-            reason = 'special_token'
-            break
-        ids.append(token); output.append(token)
-    return {'generated': tokenizer.decode(output), 'generated_tokens': len(output), 'token_budget': budget, 'stop_reason': reason}
+def generate(model, tokenizer, prompt, maximum=512, cached=True):
+    """Generate one bounded answer, with an eager path retained for equivalence checks."""
+    from .inference import greedy_generate
+    return greedy_generate(model, tokenizer, prompt, maximum, cached=cached)
 
 
 def main():

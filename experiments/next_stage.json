@@ -1,0 +1,22 @@
+{
+  "status": "prepared_not_scheduled",
+  "purpose": "Compare model size on the same broad mixture after the current family/source comparison.",
+  "selection_rule": "Inspect per-family development results, learning curves, actual source-token exposure and speed; choose the mixture before running the size comparison. Do not select on the external final tests.",
+  "small_model": {
+    "module": "slm.train",
+    "model": {"dim": 512, "layers": 6, "heads": 8, "hidden": 1368, "context": 1024},
+    "parameters": 27294208,
+    "seed": 20260906,
+    "execution": "compiled",
+    "monitoring": "light",
+    "training_seconds": 10800,
+    "data": "Select one of the frozen data-families or data-sources views using the rule above.",
+    "evaluation": "Use the unchanged broad-checks-2026-09-07 suite and report by capability."
+  },
+  "longer_training": {
+    "status": "requires_results_and_additional_budget",
+    "selection_rule": "Continue only if held-out capability metrics or loss still improve; compare validation trends against training loss to detect memorization.",
+    "schedule_requirement": "Define a new explicit continuation schedule; do not silently extend an expired deadline or restart the decayed learning rate.",
+    "external_final_tests": "Remain closed until the final model and protocol are frozen."
+  }
+}

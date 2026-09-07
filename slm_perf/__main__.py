@@ -11,9 +11,9 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-GPU_MODULES = {'slm.train','slm.report','slm.code_eval','slm.interface_eval',
+GPU_MODULES = {'slm.train','slm.report','slm.code_eval','slm.interface_eval','slm.broad_eval','slm.validation',
                'experiments.performance.benchmark','slm_perf.ab','slm_perf.workload'}
-SUPERVISOR_MODULES = {'slm.sixhour', 'slm.overnight'}
+SUPERVISOR_MODULES = {'slm.sixhour', 'slm.overnight', 'slm.campaign'}
 
 
 def active_jobs():
@@ -58,9 +58,10 @@ def workload(module,args):
     stable['arguments']=normalized
     stable['module']=module
     if config.get('device'):stable['device']=config['device']
-    if module in {'slm.code_eval','slm.interface_eval','slm.report'} and run:
+    if module in {'slm.code_eval','slm.interface_eval','slm.report','slm.broad_eval'} and run:
         path=Path(run)/'best.safetensors'
-        if module=='slm.report' and (Path(run)/'latest.json').exists():
+        use_latest=module=='slm.report' or (module=='slm.broad_eval' and arg_value(args,'--checkpoint')=='latest')
+        if use_latest and (Path(run)/'latest.json').exists():
             pointer=json.loads((Path(run)/'latest.json').read_text())
             path=Path(run)/pointer['checkpoint']/'model.safetensors'
         if path.exists():

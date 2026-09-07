@@ -28,3 +28,16 @@ def test_resume_uses_separate_measurement_directories():
     assert a[a.index('--output')+1] != b[b.index('--output')+1]
     assert a[-1] == '--resume'
     assert a[a.index('--module')+1] == 'slm.train'
+
+
+def test_broad_evaluation_fingerprints_selected_checkpoint(tmp_path):
+    import hashlib
+    import json
+    from slm_perf.__main__ import workload
+    (tmp_path/'best.safetensors').write_bytes(b'best')
+    (tmp_path/'checkpoint-0000010').mkdir()
+    (tmp_path/'checkpoint-0000010/model.safetensors').write_bytes(b'latest')
+    (tmp_path/'latest.json').write_text(json.dumps({'checkpoint':'checkpoint-0000010'}))
+    args=['--run',str(tmp_path)]
+    assert workload('slm.broad_eval',args)['checkpoint_sha256']==hashlib.sha256(b'best').hexdigest()
+    assert workload('slm.broad_eval',args+['--checkpoint','latest'])['checkpoint_sha256']==hashlib.sha256(b'latest').hexdigest()

@@ -1,12 +1,12 @@
 **Versuchsplan für den M1 Max mit 64 GB**
 
-Entwurf vom 6. September 2026. Konfigurationen und Erfolgskriterien sind Vorschläge für die erste Umsetzung, keine bereits erzielten Ergebnisse.
+Fortgeschrieben am 7. September 2026: Das Ziel ist ein vielseitiges Modell; Coding bleibt eine von mehreren Fähigkeiten. Der konkrete aktuelle Ablauf steht in BREITES_LERNEN.md. Historische Machbarkeitsschätzungen unten sind keine neuen Messergebnisse.
 
 **1. Was genau gelernt werden soll**
 
 Hauptfrage: Lernt ein zufällig initialisiertes generatives Sprachmodell aus originalen Benchmark-Trainingsdaten Fähigkeiten, die auf vollständig ausgeschlossene Benchmarks übertragen werden?
 
-Zwei Teilfragen müssen getrennt bleiben: Hilft eine breite Mischung von Sprache, Mathematik und Logik beim Lernen aus Codebeispielen? Und entsteht Coding auch dann, wenn der Trainingspool keinerlei Code enthält? Die zweite Frage ist wesentlich strenger. Ohne beobachtete Programmiersyntax wäre brauchbares freies Python aus zufälligen Gewichten eine sehr starke Erwartung.
+Untersucht werden Sprach- und Dialogverständnis, Wissen, Schlussfolgern, Kausalität, Mathematik sowie Programmieren und strukturierte Abfragen. Eine Fähigkeit darf die Datenauswahl oder Erfolgsbewertung nicht allein bestimmen. Datenbreite, Gewichtung und Modellgröße werden in getrennten Vergleichen untersucht.
 
 Zulässig sind Aufgabenstellungen, zugehöriger Kontext, Originalantworten, Referenzprogramme und bereits mitgelieferte Erklärungen aus überprüften Trainingsanteilen. Mehrere Lösungen derselben Aufgabe dürfen genutzt werden, werden aber als Varianten einer Aufgabe gezählt. Falsche Kandidaten werden nicht als richtige Lösung trainiert. Reine Testdatensätze, zusätzliche Webkorpora und nachträglich generierte Lehrerantworten sind ausgeschlossen. Bekannte synthetische Originalquellen werden markiert und für den strengsten Hauptlauf ausgeschlossen.
 
@@ -65,10 +65,10 @@ Rechnung: Tokens geteilt durch Tokens/s; Evaluation, Checkpoints und Pausen komm
 
 | Lauf | Daten | Aussage |
 | --- | --- | --- |
-| A: breite Mischung | Code plus Sprache, Logik und Mathematik | Hauptversuch: Transfer aus vielen Benchmark-Aufgaben. |
-| B: nur Code | Gleiche zulässige Codequellen | Zeigt, ob ein Code-Spezialist bei gleichem Gesamtbudget besser ist. |
-| C: ohne Code | Bereinigte Sprache-, Logik- und Mathematikdaten | Prüft Transfer ohne beobachtete Codebeispiele. Auch Code in Kontexten und Lösungen muss entfernt werden. |
-| D: zufälliges Modell | Kein Training | Prüft Ausgangsniveau und Evaluationspipeline. Ergänzend einfache Antwort-/Retrieval-Baselines. |
+| A: gleiche Fähigkeitsgruppen | Dieselben 32 geprüften Quellen | Jede der sieben Fähigkeitsgruppen erhält dieselbe Samplingmasse. |
+| B: gleiche Quellen | Dieselben Beispiele und Quellen wie A | Jede Quelle erhält dieselbe Samplingmasse; übrige Trainingsbedingungen bleiben gleich. |
+| C: kleineres Modell | Dieselbe breite Mischung | Prüft das Verhältnis zwischen Modellgröße, Durchsatz und Lernfortschritt. |
+| D: zufälliges Modell | Kein Training | Prüft Ausgangsniveau und Evaluationspipeline. |
 
 A, B und C verwenden dieselbe Architektur, denselben auf der zulässigen Gesamt-Trainingsmenge gelernten Tokenizer und ein gleiches Gesamt-Tokenbudget. Beim streng codefreien Lauf C verwenden wir stattdessen einen gemeinsamen festen Byte-Tokenizer für einen gesonderten A/B/C-Vergleich, damit der Tokenizer keine Codeinformation einführt. Diese beiden Vergleichsserien dürfen nicht direkt vermischt werden.
 
@@ -80,9 +80,9 @@ Als Entwicklungsablation vergleichen wir Next-Token-Loss über Aufgabe und Lösu
 
 Die drei Tests und ihre Quellen sind in [RECHERCHE.md](RECHERCHE.md) beschrieben. Für den ersten Abschlusslauf werden Datenrevisionen und IDs vorab eingefroren: LiveCodeBench v6 Easy plus separater Gesamtscore, IFBench Single-Turn und BBEH Mini. Generierung und Bewertung werden getrennt, sodass Antworten lokal mit MLX entstehen können, während offizielle Bewertungslogik genutzt wird. Generierter Code läuft in einer isolierten Umgebung ohne Netzwerk, mit Zeit- und Speicherlimit.
 
-Vorgeschlagenes frühes Coding-Ziel: mindestens 10 % vollständig gelöste Aufgaben auf dem eingefrorenen LiveCodeBench-Easy-Segment bei genau einem deterministischen Versuch je Aufgabe. Das ist ein bewusst gesetzter Projektmeilenstein, keine Prognose und keine Definition durchschnittlicher menschlicher Coding-Kompetenz. Abweichungen vom offiziellen Samplingprotokoll werden klar angegeben; Vergleiche erfolgen nur unter identischen Bedingungen.
+Erfolg wird als Fähigkeitsprofil berichtet: korrekte Antworten, ausführbare Programme, Schlussfolgerungen und offene Sprachqualität werden getrennt beurteilt. Es gibt keinen alleinigen Coding-Schwellenwert für den Projekterfolg.
 
-Ein Befund zu breiterem Transfer braucht Verbesserungen auf mehreren unabhängigen Aufgabenbereichen und gegenüber passenden Baselines. Für Code sind A gegen B, für die anderen Bereiche ebenfalls die jeweiligen Vergleiche aussagekräftiger als nur ein Sieg über Zufall. Gleiche Prompts, Kontextgrenzen und Ausgabebudgets gelten für alle Modelle. Fehler wegen Syntax, Format, Timeout und falscher Lösung werden getrennt berichtet.
+Ein Befund zu breiterem Transfer braucht Verbesserungen auf mehreren unabhängigen Aufgabenbereichen und gegenüber passenden Baselines. A gegen B untersucht die Gewichtung derselben breiten Datenbasis; C die Modellgröße. Tatsächlich verarbeitete Tokens je Quelle werden mitberichtet. Gleiche Prompts, Kontextgrenzen und Ausgabebudgets gelten für alle Modelle. Fehler wegen Syntax, Format, Timeout und falscher Lösung werden getrennt berichtet.
 
 Aufgabenweise Ergebnisse und Unsicherheitsintervalle werden gespeichert; bei Aufgabenfamilien wird die Gruppierung in der Analyse berücksichtigt. Nach einem günstigen Pilot werden die entscheidenden Trainingsvergleiche mit drei Seeds wiederholt. Checkpoints werden ausschließlich über Entwicklung ausgewählt. Erst anschließend werden die festgelegten Modelle auf allen Abschlusstests bewertet.
 
