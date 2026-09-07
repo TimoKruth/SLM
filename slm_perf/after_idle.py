@@ -1,4 +1,5 @@
 """One-shot calibration queue, sequenced after the existing run and GPU benchmark."""
+from contextlib import contextmanager
 from datetime import datetime
 import fcntl
 import hashlib
@@ -58,6 +59,16 @@ def stop_process(process):
             raise CleanupTimeout(f'Process {process.pid} did not exit after terminate and kill') from exc
 
 
+@contextmanager
+def defer_shutdown_signals():
+    """Deliver SIGTERM/SIGINT only after bounded cleanup, restoring the caller's mask."""
+    previous = signal.pthread_sigmask(signal.SIG_BLOCK, {signal.SIGTERM, signal.SIGINT})
+    try:
+        yield
+    finally:
+        signal.pthread_sigmask(signal.SIG_SETMASK, previous)
+
+
 def run_calibration(plan):
     """Reserve the GPU before spawn and clean up both children on every Python exit path."""
     from .__main__ import active_jobs
@@ -103,17 +114,18 @@ def run_calibration(plan):
                 pass
             raise
         finally:
-            cleanup_errors = []
-            for process in (child, caffeine):
-                try:
-                    stop_process(process)
-                except Exception as exc:
-                    cleanup_errors.append({'pid': process.pid, 'error': str(exc)})
-            if cleanup_errors:
-                try:
-                    save(status='cleanup_failed', processes=cleanup_errors)
-                finally:
-                    raise RuntimeError(f'Calibration cleanup failed: {cleanup_errors}')
+            with defer_shutdown_signals():
+                cleanup_errors = []
+                for process in (child, caffeine):
+                    try:
+                        stop_process(process)
+                    except Exception as exc:
+                        cleanup_errors.append({'pid': process.pid, 'error': str(exc)})
+                if cleanup_errors:
+                    try:
+                        save(status='cleanup_failed', processes=cleanup_errors)
+                    finally:
+                        raise RuntimeError(f'Calibration cleanup failed: {cleanup_errors}')
 
 
 def main():

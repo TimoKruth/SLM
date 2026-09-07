@@ -230,3 +230,49 @@ def test_cleanup_error_still_cleans_other_child_and_records_failure(tmp_path, mo
     status = json.loads((out / 'status.json').read_text())
     assert status['status'] == 'cleanup_failed'
     assert status['processes'] == [{'pid': 2, 'error': 'stuck child'}]
+
+
+@pytest.mark.parametrize('signal_name', ['SIGTERM', 'SIGINT'])
+@pytest.mark.parametrize('interrupted_pid', [1, 2])
+def test_queue_defers_shutdown_until_both_children_are_cleaned(tmp_path, signal_name, interrupted_pid):
+    """Real signals during either cleanup cannot skip reaping or leak the GPU lease."""
+    code = """
+import json, os, signal, sys
+from pathlib import Path
+from unittest.mock import Mock, patch
+from slm_perf import after_idle, gpu_lease, __main__ as cli
+root = Path(sys.argv[1])
+run, out = root / 'run', root / 'out'
+run.mkdir()
+out.mkdir()
+(run / 'status.json').write_text('{"status":"completed"}')
+signum = getattr(signal, sys.argv[2])
+signal.signal(signum, after_idle.interrupted)
+mask_before = signal.pthread_sigmask(signal.SIG_BLOCK, set())
+cleaned = []
+caffeine, child = Mock(pid=1), Mock(pid=2)
+child.poll.return_value = 0
+child.returncode = 0
+def stop(process):
+    if process.pid == int(sys.argv[3]):
+        os.kill(os.getpid(), signum)
+        os.kill(os.getpid(), signum)
+    cleaned.append(process.pid)
+with patch.object(after_idle, 'OUT', out), patch.object(gpu_lease, 'LOCK_PATH', root / 'gpu.lock'), patch.object(cli, 'active_jobs', return_value=[]), patch.object(after_idle.subprocess, 'Popen', side_effect=[caffeine, child]), patch.object(after_idle, 'stop_process', side_effect=stop):
+    try:
+        after_idle.run_calibration({'run': str(run), 'source_sha256': {}, 'timeout_seconds': 60})
+    except SystemExit as exc:
+        assert exc.code == 128 + signum
+    else:
+        raise AssertionError('pending signal was not delivered after cleanup')
+assert cleaned == [2, 1], cleaned
+assert signal.pthread_sigmask(signal.SIG_BLOCK, set()) == mask_before
+with gpu_lease.GPULease(root / 'gpu.lock'):
+    pass
+print(json.dumps({'cleaned': cleaned, 'lease_released': True}))
+"""
+    result = subprocess.run([sys.executable, '-c', code, str(tmp_path), signal_name, str(interrupted_pid)],
+                            cwd=ROOT, capture_output=True, text=True, timeout=10,
+                            env={k: v for k, v in os.environ.items() if k != FD_ENV})
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == {'cleaned': [2, 1], 'lease_released': True}
