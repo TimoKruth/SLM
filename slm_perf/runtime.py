@@ -7,7 +7,6 @@ import math
 from pathlib import Path
 import pstats
 import time
-import sys
 
 SCHEMA = 1
 
@@ -115,6 +114,9 @@ class Monitor:
             if self.stack:
                 self.stack[-1]['children'] += done - before
             self.hook_ns += done - end
+            # Cooperative snapshots at existing phase boundaries, never a writer thread.
+            if (done - self.last_flush)/1e9 >= self.flush_seconds and not self.disabled:
+                self.flush('running')
 
     def call(self, label, fn, *args, **kwargs):
         # Propagate explicit monitoring to supervised Python modules only.

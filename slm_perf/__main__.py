@@ -58,6 +58,9 @@ def workload(module,args):
     if config.get('device'):stable['device']=config['device']
     if module in {'slm.code_eval','slm.interface_eval','slm.report'} and run:
         path=Path(run)/'best.safetensors'
+        if module=='slm.report' and (Path(run)/'latest.json').exists():
+            pointer=json.loads((Path(run)/'latest.json').read_text())
+            path=Path(run)/pointer['checkpoint']/'model.safetensors'
         if path.exists():
             h=hashlib.sha256()
             with path.open('rb') as f:
@@ -83,6 +86,7 @@ def launch(args):
     mon=Monitor(out,args.mode,args.warmup_steps,args.flush_seconds,args.detail_seconds)
     mon.metadata.update(environment=env,module=args.module,label=args.label,arguments=target,
                         started_at=time.strftime('%Y-%m-%dT%H:%M:%S%z'),
+                        source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'slm').glob('*.py')},
                         monitoring_source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'slm_perf').glob('*.py')})
     finder=Finder(mon)
     sys.meta_path.insert(0,finder)

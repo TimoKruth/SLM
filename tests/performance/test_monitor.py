@@ -115,3 +115,39 @@ def test_off_executes_original_entry_point(tmp_path,monkeypatch):
     with pytest.raises(SystemExit):cli.launch(args)
     assert seen[0][1][1:]==['-m','slm.train','--run','example']
     assert not list(tmp_path.iterdir())
+
+
+def test_child_monitoring_preserves_target_args_and_sandbox_command(tmp_path):
+    m=Monitor(tmp_path)
+    seen=[]
+    def spawn(command,**kwargs):seen.append((command,kwargs));return 42
+    command=['python','-u','-m','slm.train','--run','path with spaces','--steps','3']
+    assert m.call('subprocess.start',spawn,command,cwd='root')==42
+    actual,kw=seen[0]
+    assert actual[:4]==['python','-u','-m','slm_perf']
+    assert actual[actual.index('--module')+1:]==['slm.train','--','--run','path with spaces','--steps','3']
+    assert kw=={'cwd':'root'}
+    sandbox=['/usr/bin/sandbox-exec','-f','profile','python','-I','candidate.py']
+    m.call('subprocess.start',spawn,sandbox)
+    assert seen[1][0] is sandbox
+
+
+def test_queue_waits_for_previous_benchmark_even_when_gpu_idle(tmp_path,monkeypatch):
+    from slm_perf import after_idle,__main__ as cli
+    run=tmp_path/'run';prior=tmp_path/'prior';run.mkdir();prior.mkdir()
+    (run/'supervisor.json').write_text('{"phase":"finished"}')
+    (prior/'status.json').write_text('{"status":"benchmark_running"}')
+    monkeypatch.setattr(cli,'active_jobs',lambda:[])
+    plan={'run':str(run),'prior_benchmark':str(prior)}
+    assert not after_idle.ready(plan)
+    (prior/'status.json').write_text('{"status":"completed"}')
+    assert after_idle.ready(plan)
+    monkeypatch.setattr(cli,'active_jobs',lambda:[55])
+    assert not after_idle.ready(plan)
+
+
+def test_metadata_export_is_not_charged_to_program_time(tmp_path):
+    now=[0];m=Monitor(tmp_path,clock=lambda:now[0])
+    now[0]=100;m.ended=now[0]
+    now[0]=999999
+    assert m.result('completed')['elapsed_seconds']==100/1e9

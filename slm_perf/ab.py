@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 import statistics
 import time
-import types
 
 
 def main():
