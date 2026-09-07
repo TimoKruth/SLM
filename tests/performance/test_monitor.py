@@ -41,6 +41,19 @@ def test_write_failure_disables_measurement_without_failing_workload(tmp_path,mo
     assert m.errors
 
 
+def test_write_failure_stops_detail_profiler(tmp_path,monkeypatch):
+    m=Monitor(tmp_path,mode='detail');m.start_detail()
+    def fail(*args,**kwargs):raise OSError('disk unavailable')
+    monkeypatch.setattr(Path,'write_text',fail)
+    try:
+        m.flush('running')
+        assert m.disabled
+        assert m.profile is None
+        assert m.call('work',lambda:42)==42
+    finally:
+        m.stop_detail()
+
+
 def test_transform_preserves_control_flow_returns_and_arguments(tmp_path):
     source='''
 def main(value):
@@ -125,6 +138,9 @@ def test_child_monitoring_preserves_target_args_and_sandbox_command(tmp_path):
     assert m.call('subprocess.start',spawn,command,cwd='root')==42
     actual,kw=seen[0]
     assert actual[:4]==['python','-u','-m','slm_perf']
+    assert actual[4:actual.index('--module')]==[
+        'run','--mode','light','--output',str(tmp_path/'children/000-slm.train'),
+        '--warmup-steps','10','--flush-seconds','60','--detail-seconds','30']
     assert actual[actual.index('--module')+1:]==['slm.train','--','--run','path with spaces','--steps','3']
     assert kw=={'cwd':'root'}
     sandbox=['/usr/bin/sandbox-exec','-f','profile','python','-I','candidate.py']

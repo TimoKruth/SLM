@@ -77,6 +77,8 @@ reviews:
 
 # Mirror public-repository context boundaries even if visibility changes.
 knowledge_base:
+  web_search:
+    enabled: false
   learnings:
     scope: local
   issues:

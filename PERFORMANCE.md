@@ -36,7 +36,9 @@ Für einen **zukünftigen** Gesamtlauf mit Training, Bericht und Code-Auswertung
 
 Dieser Befehl startet tatsächlich einen neuen Sechs-Stunden-Versuch. Er wurde hier nicht ausgeführt. Das Monitoring wird bei diesem Einstieg automatisch an die überwachten Python-Teilprozesse weitergereicht. Sandbox-Codeprogramme bleiben unverändert. Nicht gleichzeitig mit einem anderen SLM-GPU-Job starten; der Launcher prüft dies vor dem Start.
 
-Auch einzelne vorhandene Einstiegspunkte werden unterstützt, etwa `slm.train`, `slm.report`, `slm.code_eval`, `slm.interface_eval`, `slm.collect` und `slm.prepare_v2`. Ihre ursprünglichen Argumente stehen hinter `--`. Bestehende Schutzregeln, etwa gegen das Überschreiben eingefrorener Daten, gelten weiterhin.
+Der Projektstarter `run_slm.py` unterstützt über `--module` die Einstiegspunkte `slm.sixhour` (Standard), `slm.overnight`, `slm.train`, `slm.report`, `slm.code_eval` und `slm.interface_eval`. Sein Modusschalter heißt `--monitoring off|light|detail`; weitere Argumente wie `--data` werden direkt weitergereicht.
+
+Der **technische Launcher `.venv/bin/python -m slm_perf run`** unterstützt zusätzlich unter anderem `slm.collect` und `slm.prepare_v2`. Bei diesem Launcher stehen die ursprünglichen Modulargumente hinter `--`. Seine Monitoring-Optionen sind die folgenden; sie sind keine direkten Optionen von `run_slm.py`. Bestehende Schutzregeln, etwa gegen das Überschreiben eingefrorener Daten, gelten weiterhin.
 
 - `--mode off`: ursprünglicher Codepfad, keine Monitoring-Dateien. Zum Ausschalten alternativ den normalen bisherigen Befehl verwenden.
 - `--mode light`: benannte Phasen, feste Speicherobergrenzen pro Histogramm und begrenzter Ereignisverlauf; standardmäßig Datei-Snapshot alle 60 Sekunden an einer Phasengrenze und beim Abschluss.
@@ -44,7 +46,7 @@ Auch einzelne vorhandene Einstiegspunkte werden unterstützt, etwa `slm.train`, 
 - `--warmup-steps 10`: erste zehn Trainingsschritte je Prozess getrennt von den nachfolgenden Schritten.
 - `--flush-seconds 60`: Abstand der Zwischenstände. Häufigere Ausgabe erhöht den Messaufwand.
 
-Die Wahl des Modus erfolgt beim Start. Bei Wiederaufnahme einen **neuen Monitoring-Ausgabeordner** verwenden; vorhandene Messungen werden nicht überschrieben. Ein Schreibfehler beim laufenden Monitoring deaktiviert weitere Mess-Hooks und wird festgehalten, soweit die Ausgabe noch möglich ist. Das Training bekommt diesen Monitoring-I/O-Fehler nicht als Ausnahme weitergereicht. Eigene Trainings- oder Checkpoint-Fehler bleiben unverändert sichtbar.
+Die Wahl des Modus erfolgt beim Start. Beim technischen Launcher für eine Wiederaufnahme einen **neuen Monitoring-Ausgabeordner** verwenden; der Projektstarter erzeugt ihn automatisch. Vorhandene Messungen werden nicht überschrieben. Ein Schreibfehler beim laufenden Monitoring deaktiviert weitere Mess-Hooks und beendet auch ein aktives Detailprofil. Er wird festgehalten, soweit die Ausgabe noch möglich ist. Das Training bekommt diesen Monitoring-I/O-Fehler nicht als Ausnahme weitergereicht. Eigene Trainings- oder Checkpoint-Fehler bleiben unverändert sichtbar.
 
 ## Berichte und Vergleiche
 

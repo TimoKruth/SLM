@@ -183,6 +183,7 @@ class Monitor:
             # Monitoring failure must not fail a training step or consume unbounded memory.
             self.errors.append(type(exc).__name__ + ': ' + str(exc))
             self.disabled = True
+            self.stop_detail()
         finally:
             self.last_flush = self.clock()
             self.io_ns += self.last_flush - begin
