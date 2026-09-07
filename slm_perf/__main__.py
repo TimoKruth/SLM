@@ -72,9 +72,21 @@ def workload(module,args):
 
 def launch(args):
     """Run an isolated instrumented module, refusing competing GPU jobs and reused output."""
-    from .instrument import MODULES,Finder
+    from .instrument import MODULES
     if args.module not in MODULES:raise ValueError('Unsupported module: '+args.module)
     if active_jobs():raise RuntimeError('An SLM GPU job is active. No competing workload was started.')
+    if args.module in GPU_MODULES:
+        from .gpu_lease import GPULease
+        with GPULease() as lease:
+            if active_jobs():raise RuntimeError('An SLM GPU job became active before launch.')
+            if args.mode=='off':lease.survive_exec()
+            return launch_workload(args)
+    return launch_workload(args)
+
+
+def launch_workload(args):
+    """Execute after admission; GPU leaf modules keep their lease through this call."""
+    from .instrument import Finder
     target=args.target[1:] if args.target[:1]==['--'] else args.target
     if args.mode=='off':
         # Actual uninstrumented entry point; no profiler, import hook or monitoring files.

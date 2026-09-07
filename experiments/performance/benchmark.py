@@ -24,6 +24,14 @@ def active_slm_jobs():
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--run',required=True);parser.add_argument('--output',required=True);args=parser.parse_args()
     if active_slm_jobs():raise RuntimeError('Live SLM GPU job present; benchmark refused')
+    from slm_perf.gpu_lease import GPULease
+    with GPULease():
+        if active_slm_jobs():raise RuntimeError('Live SLM GPU job present; benchmark refused')
+        benchmark(args)
+
+
+def benchmark(args):
+    """Run the isolated comparison while the entry point owns the common GPU lease."""
     import mlx.core as mx
     import numpy as np
     from slm.model import LanguageModel,ModelConfig
