@@ -10,7 +10,7 @@ def test_project_default_enables_light_and_forwards_training_arguments():
     assert args[args.index('--warmup-steps')+1] == '10'
     assert args[args.index('--flush-seconds')+1] == '60'
     assert args[args.index('--detail-seconds')+1] == '30'
-    assert args[args.index('--output')+1] == str(ROOT / 'runs/future/performance/test-session')
+    assert args[args.index('--output')+1] == str((ROOT / 'runs/future/performance/test-session').resolve())
     assert args[args.index('--module'):] == ['--module', 'slm.sixhour', '--', '--run', 'runs/future', '--data', 'data/v2']
 
 

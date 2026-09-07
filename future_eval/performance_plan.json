@@ -1,0 +1,14 @@
+{
+  "status": "prepared_not_scheduled",
+  "purpose": "Reproducible next optimization experiment after a bottleneck is identified in the completed training profiles.",
+  "operating_condition": "Use the same user-selected reduced-performance setting for every trial; record exact setting before and after, plus power source and temperature if available. Do not raise fan noise by changing system settings.",
+  "fixed_work": {"architecture": "97.5M production configuration", "batch_size": 2, "context": 1024, "dtype": "float32", "data": "One frozen broad mixture; preloaded batches and identical nonpadding token counts", "warmup_steps": 30, "measured_steps": 100, "repeats_per_variant": 5, "order": "Predeclare randomized paired order with fixed seed 20260907"},
+  "comparisons": [
+    {"candidate": "Packing improvements", "condition": "Implement only if completed profiles and padding statistics justify it; preserve source sequence sampling and record token exposure."},
+    {"candidate": "Graph execution changes", "condition": "Change one factor; compare all model and optimizer arrays, gradients/loss and checkpoint resume before timing claims."}
+  ],
+  "measurements": ["startup and compilation separately", "steady synchronized step time", "nonpadding tokens per second", "padding fraction", "peak memory", "checkpoint and development time", "monitoring flush and bookkeeping cost"],
+  "analysis": "Report paired differences and variation, not only the fastest result. Identical settings do not eliminate thermal drift. Do not compare the two data mixtures as if they were a fixed-work code optimization benchmark.",
+  "monitoring": "light for real runs; explicit off/light diagnostics only under the existing A/B authorization",
+  "activation": "Requires the completed campaign profiles and a concrete candidate; no competing GPU experiment is started now."
+}

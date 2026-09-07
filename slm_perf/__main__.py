@@ -76,7 +76,9 @@ def launch(args):
     """Run an isolated instrumented module, refusing competing GPU jobs and reused output."""
     from .instrument import MODULES
     if args.module not in MODULES:raise ValueError('Unsupported module: '+args.module)
-    if active_jobs():raise RuntimeError('An SLM GPU job is active. No competing workload was started.')
+    # Only lightweight artifact reading and a sleeping queue may coexist with training.
+    if args.module not in {'future_eval.analyze','future_eval.queue'} and active_jobs():
+        raise RuntimeError('An SLM GPU job is active. No competing workload was started.')
     if args.module in GPU_MODULES or (args.mode=='off' and args.module in SUPERVISOR_MODULES):
         from .gpu_lease import GPULease
         with GPULease() as lease:

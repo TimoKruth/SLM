@@ -1,8 +1,8 @@
-.venv/
+/.venv
 __pycache__/
 .pytest_cache/
-data/
-runs/
+/data
+/runs
 *.pyc
 .DS_Store
 *.log
