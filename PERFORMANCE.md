@@ -91,14 +91,14 @@ Die aktuelle Trainings-Lernrate hängt teilweise von der verstrichenen Zeit ab. 
 
 ## Bisherige Verifikation
 
-Nach Aktivierung des Projektstarters bestehen **18 Tests**: die folgenden 15 Monitoring-Tests sowie drei Prüfungen für den aktiven Standard, ausdrückliches Ausschalten und getrennte Messordner bei Wiederaufnahme. Die Sitzungsnamen im Vergleichsbeispiel oben durch die tatsächlich erzeugten Ordnernamen ersetzen.
+Aktuell bestehen **22 Performance- und Queue-Tests**: 19 unter `tests/performance/` (14 Runtime-, Vergleichs- und Schutztests, drei Projektstarter-Tests und zwei CPU-Trainingsäquivalenzfälle für `light` und `detail`) sowie drei zusätzliche Queue-Schutztests unter `experiments/performance/test_queue.py`. Die Sitzungsnamen im Vergleichsbeispiel oben durch die tatsächlich erzeugten Ordnernamen ersetzen.
 
-**15 Tests bestanden.** Geprüft wurden verschachtelte Zeitrechnung, Fehlerweitergabe, Abschalten bei Monitoring-Schreibfehlern, unveränderte Kontrollflüsse, begrenzte Trace-Größe, Aufwärmtrennung, Vergleichsregeln, der unveränderte Off-Einstieg, Prozessschutz und Weitergabe an überwachte Kindprozesse. Ein echter kleiner CPU-Trainingslauf liefert sowohl mit `light` als auch mit `detail` exakt dieselben Gewichte, Optimiererzustände und Sampler-Checkpoint-Zustände wie das Original – einschließlich Wiederaufnahme und bei fixiertem zeitabhängigem Lernratenplan.
+Geprüft wurden verschachtelte Zeitrechnung, Fehlerweitergabe, Abschalten einschließlich des Detailprofils bei Monitoring-Schreibfehlern, unveränderte Kontrollflüsse, begrenzte Trace-Größe, Aufwärmtrennung, Vergleichsregeln, der unveränderte Off-Einstieg, Prozessschutz und vollständige Weitergabe der Monitoring-Einstellungen an überwachte Kindprozesse. Ein echter kleiner CPU-Trainingslauf liefert sowohl mit `light` als auch mit `detail` exakt dieselben Gewichte, Optimiererzustände und Sampler-Checkpoint-Zustände wie das Original – einschließlich Wiederaufnahme und bei fixiertem zeitabhängigem Lernratenplan.
 
 Ein zusätzlicher CPU-Probelauf über den tatsächlichen Launcher schloss **12 Schritte mit 44 verschachtelten Messpfaden** fehlerfrei ab: [Beispielbericht](runs/monitoring-2026-09-07/cpu-smoke-final/REPORT.md). Das Spielzeugmodell ist keine Geschwindigkeitsreferenz für das eigentliche Modell.
 
 ```sh
-.venv/bin/python -m pytest -q tests/performance
+.venv/bin/python -m pytest -q tests/performance experiments/performance/test_queue.py
 .venv/bin/python -m slm_perf inventory --output runs/performance-coverage.json
 ```
 

@@ -43,7 +43,8 @@ def test_write_failure_disables_measurement_without_failing_workload(tmp_path,mo
 
 def test_write_failure_stops_detail_profiler(tmp_path,monkeypatch):
     """An output failure must stop cProfile while leaving subsequent workload calls usable."""
-    m=Monitor(tmp_path,mode='detail');m.start_detail()
+    m=Monitor(tmp_path,mode='detail')
+    m.start_detail()
     def fail(*args,**kwargs):raise OSError('disk unavailable')
     monkeypatch.setattr(Path,'write_text',fail)
     try:
