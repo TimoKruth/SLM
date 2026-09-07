@@ -40,6 +40,7 @@ def arg_value(args,flag):
 
 
 def workload(module,args):
+    """Describe comparison inputs, hashing the checkpoint actually used by evaluation."""
     run=arg_value(args,'--run')
     config={}
     if run and (Path(run)/'config.json').exists():
@@ -70,6 +71,7 @@ def workload(module,args):
 
 
 def launch(args):
+    """Run an isolated instrumented module, refusing competing GPU jobs and reused output."""
     from .instrument import MODULES,Finder
     if args.module not in MODULES:raise ValueError('Unsupported module: '+args.module)
     if active_jobs():raise RuntimeError('An SLM GPU job is active. No competing workload was started.')

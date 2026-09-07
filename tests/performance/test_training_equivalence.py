@@ -14,6 +14,7 @@ from slm_perf.runtime import Monitor
 
 @pytest.mark.parametrize('mode',['light','detail'])
 def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatch,mode):
+    """Compare exact CPU weights, Adam state and sampler state with fixed wall-clock LR."""
     import slm.train as original
     previous=mx.default_device()
     mx.set_default_device(mx.cpu)

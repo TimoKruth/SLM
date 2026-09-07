@@ -42,6 +42,7 @@ def test_write_failure_disables_measurement_without_failing_workload(tmp_path,mo
 
 
 def test_write_failure_stops_detail_profiler(tmp_path,monkeypatch):
+    """An output failure must stop cProfile while leaving subsequent workload calls usable."""
     m=Monitor(tmp_path,mode='detail');m.start_detail()
     def fail(*args,**kwargs):raise OSError('disk unavailable')
     monkeypatch.setattr(Path,'write_text',fail)
@@ -131,6 +132,7 @@ def test_off_executes_original_entry_point(tmp_path,monkeypatch):
 
 
 def test_child_monitoring_preserves_target_args_and_sandbox_command(tmp_path):
+    """Propagate every monitoring setting without rewriting sandboxed candidate commands."""
     m=Monitor(tmp_path)
     seen=[]
     def spawn(command,**kwargs):seen.append((command,kwargs));return 42
@@ -149,6 +151,7 @@ def test_child_monitoring_preserves_target_args_and_sandbox_command(tmp_path):
 
 
 def test_queue_waits_for_previous_benchmark_even_when_gpu_idle(tmp_path,monkeypatch):
+    """Idle GPU state alone cannot bypass an unfinished prerequisite benchmark."""
     from slm_perf import after_idle,__main__ as cli
     run=tmp_path/'run';prior=tmp_path/'prior';run.mkdir();prior.mkdir()
     (run/'supervisor.json').write_text('{"phase":"finished"}')
@@ -163,6 +166,7 @@ def test_queue_waits_for_previous_benchmark_even_when_gpu_idle(tmp_path,monkeypa
 
 
 def test_metadata_export_is_not_charged_to_program_time(tmp_path):
+    """Post-run bookkeeping must not extend the frozen workload timing window."""
     now=[0];m=Monitor(tmp_path,clock=lambda:now[0])
     now[0]=100;m.ended=now[0]
     now[0]=999999

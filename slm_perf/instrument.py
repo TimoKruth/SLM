@@ -81,6 +81,7 @@ class Instrument(ast.NodeTransformer):
         return node
 
     def visit_Call(self, node):
+        """Wrap selected calls inside functions while preserving argument evaluation order."""
         original = dotted(node.func)
         label = CALLS.get(original)
         if self.module=='slm.train' and original=='digest':

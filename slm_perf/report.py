@@ -4,6 +4,7 @@ from pathlib import Path
 
 
 def render(data):
+    """Render host-wall phase times and child links without summing inclusive durations."""
     lines = ['# Performance-Messung', '',f"Status: {data['status']}; Modus: {data['mode']}; Prozesszeit: {data['elapsed_seconds']:.3f} s.",
              f"Trainingstokens im Messfenster: {data['training_tokens_delta']:,}; einschließlich Start, Entwicklung und Checkpoints: {data['end_to_end_tokens_per_second']:.1f} Tokens/s.",
              '', 'Alle Zeiten sind Host-Wall-Zeiten. GPU-Arbeit ist an bestehenden eval/item/save-Grenzen enthalten. Graph-Aufbau ist keine GPU-Kernelzeit. Inklusive Zeiten enthalten Kindphasen und dürfen nicht addiert werden.',
@@ -23,6 +24,7 @@ def render(data):
 
 
 def comparison(a,b):
+    """Report phase deltas and explicitly flag incompatible workload or monitoring inputs."""
     mismatches=[]
     for field in ['schema','mode','warmup_steps','flush_seconds','detail_limit_seconds']:
         if a.get(field)!=b.get(field): mismatches.append(field)

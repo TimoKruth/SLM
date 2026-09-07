@@ -82,6 +82,7 @@ class Monitor:
 
     @contextmanager
     def span(self, name):
+        """Record nested host-wall time without device barriers or suppressing workload errors."""
         if self.disabled:
             yield
             return
@@ -173,6 +174,7 @@ class Monitor:
                     recent_events=self.events, trace_dropped=self.trace_dropped, errors=self.errors)
 
     def flush(self, status):
+        """Write an atomic snapshot; disable hooks and detail profiling if output fails."""
         begin = self.clock()
         try:
             payload = self.result(status)

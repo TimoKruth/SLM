@@ -14,11 +14,13 @@ OUT=ROOT/'runs/monitoring-2026-09-07'
 
 
 def save(**status):
+    """Atomically replace the queue heartbeat with a timezone-aware timestamp."""
     path=OUT/'status.json';temporary=path.with_suffix('.tmp')
     temporary.write_text(json.dumps(dict(updated_at=datetime.now().astimezone().isoformat(),**status),indent=2)+'\n');temporary.replace(path)
 
 
 def ready(plan):
+    """Require finished prerequisites and no active SLM GPU workload before calibration."""
     from .__main__ import active_jobs
     run=Path(plan['run']);prior=Path(plan['prior_benchmark'])
     try:
@@ -30,6 +32,7 @@ def ready(plan):
 
 
 def main():
+    """Run one hash-pinned, time-bounded calibration after its prerequisites finish."""
     OUT.mkdir(parents=True,exist_ok=True)
     lock=(OUT/'queue.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     plan=json.loads((OUT/'plan.json').read_text());run=Path(plan['run'])

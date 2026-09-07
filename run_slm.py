@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent
 
 
 def command(argv, defaults=None, session=None):
+    """Build the monitored argv without launching work or creating output directories."""
     defaults = json.loads((ROOT / 'run_defaults.json').read_text()) if defaults is None else defaults
     parser = argparse.ArgumentParser(description=__doc__, epilog='Additional arguments, e.g. --data or --until, are forwarded unchanged to the selected module.')
     parser.add_argument('--run', required=True)
@@ -31,6 +32,7 @@ def command(argv, defaults=None, session=None):
 
 
 def main():
+    """Replace this process with the project-configured launcher from the repository root."""
     arguments = command(sys.argv[1:])
     os.chdir(ROOT)
     os.execv(sys.executable, arguments)
