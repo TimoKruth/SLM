@@ -120,15 +120,23 @@ def test_active_job_guard_before_output_or_mlx_import(tmp_path,monkeypatch):
     assert not (tmp_path/'never').exists()
 
 
-def test_off_executes_original_entry_point(tmp_path,monkeypatch):
+@pytest.mark.parametrize('module',['slm.train','slm.sixhour','slm.overnight'])
+def test_off_executes_original_entry_point(tmp_path,monkeypatch,module):
+    """Off mode execs unchanged arguments without acquiring the machine's real test-time lease."""
+    from unittest.mock import MagicMock
     from slm_perf import __main__ as cli
+    from slm_perf import gpu_lease
+    lease=MagicMock()
+    lease.__enter__.return_value=lease
+    monkeypatch.setattr(gpu_lease,'GPULease',lambda:lease)
     monkeypatch.setattr(cli,'active_jobs',lambda:[])
     seen=[]
     def execute(*args):seen.append(args);raise SystemExit(0)
     monkeypatch.setattr(cli.os,'execv',execute)
-    args=types.SimpleNamespace(module='slm.train',mode='off',target=['--','--run','example'])
+    args=types.SimpleNamespace(module=module,mode='off',target=['--','--run','example'])
     with pytest.raises(SystemExit):cli.launch(args)
-    assert seen[0][1][1:]==['-m','slm.train','--run','example']
+    assert seen[0][1][1:]==['-m',module,'--run','example']
+    lease.survive_exec.assert_called_once()
     assert not list(tmp_path.iterdir())
 
 

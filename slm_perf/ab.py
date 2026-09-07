@@ -18,7 +18,8 @@ def main():
     if active_jobs():raise RuntimeError('Active SLM GPU job; calibration refused')
     from .gpu_lease import GPULease
     with GPULease():
-        if active_jobs():raise RuntimeError('Active SLM GPU job; calibration refused')
+        if active_jobs():
+            raise RuntimeError('Active SLM GPU job; calibration refused')
         calibrate(args)
 
 

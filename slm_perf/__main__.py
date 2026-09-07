@@ -13,6 +13,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 GPU_MODULES = {'slm.train','slm.report','slm.code_eval','slm.interface_eval',
                'experiments.performance.benchmark','slm_perf.ab','slm_perf.workload'}
+SUPERVISOR_MODULES = {'slm.sixhour', 'slm.overnight'}
 
 
 def active_jobs():
@@ -75,11 +76,13 @@ def launch(args):
     from .instrument import MODULES
     if args.module not in MODULES:raise ValueError('Unsupported module: '+args.module)
     if active_jobs():raise RuntimeError('An SLM GPU job is active. No competing workload was started.')
-    if args.module in GPU_MODULES:
+    if args.module in GPU_MODULES or (args.mode=='off' and args.module in SUPERVISOR_MODULES):
         from .gpu_lease import GPULease
         with GPULease() as lease:
-            if active_jobs():raise RuntimeError('An SLM GPU job became active before launch.')
-            if args.mode=='off':lease.survive_exec()
+            if active_jobs():
+                raise RuntimeError('An SLM GPU job became active before launch.')
+            if args.mode=='off':
+                lease.survive_exec()
             return launch_workload(args)
     return launch_workload(args)
 

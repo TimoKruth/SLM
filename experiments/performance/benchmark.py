@@ -26,7 +26,8 @@ def main():
     if active_slm_jobs():raise RuntimeError('Live SLM GPU job present; benchmark refused')
     from slm_perf.gpu_lease import GPULease
     with GPULease():
-        if active_slm_jobs():raise RuntimeError('Live SLM GPU job present; benchmark refused')
+        if active_slm_jobs():
+            raise RuntimeError('Live SLM GPU job present; benchmark refused')
         benchmark(args)
 
 

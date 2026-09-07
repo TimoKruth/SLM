@@ -14,6 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'runs/monitoring-2026-09-07'
 
 
+class CleanupTimeout(RuntimeError):
+    """An owned child did not exit within either bounded termination wait."""
+
+
 def save(**status):
     """Atomically replace the queue heartbeat with a timezone-aware timestamp."""
     path = OUT / 'status.json'
@@ -48,7 +52,10 @@ def stop_process(process):
         process.wait(timeout=5)
     except subprocess.TimeoutExpired:
         process.kill()
-        process.wait()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired as exc:
+            raise CleanupTimeout(f'Process {process.pid} did not exit after terminate and kill') from exc
 
 
 def run_calibration(plan):
@@ -85,7 +92,6 @@ def run_calibration(plan):
                     competitors = [pid for pid in active_jobs() if pid != child.pid]
                     cancelled = (OUT / 'STOP').exists() or (run / 'STOP').exists()
                     if competitors or cancelled or time.monotonic() >= cutoff:
-                        stop_process(child)
                         save(status='yielded_to_other_gpu_job' if competitors else ('cancelled' if cancelled else 'calibration_timeout'))
                         return
                     time.sleep(2)
@@ -97,10 +103,17 @@ def run_calibration(plan):
                 pass
             raise
         finally:
-            try:
-                stop_process(child)
-            finally:
-                stop_process(caffeine)
+            cleanup_errors = []
+            for process in (child, caffeine):
+                try:
+                    stop_process(process)
+                except Exception as exc:
+                    cleanup_errors.append({'pid': process.pid, 'error': str(exc)})
+            if cleanup_errors:
+                try:
+                    save(status='cleanup_failed', processes=cleanup_errors)
+                finally:
+                    raise RuntimeError(f'Calibration cleanup failed: {cleanup_errors}')
 
 
 def main():

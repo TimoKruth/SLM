@@ -192,3 +192,41 @@ def test_cleanup_escalates_and_reaps_unresponsive_child():
     child.terminate.assert_called_once()
     child.kill.assert_called_once()
     assert child.wait.call_count == 2
+
+
+def test_cleanup_has_a_deadline_after_kill():
+    """An unreapable process must produce an error after two bounded waits."""
+    from unittest.mock import Mock
+    from slm_perf.after_idle import CleanupTimeout, stop_process
+    child = Mock(pid=123)
+    child.poll.return_value = None
+    child.wait.side_effect = subprocess.TimeoutExpired('test-child', 5)
+    with pytest.raises(CleanupTimeout, match='Process 123'):
+        stop_process(child)
+    assert [c.kwargs for c in child.wait.call_args_list] == [{'timeout': 5}, {'timeout': 5}]
+
+
+def test_cleanup_error_still_cleans_other_child_and_records_failure(tmp_path, monkeypatch):
+    """A stuck calibration child must not skip caffeinate cleanup or look successful."""
+    from unittest.mock import Mock
+    from slm_perf import after_idle, gpu_lease, __main__ as cli
+    run, out = tmp_path / 'run', tmp_path / 'out'
+    run.mkdir()
+    out.mkdir()
+    (run / 'status.json').write_text('{"status":"completed"}')
+    monkeypatch.setattr(after_idle, 'OUT', out)
+    monkeypatch.setattr(gpu_lease, 'LOCK_PATH', tmp_path / 'gpu.lock')
+    monkeypatch.setattr(cli, 'active_jobs', lambda: [])
+    caffeine, child = Mock(pid=1), Mock(pid=2)
+    child.poll.return_value = 0
+    child.returncode = 0
+    spawn = Mock(side_effect=[caffeine, child])
+    stop = Mock(side_effect=[after_idle.CleanupTimeout('stuck child'), None])
+    monkeypatch.setattr(after_idle.subprocess, 'Popen', spawn)
+    monkeypatch.setattr(after_idle, 'stop_process', stop)
+    with pytest.raises(RuntimeError, match='cleanup failed'):
+        after_idle.run_calibration({'run': str(run), 'source_sha256': {}, 'timeout_seconds': 60})
+    assert [c.args[0] for c in stop.call_args_list] == [child, caffeine]
+    status = json.loads((out / 'status.json').read_text())
+    assert status['status'] == 'cleanup_failed'
+    assert status['processes'] == [{'pid': 2, 'error': 'stuck child'}]
