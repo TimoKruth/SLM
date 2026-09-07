@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 import statistics
 import time
-import types
 
 
 def main():
@@ -15,8 +14,18 @@ def main():
     p.add_argument('--repeats',type=int,default=3);p.add_argument('--metal-capture',action='store_true')
     args=p.parse_args()
     if args.steps<=args.warmup or args.warmup<0 or args.repeats<2:p.error('Need timed steps and at least two repetitions')
-    from .__main__ import active_jobs,environment
+    from .__main__ import active_jobs
     if active_jobs():raise RuntimeError('Active SLM GPU job; calibration refused')
+    from .gpu_lease import GPULease
+    with GPULease():
+        if active_jobs():
+            raise RuntimeError('Active SLM GPU job; calibration refused')
+        calibrate(args)
+
+
+def calibrate(args):
+    """Measure fixed work only while the calling process holds the shared GPU lease."""
+    from .__main__ import environment
     out=Path(args.output)
     if out.exists() and any(out.iterdir()):raise ValueError('Use a new calibration output directory')
     out.mkdir(parents=True)

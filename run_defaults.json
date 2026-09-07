@@ -1,0 +1,6 @@
+{
+  "monitoring": "light",
+  "warmup_steps": 10,
+  "flush_seconds": 60,
+  "detail_seconds": 30
+}

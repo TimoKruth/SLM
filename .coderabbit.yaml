@@ -1,0 +1,96 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Setup: install the CodeRabbit GitHub/GitLab app for this repository.
+# Free OSS features depend on repository visibility, not a YAML switch:
+# https://www.coderabbit.ai/oss
+# Manual review: comment `@coderabbitai review` on a pull request.
+language: de-DE
+early_access: false
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  poem: false
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    # Keep reviewing subsequent pushes until the PR is ready to merge.
+    auto_pause_after_reviewed_commits: 0
+    drafts: false
+    base_branches:
+      - ".*"
+  # Keep source, documentation, dependency manifests and uv.lock in scope.
+  path_filters:
+    - "!data/**"
+    - "!runs/**"
+    - "!.venv/**"
+    - "!**/__pycache__/**"
+    - "!.pytest_cache/**"
+    - "!**/*.pyc"
+    - "!**/*.log"
+  path_instructions:
+    - path: "slm/**/*.py"
+      instructions: >-
+        This is a benchmark-only language-model research project using Python
+        3.12, uv and MLX on Apple Silicon. Prioritize concrete correctness,
+        reproducibility and security issues. Check train/dev/test separation,
+        deduplication and provenance; held-out LiveCodeBench, IFBench and
+        BIG-Bench Extra Hard data must not enter training or model selection.
+        Tokenizer fitting must use training data only. Check causal masking,
+        shifted targets, padding/loss normalization, tensor shapes and dtypes,
+        random seeds, checkpoint/resume state and bounded memory usage.
+        For generated-code execution, examine subprocess isolation, timeouts,
+        resource limits and cleanup; a timeout alone is not a sandbox.
+        Respect MLX lazy evaluation and the existing dependency constraints.
+    - path: "slm_perf/**/*.py"
+      instructions: >-
+        The project runner defaults to light monitoring; direct technical entry
+        points retain their uninstrumented default. Check that disabled
+        instrumentation preserves training behavior and that enabled monitoring
+        does not retain computation graphs or tensors unnecessarily. Timings
+        must account for MLX lazy/asynchronous execution and separate warmup
+        from measurement. A/B comparisons must validate compatible workloads,
+        configurations and numerical results. Check child-process cleanup and
+        avoid interference with ongoing training or evaluation.
+    - path: "experiments/**/*.py"
+      instructions: >-
+        Treat these files as research experiments. Prioritize valid comparisons,
+        reproducible seeds/configurations, data provenance and split isolation,
+        bounded resource use, and safe handling of existing run artifacts.
+        Performance changes need numerical-equivalence evidence. Do not demand
+        production-service architecture for exploratory scripts.
+    - path: "tests/**/*.py"
+      instructions: >-
+        Prefer small deterministic regression tests for changed behavior.
+        Check meaningful assertions and isolation from local datasets, model
+        checkpoints, network downloads and long-running training. Distinguish
+        CPU-only checks from tests requiring MLX/Apple Silicon; hardware-specific
+        skips must not silently hide failures on supported hardware.
+    - path: "**/*.md"
+      instructions: >-
+        Documentation is primarily German. Check consistency of experimental
+        claims, split definitions and reported metrics. Distinguish measured
+        results from hypotheses. References to data/ and runs/ intentionally
+        describe local, unpublished artifacts; do not flag their absence from
+        the public repository as a broken-link defect.
+
+# Mirror public-repository context boundaries even if visibility changes.
+knowledge_base:
+  web_search:
+    enabled: false
+  learnings:
+    scope: local
+  issues:
+    scope: local
+  pull_requests:
+    scope: local
+  jira:
+    usage: disabled
+  linear:
+    usage: disabled
+  mcp:
+    usage: disabled
+
+chat:
+  auto_reply: true

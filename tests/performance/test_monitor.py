@@ -41,6 +41,21 @@ def test_write_failure_disables_measurement_without_failing_workload(tmp_path,mo
     assert m.errors
 
 
+def test_write_failure_stops_detail_profiler(tmp_path,monkeypatch):
+    """An output failure must stop cProfile while leaving subsequent workload calls usable."""
+    m=Monitor(tmp_path,mode='detail')
+    m.start_detail()
+    def fail(*args,**kwargs):raise OSError('disk unavailable')
+    monkeypatch.setattr(Path,'write_text',fail)
+    try:
+        m.flush('running')
+        assert m.disabled
+        assert m.profile is None
+        assert m.call('work',lambda:42)==42
+    finally:
+        m.stop_detail()
+
+
 def test_transform_preserves_control_flow_returns_and_arguments(tmp_path):
     source='''
 def main(value):
@@ -105,13 +120,63 @@ def test_active_job_guard_before_output_or_mlx_import(tmp_path,monkeypatch):
     assert not (tmp_path/'never').exists()
 
 
-def test_off_executes_original_entry_point(tmp_path,monkeypatch):
+@pytest.mark.parametrize('module',['slm.train','slm.sixhour','slm.overnight'])
+def test_off_executes_original_entry_point(tmp_path,monkeypatch,module):
+    """Off mode execs unchanged arguments without acquiring the machine's real test-time lease."""
+    from unittest.mock import MagicMock
     from slm_perf import __main__ as cli
+    from slm_perf import gpu_lease
+    lease=MagicMock()
+    lease.__enter__.return_value=lease
+    monkeypatch.setattr(gpu_lease,'GPULease',lambda:lease)
     monkeypatch.setattr(cli,'active_jobs',lambda:[])
     seen=[]
     def execute(*args):seen.append(args);raise SystemExit(0)
     monkeypatch.setattr(cli.os,'execv',execute)
-    args=types.SimpleNamespace(module='slm.train',mode='off',target=['--','--run','example'])
+    args=types.SimpleNamespace(module=module,mode='off',target=['--','--run','example'])
     with pytest.raises(SystemExit):cli.launch(args)
-    assert seen[0][1][1:]==['-m','slm.train','--run','example']
+    assert seen[0][1][1:]==['-m',module,'--run','example']
+    lease.survive_exec.assert_called_once()
     assert not list(tmp_path.iterdir())
+
+
+def test_child_monitoring_preserves_target_args_and_sandbox_command(tmp_path):
+    """Propagate every monitoring setting without rewriting sandboxed candidate commands."""
+    m=Monitor(tmp_path)
+    seen=[]
+    def spawn(command,**kwargs):seen.append((command,kwargs));return 42
+    command=['python','-u','-m','slm.train','--run','path with spaces','--steps','3']
+    assert m.call('subprocess.start',spawn,command,cwd='root')==42
+    actual,kw=seen[0]
+    assert actual[:4]==['python','-u','-m','slm_perf']
+    assert actual[4:actual.index('--module')]==[
+        'run','--mode','light','--output',str(tmp_path/'children/000-slm.train'),
+        '--warmup-steps','10','--flush-seconds','60','--detail-seconds','30']
+    assert actual[actual.index('--module')+1:]==['slm.train','--','--run','path with spaces','--steps','3']
+    assert kw=={'cwd':'root'}
+    sandbox=['/usr/bin/sandbox-exec','-f','profile','python','-I','candidate.py']
+    m.call('subprocess.start',spawn,sandbox)
+    assert seen[1][0] is sandbox
+
+
+def test_queue_waits_for_previous_benchmark_even_when_gpu_idle(tmp_path,monkeypatch):
+    """Idle GPU state alone cannot bypass an unfinished prerequisite benchmark."""
+    from slm_perf import after_idle,__main__ as cli
+    run=tmp_path/'run';prior=tmp_path/'prior';run.mkdir();prior.mkdir()
+    (run/'supervisor.json').write_text('{"phase":"finished"}')
+    (prior/'status.json').write_text('{"status":"benchmark_running"}')
+    monkeypatch.setattr(cli,'active_jobs',lambda:[])
+    plan={'run':str(run),'prior_benchmark':str(prior)}
+    assert not after_idle.ready(plan)
+    (prior/'status.json').write_text('{"status":"completed"}')
+    assert after_idle.ready(plan)
+    monkeypatch.setattr(cli,'active_jobs',lambda:[55])
+    assert not after_idle.ready(plan)
+
+
+def test_metadata_export_is_not_charged_to_program_time(tmp_path):
+    """Post-run bookkeeping must not extend the frozen workload timing window."""
+    now=[0];m=Monitor(tmp_path,clock=lambda:now[0])
+    now[0]=100;m.ended=now[0]
+    now[0]=999999
+    assert m.result('completed')['elapsed_seconds']==100/1e9

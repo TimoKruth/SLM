@@ -15,7 +15,8 @@ MODULES.add('slm_perf.workload')
 FUNCTIONS = {'main','step','dev_eval','emit','atomic_json','checkpoint','restore','evaluate','generate',
              'report','run_python','score','load_tasks','fetch','fetch_spider_schemas','write_catalog',
              'convert','converted','reference_solutions','exclude_shared_code_groups','audit',
-             'Sampler.__init__','Sampler.batch','wait_until','write_json'}
+             'Sampler.__init__','Sampler.batch','wait_until','write_json','sha',
+             'CodeOverlap.add','CodeOverlap.overlaps'}
 CALLS = {
     'mx.eval': 'device.execute_and_wait',
     'mx.array': 'array.wrap_host',
@@ -34,6 +35,7 @@ CALLS = {
     'subprocess.run': 'subprocess.run_and_wait',
 }
 METHODS = {'save_weights':'checkpoint.weights_save', 'load_weights':'checkpoint.weights_load',
+           'item':'device.scalar_and_wait',
            'encode_batch':'tokenizer.encode_batch', 'encode':'tokenizer.encode', 'decode':'tokenizer.decode',
            'to_pylist':'data.arrow_to_python', 'write_text':'io.write_text', 'read_text':'io.read_text',
            'read_bytes':'io.read_bytes', 'tofile':'io.array_write', 'wait':'subprocess.wait'}
@@ -79,10 +81,15 @@ class Instrument(ast.NodeTransformer):
         return node
 
     def visit_Call(self, node):
+        """Wrap selected calls inside functions while preserving argument evaluation order."""
         original = dotted(node.func)
         label = CALLS.get(original)
+        if self.module=='slm.train' and original=='digest':
+            label='data.checksum'
         if label is None and isinstance(node.func,ast.Attribute):
             label = METHODS.get(node.func.attr)
+            if node.func.attr in {'encode','encode_batch','decode'} and dotted(node.func.value) not in {'tok','tokenizer'}:
+                label = None
         # Only calls inside functions: do not perturb class/global initialization contracts.
         node = self.generic_visit(node)
         if not self.scope or not label:

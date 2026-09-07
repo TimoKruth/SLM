@@ -13,6 +13,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 GPU_MODULES = {'slm.train','slm.report','slm.code_eval','slm.interface_eval',
                'experiments.performance.benchmark','slm_perf.ab','slm_perf.workload'}
+SUPERVISOR_MODULES = {'slm.sixhour', 'slm.overnight'}
 
 
 def active_jobs():
@@ -40,6 +41,7 @@ def arg_value(args,flag):
 
 
 def workload(module,args):
+    """Describe comparison inputs, hashing the checkpoint actually used by evaluation."""
     run=arg_value(args,'--run')
     config={}
     if run and (Path(run)/'config.json').exists():
@@ -58,6 +60,9 @@ def workload(module,args):
     if config.get('device'):stable['device']=config['device']
     if module in {'slm.code_eval','slm.interface_eval','slm.report'} and run:
         path=Path(run)/'best.safetensors'
+        if module=='slm.report' and (Path(run)/'latest.json').exists():
+            pointer=json.loads((Path(run)/'latest.json').read_text())
+            path=Path(run)/pointer['checkpoint']/'model.safetensors'
         if path.exists():
             h=hashlib.sha256()
             with path.open('rb') as f:
@@ -67,9 +72,24 @@ def workload(module,args):
 
 
 def launch(args):
-    from .instrument import MODULES,Finder
+    """Run an isolated instrumented module, refusing competing GPU jobs and reused output."""
+    from .instrument import MODULES
     if args.module not in MODULES:raise ValueError('Unsupported module: '+args.module)
     if active_jobs():raise RuntimeError('An SLM GPU job is active. No competing workload was started.')
+    if args.module in GPU_MODULES or (args.mode=='off' and args.module in SUPERVISOR_MODULES):
+        from .gpu_lease import GPULease
+        with GPULease() as lease:
+            if active_jobs():
+                raise RuntimeError('An SLM GPU job became active before launch.')
+            if args.mode=='off':
+                lease.survive_exec()
+            return launch_workload(args)
+    return launch_workload(args)
+
+
+def launch_workload(args):
+    """Execute after admission; GPU leaf modules keep their lease through this call."""
+    from .instrument import Finder
     target=args.target[1:] if args.target[:1]==['--'] else args.target
     if args.mode=='off':
         # Actual uninstrumented entry point; no profiler, import hook or monitoring files.
@@ -83,6 +103,7 @@ def launch(args):
     mon=Monitor(out,args.mode,args.warmup_steps,args.flush_seconds,args.detail_seconds)
     mon.metadata.update(environment=env,module=args.module,label=args.label,arguments=target,
                         started_at=time.strftime('%Y-%m-%dT%H:%M:%S%z'),
+                        source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'slm').glob('*.py')},
                         monitoring_source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'slm_perf').glob('*.py')})
     finder=Finder(mon)
     sys.meta_path.insert(0,finder)

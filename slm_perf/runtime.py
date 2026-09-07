@@ -7,7 +7,6 @@ import math
 from pathlib import Path
 import pstats
 import time
-import sys
 
 SCHEMA = 1
 
@@ -83,6 +82,7 @@ class Monitor:
 
     @contextmanager
     def span(self, name):
+        """Record nested host-wall time without device barriers or suppressing workload errors."""
         if self.disabled:
             yield
             return
@@ -115,6 +115,9 @@ class Monitor:
             if self.stack:
                 self.stack[-1]['children'] += done - before
             self.hook_ns += done - end
+            # Cooperative snapshots at existing phase boundaries, never a writer thread.
+            if (done - self.last_flush)/1e9 >= self.flush_seconds and not self.disabled:
+                self.flush('running')
 
     def call(self, label, fn, *args, **kwargs):
         # Propagate explicit monitoring to supervised Python modules only.
@@ -171,6 +174,7 @@ class Monitor:
                     recent_events=self.events, trace_dropped=self.trace_dropped, errors=self.errors)
 
     def flush(self, status):
+        """Write an atomic snapshot; disable hooks and detail profiling if output fails."""
         begin = self.clock()
         try:
             payload = self.result(status)
@@ -181,6 +185,7 @@ class Monitor:
             # Monitoring failure must not fail a training step or consume unbounded memory.
             self.errors.append(type(exc).__name__ + ': ' + str(exc))
             self.disabled = True
+            self.stop_detail()
         finally:
             self.last_flush = self.clock()
             self.io_ns += self.last_flush - begin

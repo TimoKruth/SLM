@@ -7,11 +7,14 @@ from pathlib import Path
 
 import mlx.core as mx
 import numpy as np
+import pytest
 from slm_perf.instrument import ROOT,transformed
 from slm_perf.runtime import Monitor
 
 
-def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatch):
+@pytest.mark.parametrize('mode',['light','detail'])
+def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatch,mode):
+    """Compare exact CPU weights, Adam state and sampler state with fixed wall-clock LR."""
     import slm.train as original
     previous=mx.default_device()
     mx.set_default_device(mx.cpu)
@@ -31,7 +34,8 @@ def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatc
                 np.save(data/f'toy.{split}.index.npy',np.array([[0,4],[4,3]]))
             (data/'manifest.json').write_text(json.dumps({'tokenizer':{'vocab_size':64},'sources':{'toy':{}},'source_weights':{'toy':1},'evaluation_weights':{'toy':1}}))
             (data/'tokenizer.json').write_text('{}')
-            monitor=Monitor(tmp_path/'perf',warmup_steps=1)
+            monitor=Monitor(tmp_path/'perf',mode=mode,warmup_steps=1)
+            monitor.start_detail()
             module=types.ModuleType('slm.monitored_test')
             module.__dict__.update(__file__=str(ROOT/'slm/train.py'),__package__='slm',_slm_perf=monitor)
             code,_=transformed((ROOT/'slm/train.py').read_text(),str(ROOT/'slm/train.py'),'slm.train')

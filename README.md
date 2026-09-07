@@ -28,6 +28,8 @@ Der aufbereitete Pool unter `data/v2/` umfasst 1.095.239 Trainingspaare und 190.
 
 Während Lauf 2 wurden **acht weitere Quellen mit 356.312 Original-Trainingszeilen** separat geladen. Damit sind **32 Benchmark-Datensätze gesammelt**, weiterhin 24 im laufenden Training. Zwei Performance-Kandidaten haben CPU-Prüfungen bestanden; ein GPU-Vergleich wartet auf das Ende von Training und Auswertung. Details und Statuspfade: [Vorbereitung für spätere Versuche](VORBEREITUNG_3.md).
 
+Das [Performance-Monitoring](PERFORMANCE.md) ist für **künftige Läufe im Modus `light` aktiviert**. Neue Läufe über `.venv/bin/python run_slm.py --run runs/<neuer-lauf> --data data/v2` starten. Die Projektvorgaben stehen in `run_defaults.json`; mit `--monitoring off` lässt sich die Messung ausdrücklich ausschalten. Training und zugehörige Auswertung erhalten eigene Performance-Berichte. Der laufende Versuch bleibt unverändert; ein separater GPU-Test des Messaufwands ist nach den laufenden Aufgaben eingeplant.
+
 ## Lizenz
 
 Das Repository enthält Quellcode und Projektdokumentation. Datensätze (`data/`), lokale Trainingsläufe und Modellgewichte (`runs/`) sowie Laufprotokolle werden nicht mitveröffentlicht. Verweise auf `runs/` beziehen sich auf lokale Ergebnisse und sind im GitHub-Repository nicht verfügbar.
