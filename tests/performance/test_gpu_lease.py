@@ -233,9 +233,9 @@ def test_cleanup_error_still_cleans_other_child_and_records_failure(tmp_path, mo
 
 
 @pytest.mark.parametrize('signal_name', ['SIGTERM', 'SIGINT'])
-@pytest.mark.parametrize('interrupted_pid', [1, 2])
+@pytest.mark.parametrize('interrupted_pid', [0, 1, 2])
 def test_queue_defers_shutdown_until_both_children_are_cleaned(tmp_path, signal_name, interrupted_pid):
-    """Real signals during either cleanup cannot skip reaping or leak the GPU lease."""
+    """Signals before or during cleanup cannot skip reaping or leak the GPU lease."""
     code = """
 import json, os, signal, sys
 from pathlib import Path
@@ -251,8 +251,12 @@ signal.signal(signum, after_idle.interrupted)
 mask_before = signal.pthread_sigmask(signal.SIG_BLOCK, set())
 cleaned = []
 caffeine, child = Mock(pid=1), Mock(pid=2)
-child.poll.return_value = 0
 child.returncode = 0
+def poll():
+    if int(sys.argv[3]) == 0:
+        os.kill(os.getpid(), signum)
+    return 0
+child.poll.side_effect = poll
 def stop(process):
     if process.pid == int(sys.argv[3]):
         os.kill(os.getpid(), signum)
@@ -260,7 +264,8 @@ def stop(process):
     cleaned.append(process.pid)
 with patch.object(after_idle, 'OUT', out), patch.object(gpu_lease, 'LOCK_PATH', root / 'gpu.lock'), patch.object(cli, 'active_jobs', return_value=[]), patch.object(after_idle.subprocess, 'Popen', side_effect=[caffeine, child]), patch.object(after_idle, 'stop_process', side_effect=stop):
     try:
-        after_idle.run_calibration({'run': str(run), 'source_sha256': {}, 'timeout_seconds': 60})
+        with patch.object(after_idle, 'run_queue', side_effect=lambda: after_idle.run_calibration({'run': str(run), 'source_sha256': {}, 'timeout_seconds': 60})):
+            after_idle.main()
     except SystemExit as exc:
         assert exc.code == 128 + signum
     else:

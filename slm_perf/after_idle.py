@@ -1,5 +1,4 @@
 """One-shot calibration queue, sequenced after the existing run and GPU benchmark."""
-from contextlib import contextmanager
 from datetime import datetime
 import fcntl
 import hashlib
@@ -13,6 +12,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'runs/monitoring-2026-09-07'
+_shutdown_signal = None
 
 
 class CleanupTimeout(RuntimeError):
@@ -59,16 +59,6 @@ def stop_process(process):
             raise CleanupTimeout(f'Process {process.pid} did not exit after terminate and kill') from exc
 
 
-@contextmanager
-def defer_shutdown_signals():
-    """Deliver SIGTERM/SIGINT only after bounded cleanup, restoring the caller's mask."""
-    previous = signal.pthread_sigmask(signal.SIG_BLOCK, {signal.SIGTERM, signal.SIGINT})
-    try:
-        yield
-    finally:
-        signal.pthread_sigmask(signal.SIG_SETMASK, previous)
-
-
 def run_calibration(plan):
     """Reserve the GPU before spawn and clean up both children on every Python exit path."""
     from .__main__ import active_jobs
@@ -101,7 +91,7 @@ def run_calibration(plan):
                 cutoff = time.monotonic() + plan['timeout_seconds']
                 while child.poll() is None:
                     competitors = [pid for pid in active_jobs() if pid != child.pid]
-                    cancelled = (OUT / 'STOP').exists() or (run / 'STOP').exists()
+                    cancelled = _shutdown_signal is not None or (OUT / 'STOP').exists() or (run / 'STOP').exists()
                     if competitors or cancelled or time.monotonic() >= cutoff:
                         save(status='yielded_to_other_gpu_job' if competitors else ('cancelled' if cancelled else 'calibration_timeout'))
                         return
@@ -114,21 +104,20 @@ def run_calibration(plan):
                 pass
             raise
         finally:
-            with defer_shutdown_signals():
-                cleanup_errors = []
-                for process in (child, caffeine):
-                    try:
-                        stop_process(process)
-                    except Exception as exc:
-                        cleanup_errors.append({'pid': process.pid, 'error': str(exc)})
-                if cleanup_errors:
-                    try:
-                        save(status='cleanup_failed', processes=cleanup_errors)
-                    finally:
-                        raise RuntimeError(f'Calibration cleanup failed: {cleanup_errors}')
+            cleanup_errors = []
+            for process in (child, caffeine):
+                try:
+                    stop_process(process)
+                except Exception as exc:
+                    cleanup_errors.append({'pid': process.pid, 'error': str(exc)})
+            if cleanup_errors:
+                try:
+                    save(status='cleanup_failed', processes=cleanup_errors)
+                finally:
+                    raise RuntimeError(f'Calibration cleanup failed: {cleanup_errors}')
 
 
-def main():
+def run_queue():
     """Wait for prerequisites and a shared lease without extending the queue deadline."""
     from .gpu_lease import GPUBusy
     OUT.mkdir(parents=True, exist_ok=True)
@@ -138,7 +127,7 @@ def main():
         run = Path(plan['run'])
         deadline = datetime.fromisoformat(plan['queue_deadline']).timestamp()
         while time.time() < deadline:
-            if (OUT / 'STOP').exists() or (run / 'STOP').exists():
+            if _shutdown_signal is not None or (OUT / 'STOP').exists() or (run / 'STOP').exists():
                 save(status='cancelled')
                 return
             if ready(plan):
@@ -153,12 +142,24 @@ def main():
 
 
 def interrupted(signum, frame):
-    """Turn SIGTERM into a Python exit so the child-cleanup finally blocks run."""
-    raise SystemExit(128 + signum)
+    """Record shutdown without raising between resource acquisition and cleanup."""
+    global _shutdown_signal
+    if _shutdown_signal is None:
+        _shutdown_signal = signum
+
+
+def main():
+    """Report signal exit only after the queue has unwound child and lease cleanup."""
+    try:
+        run_queue()
+    finally:
+        if _shutdown_signal is not None:
+            raise SystemExit(128 + _shutdown_signal)
 
 
 if __name__ == '__main__':
     if not __package__:
         raise SystemExit('Use the package entry point: python -m slm_perf.after_idle')
     signal.signal(signal.SIGTERM, interrupted)
+    signal.signal(signal.SIGINT, interrupted)
     main()
