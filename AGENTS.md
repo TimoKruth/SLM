@@ -46,3 +46,11 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Der Nutzer beauftragte ausschließlich die Vorbereitung bis vor dem längeren Lauf. Der dortige `next_run/long_plan.json` ist ein ungestarteter Vorschlag, keine Startfreigabe.
 - Im Vorbereitungsbranch ist `--forward-precision bf16` eine getestete Option mit FP32-Mastergewichten; Standard bleibt FP32. Standalone-Evaluation bleibt FP32, Inline-Dev folgt dem Trainer. Rechengenauigkeit gehört zur Wiederaufnahmesignatur.
 - Auffällige Originalreferenzen werden separat in Sensitivitätsanalysen ausgewiesen; historische Scores bleiben erhalten. TAT-QA-/MultiNLI-Trainingsdateien sind vorgemerkt, nicht in die bestehende Mischung integriert.
+
+# Aktive Fortsetzung am 9. September 2026
+
+- Neuer Nutzerauftrag: beide Drei-Stunden-Modelle vom letzten Checkpoint jeweils drei Stunden weitertrainieren. Diese Freigabe gilt für die Fortsetzung; der vorherige BF16-Neustartvorschlag bleibt ungestartet.
+- Kampagne: `runs/size-continuation-2026-09-09/`. Code: `/Users/timokruth/Projekte/SLM-continuation`, Branch `codex/size-continuation`. Details: `FORTSETZUNG_MODELLGROESSEN.md`.
+- Eigene Runs `size-27m-2026-09-09-plus3h` und `size-97m-2026-09-09-plus3h`; unabhängig kopierte letzte Modellstände inklusive AdamW und Sampler. Original-FP32-Konfiguration und 100M-Token-Kurve beibehalten.
+- Klein ist am 9. September um 00:38:53 gestartet, Trainingsende 03:38:53 Europe/Berlin. Danach Auswertung, groß für weitere 10.800 Sekunden und gemeinsame Auswertung. Aktueller Status und Fristen sind im Kampagnenverzeichnis verbindlich.
+- Keine aktiven Kampagneneingaben ändern. Alte und kumulierte Tokenzahlen unterscheiden; die Pause zwischen Sitzungen ist keine Trainingszeit. Keine automatische weitere Verlängerung.

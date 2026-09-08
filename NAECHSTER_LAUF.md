@@ -1,6 +1,6 @@
 # Nächster längerer Lauf: Vorbereitung abgeschlossen
 
-Stand: 8. September 2026. **Kein längerer Lauf gestartet oder eingeplant.**
+Historische Vorbereitung vom 8. September 2026. Der BF16-Neustartvorschlag bleibt ungestartet. Am 9. September hat der Nutzer stattdessen die [Fortsetzung beider Modelle um jeweils drei Stunden](FORTSETZUNG_MODELLGROESSEN.md) freigegeben; diese läuft in einer eigenen Kampagne.
 
 Der vollständige [Vorbereitungsbericht](/Users/timokruth/Projekte/SLM-next-run-prep/NAECHSTER_LAUF.md) und der Code liegen im Worktree `/Users/timokruth/Projekte/SLM-next-run-prep`, Branch `codex/next-run-preparation`. Laufartefakte liegen gemeinsam unter `runs/next-preparation-2026-09-08/`.
 
