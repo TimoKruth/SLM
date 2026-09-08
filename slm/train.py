@@ -82,6 +82,16 @@ def token_snapshots(run, model, state, thresholds):
         saved.append(target)
 
 
+def training_signature(config, manifest_sha256, batch_size, weights, seed, schedule_tokens=0, snapshot_tokens=(), forward_precision='fp32'):
+    """Preserve historical FP32 signatures and prevent cross-precision resume."""
+    signature = digest(json.dumps({'config': config, 'manifest': manifest_sha256, 'batch_size': batch_size, 'weights': weights, 'seed': seed}, sort_keys=True))
+    if schedule_tokens or snapshot_tokens:
+        signature = digest(json.dumps(dict(base_signature=signature, schedule_tokens=schedule_tokens, snapshot_tokens=list(snapshot_tokens)), sort_keys=True))
+    if forward_precision != 'fp32':
+        signature = digest(json.dumps(dict(base_signature=signature, forward_precision=forward_precision), sort_keys=True))
+    return signature
+
+
 def schedule_fraction(tokens, maximum_tokens, started_at, deadline, now, schedule_tokens=0):
     """Optional shared token clock for equal-exposure model-size comparisons."""
     fraction = tokens / schedule_tokens if schedule_tokens else max(tokens / maximum_tokens, (now-started_at)/max(1., deadline-started_at))
@@ -149,6 +159,7 @@ def main():
     p.add_argument('--heads', type=int, default=12)
     p.add_argument('--hidden', type=int, default=2048)
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--forward-precision', choices=['fp32','bf16'], default='fp32', help='BF16 matmuls with FP32 master weights; standalone evaluation uses FP32')
     p.add_argument('--execution', choices=['compiled', 'eager'], default='compiled')
     p.add_argument('--seed', type=int, default=20260906)
     p.add_argument('--checkpoint-seconds', type=int, default=600)
@@ -179,14 +190,16 @@ def main():
     mx.set_cache_limit(4 * 1024 ** 3)
     mx.random.seed(args.seed)
     config = ModelConfig(vocab_size=manifest['tokenizer']['vocab_size'], dim=args.dim, layers=args.layers, heads=args.heads, hidden=args.hidden, context=args.context)
-    model = LanguageModel(config)
+    if args.forward_precision == 'bf16':
+        from .precision import MixedModel
+        model = MixedModel(config)
+    else:
+        model = LanguageModel(config)
     optimizer = optim.AdamW(learning_rate=3e-4, betas=[0.9, 0.95], weight_decay=0.1, bias_correction=True)
     sampler = Sampler(data, 'train', args.seed, args.context)
     mx.eval(model.parameters())
     count = sum(x.size for _, x in tree_flatten(model.parameters()))
-    signature = digest(json.dumps({'config': asdict(config), 'manifest': digest((data / 'manifest.json').read_bytes()), 'batch_size': args.batch_size, 'weights': sampler.weights, 'seed': args.seed}, sort_keys=True))
-    if args.schedule_tokens or args.snapshot_tokens:
-        signature = digest(json.dumps(dict(base_signature=signature, schedule_tokens=args.schedule_tokens, snapshot_tokens=args.snapshot_tokens), sort_keys=True))
+    signature = training_signature(asdict(config), digest((data / 'manifest.json').read_bytes()), args.batch_size, sampler.weights, args.seed, args.schedule_tokens, args.snapshot_tokens, args.forward_precision)
     state = {'step': 0, 'tokens': 0, 'started_at': time.time(), 'best_dev_loss': None, 'signature': signature}
     if args.resume and (run / 'latest.json').exists():
         state = restore(run, model, optimizer, sampler)

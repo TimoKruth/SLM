@@ -33,3 +33,10 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Der Nutzer hat den Größenvergleich 27,3M gegen 97,5M mit je drei Stunden Training freigegeben. Plan und Status: `runs/size-campaign-2026-09-08/`. Dokumentation: `MODELLGROESSENVERGLEICH.md` im Worktree `/Users/timokruth/Projekte/SLM-evaluation-prep`, Branch `codex/model-size-comparison`.
 - Dieser Vergleich verwendet eine gemeinsame tokenbasierte Lernratenkurve, dieselbe Familienmischung und feste 10M/20M/30M-Token-Snapshots. Primärer Endpunkt ist der letzte Modellstand nach drei Stunden. Nachgelagerte Auswertungen laufen automatisch, keine Verlängerung.
 - Während der Kampagne keine eingefrorenen Code-/Dateneingaben verändern. Daten und Runs liegen physisch im Hauptworkspace; der Kampagnencode läuft im genannten Worktree.
+
+# Vorbereitung nach dem Größenvergleich
+
+- Der Größenvergleich ist abgeschlossen. Nächste Vorbereitung: `NAECHSTER_LAUF.md`, Worktree `/Users/timokruth/Projekte/SLM-next-run-prep`, Branch `codex/next-run-preparation`. Artefakte: `runs/next-preparation-2026-09-08/`.
+- Der Nutzer hat nur die Vorbereitung bis vor dem längeren Lauf beauftragt. `next_run/long_plan.json` ist ein ungestarteter Vorschlag, keine Startfreigabe.
+- `--forward-precision bf16` ist eine getestete optionale Variante mit FP32-Mastergewichten; Standard bleibt FP32. Rechengenauigkeit gehört zur Wiederaufnahmesignatur. Standalone-Evaluation bleibt FP32, Inline-Dev folgt dem Trainer.
+- Vier auffällige Entwicklungsreferenzen nur in separater Sensitivitätsanalyse behandeln; Originalscores erhalten. Neue TAT-QA-/MultiNLI-Dateien sind vorgemerkt, nicht in die 32-Quellen-Mischung integriert.

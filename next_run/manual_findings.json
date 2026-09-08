@@ -1,0 +1,116 @@
+[
+  {
+    "source": "commonsenseqa",
+    "id": "cb43cf15e2320cead1d00ce34d4ad6a3",
+    "manual_category": "correct",
+    "manual_note": "Antwort stimmt mit Frage und Referenz überein."
+  },
+  {
+    "source": "hellaswag",
+    "id": "27846",
+    "manual_category": "repetition",
+    "manual_note": "Unvollständige Aussage, dann wiederholte Wortfolge; kein reines Formatproblem."
+  },
+  {
+    "source": "commonsenseqa",
+    "id": "ab6bf5fd3175498c1f992119511003c4",
+    "manual_category": "wrong_content",
+    "manual_note": "sweat ist keine angebotene Option und beantwortet die Frage nicht."
+  },
+  {
+    "source": "hellaswag",
+    "id": "37324",
+    "manual_category": "repetition",
+    "manual_note": "Wiederholt clean; keine brauchbare Fortsetzung."
+  },
+  {
+    "source": "dream",
+    "id": "1170",
+    "manual_category": "correct",
+    "manual_note": "Dialog unterstützt Very interesting."
+  },
+  {
+    "source": "dream",
+    "id": "5352",
+    "manual_category": "wrong_content",
+    "manual_note": "Gibt eine falsche Option mit Grammatikabweichung wieder; Dialog sagt zweimal wöchentlich und alle pünktlich."
+  },
+  {
+    "source": "anli",
+    "id": "4356d65b-47d2-44f4-baf3-dfed217d688d",
+    "manual_category": "reference_ambiguity",
+    "manual_note": "Modell trifft das Originallabel; Prämisse unterscheidet ursprüngliche Zeitschrift von späteren namensgleichen Publikationen. Label deshalb als prüfbedürftig markieren."
+  },
+  {
+    "source": "anli",
+    "id": "2cb8e5ac-cee0-42b2-9246-aaedc92f9499",
+    "manual_category": "wrong_content",
+    "manual_note": "Die Abkürzung CSTC steht ausdrücklich in der Prämisse; neutral ist falsch."
+  },
+  {
+    "source": "aqua_rat",
+    "id": "62285",
+    "manual_category": "reference_quality_and_invalid_reasoning",
+    "manual_note": "Endantwort trifft Referenz, Rechenweg des Modells ist falsch. Originalfrage spricht von identischen Mangos, Referenz verwendet 3^30 und widersprüchlich vier Personen; kein belastbarer Mathematiknachweis."
+  },
+  {
+    "source": "aqua_rat",
+    "id": "37131",
+    "manual_category": "repetition",
+    "manual_note": "Falsche Wahrscheinlichkeit wird wiederholt; keine Berechnung der gelben Kugeln."
+  },
+  {
+    "source": "aqua_rat",
+    "id": "94288",
+    "manual_category": "wrong_content",
+    "manual_note": "Verlust ist 192/980≈19.6%; unter den groben Optionen B, nicht ausgegebene D. Originalreferenz rundet grob."
+  },
+  {
+    "source": "aqua_rat",
+    "id": "18110",
+    "manual_category": "repetition",
+    "manual_note": "1/2 wird unbegründet wiederholt; keine Lösung."
+  },
+  {
+    "source": "apps",
+    "id": "4184",
+    "manual_category": "reference_quality_and_repetition",
+    "manual_note": "Original-Code hardcodiert einzelne Zahlen, überschreibt abs und ist keine allgemeine Primzahlprüfung. Modellausgabe wiederholt Multiplikationen."
+  },
+  {
+    "source": "apps",
+    "id": "2447",
+    "manual_category": "repetition_and_syntax",
+    "manual_note": "Wiederholte gleichnamige Funktionsparameter sind syntaktisch ungültig."
+  },
+  {
+    "source": "boolq",
+    "id": "7445",
+    "manual_category": "reference_question_mismatch",
+    "manual_note": "Originalfrage fragt where do jamie and claire live in america, aber Prompt verlangt yes/no und Referenz ist yes. Antworttreffer ist kein Nachweis einer passenden Sachantwort."
+  },
+  {
+    "source": "race",
+    "id": "high17670.txt:df05e260ed87",
+    "manual_category": "multiple_answers_and_repetition",
+    "manual_note": "Referenztext taucht nach einer anderen Aussage wiederholt auf; keine eindeutige freie Antwort. Nicht als bloßen Whitespace-Fehler retten."
+  },
+  {
+    "source": "boolq",
+    "id": "3366",
+    "manual_category": "wrong_content",
+    "manual_note": "Prämisse nennt Hauptrivalen; yes widerspricht ihr."
+  },
+  {
+    "source": "arc",
+    "id": "NAEP_2005_4_S10+1",
+    "manual_category": "correct",
+    "manual_note": "Meteoriteneinschläge sind passende Antwort."
+  },
+  {
+    "source": "arc",
+    "id": "Mercury_7007508",
+    "manual_category": "wrong_content",
+    "manual_note": "Longitudinale Kompressionswelle: Verschiebung parallel zur Ausbreitung, nicht upward."
+  }
+]

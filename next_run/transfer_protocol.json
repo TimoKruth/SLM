@@ -1,0 +1,26 @@
+{
+  "status": "protocol_prepared_tests_unopened",
+  "code_revisions": {
+    "LiveCodeBench/LiveCodeBench": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+    "allenai/IFBench": "fcd289db21d43aaa96c6d9291d32561cd6e19305",
+    "google-deepmind/bbeh": "80d12ca916b7158f22293fcf3144f4d3d854d4be"
+  },
+  "benchmarks": {
+    "LiveCodeBench": "Python code-generation pass@1 using official harness in resource-limited sandbox",
+    "IFBench": "Official strict instruction and prompt compliance metrics; no LLM judge",
+    "BBEH": "Official per-task answer scoring and macro across task types"
+  },
+  "freeze_before_open": [
+    "Candidate checkpoint hash",
+    "Untrained random 27m baseline seed and current 3h baseline checkpoint",
+    "Dataset revision and official evaluator revision",
+    "Prompt adapter using dataset-independent fixtures only",
+    "Greedy one attempt, 1024-token total context, maximum 512 new tokens subject to available context",
+    "Stratified task selection by stable ID hash if a subset budget is required, never by outputs"
+  ],
+  "context_policy": "Report all selected tasks and number unsupported by context. Do not silently truncate instructions or present a length-filtered subset as an official full score. Report attempted subset quality and full-selection coverage separately.",
+  "contamination": "All three benchmark families, training variants and derivatives remain excluded from training/tokenizer/model selection. Opening them is a separate explicit final-evaluation stage.",
+  "inference_scope": "Tests probe different capabilities but failure on hard/long tasks does not prove the model learned nothing. No current transfer-success claim.",
+  "data_downloaded": false,
+  "tests_executed": false
+}

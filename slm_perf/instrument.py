@@ -14,6 +14,9 @@ MODULES = {f'slm.{name}' for name in ('train','data','report','code_eval','inter
 MODULES.add('slm_perf.workload')
 MODULES.add('random_search.pilot')
 MODULES.add('experiments.size_report')
+MODULES.add('next_run.performance')
+MODULES.add('slm.precision')
+MODULES.add('next_run.validate_precision')
 MODULES.update({'future_eval.analyze','future_eval.prepare','future_eval.queue','future_eval.metrics'})
 MODULES.update({'experiments.prepare_broad', 'experiments.prepare_checks'})
 FUNCTIONS = {'reference_loss','token_snapshots','fresh_model','teacher_score','generate_probe','encode_rows','split_tasks','analyze','prepare','sql_result','sql_compare','error_tags','scan','main','step','dev_eval','emit','atomic_json','checkpoint','restore','evaluate','generate',
