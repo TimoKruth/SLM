@@ -33,3 +33,9 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Der Nutzer hat den Größenvergleich 27,3M gegen 97,5M mit je drei Stunden Training freigegeben. Plan und Status: `runs/size-campaign-2026-09-08/`. Dokumentation: `MODELLGROESSENVERGLEICH.md` im Worktree `/Users/timokruth/Projekte/SLM-evaluation-prep`, Branch `codex/model-size-comparison`.
 - Dieser Vergleich verwendet eine gemeinsame tokenbasierte Lernratenkurve, dieselbe Familienmischung und feste 10M/20M/30M-Token-Snapshots. Primärer Endpunkt ist der letzte Modellstand nach drei Stunden. Nachgelagerte Auswertungen laufen automatisch, keine Verlängerung.
 - Während der Kampagne keine eingefrorenen Code-/Dateneingaben verändern. Daten und Runs liegen physisch im Hauptworkspace; der Kampagnencode läuft im genannten Worktree.
+
+# Systemressourcen
+
+- Permanenter lokaler Sammler: PowerWatch, alle 15 Sekunden, 30 Tage Verlauf. Automatisch aktualisierte Übersicht: `runs/system-resources/latest.html`; Status und Details: `RESOURCE_MONITORING.md`.
+- Das Systemmonitoring ist vom Trainings-Monitoring unabhängig. Es bleibt bei Branchwechseln als Benutzer-Dienst installiert und verändert keine eingefrorenen Versuchseingaben.
+- Bei Auslastungsangaben aktuelle Messzeit prüfen. GPU-Werte gelten systemweit; freier RAM ist nicht gleich verfügbarer RAM inklusive freigebbarer Caches. Schlaf-/Messlücken und geänderte Leistungseinstellungen berücksichtigen.
