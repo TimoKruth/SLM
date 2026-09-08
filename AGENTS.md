@@ -33,3 +33,10 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Der Nutzer hat den Größenvergleich 27,3M gegen 97,5M mit je drei Stunden Training freigegeben. Plan und Status: `runs/size-campaign-2026-09-08/`. Dokumentation: `MODELLGROESSENVERGLEICH.md` im Worktree `/Users/timokruth/Projekte/SLM-evaluation-prep`, Branch `codex/model-size-comparison`.
 - Dieser Vergleich verwendet eine gemeinsame tokenbasierte Lernratenkurve, dieselbe Familienmischung und feste 10M/20M/30M-Token-Snapshots. Primärer Endpunkt ist der letzte Modellstand nach drei Stunden. Nachgelagerte Auswertungen laufen automatisch, keine Verlängerung.
 - Während der Kampagne keine eingefrorenen Code-/Dateneingaben verändern. Daten und Runs liegen physisch im Hauptworkspace; der Kampagnencode läuft im genannten Worktree.
+
+# Freigegebene Fortsetzung am 9. September 2026
+
+- Nutzerauftrag: beide letzten Drei-Stunden-Läufe ab `latest` jeweils drei Stunden weitertrainieren. Kampagne `runs/size-continuation-2026-09-09/`, Code `/Users/timokruth/Projekte/SLM-continuation`, Branch `codex/size-continuation`; Details `FORTSETZUNG_MODELLGROESSEN.md`.
+- Unveränderte Original-FP32-Konfiguration und 100M-Token-Lernratenkurve; Optimierer und Sampler werden fortgesetzt. Der separate BF16-Neustartplan wird damit nicht gestartet.
+- Historische Endcheckpoints behalten; neue Runs `size-27m-2026-09-09-plus3h` und `size-97m-2026-09-09-plus3h`. Je 10.800 Sekunden zusätzlich, seriell, keine automatische weitere Verlängerung. Alle Auswertungen automatisch und mit Light-Monitoring.
+- Cumulative Zähler enthalten den Elternlauf. Bei Durchsatz und Zugewinn immer `parent.json` und die neue Kampagnenfrist berücksichtigen; Unterbrechungen zwischen Sitzungen sind keine Trainingszeit.

@@ -149,6 +149,9 @@ def run_job(job, out, progress):
 
 def report(plan, out, progress):
     """Compare per-capability outcomes and observed token exposure at equal wall time."""
+    if plan.get('comparison_kind')=='size_continuation':
+        from experiments.continuation_report import report as continuation_report
+        return continuation_report(plan,out,progress)
     if plan.get('comparison_kind')=='model_size':
         from experiments.size_report import report as size_report
         return size_report(plan,out,progress)
