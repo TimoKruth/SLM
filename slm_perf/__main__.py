@@ -46,7 +46,7 @@ def workload(module,args):
     config={}
     if run and (Path(run)/'config.json').exists():
         config=json.loads((Path(run)/'config.json').read_text())
-    stable={k:config[k] for k in ['model','batch_size','dtype','manifest_sha256','source_weights_by_sequence','initialization','checkpoint_seconds','eval_seconds','max_tokens'] if k in config}
+    stable={k:config[k] for k in ['model','batch_size','dtype','manifest_sha256','source_weights_by_sequence','initialization','checkpoint_seconds','eval_seconds','max_tokens','schedule_tokens','snapshot_tokens'] if k in config}
     # Retain functional CLI overrides; remove only paths and absolute time deadlines.
     omit={'--run','--output','--until'}
     normalized=[];skip=False

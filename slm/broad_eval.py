@@ -84,6 +84,34 @@ def score_general(row, generated, memorization=False):
             'reference_parseable': expected is not None}
 
 
+def reference_loss(model, tokenizer, rows, cutoff):
+    """Score full answer references, equally per source; never truncate the target."""
+    import mlx.core as mx
+    import mlx.nn as nn
+    from .prepare import text_of
+    values = defaultdict(list)
+    for row in rows:
+        if time.time() >= cutoff:
+            raise TimeoutError('Reference-loss evaluation exceeded deadline')
+        ids = tokenizer.encode(text_of(row)).ids
+        if len(ids) > model.config.context:
+            raise ValueError('Reference exceeds context: '+row['source']+':'+row['original_id'])
+        start = ids.index(tokenizer.token_to_id('<answer>'))
+        logits = model(mx.array([ids[:-1]], dtype=mx.int32))
+        losses = nn.losses.cross_entropy(logits, mx.array([ids[1:]], dtype=mx.int32), reduction='none')
+        value = float(mx.mean(losses[:, start:]).item())
+        if not __import__('math').isfinite(value):
+            raise ValueError('Nonfinite reference loss')
+        values[row['source']].append(value)
+    source = {s: sum(v)/len(v) for s,v in values.items()}
+    families = defaultdict(list)
+    for s, value in source.items():
+        families[SOURCE_FAMILY[s]].append(value)
+    return dict(source_answer_loss=source, family_answer_loss={f:sum(v)/len(v) for f,v in families.items()},
+                macro_source_answer_loss=sum(source.values())/len(source), examples=sum(map(len,values.values())),
+                interpretation='Teacher-forced original references; lower loss is not free-answer correctness.')
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--run', required=True)
@@ -94,6 +122,7 @@ def main():
     p.add_argument('--maximum', type=int, default=192)
     p.add_argument('--max-seconds', type=float, default=900)
     p.add_argument('--skip-code', action='store_true')
+    p.add_argument('--answer-loss', action='store_true')
     args = p.parse_args()
     run, out = Path(args.run), Path(args.output)
     if out.exists():
@@ -148,6 +177,9 @@ def main():
                 result['stronger_test_pass'] = result['status']=='passed' and task['coverage']!='single_original_case_only'
                 code_results.append(result)
                 f.write(json.dumps(result, ensure_ascii=False)+'\n')
+    answer_loss = reference_loss(model, tokenizer, rows, cutoff) if args.answer_loss else None
+    if answer_loss is not None:
+        atomic_json(out/'answer-loss.json', answer_loss)
     by_source = {}
     for source in sorted({r['source'] for r in results}):
         subset = [r for r in results if r['source']==source]
@@ -165,7 +197,7 @@ def main():
                    mean_source_accuracy_by_family=by_family, code_evaluated=len(code_results),
                    code_statuses=dict(Counter(r['status'] for r in code_results)),
                    code_passes_with_stronger_tests=sum(r['stronger_test_pass'] for r in code_results),
-                   code_exclusions=dict(excluded), deadline_reached=time.time()>=cutoff,
+                   code_exclusions=dict(excluded), answer_loss=answer_loss, deadline_reached=time.time()>=cutoff,
                    interpretation='Internal development proxies, not comparable across metric types or official benchmarks. Narrative and SQL functional quality remain unscored. No family-transfer claim.')
     atomic_json(out/'summary.json', summary)
     lines = ['# Broad development evaluation', '', summary['interpretation'], '', '| Source | Metric | Correct / scored |', '| --- | --- | --- |']

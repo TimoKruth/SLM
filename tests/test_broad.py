@@ -75,3 +75,11 @@ def test_scitail_preserves_both_original_classes():
           for label in ['entails','neutral']]
     assert [r['answer'] for r in rows]==['entailment','neutral']
     assert rows[0]['group']==rows[1]['group']
+
+
+def test_wiqa_preserves_all_original_classes():
+    from experiments.prepare_broad import converted
+    labels=['more','less','no_effect']
+    rows=[converted('wiqa',dict(question_para_step=['Water freezes.'],question_stem='What changes?',
+        choices={'text':['more','less','no effect']},answer_label=label,metadata_para_id=1),label) for label in labels]
+    assert [r['answer'] for r in rows]==['more','less','no effect']

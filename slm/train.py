@@ -57,6 +57,37 @@ def checkpoint(run, model, optimizer, sampler, state):
     return folder
 
 
+def token_snapshots(run, model, state, thresholds):
+    """Preserve small evaluation-only snapshots on first crossing a token threshold."""
+    saved = state.setdefault('token_snapshots', [])
+    for target in thresholds:
+        if state['tokens'] < target or target in saved:
+            continue
+        folder = run / f'token-{target:09d}'
+        if not folder.exists():
+            tmp = folder.with_name(folder.name + '.tmp')
+            if tmp.exists():
+                shutil.rmtree(tmp)
+            tmp.mkdir()
+            model.save_weights(str(tmp / 'best.safetensors'))
+            config = json.loads((run / 'config.json').read_text())
+            config.update(snapshot_target_tokens=target, snapshot_actual_tokens=state['tokens'],
+                          checkpoint_selection='First complete training step crossing fixed token threshold')
+            atomic_json(tmp / 'config.json', config)
+            atomic_json(tmp / 'snapshot.json', dict(target_tokens=target, tokens=state['tokens'],
+                step=state['step'], source_tokens=state.get('source_tokens', {}),
+                evaluation_only=True, optimizer_state_saved=False))
+            shutil.copy2(run / 'tokenizer.json', tmp / 'tokenizer.json')
+            tmp.rename(folder)
+        saved.append(target)
+
+
+def schedule_fraction(tokens, maximum_tokens, started_at, deadline, now, schedule_tokens=0):
+    """Optional shared token clock for equal-exposure model-size comparisons."""
+    fraction = tokens / schedule_tokens if schedule_tokens else max(tokens / maximum_tokens, (now-started_at)/max(1., deadline-started_at))
+    return min(1., max(0., fraction))
+
+
 def restore(run, model, optimizer, sampler):
     pointer = json.loads((run / 'latest.json').read_text())
     folder = run / pointer['checkpoint']
@@ -124,7 +155,12 @@ def main():
     p.add_argument('--eval-seconds', type=int, default=1800)
     p.add_argument('--max-tokens', type=int, default=100000000)
     p.add_argument('--skip-initial-eval', action='store_true')
+    p.add_argument('--schedule-tokens', type=int, default=0, help='Shared token-clock cosine decay; zero retains original wall/token schedule')
+    p.add_argument('--snapshot-tokens', type=int, nargs='*', default=[])
     args = p.parse_args()
+    if args.schedule_tokens < 0 or any(t <= 0 for t in args.snapshot_tokens):
+        p.error('Token schedule and snapshots must be positive')
+    args.snapshot_tokens = sorted(set(args.snapshot_tokens))
     deadline_dt = datetime.fromisoformat(args.until)
     if deadline_dt.tzinfo is None:
         raise ValueError('Deadline must contain a timezone')
@@ -149,6 +185,8 @@ def main():
     mx.eval(model.parameters())
     count = sum(x.size for _, x in tree_flatten(model.parameters()))
     signature = digest(json.dumps({'config': asdict(config), 'manifest': digest((data / 'manifest.json').read_bytes()), 'batch_size': args.batch_size, 'weights': sampler.weights, 'seed': args.seed}, sort_keys=True))
+    if args.schedule_tokens or args.snapshot_tokens:
+        signature = digest(json.dumps(dict(base_signature=signature, schedule_tokens=args.schedule_tokens, snapshot_tokens=args.snapshot_tokens), sort_keys=True))
     state = {'step': 0, 'tokens': 0, 'started_at': time.time(), 'best_dev_loss': None, 'signature': signature}
     if args.resume and (run / 'latest.json').exists():
         state = restore(run, model, optimizer, sampler)
@@ -211,7 +249,7 @@ def main():
                 break
             x, y, mask, _ = sampler.batch(args.batch_size)
             actual_tokens = int(mask.sum())
-            elapsed_fraction = min(1., max(state['tokens'] / args.max_tokens, (time.time() - state['started_at']) / max(1., deadline - state['started_at'])))
+            elapsed_fraction = schedule_fraction(state['tokens'], args.max_tokens, state['started_at'], deadline, time.time(), args.schedule_tokens)
             decay = .1 + .9 * .5 * (1 + math.cos(math.pi * elapsed_fraction))
             lr = 3e-4 * min(1., (state['step'] + 1) / 100) * decay
             optimizer.learning_rate = lr
@@ -223,6 +261,8 @@ def main():
             source_tokens = state.setdefault('source_tokens', {})
             for name, count in sampler.last_batch_source_tokens.items():
                 source_tokens[name] = source_tokens.get(name, 0) + count
+            if args.snapshot_tokens:
+                token_snapshots(run, model, state, args.snapshot_tokens)
             interval_tokens += actual_tokens
             interval_losses.append(loss)
             if state['step'] % 10 == 0:

@@ -77,7 +77,7 @@ def converted(source, raw, uid):
         context = '\n'.join(raw['question_para_step'])
         prompt = 'Predict the effect of this change.\n\nProcess:\n' + context + '\n\nQuestion: ' + raw['question_stem']
         options = raw['choices']['text']
-        answer, group = raw['answer_label'], 'wiqa:' + str(raw['metadata_para_id'])
+        answer, group = raw['answer_label'].replace('_', ' '), 'wiqa:' + str(raw['metadata_para_id'])
         if answer not in options:
             raise ValueError('Invalid WIQA label')
     elif source == 'dream':
@@ -111,7 +111,7 @@ def converted(source, raw, uid):
                 group=group, split=partition(group), prompt=prompt, answer=answer, original_split='train', **extras)
 
 
-def prepare(output, base, stage):
+def prepare(output, base, stage, version=3):
     """Preserve v2 files and splits, excluding new groups that overlap old content."""
     if output.exists():
         raise ValueError(f'Refuse to overwrite {output}')
@@ -197,7 +197,7 @@ def prepare(output, base, stage):
     weights = sampling_weights(sources)
     evaluation = {name: 1.0 for name in weights if counts.get(name+'.dev', {}).get('records', 0)}
     derived = {p.name: sha(p) for p in output.iterdir() if p.suffix in {'.bin', '.npy'}}
-    manifest = dict(old, version=3, sources=sources, counts=counts, source_weights=weights,
+    manifest = dict(old, version=version, sources=sources, counts=counts, source_weights=weights,
                     evaluation_weights=evaluation, families=FAMILIES, rejections=dict(rejected),
                     parent_manifest_sha256=sha(base/'manifest.json'), candidate_manifest_sha256=sha(stage/'manifest.json'),
                     records_sha256=sha(output/'records.jsonl'), derived_files_sha256=derived,
@@ -209,8 +209,9 @@ def prepare(output, base, stage):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', required=True)
+    parser.add_argument('--version', type=int, default=3)
     args = parser.parse_args()
-    prepare(ROOT / args.output, ROOT/'data/v2', ROOT/'data/candidates-wave3-2026-09-07')
+    prepare(ROOT / args.output, ROOT/'data/v2', ROOT/'data/candidates-wave3-2026-09-07', version=args.version)
 
 
 if __name__ == '__main__':

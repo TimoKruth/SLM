@@ -13,7 +13,8 @@ from slm_perf.runtime import Monitor
 
 
 @pytest.mark.parametrize('mode',['light','detail'])
-def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatch,mode):
+@pytest.mark.parametrize('token_schedule',[False,True])
+def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatch,mode,token_schedule):
     """Compare exact CPU weights, Adam state and sampler state with fixed wall-clock LR."""
     import slm.train as original
     previous=mx.default_device()
@@ -45,6 +46,7 @@ def test_monitored_training_and_resume_match_original_on_cpu(tmp_path,monkeypatc
                 for mod,run in zip([original,module],runs):
                     argv=['train','--run',str(run),'--data',str(data),'--until',(fixed+timedelta(hours=1)).isoformat(),
                           '--steps',str(steps),'--context','16','--dim','16','--layers','1','--heads','2','--hidden','32','--batch-size','1','--skip-initial-eval']
+                    if token_schedule:argv += ['--schedule-tokens','100','--snapshot-tokens','10']
                     if resume:argv.append('--resume')
                     patch.setattr(sys,'argv',argv)
                     mod.main()

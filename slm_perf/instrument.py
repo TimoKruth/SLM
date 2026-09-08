@@ -13,9 +13,10 @@ ROOT = Path(__file__).resolve().parents[1]
 MODULES = {f'slm.{name}' for name in ('train','data','report','code_eval','interface_eval','prepare','prepare_v2','audit_v2','collect','rescore','overnight','sixhour','inference','broad_eval','validation','campaign')}
 MODULES.add('slm_perf.workload')
 MODULES.add('random_search.pilot')
+MODULES.add('experiments.size_report')
 MODULES.update({'future_eval.analyze','future_eval.prepare','future_eval.queue','future_eval.metrics'})
 MODULES.update({'experiments.prepare_broad', 'experiments.prepare_checks'})
-FUNCTIONS = {'fresh_model','teacher_score','generate_probe','encode_rows','split_tasks','analyze','prepare','sql_result','sql_compare','error_tags','scan','main','step','dev_eval','emit','atomic_json','checkpoint','restore','evaluate','generate',
+FUNCTIONS = {'reference_loss','token_snapshots','fresh_model','teacher_score','generate_probe','encode_rows','split_tasks','analyze','prepare','sql_result','sql_compare','error_tags','scan','main','step','dev_eval','emit','atomic_json','checkpoint','restore','evaluate','generate',
              'prepare','build','context_key','sql_query','score_general','final_answer','run_job','wait_child','validate_plan','control_ready','greedy_generate','cached_forward','report','run_python','score','load_tasks','fetch','fetch_spider_schemas','write_catalog',
              'convert','converted','reference_solutions','exclude_shared_code_groups','audit',
              'Sampler.__init__','Sampler.batch','wait_until','write_json','sha',

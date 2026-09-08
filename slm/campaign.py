@@ -69,6 +69,10 @@ def wait_child(child, out, deadline):
 def run_job(job, out, progress):
     """Persist each deadline once; resumed training never gains a fresh time budget."""
     from slm_perf.__main__ import active_jobs
+    if job.get('optional_snapshot') and not (ROOT/job['run']/'snapshot.json').exists():
+        progress['jobs'][job['name']] = dict(status='skipped', reason='Token threshold not reached within training budget')
+        atomic_json(out/'progress.json',progress)
+        return
     admission = datetime.fromisoformat(job['admission_until']).timestamp()
     while active_jobs():
         if time.time() >= admission:
@@ -110,6 +114,9 @@ def run_job(job, out, progress):
             environment=dict(os.environ)
             if job['module']=='slm_perf.ab':
                 environment['MTL_CAPTURE_ENABLED']='1'
+            if job['module']=='slm.train':
+                saved['power_settings_at_start']=subprocess.run(['pmset','-g','custom'],capture_output=True,text=True,check=True).stdout
+                atomic_json(out/'progress.json',progress)
             child=subprocess.Popen(args,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,env=environment)
             saved['pid']=child.pid
             atomic_json(out/'progress.json',progress)
@@ -142,6 +149,9 @@ def run_job(job, out, progress):
 
 def report(plan, out, progress):
     """Compare per-capability outcomes and observed token exposure at equal wall time."""
+    if plan.get('comparison_kind')=='model_size':
+        from experiments.size_report import report as size_report
+        return size_report(plan,out,progress)
     data=[]
     for item in plan['comparisons']:
         run=ROOT/item['run']

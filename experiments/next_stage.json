@@ -1,10 +1,16 @@
 {
-  "status": "prepared_not_scheduled",
+  "status": "superseded_by_corrected_size_campaign",
   "purpose": "Compare model size on the same broad mixture after the current family/source comparison.",
   "selection_rule": "Inspect per-family development results, learning curves, actual source-token exposure and speed; choose the mixture before running the size comparison. Do not select on the external final tests.",
   "small_model": {
     "module": "slm.train",
-    "model": {"dim": 512, "layers": 6, "heads": 8, "hidden": 1368, "context": 1024},
+    "model": {
+      "dim": 512,
+      "layers": 6,
+      "heads": 8,
+      "hidden": 1368,
+      "context": 1024
+    },
     "parameters": 27294208,
     "seed": 20260906,
     "execution": "compiled",
@@ -18,5 +24,7 @@
     "selection_rule": "Continue only if held-out capability metrics or loss still improve; compare validation trends against training loss to detect memorization.",
     "schedule_requirement": "Define a new explicit continuation schedule; do not silently extend an expired deadline or restart the decayed learning rate.",
     "external_final_tests": "Remain closed until the final model and protocol are frozen."
-  }
+  },
+  "replacement": "runs/size-campaign-2026-09-08/plan.json",
+  "reason": "User authorized fresh 27.3M/97.5M comparison after SciTail and WIQA correction; see MODELLGROESSENVERGLEICH.md"
 }
