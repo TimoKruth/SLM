@@ -29,3 +29,7 @@ Ausgabe: `runs/eval-preparation-2026-09-07/after-campaign/`. Queue-Status und Pl
 Die reduzierte Rechnerleistung bleibt eine dokumentierte Betriebsbedingung. Neue Performance-Messungen werden erst mit einem konkreten, aus den Profilen begründeten Kandidaten gestartet. Testzahl, Seed, feste Arbeitsmenge und Leistungseinstellung stehen bereits im Plan. Ein Vergleich unterschiedlicher Datenmischungen ersetzt keinen kontrollierten Code-Performance-Vergleich.
 
 Für zusätzliche Daten sind train-only Herkunft, Gruppen, Lizenzangaben, Ausschlussfamilien und Tokenizer-Eignung noch zu prüfen. Es wurden jetzt keine neuen Benchmark-Instanzen heruntergeladen. Für Social IQa widersprechen sich Card-Beschreibung und Autorendarstellung zur Herkunft der Antwortoptionen; der Abgleich mit der tatsächlich verwendeten Originalversion bleibt offen.
+
+## Bestätigter Fehler vom 8. September 2026
+
+Die 886er-Auswertung deckte einen SciTail-Konvertierungsfehler auf: Original-Label `entails` wurde nicht auf `entailment` abgebildet. 8.472 positive Beispiele wurden verworfen; `data/v3-broad` enthält für diese Quelle nur `neutral`. Perfekte SciTail-Treffer sind damit ungültig als Fähigkeitsnachweis. Der Konverter und ein Regressionstest für beide Originalklassen sind korrigiert (18 relevante Tests bestanden, Aufruf über den kanonischen Python-Pfad). Historische Daten bleiben erhalten; vor neuen Trainings eine neue Datenversion mit beiden Klassen und erneuter Gruppen-/Dublettenprüfung erstellen. Der korrigierte Vergleich ohne SciTail steht in `runs/broad-886-2026-09-08/REPORT.md`.

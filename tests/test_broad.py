@@ -66,3 +66,12 @@ def test_frozen_suite_keeps_learning_control_out_of_development():
     assert len(train)==128 and len({r['source'] for r in train})==32
     assert {r['group'] for r in train}.isdisjoint(r['group'] for r in dev)
     assert all(r['original_split']=='train' for r in train+dev)
+
+
+def test_scitail_preserves_both_original_classes():
+    from experiments.prepare_broad import converted
+    premise='A person is outdoors.'
+    rows=[converted('scitail',{'premise':premise,'hypothesis':'A person is outside.','label':label},label)
+          for label in ['entails','neutral']]
+    assert [r['answer'] for r in rows]==['entailment','neutral']
+    assert rows[0]['group']==rows[1]['group']

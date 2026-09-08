@@ -89,6 +89,8 @@ def converted(source, raw, uid):
     elif source in {'anli', 'scitail'}:
         options = ['entailment', 'neutral', 'contradiction'] if source == 'anli' else ['entailment', 'neutral']
         answer = options[raw['label']] if source == 'anli' else raw['label']
+        if source == 'scitail' and answer == 'entails':
+            answer = 'entailment'
         if answer not in options:
             raise ValueError('Invalid entailment label')
         prompt = 'Classify the hypothesis as ' + ', '.join(options[:-1]) + ', or ' + options[-1] + '.\n\nPremise: ' + raw['premise'] + '\nHypothesis: ' + raw['hypothesis']
