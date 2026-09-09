@@ -11,7 +11,7 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-GPU_MODULES = {'study.trial','research.trial','next_run.performance','random_search.pilot','slm.train','slm.report','slm.code_eval','slm.interface_eval','slm.broad_eval','slm.validation',
+GPU_MODULES = {'study.health','study.trial','research.trial','next_run.performance','random_search.pilot','slm.train','slm.report','slm.code_eval','slm.interface_eval','slm.broad_eval','slm.validation',
                'experiments.performance.benchmark','slm_perf.ab','slm_perf.workload'}
 SUPERVISOR_MODULES = {'study.campaign', 'study.queue','research.campaign','slm.sixhour', 'slm.overnight', 'slm.campaign'}
 

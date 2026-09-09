@@ -142,6 +142,7 @@ def main():
     parser.add_argument('--plan',required=True)
     parser.add_argument('--job')
     parser.add_argument('--control-only',action='store_true')
+    parser.add_argument('--wall-seconds',type=float,help='Remaining process allowance after a recovery; never extends job budget')
     args=parser.parse_args()
     started=time.monotonic()
     run,plan=Path(args.run),read(args.plan)
@@ -155,6 +156,8 @@ def main():
     if (run/'config.json').exists():
         raise ValueError('Never reuse trial outputs')
     job=read(args.job);p=job['parameters'];validate(p)
+    wall_limit=min(job['train_seconds'],args.wall_seconds) if args.wall_seconds is not None else job['train_seconds']
+    if wall_limit<=15:raise ValueError('Insufficient process budget for a new trial and checkpoint')
     model,opt,sampler,state,eligible,weights=load(plan,p,job['data_seed'],job['model_seed'])
     start_step,start_tokens=state['step'],state['tokens']
     sampler_initial=copy.deepcopy(sampler.rng.bit_generator.state)
@@ -180,7 +183,7 @@ def main():
     emit(dict(status='running',event='start',step=start_step,tokens=start_tokens))
     with (run/'metrics.jsonl').open('w',buffering=1) as log:
         while state['tokens']-start_tokens < job['target_tokens']:
-            if time.monotonic()-started >= job['train_seconds']-15 or (run/'STOP').exists():break
+            if time.monotonic()-started >= wall_limit-15 or (run/'STOP').exists():break
             if psutil.virtual_memory().available < 6*1024**3:raise MemoryError('Available RAM below 6 GiB')
             batch=sampler.batch(cfg['batch_size'])
             batches_hash.update(batch[0].tobytes());batches_hash.update(batch[1].tobytes())

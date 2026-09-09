@@ -62,3 +62,10 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Kampagne `runs/parameter-study-2026-09-09/`, Code `/Users/timokruth/Projekte/SLM-parameter-study`, Branch `codex/parameter-study`. `queue.json` zeigt die Warteschlange, `status.json` die aktive Phase und verbindliche Frist.
 - 114 kurze Vergleiche und vier längere Läufe; endlicher vorab festgelegter Parameterraum. Nicht untersuchte Faktoren bleiben im Plan/Bericht ausdrücklich offen. Keine Behauptung vollständigen Parameterwissens.
 - Bestehende Runde unverändert lassen. Nach Start keine eingefrorenen Studien-Eingaben ändern. Keine Budgeterneuerung, keine automatische Modellübernahme. STOP im Studienverzeichnis beendet Warteschlange/Kampagne. Monitoring light und PowerWatch bleiben aktiv.
+
+# Reparatur nach Metal-Ausfall, weiterhin pausiert
+
+- Nutzer beauftragte Fehlerbehebung und Startbereitschaft, nicht Wiederaufnahme. Alte/neue STOP-Sperren erhalten. Dokumentation: `STUDIE_WIEDERHERSTELLUNG.md`.
+- Neuer Code `/Users/timokruth/Projekte/SLM-study-recovery`, Branch `codex/study-recovery`. GPU-Healthcheck, einmaliger begrenzter Wiederholungsversuch nach erfolgreicher Gesundheitsprüfung, danach Infrastrukturpause statt Fehlerkaskade.
+- Neue vorbereitete Kampagne `runs/parameter-study-recovery-2026-09-09/`; historische Eingaben/Resultate bleiben unverändert. Nur hashvalidierte vollständige Resultate übernehmen. Restbudget 79.613s einschließlich konservativ abgezogener 120s Prüfreserve, keine neuen 24h.
+- Kein Training starten, solange der Nutzer die Fortsetzung nicht ausdrücklich anweist. READY.json zeigt Vorbereitung; STOP vor jeglichem Kampagnenstart beachten.
