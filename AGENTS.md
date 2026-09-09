@@ -84,3 +84,14 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Budget beginnt erst nach Ende der zweiten Runde und ohne konkurrierenden GPU-Job, dann harte Grenze 86.400s. Kein Neustart, keine Verlängerung. GPU-Arbeit seriell, Monitoring light und PowerWatch aktiv.
 - Endliche Stufen statt Behauptung vollständigen Parameterwissens. Tokenizer/neue Optimiererfamilien/grundlegende Architekturbausteine bleiben ausdrücklich ununtersucht. Signifikanz oder externe Übertragung werden nicht aus zwei Wiederholungen behauptet.
 - Die eingefrorenen Code-/Planeingaben der Warteschlange unverändert lassen. Suiten/Daten/Elterncheckpoint werden vor neuer GPU-Arbeit zusätzlich eingefroren. STOP im Studienverzeichnis beendet Warteschlange/Kampagne. Keine automatische Modellübernahme.
+
+
+# Reparatur der Studie, weiterhin pausiert (9. September 2026)
+
+- Nutzer beauftragte Fehlerbehebung und Startbereitschaft, keine Wiederaufnahme. Die alte Studie bleibt durch STOP gesperrt; keine GPU-Trainings oder Warteschlangen starten ohne ausdrücklichen Folgeauftrag.
+- Reparierter Code `/Users/timokruth/Projekte/SLM-study-recovery`, Branch `codex/study-recovery`, Commit `483d292`. Dokumentation `STUDIE_WIEDERHERSTELLUNG.md`; Kontrollen unter `runs/study-repair-2026-09-09/`.
+- Metal war beim Reparaturtest wieder erreichbar; keine Systemdienste oder der Mac wurden neu gestartet. Zwei kurze GPU-Prüfungen, Kontrolle am echten Elternmodell und Nachholung der gescheiterten 473er-Auswertung bestanden. Die genaue Ursache des vorübergehenden Dienstfehlers bleibt offen.
+- Neuer Vorabtest und Fehlerklassifikation. Bei GPU-Dienstfehler frische Gesundheitsprüfung, höchstens eine Stufenwiederholung im Restbudget; maximal zwei automatische GPU-Recovery-Versuche pro Kampagne. Danach Infrastrukturpause statt weiterer Fehlerkaskade. STOP wird vor Kampagnenstart geprüft.
+- Vorbereitete, ebenfalls STOP-gesperrte Fortsetzung: `runs/parameter-study-recovery-2026-09-09/`. 31 vollständige Trainings und 31 validierte Auswertungen unabhängig kopiert; numerischer Kern unverändert. 83 kurze Trainings sowie vier geplante lange Läufe offen.
+- Verbindliches Restbudget: 79.613s (22h 06m 53s), nach Abzug bisheriger 6667s plus konservativer 120s Prüfreserve. Kein neues 24h-Budget. READY.json/recovery-audit.json dokumentieren Vorbereitung; noch kein status.json, kein gestarteter Supervisor.
+- Zum ausdrücklich beauftragten späteren Start nur den STOP der neuen Fortsetzung entfernen und dort `run_slm.py --module study.campaign` im Recovery-Worktree verwenden. Historische STOP-Sperre, Eingaben und Ergebnisse erhalten. Monitoring light und PowerWatch bleiben aktiv.
