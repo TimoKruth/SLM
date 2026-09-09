@@ -87,7 +87,7 @@ class Monitor:
             yield
             return
         before = self.clock()
-        if name == 'slm.train.main.step' or name == 'slm_perf.workload.step':
+        if name in {'slm.train.main.step', 'slm_perf.workload.step', 'research.trial.step'}:
             name += '.warmup' if self.steps < self.warmup_steps else '.steady'
             self.steps += 1
         path = '/'.join([self.stack[-1]['path'], name]) if self.stack else name

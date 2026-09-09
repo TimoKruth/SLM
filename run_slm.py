@@ -15,7 +15,7 @@ def command(argv, defaults=None, session=None):
     defaults = json.loads((ROOT / 'run_defaults.json').read_text()) if defaults is None else defaults
     parser = argparse.ArgumentParser(description=__doc__, epilog='Additional arguments, e.g. --data or --until, are forwarded unchanged to the selected module.')
     parser.add_argument('--run', required=True)
-    parser.add_argument('--module', default='slm.sixhour', choices=['slm.sixhour', 'slm.overnight', 'slm.train', 'slm.report', 'slm.code_eval', 'slm.interface_eval', 'slm.broad_eval', 'slm.validation', 'slm.campaign', 'future_eval.analyze', 'future_eval.prepare', 'future_eval.queue', 'random_search.pilot', 'next_run.performance'])
+    parser.add_argument('--module', default='slm.sixhour', choices=['slm.sixhour', 'slm.overnight', 'slm.train', 'slm.report', 'slm.code_eval', 'slm.interface_eval', 'slm.broad_eval', 'slm.validation', 'slm.campaign', 'future_eval.analyze', 'future_eval.prepare', 'future_eval.queue', 'random_search.pilot', 'next_run.performance', 'research.trial', 'research.campaign'])
     parser.add_argument('--monitoring', choices=['off', 'light', 'detail'], default=defaults['monitoring'])
     args, extra = parser.parse_known_args(argv)
     if args.monitoring not in {'off', 'light', 'detail'}:

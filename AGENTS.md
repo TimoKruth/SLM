@@ -40,3 +40,10 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Der Nutzer hat nur die Vorbereitung bis vor dem längeren Lauf beauftragt. `next_run/long_plan.json` ist ein ungestarteter Vorschlag, keine Startfreigabe.
 - `--forward-precision bf16` ist eine getestete optionale Variante mit FP32-Mastergewichten; Standard bleibt FP32. Rechengenauigkeit gehört zur Wiederaufnahmesignatur. Standalone-Evaluation bleibt FP32, Inline-Dev folgt dem Trainer.
 - Vier auffällige Entwicklungsreferenzen nur in separater Sensitivitätsanalyse behandeln; Originalscores erhalten. Neue TAT-QA-/MultiNLI-Dateien sind vorgemerkt, nicht in die 32-Quellen-Mischung integriert.
+
+# Begrenzte Forschungsrunde am 9. September 2026
+
+- Expliziter Startauftrag für die erste kontrollierte LR-/Antwortgewichtungsrunde: `BEGRENZTE_FORSCHUNG.md`, Kampagne `runs/research-pilot-2026-09-09/`.
+- Maximal 60 Minuten einschließlich GPU-Kontrollen und Auswertung, sechs feste 3M-Token-Adaptationen des letzten kleinen Sechs-Stunden-Modells. Keine automatische Verlängerung oder Modellübernahme.
+- Eingefrorene Kampagneneingaben nicht ändern. Status/Frist im Kampagnenverzeichnis; `STOP` beendet die Runde.
+- Fragen des Nutzers allein sind keine Freigabe zum Starten; der Nutzer fordert Starts ausdrücklich an.
