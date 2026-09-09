@@ -1,3 +1,11 @@
+# Aktueller Stand: Fortsetzung gestartet
+
+Der Nutzer hat die Wiederaufnahme ausdrücklich beauftragt. Start: **9. September 2026, 22:05:42 Uhr**; harte Budgetgrenze: **10. September 2026, 20:12:35 Uhr**, jeweils Europe/Berlin. Das verbleibende Budget beträgt beim Start 22h 06m 53s; bei Abschluss aller geplanten Versuche endet die Studie früher.
+
+Aktueller Zustand: `runs/parameter-study-recovery-2026-09-09/status.json`. Auftrag und aktuelle Betriebsbedingungen: `START_AUTHORIZATION.json` im selben Verzeichnis. Die historische STOP-Sperre bleibt erhalten; der eingefrorene Recovery-Code ist unverändert. Die folgende Reparaturdokumentation beschreibt den Stand **vor** dieser Startfreigabe.
+
+---
+
 # Metal-Fehler: Reparatur und vorbereitete Fortsetzung
 
 Der Nutzer beauftragte am 9. September 2026 die Fehlerbehebung, damit später wieder

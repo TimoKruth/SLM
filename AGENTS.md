@@ -95,3 +95,12 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Vorbereitete, ebenfalls STOP-gesperrte Fortsetzung: `runs/parameter-study-recovery-2026-09-09/`. 31 vollständige Trainings und 31 validierte Auswertungen unabhängig kopiert; numerischer Kern unverändert. 83 kurze Trainings sowie vier geplante lange Läufe offen.
 - Verbindliches Restbudget: 79.613s (22h 06m 53s), nach Abzug bisheriger 6667s plus konservativer 120s Prüfreserve. Kein neues 24h-Budget. READY.json/recovery-audit.json dokumentieren Vorbereitung; noch kein status.json, kein gestarteter Supervisor.
 - Zum ausdrücklich beauftragten späteren Start nur den STOP der neuen Fortsetzung entfernen und dort `run_slm.py --module study.campaign` im Recovery-Worktree verwenden. Historische STOP-Sperre, Eingaben und Ergebnisse erhalten. Monitoring light und PowerWatch bleiben aktiv.
+
+
+# Wiederaufnahme der Parameterstudie (9. September 2026)
+
+- Neuer ausdrücklicher Nutzerauftrag: „Bitte lasse den 24 h Lauf dann weiter laufen“. Die zuvor pausierte Fortsetzung ist gestartet; nur ihr STOP wurde entfernt. Die historische Studie bleibt gesperrt.
+- Aktive Kampagne: `runs/parameter-study-recovery-2026-09-09/`, Code unverändert im Recovery-Worktree auf Commit `483d292`. Verbindlicher Zustand und Frist: `status.json`.
+- Start: 2026-09-09T22:05:42.638012+02:00; harte Budgetgrenze: 2026-09-10T20:12:35.638007+02:00 (Europe/Berlin). Restbudget beim Start 79.613s, kein neues 24h-Budget und keine automatische Verlängerung. Ein früherer Abschluss aller geplanten Versuche ist möglich.
+- Vor Start wurden sämtliche eingefrorenen Eingabehashes geprüft; keine konkurrierenden GPU-Jobs. Stromversorgung beim Start am Netz, bestehende Leistungseinstellung unverändert. Aktuelle Startbedingungen und Auftrag: `START_AUTHORIZATION.json`; die vorbereitenden RUN_CONDITIONS bleiben historisch erhalten.
+- Monitoring light, PowerWatch und die begrenzte Metal-Fehlerbehandlung sind aktiv. Eingefrorene Code-/Daten-/Planeingaben unverändert lassen; keine automatische Modellübernahme.
