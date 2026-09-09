@@ -74,3 +74,13 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Sechs neue 3M-Token-Adaptationen vom ursprünglichen kleinen Sechs-Stunden-Checkpoint: Baseline LR 3e-5, niedrigere LR 1e-5, Antwortgewicht 2 bei LR 3e-5. Jeweils Daten-Seeds 202609092 und 202609093; FP32 und unveränderte 32 Quellen.
 - Auswahl auf 473 Aufgaben aus 31 Quellen, Gegenprüfung auf 200 anderen Aufgaben aus 25 Quellen. Neue Gegenprüfungsgruppen schließen die des ersten Piloten aus. Kandidaten müssen zusätzlich gegenüber dem unveränderten Elternmodell auf beiden Suiten bestehen. Keine direkte Gegenüberstellung aggregierter Scores aus unterschiedlich großen Auswahlsuiten.
 - Light-Monitoring und PowerWatch bleiben aktiv; Eingaben nicht ändern. `STOP` im neuen Kampagnenverzeichnis beendet die Runde. Keine automatische Verlängerung oder Modellübernahme.
+
+
+# Systematische Parameterstudie: 24 Stunden Zusatzbudget
+
+- Nutzer hat am 9. September ausdrücklich weitere systematische Parametervariation und 24 zusätzliche Stunden einschließlich Kontrollen/Auswertungen freigegeben. Die laufende zweite Runde zählt nicht dazu.
+- Warteschlange `runs/parameter-study-2026-09-09/queue.json`, anschließend verbindlicher Status/Frist `status.json`. Code `/Users/timokruth/Projekte/SLM-parameter-study`, Branch `codex/parameter-study`, Commit `d4fc227`. Plan: `PARAMETERSTUDIE_24H.md`.
+- 114 vorab festgelegte kurze Läufe plus vier längere: 37 Adaptations-/Mischungs-/Ausführungsvarianten, zwölf Kaltstartvarianten, acht LR×Antwortgewicht×Gewichtszerfall-Kombinationen, jeweils zwei Wiederholungen. Lange Kontrolle/Kandidat mit zwei neuen Datenreihenfolgen und 1,5M-/15M-Token-Ständen.
+- Budget beginnt erst nach Ende der zweiten Runde und ohne konkurrierenden GPU-Job, dann harte Grenze 86.400s. Kein Neustart, keine Verlängerung. GPU-Arbeit seriell, Monitoring light und PowerWatch aktiv.
+- Endliche Stufen statt Behauptung vollständigen Parameterwissens. Tokenizer/neue Optimiererfamilien/grundlegende Architekturbausteine bleiben ausdrücklich ununtersucht. Signifikanz oder externe Übertragung werden nicht aus zwei Wiederholungen behauptet.
+- Die eingefrorenen Code-/Planeingaben der Warteschlange unverändert lassen. Suiten/Daten/Elterncheckpoint werden vor neuer GPU-Arbeit zusätzlich eingefroren. STOP im Studienverzeichnis beendet Warteschlange/Kampagne. Keine automatische Modellübernahme.
