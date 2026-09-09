@@ -104,3 +104,11 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Start: 2026-09-09T22:05:42.638012+02:00; harte Budgetgrenze: 2026-09-10T20:12:35.638007+02:00 (Europe/Berlin). Restbudget beim Start 79.613s, kein neues 24h-Budget und keine automatische Verlängerung. Ein früherer Abschluss aller geplanten Versuche ist möglich.
 - Vor Start wurden sämtliche eingefrorenen Eingabehashes geprüft; keine konkurrierenden GPU-Jobs. Stromversorgung beim Start am Netz, bestehende Leistungseinstellung unverändert. Aktuelle Startbedingungen und Auftrag: `START_AUTHORIZATION.json`; die vorbereitenden RUN_CONDITIONS bleiben historisch erhalten.
 - Monitoring light, PowerWatch und die begrenzte Metal-Fehlerbehandlung sind aktiv. Eingefrorene Code-/Daten-/Planeingaben unverändert lassen; keine automatische Modellübernahme.
+
+
+# GPU-Hang-Fix vorbereitet (10. September 2026)
+
+- Nutzer beauftragte Erkennung und Vorbereitung eines Fixes für einen möglichen GPU-Hang-Abbruch. Kein Hot-Patch, keine Wiederaufnahme und keine zusätzlichen GPU-Tests beauftragt.
+- Separater Worktree `/Users/timokruth/Projekte/SLM-gpu-hang-fix`, Branch `codex/gpu-hang-recovery`, Commit `b58809f`. Details: `GPU_HANG_FIX.md`.
+- Die native MLX-Meldung `Caused GPU Hang Error` / `kIOGPUCommandBufferCallbackErrorHang` (Exit -6) wird dort als GPU-Infrastrukturfehler erkannt und durch die vorhandene begrenzte Wiederherstellung behandelt. Ursache des Hängers nicht nachgewiesen behoben. 75 CPU-Tests bestanden, numerischer Kern unverändert.
+- Aktive Kampagne und eingefrorener Recovery-Code bleiben unverändert. Nach eventuellem Ende/Abbruch erst Status und Integrität prüfen; neue vorbereitete Fortsetzung muss kumulierten Budgetverbrauch abziehen und STOP-gesperrt bleiben, bis ein ausdrücklicher Startauftrag vorliegt.
