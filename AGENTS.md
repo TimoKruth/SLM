@@ -55,3 +55,10 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Höchstens 60 Minuten einschließlich Kontrollen und Auswertung. Verbindliche Frist und Status im Kampagnenverzeichnis, keine Verlängerung.
 - Größere Auswahlmenge (bis 16 Aufgaben je Quelle); neue Gegenprüfungsgruppen schließen den ersten Piloten aus. Kandidaten müssen zusätzlich gegenüber dem unveränderten Elternmodell bestehen. Aggregierte Werte der unterschiedlichen Auswahlsuiten nicht direkt vergleichen.
 - Historischer Pilot und aktive eingefrorene Eingaben bleiben unverändert. Monitoring light und PowerWatch aktiv. Keine automatische Modellübernahme.
+
+# Systematische Parameterstudie mit 24 Stunden Budget
+
+- Nutzer hat am 9. September ausdrücklich 24 zusätzliche Stunden einschließlich Kontrollen/Auswertungen freigegeben, nach Ende der zweiten Runde. Details `PARAMETERSTUDIE_24H.md`.
+- Kampagne `runs/parameter-study-2026-09-09/`, Code `/Users/timokruth/Projekte/SLM-parameter-study`, Branch `codex/parameter-study`. `queue.json` zeigt die Warteschlange, `status.json` die aktive Phase und verbindliche Frist.
+- 114 kurze Vergleiche und vier längere Läufe; endlicher vorab festgelegter Parameterraum. Nicht untersuchte Faktoren bleiben im Plan/Bericht ausdrücklich offen. Keine Behauptung vollständigen Parameterwissens.
+- Bestehende Runde unverändert lassen. Nach Start keine eingefrorenen Studien-Eingaben ändern. Keine Budgeterneuerung, keine automatische Modellübernahme. STOP im Studienverzeichnis beendet Warteschlange/Kampagne. Monitoring light und PowerWatch bleiben aktiv.

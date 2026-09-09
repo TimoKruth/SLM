@@ -11,9 +11,9 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-GPU_MODULES = {'research.trial','next_run.performance','random_search.pilot','slm.train','slm.report','slm.code_eval','slm.interface_eval','slm.broad_eval','slm.validation',
+GPU_MODULES = {'study.trial','research.trial','next_run.performance','random_search.pilot','slm.train','slm.report','slm.code_eval','slm.interface_eval','slm.broad_eval','slm.validation',
                'experiments.performance.benchmark','slm_perf.ab','slm_perf.workload'}
-SUPERVISOR_MODULES = {'research.campaign','slm.sixhour', 'slm.overnight', 'slm.campaign'}
+SUPERVISOR_MODULES = {'study.campaign', 'study.queue','research.campaign','slm.sixhour', 'slm.overnight', 'slm.campaign'}
 
 
 def active_jobs():
@@ -77,7 +77,7 @@ def launch(args):
     from .instrument import MODULES
     if args.module not in MODULES:raise ValueError('Unsupported module: '+args.module)
     # Only lightweight artifact reading and a sleeping queue may coexist with training.
-    if args.module not in {'future_eval.analyze','future_eval.queue'} and active_jobs():
+    if args.module not in {'future_eval.analyze','future_eval.queue','study.queue'} and active_jobs():
         raise RuntimeError('An SLM GPU job is active. No competing workload was started.')
     if args.module in GPU_MODULES or (args.mode=='off' and args.module in SUPERVISOR_MODULES):
         from .gpu_lease import GPULease
