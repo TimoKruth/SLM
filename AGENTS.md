@@ -47,3 +47,11 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Maximal 60 Minuten einschließlich GPU-Kontrollen und Auswertung, sechs feste 3M-Token-Adaptationen des letzten kleinen Sechs-Stunden-Modells. Keine automatische Verlängerung oder Modellübernahme.
 - Eingefrorene Kampagneneingaben nicht ändern. Status/Frist im Kampagnenverzeichnis; `STOP` beendet die Runde.
 - Fragen des Nutzers allein sind keine Freigabe zum Starten; der Nutzer fordert Starts ausdrücklich an.
+
+# Zweite Forschungsrunde am 9. September 2026
+
+- Expliziter Auftrag für weitere Läufe. Neue Kampagne `runs/research-round2-2026-09-09/`, Worktree `/Users/timokruth/Projekte/SLM-research-round2`, Branch `codex/bounded-research-round2`. Details: `FORSCHUNG_RUNDE_2.md`.
+- Sechs neue 3M-Token-Adaptationen vom ursprünglichen kleinen Sechs-Stunden-Checkpoint: Baseline, niedrigere LR 1e-5, milderes Antwortgewicht 2; jeweils Daten-Seeds 202609092 und 202609093. FP32, unveränderte 32 Quellen.
+- Höchstens 60 Minuten einschließlich Kontrollen und Auswertung. Verbindliche Frist und Status im Kampagnenverzeichnis, keine Verlängerung.
+- Größere Auswahlmenge (bis 16 Aufgaben je Quelle); neue Gegenprüfungsgruppen schließen den ersten Piloten aus. Kandidaten müssen zusätzlich gegenüber dem unveränderten Elternmodell bestehen. Aggregierte Werte der unterschiedlichen Auswahlsuiten nicht direkt vergleichen.
+- Historischer Pilot und aktive eingefrorene Eingaben bleiben unverändert. Monitoring light und PowerWatch aktiv. Keine automatische Modellübernahme.

@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from research.common import weighted_mask, quality, contrast
 from research.prepare import select
-from research.campaign import matched, report
-from research.common import write
+from research.campaign import matched, report, variant_orders, maximum_stage_budget
+from research.common import write, parent_guard
 
 
 def test_weighting_preserves_baseline_and_excludes_padding():
@@ -54,3 +54,26 @@ def test_failure_report_preserves_incomplete_evaluation(tmp_path):
     write(trial / 'search/summary.json', dict(evaluated_general=1, selected_general=248, deadline_reached=True))
     report(tmp_path, dict(status='stopped', error='evaluation deadline'))
     assert 'evaluation deadline' in (tmp_path / 'REPORT.md').read_text()
+
+
+def test_parent_guard_rejects_winner_against_deteriorated_baseline():
+    parent = dict(accuracy=.30, families={'a': .30}, answer_loss=1.4)
+    baseline = dict(accuracy=.20, families={'a': .20}, answer_loss=1.6)
+    candidate = dict(accuracy=.25, families={'a': .25}, answer_loss=1.5)
+    assert contrast([baseline, baseline], [candidate, candidate])['passes_screen']
+    assert not parent_guard(parent, [candidate, candidate])['passed']
+    better = dict(accuracy=.32, families={'a': .32}, answer_loss=1.38)
+    assert parent_guard(parent, [better, better])['passed']
+    assert not parent_guard(parent, [better, dict(better, answer_loss=1.41)])['passed']
+
+
+def test_followup_order_and_entire_declared_budget():
+    plan = dict(variants=[{'name': name} for name in ['baseline', 'lower-lr', 'mild-answer-weight']],
+                repetitions=2, data_order_seeds=[202609092, 202609093], control_seconds=40,
+                trial_seconds=360, evaluation_process_seconds=130, confirmation_process_seconds=80,
+                require_parent_guard=True)
+    assert variant_orders(plan) == [['baseline', 'lower-lr', 'mild-answer-weight'],
+                                  ['mild-answer-weight', 'baseline', 'lower-lr']]
+    assert maximum_stage_budget(plan) == 3510
+    with pytest.raises(ValueError, match='distinct'):
+        variant_orders(dict(plan, variants=[{'name': 'baseline'}] * 3))

@@ -9,9 +9,25 @@ import sys
 import time
 
 from slm_perf.after_idle import stop_process
-from .common import read, write, sha, quality, contrast
+from .common import read, write, sha, quality, contrast, parent_guard
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def variant_orders(plan):
+    names = [v['name'] for v in plan['variants']]
+    if len(names) != 3 or len(set(names)) != 3 or names[0] != 'baseline':
+        raise ValueError('Expected baseline and two distinct interventions')
+    if plan['repetitions'] != 2 or len(plan['data_order_seeds']) != 2:
+        raise ValueError('Expected two data-order repetitions')
+    return [names, [names[2], names[0], names[1]]]
+
+
+def maximum_stage_budget(plan):
+    """Sum declared process caps, including optional untouched-parent confirmation."""
+    return (plan['control_seconds'] + 6 * plan['trial_seconds'] + 7 * plan['evaluation_process_seconds']
+            + (5 if plan.get('require_parent_guard') else 4)
+            * plan.get('confirmation_process_seconds', plan['evaluation_process_seconds']))
 
 
 def matched(results):
@@ -33,6 +49,9 @@ def report(run, state):
              'Keine Aussage über externe Benchmark-Übertragung oder statistische Signifikanz.', '',
              '| Variante | Datenreihenfolge | Zusatz-Tokens | Sekunden | Auswahl-Genauigkeit (Familien-Makro) | Antwortloss |',
              '| --- | --- | ---: | ---: | ---: | ---: |']
+    if (run / 'parent-quality.json').exists():
+        parent = read(run / 'parent-quality.json')
+        lines.append(f"| Ausgangsmodell ohne Zusatztraining | — | 0 | — | {parent['accuracy']:.2%} | {parent['answer_loss']:.4f} |")
     for trial in sorted((run / 'trials').glob('*')):
         if not (trial / 'result.json').exists():
             continue
@@ -56,6 +75,8 @@ def report(run, state):
                   'Gepaarte Änderungen der Familien-Makrogenauigkeit: ' + str(c['accuracy_deltas']) + '.',
                   'Mittlere Antwortloss-Änderung: ' + str(c['mean_answer_loss_delta']) + '.',
                   'Familienänderungen: ' + str(c['family_deltas']) + '.']
+        if 'parent_guard' in c:
+            lines += ['Zusätzliche Gegenprüfung gegen unverändertes Ausgangsmodell: ' + str(c['parent_guard']) + '.']
     if state.get('error'):
         lines += ['', 'Abbruchgrund: ' + state['error']]
     lines += ['', 'Die Auswahl- und Gegenprüfungsaufgaben sind gruppengetrennt. '
@@ -72,6 +93,9 @@ def main():
     args = p.parse_args()
     run = Path(args.run).resolve()
     plan = read(run / 'plan.json')
+    orders = variant_orders(plan)
+    if plan.get('require_parent_guard') and maximum_stage_budget(plan) > plan['gpu_wall_budget_seconds'] - 30:
+        raise ValueError('Declared stage caps exceed global budget with cleanup reserve')
     if (run / 'status.json').exists():
         raise ValueError('One-shot campaign already started; deadline and budget cannot reset')
     # Read-only verification occurs before any GPU allocation.
@@ -131,11 +155,13 @@ def main():
             write(run / 'status.json', state)
 
     def evaluate(name, model_run, suite_name):
-        destination = model_run / suite_name if model_run != Path(plan['parent']) else run / 'parent-search'
+        destination = model_run / suite_name if model_run != Path(plan['parent']) else run / ('parent-' + suite_name)
+        seconds = plan['evaluation_seconds'] if suite_name == 'search' else plan.get('confirmation_seconds', plan['evaluation_seconds'])
+        process_seconds = plan['evaluation_process_seconds'] if suite_name == 'search' else plan.get('confirmation_process_seconds', plan['evaluation_process_seconds'])
         run_job(name, 'slm.broad_eval', model_run,
                 ['--suite', str(run / (suite_name + '-suite.json')), '--output', str(destination),
-                 '--checkpoint', 'latest', '--maximum', '256', '--max-seconds', str(plan['evaluation_seconds']),
-                 '--skip-code', '--answer-loss'], plan['evaluation_process_seconds'])
+                 '--checkpoint', 'latest', '--maximum', '256', '--max-seconds', str(seconds),
+                 '--skip-code', '--answer-loss'], process_seconds)
         return quality(read(destination / 'summary.json'))
 
     try:
@@ -146,7 +172,6 @@ def main():
         parent_quality = evaluate('parent-search', Path(plan['parent']), 'search')
         write(run / 'parent-quality.json', parent_quality)
         qualities, trial_paths = {}, {}
-        orders = [['baseline', 'higher-lr', 'answer-weight'], ['answer-weight', 'baseline', 'higher-lr']]
         for repetition, order in enumerate(orders):
             results = []
             for name in order:
@@ -159,13 +184,20 @@ def main():
                 qualities[repetition, name] = evaluate(trial.name + '-search', trial, 'search')
         baselines = [qualities[r, 'baseline'] for r in range(2)]
         contrasts = {name: contrast(baselines, [qualities[r, name] for r in range(2)])
-                     for name in ['higher-lr', 'answer-weight']}
+                     for name in orders[0][1:]}
+        if plan.get('require_parent_guard'):
+            for name, values in contrasts.items():
+                values['parent_guard'] = parent_guard(parent_quality, [qualities[r, name] for r in range(2)])
+                values['passes_screen'] = values['passes_screen'] and values['parent_guard']['passed']
         contender = max(contrasts, key=lambda name: (contrasts[name]['passes_screen'],
                         contrasts[name]['mean_accuracy_delta'], -contrasts[name]['mean_answer_loss_delta']))
         selection = dict(contender=contender, search_passed=contrasts[contender]['passes_screen'], contrasts=contrasts,
                          rule=plan['selection'], selected_before_confirmation=True)
         write(run / 'selection.json', selection)
         confirmation = {}
+        if plan.get('require_parent_guard'):
+            parent_confirmation = evaluate('parent-confirmation', Path(plan['parent']), 'confirmation')
+            write(run / 'parent-confirmation-quality.json', parent_confirmation)
         for repetition in range(2):
             for name in ['baseline', contender]:
                 trial = trial_paths[repetition, name]
@@ -173,6 +205,9 @@ def main():
         confirmed = contrast([confirmation[r, 'baseline'] for r in range(2)],
                              [confirmation[r, contender] for r in range(2)])
         confirmed.update(contender=contender, confirmed_candidate=selection['search_passed'] and confirmed['passes_screen'])
+        if plan.get('require_parent_guard'):
+            confirmed['parent_guard'] = parent_guard(parent_confirmation, [confirmation[r, contender] for r in range(2)])
+            confirmed['confirmed_candidate'] = confirmed['confirmed_candidate'] and confirmed['parent_guard']['passed']
         write(run / 'confirmation.json', confirmed)
         state.update(status='completed', phase='finished')
     except BaseException as exc:

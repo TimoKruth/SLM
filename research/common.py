@@ -55,3 +55,13 @@ def contrast(baselines, candidates):
                 mean_answer_loss_delta=sum(c['answer_loss'] - b['answer_loss']
                                            for b, c in zip(baselines, candidates)) / 2,
                 passes_screen=all(d >= .02 for d in deltas) and min(families.values()) >= -.05)
+
+
+def parent_guard(parent, candidates):
+    """A candidate must also outperform leaving the six-hour checkpoint untouched."""
+    if len(candidates) != 2 or any(set(c['families']) != set(parent['families']) for c in candidates):
+        raise ValueError('Parent comparison requires two candidates with matching coverage')
+    accuracy = [c['accuracy'] - parent['accuracy'] for c in candidates]
+    loss = [c['answer_loss'] - parent['answer_loss'] for c in candidates]
+    return dict(accuracy_deltas=accuracy, answer_loss_deltas=loss,
+                passed=all(d >= 0 for d in accuracy) and all(d <= 0 for d in loss))
