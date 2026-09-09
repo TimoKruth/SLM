@@ -54,3 +54,13 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Eigene Runs `size-27m-2026-09-09-plus3h` und `size-97m-2026-09-09-plus3h`; unabhängig kopierte letzte Modellstände inklusive AdamW und Sampler. Original-FP32-Konfiguration und 100M-Token-Kurve beibehalten.
 - Klein ist am 9. September um 00:38:53 gestartet, Trainingsende 03:38:53 Europe/Berlin. Danach Auswertung, groß für weitere 10.800 Sekunden und gemeinsame Auswertung. Aktueller Status und Fristen sind im Kampagnenverzeichnis verbindlich.
 - Keine aktiven Kampagneneingaben ändern. Alte und kumulierte Tokenzahlen unterscheiden; die Pause zwischen Sitzungen ist keine Trainingszeit. Keine automatische weitere Verlängerung.
+
+
+# Begrenzte Forschungsrunde am 9. September 2026
+
+- Der Nutzer hat den Start ausdrücklich beauftragt. Fragen allein sind keine Startfreigabe; der Nutzer fordert Starts ausdrücklich an.
+- Kampagne `runs/research-pilot-2026-09-09/`, Code `/Users/timokruth/Projekte/SLM-research`, Branch `codex/bounded-research`, Commit `4dfbadc`. Plan und Grenzen: `BEGRENZTE_FORSCHUNG.md`.
+- Start 07:41:07, harte Budgetgrenze 08:41:07 Europe/Berlin. Maximal 60 Minuten einschließlich Kontrollen und GPU-Auswertung, ohne Verlängerung. Verbindlicher Zustand: `status.json` im Kampagnenverzeichnis.
+- Sechs Adaptationen des letzten kleinen Sechs-Stunden-Modells: Baseline LR 3e-5, höhere LR 1e-4, Antwortgewicht 4 bei LR 3e-5; jeweils zwei Datenreihenfolgen, 3M zusätzliche Tokens. FP32, identische 32 Quellen. Datenreihenfolgen sind keine unabhängigen Initialisierungsseeds.
+- Auswahl auf 248 internen Aufgaben aus 31 Quellen, Gegenprüfung auf 200 anderen Aufgaben aus 25 Quellen. Kein externer Transfernachweis. Automatische Auswertung und Abschlussbericht, keine automatische Übernahme des Kandidaten.
+- Eingefrorene Forschungs-Eingaben unverändert lassen. `STOP` im Kampagnenverzeichnis beendet die Runde. Light-Monitoring und PowerWatch bleiben aktiv.
