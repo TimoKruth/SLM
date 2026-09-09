@@ -64,3 +64,13 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Sechs Adaptationen des letzten kleinen Sechs-Stunden-Modells: Baseline LR 3e-5, höhere LR 1e-4, Antwortgewicht 4 bei LR 3e-5; jeweils zwei Datenreihenfolgen, 3M zusätzliche Tokens. FP32, identische 32 Quellen. Datenreihenfolgen sind keine unabhängigen Initialisierungsseeds.
 - Auswahl auf 248 internen Aufgaben aus 31 Quellen, Gegenprüfung auf 200 anderen Aufgaben aus 25 Quellen. Kein externer Transfernachweis. Automatische Auswertung und Abschlussbericht, keine automatische Übernahme des Kandidaten.
 - Eingefrorene Forschungs-Eingaben unverändert lassen. `STOP` im Kampagnenverzeichnis beendet die Runde. Light-Monitoring und PowerWatch bleiben aktiv.
+
+
+# Zweite Forschungsrunde am 9. September 2026
+
+- Erste Forschungsrunde abgeschlossen um 08:16 Uhr: sechs vollständige Versuche, kein bestätigter Kandidat. Historische Eingaben bleiben unverändert.
+- Neuer expliziter Nutzerauftrag für weitere Läufe. Kampagne `runs/research-round2-2026-09-09/`; Code `/Users/timokruth/Projekte/SLM-research-round2`, Branch `codex/bounded-research-round2`, Commit `f0ea5ca`. Details: `FORSCHUNG_RUNDE_2.md`.
+- Start 09:05:12, Budgetgrenze 10:05:12 Europe/Berlin; maximal 60 Minuten einschließlich Kontrollen und GPU-Auswertung. Aktueller Status und verbindliche Frist im Kampagnenverzeichnis.
+- Sechs neue 3M-Token-Adaptationen vom ursprünglichen kleinen Sechs-Stunden-Checkpoint: Baseline LR 3e-5, niedrigere LR 1e-5, Antwortgewicht 2 bei LR 3e-5. Jeweils Daten-Seeds 202609092 und 202609093; FP32 und unveränderte 32 Quellen.
+- Auswahl auf 473 Aufgaben aus 31 Quellen, Gegenprüfung auf 200 anderen Aufgaben aus 25 Quellen. Neue Gegenprüfungsgruppen schließen die des ersten Piloten aus. Kandidaten müssen zusätzlich gegenüber dem unveränderten Elternmodell auf beiden Suiten bestehen. Keine direkte Gegenüberstellung aggregierter Scores aus unterschiedlich großen Auswahlsuiten.
+- Light-Monitoring und PowerWatch bleiben aktiv; Eingaben nicht ändern. `STOP` im neuen Kampagnenverzeichnis beendet die Runde. Keine automatische Verlängerung oder Modellübernahme.
