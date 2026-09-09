@@ -6,6 +6,25 @@ from research.common import write,read,sha
 from study.safety import failure_kind,archive_failed_output,RecoverableStop,retry_seconds
 from study.recovery import remaining_budget,valid_evaluation
 
+GPU_HANG = ('libc++abi: terminating due to uncaught exception of type std::runtime_error: '
+            '[METAL] Command buffer execution failed: Caused GPU Hang Error '
+            '(00000003:kIOGPUCommandBufferCallbackErrorHang)')
+
+
+@pytest.mark.parametrize('message',[GPU_HANG,'Caused GPU Hang Error',
+                                    'kIOGPUCommandBufferCallbackErrorHang'])
+def test_native_gpu_hang_uses_bounded_infrastructure_recovery(message):
+    assert failure_kind(message)=='gpu_service'
+
+
+@pytest.mark.parametrize('message',[
+    'libc++abi: terminating due to uncaught exception of type std::runtime_error: invalid configuration',
+    'SIGABRT (exit -6)',
+    '[METAL] Command buffer execution failed: invalid resource',
+])
+def test_unrelated_native_abort_is_not_assumed_to_be_gpu_hang(message):
+    assert failure_kind(message)=='trial_failure'
+
 
 def test_infrastructure_is_not_a_model_quality_failure():
     assert failure_kind('Unable to reach MTLCompilerService. Broken pipe')=='gpu_service'
@@ -51,7 +70,11 @@ def test_evaluation_reuse_requires_exact_model_suite_and_complete_rows(tmp_path)
 
 
 @pytest.mark.parametrize('probe_fails',[False,True])
-def test_real_supervisor_stops_cascade_and_preserves_pending_work(tmp_path,monkeypatch,probe_fails):
+@pytest.mark.parametrize('error,exit_code',[
+    ('Unable to reach MTLCompilerService',1),
+    (GPU_HANG,-6),
+])
+def test_real_supervisor_stops_cascade_and_preserves_pending_work(tmp_path,monkeypatch,probe_fails,error,exit_code):
     import study.campaign as campaign
     from study.design import BASE
     run=tmp_path/'run';run.mkdir()
@@ -69,7 +92,7 @@ def test_real_supervisor_stops_cascade_and_preserves_pending_work(tmp_path,monke
             if '--module' not in cmd:return
             module=cmd[cmd.index('--module')+1];target=Path(cmd[cmd.index('--run')+1]);modules.append(module)
             if module=='study.health' and 'health-recovery' in str(target) and probe_fails:
-                self.returncode=1;kwargs['stdout'].write('Unable to reach MTLCompilerService\n')
+                self.returncode=exit_code;kwargs['stdout'].write(error+'\n')
             elif module=='study.trial' and '--control-only' in cmd:
                 write(target/'control.json',{'passed':True})
             elif module=='slm.broad_eval':
@@ -79,7 +102,7 @@ def test_real_supervisor_stops_cascade_and_preserves_pending_work(tmp_path,monke
             elif module=='study.trial':
                 trial_calls.append(cmd);target.mkdir(parents=True,exist_ok=True)
                 (target/'partial').write_text('failed attempt retained')
-                self.returncode=1;kwargs['stdout'].write('Unable to reach MTLCompilerService\n')
+                self.returncode=exit_code;kwargs['stdout'].write(error+'\n')
         def poll(self):return self.returncode
         def wait(self,timeout=None):return self.returncode
         def terminate(self):self.returncode=-15
@@ -90,6 +113,8 @@ def test_real_supervisor_stops_cascade_and_preserves_pending_work(tmp_path,monke
     monkeypatch.setattr(sys,'argv',['study.campaign','--run',str(run)])
     with pytest.raises(SystemExit):campaign.main()
     assert read(run/'status.json')['status']=='paused_infrastructure'
+    failed=[s for s in read(run/'status.json')['stages'] if s['status']=='failed']
+    assert all(s['failure_kind']=='gpu_service' and s['exit_code']==exit_code for s in failed)
     assert (run/'STOP').exists()
     assert len(trial_calls)==(1 if probe_fails else 2)
     assert all('first.json' in cmd[cmd.index('--job')+1] for cmd in trial_calls)

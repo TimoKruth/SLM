@@ -7,7 +7,11 @@ class RecoverableStop(RuntimeError):
 
 
 def failure_kind(text):
+    # MLX can abort in native code (SIGABRT, exit -6), without a Python traceback
+    # or MTLCommandBufferErrorDomain. Match the driver diagnostic, not exit -6:
+    # unrelated native aborts must not trigger GPU recovery.
     if any(s in text for s in ['Unable to reach MTLCompilerService','Connection init failed at lookup',
+                               'Caused GPU Hang Error','kIOGPUCommandBufferCallbackErrorHang',
                                'GPU device was lost','MTLCommandBufferErrorDomain','Another GPU workload holds',
                                'An SLM GPU job is active','An SLM GPU job became active']):
         return 'gpu_service'
