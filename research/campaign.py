@@ -37,7 +37,12 @@ def report(run, state):
         if not (trial / 'result.json').exists():
             continue
         r, c = read(trial / 'result.json'), read(trial / 'config.json')
-        q = quality(read(trial / 'search/summary.json')) if (trial / 'search/summary.json').exists() else None
+        q = None
+        if (trial / 'search/summary.json').exists():
+            try:
+                q = quality(read(trial / 'search/summary.json'))
+            except (ValueError, KeyError, TypeError):
+                pass  # Preserve the failure report; partial evaluation is never scored.
         lines.append(f"| {c['intervention']['name']} | {c['repetition']} | {r['additional_tokens']:,} | {r['elapsed_seconds']:.1f} | "
                      + (f"{q['accuracy']:.2%} | {q['answer_loss']:.4f} |" if q else '— | — |'))
     if (run / 'selection.json').exists():

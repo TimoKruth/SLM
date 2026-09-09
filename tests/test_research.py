@@ -4,7 +4,8 @@ import numpy as np
 import pytest
 from research.common import weighted_mask, quality, contrast
 from research.prepare import select
-from research.campaign import matched
+from research.campaign import matched, report
+from research.common import write
 
 
 def test_weighting_preserves_baseline_and_excludes_padding():
@@ -44,3 +45,12 @@ def test_selection_rejects_partial_and_one_repeat_only_gain():
     assert not contrast([base, base], [better, base])['passes_screen']
     regressed = dict(better, families={'language': .45, 'math': .15})
     assert not contrast([base, base], [regressed, regressed])['passes_screen']
+
+
+def test_failure_report_preserves_incomplete_evaluation(tmp_path):
+    trial = tmp_path / 'trials/r0-baseline'
+    write(trial / 'result.json', dict(additional_tokens=3000000, elapsed_seconds=250))
+    write(trial / 'config.json', dict(intervention={'name': 'baseline'}, repetition=0))
+    write(trial / 'search/summary.json', dict(evaluated_general=1, selected_general=248, deadline_reached=True))
+    report(tmp_path, dict(status='stopped', error='evaluation deadline'))
+    assert 'evaluation deadline' in (tmp_path / 'REPORT.md').read_text()
