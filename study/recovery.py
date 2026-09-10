@@ -71,9 +71,33 @@ def numeric_compatibility(old_root):
     return checks
 
 
-def prepare(old,run,reserve=120,repaired_evaluation=None):
+def evaluation_limits(original, seconds=None):
+    """Change only evaluation wall limits, keeping scoring and token limits intact."""
+    limits={key:original[key] for key in ['search_seconds','search_process_seconds',
+                                        'confirmation_seconds','confirmation_process_seconds']}
+    if seconds is not None:
+        if not math.isfinite(seconds) or seconds<=0:
+            raise ValueError('Evaluation seconds must be finite and positive')
+        for suite in ['search','confirmation']:
+            limits[suite+'_seconds']=seconds
+            limits[suite+'_process_seconds']=seconds+30
+    return limits
+
+
+def remaining_stage_cap(plan, jobs, imported, evaluated):
+    """Upper bound for pending stages, including all later evaluations and controls."""
+    return (sum(job['train_seconds']+plan['search_process_seconds']
+                for job in jobs if job['id'] not in imported)
+            +(len(imported)-len(evaluated))*plan['search_process_seconds']
+            +plan['control_seconds']+20
+            +4*(plan['long_train_seconds']+2*plan['search_process_seconds'])
+            +5*plan['confirmation_process_seconds'])
+
+
+def prepare(old,run,reserve=120,repaired_evaluation=None,evaluation_seconds=None):
     if run.exists():raise ValueError('Use a new continuation directory')
     state=read(old/'status.json');original=read(old/'plan.json')
+    limits=evaluation_limits(original,evaluation_seconds)
     if state['status'] not in ['stopped','invalid','paused_infrastructure','completed_with_failures']:
         raise ValueError('Original campaign must be stopped')
     if state.get('frozen_inputs_unchanged') is not True:raise ValueError('Original input integrity not verified')
@@ -115,17 +139,19 @@ def prepare(old,run,reserve=120,repaired_evaluation=None):
               previous_budget_spent_seconds=spent,budget_seconds=remaining,
               validation_reserve_seconds=reserve,created=datetime.now().astimezone().isoformat(),
               code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip())
-    plan['maximum_remaining_stage_seconds']=(sum(read(run/'jobs'/(i+'.json'))['train_seconds']+original['search_process_seconds']
-                       for i in original['jobs'] if i not in imported)
-                       +(len(imported)-len(evaluated))*original['search_process_seconds']
-                       +original['control_seconds']+20+4*(original['long_train_seconds']+2*original['search_process_seconds'])
-                       +5*original['confirmation_process_seconds'])
+    plan.update(limits)
+    plan['maximum_remaining_stage_seconds']=remaining_stage_cap(
+        plan,[read(run/'jobs'/(i+'.json')) for i in original['jobs']],imported,evaluated)
+    if plan['maximum_remaining_stage_seconds']+60>remaining:
+        (run/'STOP').write_text('Preparation failed: pending stage caps exceed remaining budget.\n')
+        raise ValueError('Pending stage caps exceed remaining original budget')
     write(run/'plan.json',plan)
     audit=dict(imported_training=imported,imported_evaluations=evaluated,repaired_evaluations=repaired,
                pending_training=len(original['jobs'])-len(imported),
                pending_evaluation_only=sorted(set(imported)-set(evaluated)),
                numeric_compatibility=compatibility,old_elapsed_seconds=state['elapsed_seconds'],
-               charged_previous_seconds=spent,remaining_seconds=remaining,validation_reserve_seconds=reserve)
+               charged_previous_seconds=spent,remaining_seconds=remaining,validation_reserve_seconds=reserve,
+               evaluation_limits_before=evaluation_limits(original),evaluation_limits_after=limits)
     write(run/'recovery-audit.json',audit)
     frozen=dict(original_hashes)
     files=[ROOT/p for p in subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitlines() if p.endswith(('.py','.md','.json'))]
@@ -140,8 +166,10 @@ def prepare(old,run,reserve=120,repaired_evaluation=None):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--from-run',required=True);parser.add_argument('--run',required=True)
     parser.add_argument('--repaired-evaluation')
+    parser.add_argument('--evaluation-seconds',type=float)
     args=parser.parse_args();print(json.dumps(prepare(Path(args.from_run).resolve(),Path(args.run).resolve(),
-                       repaired_evaluation=Path(args.repaired_evaluation).resolve() if args.repaired_evaluation else None),indent=2))
+                       repaired_evaluation=Path(args.repaired_evaluation).resolve() if args.repaired_evaluation else None,
+                       evaluation_seconds=args.evaluation_seconds),indent=2))
 
 
 if __name__=='__main__':main()

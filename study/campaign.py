@@ -87,6 +87,8 @@ def main():
             module_failures[module]=0
             return True
         kind=stage['failure_kind']
+        if kind=='evaluation_timeout':
+            raise RecoverableStop('Evaluation deadline insufficient; saved model retained for later evaluation')
         if kind=='memory':raise RecoverableStop('Memory unavailable; remaining work retained')
         if kind=='gpu_service':
             # Fresh health process reopens Metal's connection; do not kill shared macOS services.

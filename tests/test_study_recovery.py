@@ -4,7 +4,7 @@ import sys
 import pytest
 from research.common import write,read,sha
 from study.safety import failure_kind,archive_failed_output,RecoverableStop,retry_seconds
-from study.recovery import remaining_budget,valid_evaluation
+from study.recovery import remaining_budget,valid_evaluation,evaluation_limits,remaining_stage_cap
 
 GPU_HANG = ('libc++abi: terminating due to uncaught exception of type std::runtime_error: '
             '[METAL] Command buffer execution failed: Caused GPU Hang Error '
@@ -44,6 +44,68 @@ def test_no_budget_reset_on_second_recovery():
     assert retry_seconds(360,35,1000)==325
     assert retry_seconds(360,35,40)==25
     assert retry_seconds(360,361,1000)==0
+
+
+def test_longer_evaluation_caps_count_every_pending_stage_without_changing_original():
+    original=dict(search_seconds=110,search_process_seconds=120,
+                  confirmation_seconds=80,confirmation_process_seconds=90)
+    limits=evaluation_limits(original,600)
+    assert limits==dict(search_seconds=600,search_process_seconds=630,
+                        confirmation_seconds=600,confirmation_process_seconds=630)
+    assert original['search_seconds']==110
+    assert evaluation_limits(original)==original
+    plan=dict(limits,control_seconds=120,long_train_seconds=2100)
+    jobs=[dict(id='saved',train_seconds=360),dict(id='pending',train_seconds=1200)]
+    cap=remaining_stage_cap(plan,jobs,['saved'],[])
+    assert cap==1200+630+630+120+20+4*(2100+2*630)+5*630
+    assert remaining_stage_cap(plan,jobs,['saved'],['saved'])==cap-630
+
+
+@pytest.mark.parametrize('seconds',[0,-1,float('nan'),float('inf')])
+def test_invalid_evaluation_budget_rejected(seconds):
+    with pytest.raises(ValueError,match='finite and positive'):
+        evaluation_limits(dict(search_seconds=110,search_process_seconds=120,
+                               confirmation_seconds=80,confirmation_process_seconds=90),seconds)
+
+
+def test_evaluation_timeout_pauses_before_any_training(tmp_path,monkeypatch):
+    import study.campaign as campaign
+    run=tmp_path/'run';run.mkdir()
+    write(run/'plan.json',dict(budget_seconds=2000,reuse_completed=True,
+          parent=str(tmp_path/'parent'),control_seconds=30,search_seconds=600,
+          search_process_seconds=630,jobs=['must-not-start'],deferred={}))
+    write(run/'initial-inputs.json',{});write(run/'frozen-inputs.json',{})
+    modules=[]
+    class FakeProcess:
+        pid=900
+        def __init__(self,cmd,**kwargs):
+            self.returncode=0
+            if '--module' not in cmd:return
+            module=cmd[cmd.index('--module')+1];modules.append(module)
+            target=Path(cmd[cmd.index('--run')+1])
+            if module=='study.trial':
+                assert '--control-only' in cmd
+                write(target/'control.json',{'passed':True})
+            elif module=='slm.broad_eval':
+                self.returncode=1
+                output=Path(cmd[cmd.index('--output')+1])
+                write(output/'protocol.json',{'partial':True})
+                kwargs['stdout'].write('TimeoutError: Reference-loss evaluation exceeded deadline\n')
+        def poll(self):return self.returncode
+        def wait(self,timeout=None):return self.returncode
+        def terminate(self):self.returncode=-15
+        def kill(self):self.returncode=-9
+    monkeypatch.setattr(campaign.subprocess,'Popen',FakeProcess)
+    monkeypatch.setattr(campaign.time,'sleep',lambda _:None)
+    monkeypatch.setattr(campaign.signal,'signal',lambda *a:None)
+    monkeypatch.setattr(sys,'argv',['study.campaign','--run',str(run)])
+    with pytest.raises(SystemExit):campaign.main()
+    state=read(run/'status.json')
+    assert state['status']=='paused_infrastructure'
+    assert state['stages'][-1]['failure_kind']=='evaluation_timeout'
+    assert state.get('gpu_recovery_attempts',0)==0
+    assert modules==['study.health','study.trial','slm.broad_eval']
+    assert (run/'STOP').exists() and (run/'parent-search/protocol.json').exists()
 
 
 def test_eval_retry_never_moves_parent_weights(tmp_path):
