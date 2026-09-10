@@ -18,6 +18,13 @@ class ResumeTests(unittest.TestCase):
         self.plan = dict(jobs=self.jobs, previous_budget_spent_seconds=23300, budget_seconds=63100,
                          evaluation_process_seconds=630, report_seconds=600)
 
+    def test_monitoring_entrypoint_registration(self):
+        from slm_perf.instrument import MODULES
+        from slm_perf.__main__ import SUPERVISOR_MODULES
+        from run_slm import command
+        self.assertIn("long_study.resume", MODULES & SUPERVISOR_MODULES)
+        self.assertIn("long_study.resume", command(["--module", "long_study.resume", "--run", "test"]))
+
     def test_budget_excludes_pause_and_keeps_partial_allowance(self):
         self.assertEqual(remaining_jobs(self.plan, self.spec, self.previous), self.jobs[3:])
 
