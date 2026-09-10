@@ -112,3 +112,13 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Separater Worktree `/Users/timokruth/Projekte/SLM-gpu-hang-fix`, Branch `codex/gpu-hang-recovery`, Commit `b58809f`. Details: `GPU_HANG_FIX.md`.
 - Die native MLX-Meldung `Caused GPU Hang Error` / `kIOGPUCommandBufferCallbackErrorHang` (Exit -6) wird dort als GPU-Infrastrukturfehler erkannt und durch die vorhandene begrenzte Wiederherstellung behandelt. Ursache des Hängers nicht nachgewiesen behoben. 75 CPU-Tests bestanden, numerischer Kern unverändert.
 - Aktive Kampagne und eingefrorener Recovery-Code bleiben unverändert. Nach eventuellem Ende/Abbruch erst Status und Integrität prüfen; neue vorbereitete Fortsetzung muss kumulierten Budgetverbrauch abziehen und STOP-gesperrt bleiben, bis ein ausdrücklicher Startauftrag vorliegt.
+
+
+# Auswertungsfristen korrigiert und erneut fortgesetzt (10. September 2026)
+
+- Nutzerauftrag: „Fix it and resume“. Aktive Kampagne `runs/parameter-study-timeout-recovery-2026-09-10/`. Code `/Users/timokruth/Projekte/SLM-timeout-recovery`, Branch `codex/evaluation-timeout-recovery`, Commit `43ac41c`. Details: `AUSWERTUNGSFRIST_FIX.md`.
+- Vorige Fortsetzung pausierte um 03:01:59 nach drei aufeinanderfolgenden Auswertungs-Timeouts. 92 vollständige Trainings, 86 Auswertungen; diese historischen Ergebnisse und STOP-Sperren bleiben erhalten.
+- Jetzt 92 Trainings und 87 validierte Auswertungen unabhängig übernommen, inklusive nachgeholter 97M-Auswertung (473/473 Aufgaben plus Referenz-Loss in 126,272s). Noch 22 kurze Trainings, fünf reine Auswertungen und vier lange Läufe offen.
+- Auswertungen erhalten einheitlich 600s plus 30s Prozessreserve, unveränderte Suiten und Antwortlängen. Timeout pausiert sofort statt weiterer Versuche; GPU-Hang-Fix aktiviert. 81 Tests und alle Prüfungen des unveränderten numerischen Kerns bestanden.
+- Start 2026-09-10T07:49:34.908356+02:00; verbindliche Deadline 2026-09-11T00:56:03.908346+02:00 (Europe/Berlin). Startbudget 61.589s (17h 06m 29s), nach kumuliert 24.564s und weiteren 247s Prüfreserve. Kein neues 24h-Budget; kein automatisches Verlängern. Maximal geplante verbleibende Stufen 45.020s.
+- Status/Frist in `status.json`, Auftrag/Betriebsbedingungen in `START_AUTHORIZATION.json`. Beim Start am Netz, Leistungseinstellungen unverändert. Monitoring light und PowerWatch aktiv. Eingefrorene Code-/Daten-/Planeingaben nicht ändern, keine automatische Modellübernahme.
