@@ -7,6 +7,8 @@ class RecoverableStop(RuntimeError):
 
 
 def failure_kind(text):
+    if 'Reference-loss evaluation exceeded deadline' in text:
+        return 'evaluation_timeout'
     # MLX can abort in native code (SIGABRT, exit -6), without a Python traceback
     # or MTLCommandBufferErrorDomain. Match the driver diagnostic, not exit -6:
     # unrelated native aborts must not trigger GPU recovery.
