@@ -69,3 +69,11 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Neuer Code `/Users/timokruth/Projekte/SLM-study-recovery`, Branch `codex/study-recovery`. GPU-Healthcheck, einmaliger begrenzter Wiederholungsversuch nach erfolgreicher Gesundheitsprüfung, danach Infrastrukturpause statt Fehlerkaskade.
 - Neue vorbereitete Kampagne `runs/parameter-study-recovery-2026-09-09/`; historische Eingaben/Resultate bleiben unverändert. Nur hashvalidierte vollständige Resultate übernehmen. Restbudget 79.613s einschließlich konservativ abgezogener 120s Prüfreserve, keine neuen 24h.
 - Kein Training starten, solange der Nutzer die Fortsetzung nicht ausdrücklich anweist. READY.json zeigt Vorbereitung; STOP vor jeglichem Kampagnenstart beachten.
+
+
+# Autorisierter langer Parallelvergleich (10. September 2026)
+
+- Nutzer autorisiert nach erfolgreichem Paralleltest den ganzen 24h-Vergleich. Test bestanden mit Einschränkung: ungefähr 9% längere Evonn-CPU-Fits in deskriptiven Vergleichen. Evonn bleibt unverändert.
+- Code `long_study`, Details `LANGZEIT_START.md`. Kampagne `runs/long-horizon-2026-09-10/`, Worktree `/Users/timokruth/Projekte/SLM-long-horizon`. Acht feste 7200s-Prozessbudgets statt Tokenziel; keine automatische Verlängerung.
+- 1200s Vorabudget konservativ belastet, Supervisor erhält 85200s Restbudget. Start/Frist verbindlich in status.json, keine spätere Wiederaufnahme mit neuem Budget.
+- Alle neuen GPU-Stufen via run_slm.py, light-Monitoring und PowerWatch; periodische Adam-/Sampler-Checkpoints, begrenzte GPU-Recovery, sonst Pause. Eingefrorene Eingaben nicht ändern.
