@@ -122,3 +122,12 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Auswertungen erhalten einheitlich 600s plus 30s Prozessreserve, unveränderte Suiten und Antwortlängen. Timeout pausiert sofort statt weiterer Versuche; GPU-Hang-Fix aktiviert. 81 Tests und alle Prüfungen des unveränderten numerischen Kerns bestanden.
 - Start 2026-09-10T07:49:34.908356+02:00; verbindliche Deadline 2026-09-11T00:56:03.908346+02:00 (Europe/Berlin). Startbudget 61.589s (17h 06m 29s), nach kumuliert 24.564s und weiteren 247s Prüfreserve. Kein neues 24h-Budget; kein automatisches Verlängern. Maximal geplante verbleibende Stufen 45.020s.
 - Status/Frist in `status.json`, Auftrag/Betriebsbedingungen in `START_AUTHORIZATION.json`. Beim Start am Netz, Leistungseinstellungen unverändert. Monitoring light und PowerWatch aktiv. Eingefrorene Code-/Daten-/Planeingaben nicht ändern, keine automatische Modellübernahme.
+
+
+# Langer Vergleich geplant, nicht gestartet (10. September 2026)
+
+- Vorige Parameterstudie vollständig abgeschlossen um 11:16 Uhr: 114 kurze plus vier lange Trainings und sämtliche Auswertungen, keine neuen Fehler in der letzten Fortsetzung; kein bestätigter Kandidat.
+- Neuer Nutzerauftrag: großen Vergleich mit 24h Gesamtbudget planen, ausdrücklich nicht starten. Nutzer wählte wenige Varianten mit Stunden pro Lauf; alle anderen bleiben für folgende Runden vorgesehen.
+- Plan `LANGZEITVERGLEICH_24H.md`, strukturierte Dateien unter `plans/long-horizon-24h-2026-09-10/`. Vier Bedingungen (Familien-/Quellenmischung × LR 3e-5/1e-5), zwei Datenreihenfolgen, je zwei Stunden; 16h Training, Rest Auswertung/Kontrollen/Reserve. Alle 57 bisherigen Varianten im Katalog erhalten.
+- Plan ist nicht ausführbar: neuer Zeitendpunkt/Supervisor und frische gruppengetrennte Gegenprüfung noch umzusetzen. STOP gesetzt, keine Warteschlange oder GPU-Kontrolle gestartet. Keine Startfreigabe aus dieser Planung ableiten.
+- Nutzer meldet jetzt Hochleistungsmodus; am Netz powermode 2 verifiziert. Nicht mit vorherigem reduziertem Betrieb gleichsetzen. Evonn-Kampagne aktuell CPU-basiert, GPU im Messfenster gering ausgelastet. Parallelbetrieb technisch plausibel, aber ungemessen hinsichtlich gegenseitiger Verlangsamung; für den kontrollierten Vergleich serieller Projektbetrieb geplant. Evonn unverändert lassen.
