@@ -1,0 +1,295 @@
+{
+  "version": 2,
+  "status": "preparation_only",
+  "activated": false,
+  "external_tests_loaded": false,
+  "sources": {
+    "multinli": {
+      "original_split": "train",
+      "repo": "nyu-mll/multi_nli",
+      "revision": "da70db2af9d09693783c3320c4249840212ee221",
+      "primary_url": "https://cims.nyu.edu/~sbowman/multinli/",
+      "task": "Multi-genre entailment; original train only",
+      "license_note": "OANC and per-fiction-work conditions; CC BY/CC BY-SA/MIT/other metadata. See retained card.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/nyu-mll/multi_nli/resolve/da70db2af9d09693783c3320c4249840212ee221/data/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "1c1de03640b168e410aabfca19e7cc2f3dfcd7f0e126e935674e56fb102c4529",
+          "bytes": 213961663
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/nyu-mll/multi_nli/resolve/da70db2af9d09693783c3320c4249840212ee221/README.md",
+          "role": "provenance",
+          "sha256": "e9bafc4de652caab3fb991ef3f1eded3b2385b7e1b2d1df2fd70523c376566fe",
+          "bytes": 8895
+        }
+      ]
+    },
+    "mrpc": {
+      "original_split": "train",
+      "repo": "nyu-mll/glue",
+      "revision": "bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c",
+      "primary_url": "https://gluebenchmark.com/tasks",
+      "task": "News sentence paraphrase",
+      "license_note": "GLUE is a distribution wrapper; underlying MRPC/Quora terms apply. Card reports other; no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/mrpc/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "61fd41301e0e244b0420c4350a170c8e7cf64740335fc875a4af2d79af0df0af",
+          "bytes": 649281
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/README.md",
+          "role": "provenance",
+          "sha256": "073f689c80fc6b3366d583eb570a05be2140b01ff2fdd706c416e14d0d2d5d5a",
+          "bytes": 35296
+        }
+      ]
+    },
+    "qqp": {
+      "original_split": "train",
+      "repo": "nyu-mll/glue",
+      "revision": "bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c",
+      "primary_url": "https://gluebenchmark.com/tasks",
+      "task": "Question paraphrase",
+      "license_note": "GLUE is a distribution wrapper; underlying MRPC/Quora terms apply. Card reports other; no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/qqp/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "4d6f02e643f7c36e9a4f7d4971a5ee9bd74063a319452fe6c87850c739774cd7",
+          "bytes": 33558839
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/README.md",
+          "role": "provenance",
+          "sha256": "073f689c80fc6b3366d583eb570a05be2140b01ff2fdd706c416e14d0d2d5d5a",
+          "bytes": 35296
+        }
+      ]
+    },
+    "cb": {
+      "original_split": "train",
+      "repo": "aps/super_glue",
+      "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+      "primary_url": "https://super.gluebenchmark.com/tasks",
+      "task": "CommitmentBank contextual entailment",
+      "license_note": "Underlying benchmark terms apply; SuperGLUE metadata other. Original attribution retained, no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/cb/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "a338d1276fd0248fd4d6648917ef7181f994d85d141b3a2a4fc6a659d69f3a8a",
+          "bytes": 58001
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/README.md",
+          "role": "provenance",
+          "sha256": "da05060933491c5d3472f494ce22847d4247e928a39d59d94dff9555a4858df9",
+          "bytes": 19734
+        }
+      ]
+    },
+    "copa": {
+      "original_split": "train",
+      "repo": "aps/super_glue",
+      "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+      "primary_url": "https://super.gluebenchmark.com/tasks",
+      "task": "Choice of plausible causes and effects",
+      "license_note": "Underlying benchmark terms apply; SuperGLUE metadata other. Original attribution retained, no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/copa/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "8e243c3a2428837f5725f19885ddf3a83eecb6874474606a2ca1d1e6dd5bd6d7",
+          "bytes": 33938
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/README.md",
+          "role": "provenance",
+          "sha256": "da05060933491c5d3472f494ce22847d4247e928a39d59d94dff9555a4858df9",
+          "bytes": 19734
+        }
+      ]
+    },
+    "multirc": {
+      "original_split": "train",
+      "repo": "aps/super_glue",
+      "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+      "primary_url": "https://super.gluebenchmark.com/tasks",
+      "task": "Multiple-answer reading comprehension",
+      "license_note": "Underlying benchmark terms apply; SuperGLUE metadata other. Original attribution retained, no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/multirc/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "ced6d731a335a0e4fbd29f6f382f291518952c0f449448361d294000c39e6728",
+          "bytes": 1708291
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/README.md",
+          "role": "provenance",
+          "sha256": "da05060933491c5d3472f494ce22847d4247e928a39d59d94dff9555a4858df9",
+          "bytes": 19734
+        }
+      ]
+    },
+    "wic": {
+      "original_split": "train",
+      "repo": "aps/super_glue",
+      "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+      "primary_url": "https://super.gluebenchmark.com/tasks",
+      "task": "Word meaning in two contexts",
+      "license_note": "Underlying benchmark terms apply; SuperGLUE metadata other. Original attribution retained, no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/wic/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "d6d2231730f52800dba48219790ee9b76381bbba7c99ea76047081631877ec80",
+          "bytes": 410323
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/README.md",
+          "role": "provenance",
+          "sha256": "da05060933491c5d3472f494ce22847d4247e928a39d59d94dff9555a4858df9",
+          "bytes": 19734
+        }
+      ]
+    },
+    "wsc": {
+      "original_split": "train",
+      "repo": "aps/super_glue",
+      "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+      "primary_url": "https://super.gluebenchmark.com/tasks",
+      "task": "Winograd coreference; fixed SuperGLUE representation, counted once",
+      "license_note": "Underlying benchmark terms apply; SuperGLUE metadata other. Original attribution retained, no blanket redistribution clearance.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/wsc.fixed/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "13086042694cd7550f91f4279fafa8425cead3ed046c6a6cd22d96107f1a1944",
+          "bytes": 27336
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/README.md",
+          "role": "provenance",
+          "sha256": "da05060933491c5d3472f494ce22847d4247e928a39d59d94dff9555a4858df9",
+          "bytes": 19734
+        }
+      ]
+    },
+    "go_emotions": {
+      "original_split": "train",
+      "repo": "google-research-datasets/go_emotions",
+      "revision": "add492243ff905527e67aeb8b80c082af02207c3",
+      "primary_url": "https://github.com/google-research/google-research/tree/master/goemotions",
+      "task": "Human emotion annotations, original filtered training partition, 27 emotions plus neutral",
+      "license_note": "Apache-2.0 metadata; underlying Reddit content rights and annotation limitations retained.",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/google-research-datasets/go_emotions/resolve/add492243ff905527e67aeb8b80c082af02207c3/simplified/train-00000-of-00001.parquet",
+          "role": "original_train",
+          "sha256": "b7d74279616ae7c9b8374ab62ea9f9d6504d36a577bb17f745d720dc2b0d4e76",
+          "bytes": 2767678
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/google-research-datasets/go_emotions/resolve/add492243ff905527e67aeb8b80c082af02207c3/README.md",
+          "role": "provenance",
+          "sha256": "0a5a9f3a949cce822f6d7453b91433b9fac739187f51ecc665fc5b8a6ec291ba",
+          "bytes": 9399
+        }
+      ]
+    },
+    "medqa": {
+      "original_split": "train",
+      "repo": "GBaker/MedQA-USMLE-4-options",
+      "revision": "0fb93dd23a7339b6dcd27e241cb9b5eca62d4d18",
+      "primary_url": "https://github.com/jind11/MedQA",
+      "task": "Original USMLE 4-option training questions and answer keys; no generated explanations or textbook corpus",
+      "license_note": "Mirror reports CC BY 4.0; author repo MIT does not by itself establish rights to underlying exam material. Local research staging, no redistribution clearance.",
+      "files": [
+        {
+          "path": "train.jsonl",
+          "url": "https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options/resolve/0fb93dd23a7339b6dcd27e241cb9b5eca62d4d18/phrases_no_exclude_train.jsonl",
+          "role": "original_train",
+          "sha256": "3a65baf760f17c395058d6699315a7ce8aa767c50cb193fea87ceb94dd790324",
+          "bytes": 16211077
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options/resolve/0fb93dd23a7339b6dcd27e241cb9b5eca62d4d18/README.md",
+          "role": "provenance",
+          "sha256": "c4f44b8111beb0cb7e7894ccbb456be1eceb9acaa3fadff73cd46d2d4309dde7",
+          "bytes": 654
+        }
+      ]
+    },
+    "samsum": {
+      "original_split": "train",
+      "repo": "knkarthick/samsum",
+      "revision": "6b929ff10edec703164e3ddb2e94aae058c9ab5f",
+      "primary_url": "https://aclanthology.org/D19-5409/",
+      "task": "Human-written messenger dialogues and original human summaries",
+      "license_note": "CC BY-NC-ND 4.0; local research preparation, no modified-dataset redistribution.",
+      "files": [
+        {
+          "path": "train.csv",
+          "url": "https://huggingface.co/datasets/knkarthick/samsum/resolve/6b929ff10edec703164e3ddb2e94aae058c9ab5f/train.csv",
+          "role": "original_train",
+          "sha256": "8e1c74de2bd749e62b0bf218b2f0c9f5d25b8ecec605327065c2abe3c458f040",
+          "bytes": 9255369
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/knkarthick/samsum/resolve/6b929ff10edec703164e3ddb2e94aae058c9ab5f/README.md",
+          "role": "provenance",
+          "sha256": "87fdd99a47ddf14cbd4ec293be184885b7eb401cb47aa9b2072ec390a76be3b3",
+          "bytes": 4358
+        }
+      ]
+    },
+    "logiqa": {
+      "original_split": "train",
+      "revision": "955e1d3df6c59d9bfb44d9913da1e1a27ec14e18",
+      "primary_url": "https://github.com/csitfun/LogiQA2.0",
+      "task": "LogiQA2.0 original MRC train, professionally human-translated English version; NLI derivatives excluded",
+      "license_note": "CC BY-NC-SA 4.0 according to author README.",
+      "files": [
+        {
+          "path": "train.txt",
+          "url": "https://raw.githubusercontent.com/csitfun/LogiQA2.0/955e1d3df6c59d9bfb44d9913da1e1a27ec14e18/logiqa/DATA/LOGIQA/train.txt",
+          "role": "original_train",
+          "sha256": "98eb412e8ed53b3d65da5ef75b00b7a0bbdea7970c05ad699291a2a0510922de",
+          "bytes": 14045351
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/csitfun/LogiQA2.0/955e1d3df6c59d9bfb44d9913da1e1a27ec14e18/README.md",
+          "role": "provenance",
+          "sha256": "5ed037a47c3f3aaa7a136dd7884e2416f8176bd9cf68ca8fbcfcf2ef08b81cc3",
+          "bytes": 8012
+        }
+      ]
+    }
+  }
+}

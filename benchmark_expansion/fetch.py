@@ -24,7 +24,7 @@ def fetch(lock, output):
             path = output / source / entry['path']
             if not path.resolve().is_relative_to(output.resolve()):
                 raise ValueError('Path escapes staging directory')
-            if path.suffix in {'.json', '.jsonl', '.parquet'}:
+            if entry.get('role') == 'original_train' or path.suffix in {'.json', '.jsonl', '.parquet', '.csv'}:
                 if 'train' not in entry['url'].rsplit('/', 1)[-1] or path.stem != 'train':
                     raise ValueError('Data file must be an explicit original train file')
             path.parent.mkdir(parents=True, exist_ok=True)

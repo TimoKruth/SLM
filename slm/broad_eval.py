@@ -54,6 +54,10 @@ def score_general(row, generated, memorization=False):
     if source in {'triviaqa', 'tydiqa', 'tabmwp'}:
         from benchmark_expansion.scoring import score_prepared
         return score_prepared(row, generated)
+    if source in {'multinli', 'mrpc', 'qqp', 'cb', 'copa', 'multirc', 'wic', 'wsc',
+                  'go_emotions', 'medqa', 'samsum', 'logiqa'}:
+        from benchmark_expansion.scoring47 import score_wave6
+        return score_wave6(row, generated)
     if source in CODE:
         import ast
         try:

@@ -15,8 +15,17 @@ EXPANSION_FAMILIES = {name: list(sources) for name, sources in FAMILIES.items()}
 EXPANSION_FAMILIES['mathematics'].append('tabmwp')
 EXPANSION_FAMILIES['factual_knowledge'] = ['triviaqa']
 EXPANSION_FAMILIES['multilingual_reading'] = ['tydiqa']
+BENCHMARK47_FAMILIES = {name: list(sources) for name, sources in EXPANSION_FAMILIES.items()}
+BENCHMARK47_FAMILIES['entailment'] += ['multinli', 'cb']
+BENCHMARK47_FAMILIES['science_and_causality'].append('copa')
+BENCHMARK47_FAMILIES['reading_and_extraction'].append('multirc')
+BENCHMARK47_FAMILIES['commonsense_and_social'] += ['wsc', 'go_emotions']
+BENCHMARK47_FAMILIES['language_meaning'] = ['mrpc', 'qqp', 'wic']
+BENCHMARK47_FAMILIES['logical_reasoning'] = ['logiqa']
+BENCHMARK47_FAMILIES['medical_knowledge'] = ['medqa']
+BENCHMARK47_FAMILIES['summarization'] = ['samsum']
 EVALUATION_SOURCE_FAMILY = {
-    source: family for family, sources in EXPANSION_FAMILIES.items() for source in sources
+    source: family for family, sources in BENCHMARK47_FAMILIES.items() for source in sources
 }
 
 

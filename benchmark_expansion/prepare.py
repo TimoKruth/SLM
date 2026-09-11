@@ -173,12 +173,19 @@ def screen_tatqa(stage, tok):
                 reason='Original raw file has table/paragraph UUIDs, but no report identifiers. Report-level grouping and numeric reference review remain pending; no TAT-QA training files emitted.')
 
 
-def prepare(base, stage, output):
+def prepare(base, stage, output, *, profile=None):
     if output.exists():
         raise ValueError('Refuse to overwrite existing output')
     old = json.loads((base/'manifest.json').read_text())
-    if old.get('version') != 4 or len(old['sources']) != 32:
-        raise ValueError('Expected corrected v4 parent with 32 sources')
+    admitted = profile.ADMITTED if profile else ADMITTED
+    converter = profile.convert if profile else convert
+    reader = profile.original_rows if profile else original_rows
+    families = profile.FAMILIES if profile else EXPANSION_FAMILIES
+    parent_version = profile.PARENT_VERSION if profile else 4
+    parent_sources = profile.PARENT_SOURCES if profile else 32
+    version = profile.VERSION if profile else 5
+    if old.get('version') != parent_version or len(old['sources']) != parent_sources:
+        raise ValueError(f'Expected v{parent_version} parent with {parent_sources} sources')
     provenance = json.loads((stage/'manifest.json').read_text())
     for source, meta in provenance['sources'].items():
         if meta['original_split'] != 'train':
@@ -192,15 +199,23 @@ def prepare(base, stage, output):
     if tok.get_vocab_size() > 65536:
         raise ValueError('Tokenizer cannot be represented as uint16')
     rows, raw_counts, reference_audit = [], Counter(), Counter()
-    for source in ADMITTED:
-        for uid, raw in original_rows(stage, source):
+    conversion_rejections, original_classes = Counter(), defaultdict(Counter)
+    for source in admitted:
+        for uid, raw in reader(stage, source):
             # Fail closed on malformed classes/spans instead of silently discarding them.
-            row = convert(source, raw, uid)
+            raw_counts[source] += 1
+            try:
+                row = converter(source, raw, uid)
+            except ValueError as error:
+                if profile and isinstance(error, profile.RejectedRecord):
+                    conversion_rejections[source + '.' + str(error)] += 1
+                    continue
+                raise
             rows.append(row)
+            original_classes[source].update(row.get('original_labels', []))
             if source == 'tydiqa':
                 reference_audit['tydiqa.original_offsets_match' if row['original_answer_offsets_match']
                                 else 'tydiqa.original_offsets_mismatch_text_verified'] += 1
-            raw_counts[source] += 1
         print('converted', source, raw_counts[source], flush=True)
     group_rows(rows)
     candidate_keys = {check for row in rows for check in row['_checks']}
@@ -209,9 +224,21 @@ def prepare(base, stage, output):
     with (base/'records.jsonl').open() as stream:
         for line in stream:
             parent_records_hash.update(line.encode())
-            overlap.update(candidate_keys.intersection(old_keys(json.loads(line))))
+            row = json.loads(line)
+            overlap.update(candidate_keys.intersection(old_keys(row)))
+            if profile:
+                overlap.update(candidate_keys.intersection(profile.extra_old_keys(row)))
     if parent_records_hash.hexdigest() != old['records_sha256']:
         raise ValueError('Changed parent records')
+    if (base/'confirmation.jsonl').exists():
+        if sha(base/'confirmation.jsonl') != old['confirmation_sha256']:
+            raise ValueError('Changed parent confirmation records')
+        with (base/'confirmation.jsonl').open() as stream:
+            for line in stream:
+                row = json.loads(line)
+                overlap.update(candidate_keys.intersection(old_keys(row)))
+                if profile:
+                    overlap.update(candidate_keys.intersection(profile.extra_old_keys(row)))
     bad_groups = {row['group'] for row in rows if overlap.intersection(row['_checks'])}
     seen_answers, conflicts = {}, set()
     for row in rows:
@@ -219,17 +246,25 @@ def prepare(base, stage, output):
         if prompt in seen_answers and seen_answers[prompt] != norm(row['answer']):
             conflicts.add(row['group'])
         seen_answers[prompt] = norm(row['answer'])
+    split_adjustments = profile.balance_small_holdouts(rows, bad_groups | conflicts) if profile and hasattr(profile, 'balance_small_holdouts') else []
     output.mkdir(parents=True)
     (output/'STOP').write_text('Prepared data only. No training or queue is authorized by this preparation.\n')
     shutil.copy2(base/'tokenizer.json', output/'tokenizer.json')
+    parent_suites = {}
+    for filename in ('dev-suite.json', 'confirmation-suite.json'):
+        if (base/filename).exists():
+            target = 'parent-' + filename
+            shutil.copy2(base/filename, output/target)
+            parent_suites[target] = sha(output/target)
     # Reuse immutable parent arrays. Verify each before exposing it in the new view.
     for name, expected in old['derived_files_sha256'].items():
         if sha(base/name) != expected:
             raise ValueError('Changed parent array: ' + name)
         (output/name).symlink_to((base/name).resolve())
-    stats, rejected, lengths, groups = defaultdict(Counter), Counter(), defaultdict(list), defaultdict(set)
+    stats, rejected, lengths, groups = defaultdict(Counter), Counter(conversion_rejections), defaultdict(list), defaultdict(set)
+    retained_classes = defaultdict(Counter)
     indices, handles, seen = defaultdict(list), {}, set()
-    for source in ADMITTED:
+    for source in admitted:
         for split in ('train', 'dev'):
             for suffix in ('bin', 'mask.bin'):
                 handles[source, split, suffix] = (output/f'{source}.{split}.{suffix}').open('wb')
@@ -237,6 +272,9 @@ def prepare(base, stage, output):
         with (output/'records.jsonl').open('w') as records, (output/'confirmation.jsonl').open('w') as confirmation:
             with (base/'records.jsonl').open() as original:
                 shutil.copyfileobj(original, records)
+            if (base/'confirmation.jsonl').exists():
+                with (base/'confirmation.jsonl').open() as original:
+                    shutil.copyfileobj(original, confirmation)
             for row in rows:
                 source, split = row['source'], row['split']
                 prompt = key('prompt', row['prompt'])
@@ -261,6 +299,7 @@ def prepare(base, stage, output):
                 stats[source, split]['records'] += 1
                 stats[source, split]['tokens'] += len(ids)
                 stats[source, split]['language.' + row['language']] += 1
+                retained_classes[source, split].update(row.get('original_labels', []))
                 if split == 'confirmation':
                     confirmation.write(json.dumps(row, ensure_ascii=False) + '\n')
                     continue
@@ -275,7 +314,7 @@ def prepare(base, stage, output):
         for handle in handles.values():
             handle.close()
     counts = dict(old['counts'])
-    for source in ADMITTED:
+    for source in admitted:
         for split in ('train', 'dev', 'confirmation'):
             if not stats[source, split]['records']:
                 raise ValueError(f'Empty source partition: {source}/{split}')
@@ -285,23 +324,29 @@ def prepare(base, stage, output):
             if split != 'confirmation':
                 np.save(output/f'{source}.{split}.index.npy', np.asarray(indices[source, split], dtype=np.int64))
                 counts[source + '.' + split] = dict(stats[source, split], groups=len(groups[source, split]))
-    sources = {**old['sources'], **{s: provenance['sources'][s] for s in ADMITTED}}
-    weights = sampling_weights(sources, families=EXPANSION_FAMILIES)
+        if set(original_classes[source]) - set(retained_classes[source, 'train']):
+            raise ValueError('An original class disappeared from training: ' + source)
+    sources = {**old['sources'], **{s: provenance['sources'][s] for s in admitted}}
+    weights = sampling_weights(sources, families=families)
     audit = dict(raw_counts=dict(raw_counts), reference_audit=dict(reference_audit), rejections=dict(rejected),
+                 grouped_split_adjustments=split_adjustments,
                  new_counts={'.'.join(k): dict(v, groups=len(groups[k])) for k, v in stats.items()},
                  overlap_keys=len(overlap), overlapping_groups=len(bad_groups), conflicting_groups=len(conflicts),
                  lengths={k: dict(measured=len(v), within_1024=sum(n <= 1024 for n in v),
                                   median=float(np.median(v)), p95=float(np.percentile(v, 95)), maximum=max(v)) for k, v in lengths.items()},
-                 tatqa=screen_tatqa(stage, tok),
-                 limitations=['Exact normalized prompts, questions, extracted contexts and available article groups checked against all retained v4 train/dev records. No comprehensive near-duplicate, translated-document or semantic cross-benchmark audit.',
+                 original_classes={k: dict(v) for k,v in original_classes.items()},
+                 retained_classes={'.'.join(k): dict(v) for k,v in retained_classes.items()},
+                 tatqa=screen_tatqa(stage, tok) if not profile else old.get('tatqa', 'Still not admitted; see v5 audit'),
+                 limitations=[f'Exact normalized prompts, questions, extracted contexts and available article groups checked against all retained v{parent_version} train/dev records and parent confirmation records where present. No comprehensive near-duplicate, translated-document or semantic cross-benchmark audit.',
                               'Internal holdouts are drawn from original train splits; they are not official scores or external transfer tests.',
                               'TriviaQA canonical values are training targets. Original aliases can contain noisy references and require review before alias-aware scoring.',
                               'TabMWP original solutions may refer to unseen visual highlighting; they are metadata, not training targets.',
                               'TyDiQA original offsets are preserved and mismatches counted. Every original answer text is verified as an exact substring; offsets are not training targets and are not repaired.',
                               'Language coverage and family sampling are not proof of acquired knowledge. No new model trained.'])
     (output/'audit.json').write_text(json.dumps(audit, indent=2) + '\n')
-    manifest = dict(old, version=5, status='prepared_not_started', activated=False, sources=sources,
-                    counts=counts, families=EXPANSION_FAMILIES, source_weights=weights,
+    manifest = dict(old, version=version, status='prepared_not_started', activated=False, sources=sources,
+                    added_sources=list(admitted), parent_suites_sha256=parent_suites,
+                    counts=counts, families=families, source_weights=weights,
                     evaluation_weights={s: 1.0 for s in sources if counts.get(s+'.dev', {}).get('records')},
                     parent_directory=str(base.resolve()), parent_manifest_sha256=sha(base/'manifest.json'),
                     candidate_manifest_sha256=sha(stage/'manifest.json'),

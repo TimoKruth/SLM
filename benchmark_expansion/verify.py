@@ -16,15 +16,16 @@ from slm.prepare import digest, text_of
 
 def verify(directory):
     manifest = json.loads((directory/'manifest.json').read_text())
+    admitted = manifest.get('added_sources', ADMITTED)
     audit = json.loads((directory/'audit.json').read_text())
-    for name, expected in {**manifest['derived_files_sha256'], 'records.jsonl': manifest['records_sha256'],
+    for name, expected in {**manifest['derived_files_sha256'], **manifest.get('parent_suites_sha256', {}), 'records.jsonl': manifest['records_sha256'],
                            'confirmation.jsonl': manifest['confirmation_sha256'], 'audit.json': manifest['audit_sha256'],
                            'tokenizer.json': manifest['tokenizer']['sha256']}.items():
         if sha(directory/name) != expected:
             raise ValueError('Artifact changed: ' + name)
     tok = Tokenizer.from_file(str(directory/'tokenizer.json'))
     arrays = {}
-    for source in ADMITTED:
+    for source in admitted:
         for split in ('train', 'dev'):
             prefix = directory/f'{source}.{split}'
             arrays[source, split] = (np.memmap(str(prefix)+'.bin', dtype=np.uint16, mode='r'),
@@ -35,7 +36,7 @@ def verify(directory):
         with (directory/filename).open() as stream:
             for line in stream:
                 row = json.loads(line)
-                if row['source'] not in ADMITTED:
+                if row['source'] not in admitted:
                     continue
                 source, split = row['source'], row['split']
                 if row['original_split'] != 'train':
@@ -58,7 +59,7 @@ def verify(directory):
                         raise ValueError('Answer mask mismatch')
                 if split in ('dev', 'confirmation'):
                     selected[split, source, row['language']].append(row)
-    for source in ADMITTED:
+    for source in admitted:
         retained = sum(counts[source, split] for split in ('train', 'dev', 'confirmation'))
         excluded = sum(v for k, v in audit['rejections'].items() if k.startswith(source+'.'))
         if retained + excluded != audit['raw_counts'][source]:
@@ -98,9 +99,10 @@ def verify(directory):
         suite = dict(tokenizer_sha256=manifest['tokenizer']['sha256'], general=examples, memorization=[], code=[],
                      protocol=dict(partition=split, origin='Grouped internal holdout from original training splits',
                                    maximum_per_source_language=16, external_tests_loaded=False,
-                                   metric='original_answer_exact_proxy', max_new_tokens=128,
+                                   metric='source_specific_internal_diagnostics' if manifest['version'] >= 6 else 'original_answer_exact_proxy', max_new_tokens=128,
                                    report_by=['source', 'family', 'language'],
-                                   limitation='Canonical TriviaQA reference only, strict TabMWP text/unit matching, no official benchmark claims.'))
+                                   limitation=('Classification/answer proxies, MultiRC per candidate, emotion label sets, summary lexical overlap without factuality score. No official benchmark claims.'
+                                               if manifest['version'] >= 6 else 'Canonical TriviaQA reference only, strict TabMWP text/unit matching, no official benchmark claims.')))
         filename = f'{split}-suite.json'
         path = directory/filename
         content = json.dumps(suite, indent=2, ensure_ascii=False) + '\n'
@@ -108,7 +110,7 @@ def verify(directory):
             raise ValueError('Refuse to change an existing suite')
         path.write_text(content)
         suites[filename] = dict(examples=len(examples), sha256=sha(path))
-    result = dict(status='verified_preparation_only', training_started=False, sources=35,
+    result = dict(status='verified_preparation_only', training_started=False, sources=len(manifest['sources']),
                   new_records={'.'.join(k): v for k,v in counts.items()},
                   checked='All new token sequences/masks, raw-row reconciliation, group separation, artifact hashes and all-source CPU sampler batches.',
                   suites=suites, manifest_sha256=sha(directory/'manifest.json'))
