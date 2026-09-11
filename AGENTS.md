@@ -1,9 +1,11 @@
 # Aktueller Projektstand – 11. September 2026
 
-- Alle acht Langzeittrainings und Auswertungen sind abgeschlossen; keine aktive Trainingskampagne und keine automatische Nutzung der Restreserve. Historische Start- und Pausenabschnitte unten sind keine aktuelle Startfreigabe.
-- Alle bisherigen Codezweige sind auf main zusammengeführt und remote gesichert. Zentrale Einordnung: ERKENNTNISSE.md; versionierte aggregierte Belege: results/2026-09-11/INDEX.md.
-- Nutzer wünscht zunächst getrennte lokale ZIP64-Archive. Keine externe Datensicherung beauftragt, nachdem die Speicherfrage auf lokale ZIPs eingegrenzt wurde. Umfang/Prüfung/Wiederherstellung: SICHERUNG.md. Rohdaten und systemweite Prozessprotokolle nicht ins öffentliche Repository aufnehmen.
-- Künftige Änderungen zeitnah committen und bei beauftragter Remote-Sicherung pushen. Historische Worktrees und eingefrorene Laufdaten erhalten. Erkenntnisse nach Auswertung versioniert dokumentieren, nicht nur im Chat oder ignorierten runs/.
+- Neuer ausdrücklicher Auftrag: nach technisch erfolgreichem ersten Block die nächsten Parameter laufen lassen. Erster Block vollständig abgeschlossen, kein bestätigter Qualitätsgewinner.
+- Zweiter Langzeitblock wird unter `runs/long-horizon-round2-2026-09-11/` ausgeführt; `status.json` ist nach Start verbindlich. Code im Worktree `/Users/timokruth/Projekte/SLM-long-round2`, Branch `codex/long-horizon-round2`. Plan und Grenzen: `LANGZEIT_RUNDE_2.md`.
+- Kontrolle LR 3e-5, LR 3e-6, LR 1e-4, Kosinus 3e-5 bis 3e-6 über 100M zusätzliche Tokens; zwei Datenreihenfolgen, je zwei Stunden. Ein Folgeblock mit derselben maximalen 24h-Größe einschließlich Vorbereitung/Auswertung, keine automatische weitere Rotation. Alte Restreserve bleibt ungenutzt.
+- Eingefrorene Kampagneneingaben unverändert lassen. Light-Monitoring und PowerWatch aktiv; keine automatische Modellübernahme. Historische Daten und Worktrees erhalten.
+- Zentrale bisherige Einordnung: ERKENNTNISSE.md; aggregierte historische Belege: results/2026-09-11/INDEX.md. Lokale ZIP64-Archive: SICHERUNG.md; keine externe Sicherung beauftragt. Neue Kampagnendaten sind noch nicht Bestandteil dieser Archive.
+- Änderungen zeitnah committen; Remote-Sicherung nur bei entsprechendem Auftrag. Rohdaten und systemweite Prozessprotokolle nicht ins öffentliche Repository aufnehmen.
 - read-training-status bleibt ausschließlich Projekt-Skill unter .agents/skills/. Der allgemeine read-system-resources-Skill ist global.
 
 # Historische Betriebs- und Versuchsprotokolle

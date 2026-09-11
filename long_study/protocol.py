@@ -29,3 +29,16 @@ def phase_for_elapsed(elapsed,limit,reserve):
 def differences(a,b):
     return dict(accuracy=b['accuracy']-a['accuracy'],answer_loss=b['answer_loss']-a['answer_loss'],
                 families={k:b['families'][k]-a['families'][k] for k in a['families']})
+
+
+def learning_rate(job, state):
+    """Token schedule continues from the original trial base after restoration."""
+    from study.design import lr_at
+    p = job['parameters']
+    if p['schedule'] not in {'constant', 'cosine'}:
+        raise ValueError('Unsupported learning-rate schedule')
+    target = job.get('schedule_tokens', 0)
+    if p['schedule'] == 'cosine' and (not math.isfinite(target) or target <= 0):
+        raise ValueError('Cosine schedule requires a positive token horizon')
+    return lr_at(p, state['tokens'] - state['long_base_tokens'], target,
+                 state['step'] - state['long_base_step'])

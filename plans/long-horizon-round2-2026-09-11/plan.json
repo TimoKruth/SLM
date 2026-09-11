@@ -1,0 +1,240 @@
+{
+  "parent": "/Users/timokruth/Projekte/SLM/runs/size-27m-2026-09-09-plus3h",
+  "parent_checkpoint": "checkpoint-0135594",
+  "data": "/Users/timokruth/Projekte/SLM/runs/size-campaign-2026-09-08/data-families",
+  "data_manifest_sha256": "a2939409af9341ea38abf45a49786c86c61f2e707871e275e06acb7f95254487",
+  "schema": "slm.long_horizon_plan.v2",
+  "status": "authorized_preparation",
+  "start_authorized": true,
+  "total_budget_seconds": 86400,
+  "report_title": "Langzeitblock 2: Lernrate und Verlauf",
+  "condition_labels": {
+    "A": "Kontrolle: LR 3e-5 konstant",
+    "B": "LR 3e-6 konstant",
+    "C": "LR 1e-4 konstant",
+    "D": "LR 3e-5, Kosinus bis 3e-6 \u00fcber 100M zus\u00e4tzliche Tokens"
+  },
+  "contrasts": [
+    [
+      "A",
+      "B"
+    ],
+    [
+      "A",
+      "C"
+    ],
+    [
+      "A",
+      "D"
+    ]
+  ],
+  "factorial_interaction": false,
+  "schedule_tokens": 100000000,
+  "confirmation_seed": "long-horizon-round2-20260911",
+  "performance_mode": "Existing user setting unchanged; AC powermode 0 observed during preparation. Concurrent EvoNN tests observed; old completed campaign status is not a full process inventory.",
+  "configurations": [
+    {
+      "id": "A",
+      "parameters": {
+        "lr": 3e-05,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "families",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    },
+    {
+      "id": "B",
+      "parameters": {
+        "lr": 3e-06,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "families",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    },
+    {
+      "id": "C",
+      "parameters": {
+        "lr": 0.0001,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "families",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    },
+    {
+      "id": "D",
+      "parameters": {
+        "lr": 3e-05,
+        "schedule": "cosine",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "families",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "long-round2-r0-A",
+      "condition": "A",
+      "data_seed": 2026091101,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r0-B",
+      "condition": "B",
+      "data_seed": 2026091101,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r0-C",
+      "condition": "C",
+      "data_seed": 2026091101,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r0-D",
+      "condition": "D",
+      "data_seed": 2026091101,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r1-D",
+      "condition": "D",
+      "data_seed": 2026091102,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r1-C",
+      "condition": "C",
+      "data_seed": 2026091102,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r1-B",
+      "condition": "B",
+      "data_seed": 2026091102,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-round2-r1-A",
+      "condition": "A",
+      "data_seed": 2026091102,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    }
+  ],
+  "historical_catalog": "/Users/timokruth/Projekte/SLM-long-round2/plans/long-horizon-24h-2026-09-10/variant-catalog.json",
+  "no_automatic_following_blocks": true,
+  "no_automatic_model_adoption": true,
+  "authorization": "Wir hatten eine Evaluation aller Parameter gestartet. Bitte lass die n\u00e4chsten Parameter laufen nachdem der erste run erfolgreich war",
+  "budget_assumption": "Same bounded block size as the previous authorized long comparison; optional budget clarification requested before preparation."
+}

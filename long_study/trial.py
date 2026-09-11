@@ -9,7 +9,7 @@ import subprocess
 import time
 
 from research.common import read,write
-from .protocol import signature,phase_for_elapsed
+from .protocol import signature,phase_for_elapsed,learning_rate
 
 
 def main():
@@ -34,7 +34,7 @@ def main():
     from study.design import validate
     from slm.train import checkpoint,restore
     validate(p)
-    if p['schedule']!='constant':raise ValueError('This block preregisters constant LR only')
+    learning_rate(job,dict(tokens=0,long_base_tokens=0,step=0,long_base_step=0))
     mx.set_default_device(mx.gpu);mx.set_memory_limit(20*1024**3);mx.set_cache_limit(512*1024**2)
     model,opt,sampler,state,eligible,weights=load(plan,p,job['data_seed'],job['model_seed'])
     if args.resume:
@@ -85,7 +85,8 @@ def main():
             if stopped or (run/'STOP').exists() or (Path(args.plan).parent/'STOP').exists():reason='requested_stop';break
             if psutil.virtual_memory().available<10*1024**3:reason='memory_pressure';break
             batch=sampler.batch(cfg['batch_size'])
-            loss,norm=step(model,opt,update,batch,p,p['lr'])
+            lr=learning_rate(job,state)
+            loss,norm=step(model,opt,update,batch,p,lr)
             state['step']+=1;state['tokens']+=int(batch[2].sum())
             for source,count in sampler.last_batch_source_tokens.items():
                 state['long_source_tokens'][source]=state['long_source_tokens'].get(source,0)+count
@@ -95,7 +96,7 @@ def main():
                     snapshot(target)
             if state['step']%10==0:
                 event=dict(status='running',event='train',step=state['step'],additional_tokens=state['tokens']-state['long_base_tokens'],
-                           loss=loss,grad_norm=norm,lr=p['lr'],elapsed_seconds=previous_active+time.monotonic()-started)
+                           loss=loss,grad_norm=norm,lr=lr,elapsed_seconds=previous_active+time.monotonic()-started)
                 log.write(__import__('json').dumps(event)+'\n');emit(event)
             if time.monotonic()-last_saved>=job.get('checkpoint_seconds',300):
                 state['long_active_seconds']=previous_active+time.monotonic()-started

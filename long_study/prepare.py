@@ -14,7 +14,7 @@ from .protocol import validate_plan
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def fresh_suite(run,parent,search):
+def fresh_suite(run,parent,search,seed='long-horizon-20260910'):
     from tokenizers import Tokenizer
     from slm.prepare import text_of
     paths=sorted((ROOT/'runs').glob('*/confirmation-suite.json'))
@@ -33,7 +33,7 @@ def fresh_suite(run,parent,search):
                 if len(tokenizer.encode(text_of(row)).ids)<=1024:pool[row['source']].append(row)
     selected={};used=set(blocked)
     for source in sorted(pool):
-        selected[source]=select(pool[source],8,'long-horizon-20260910',used)
+        selected[source]=select(pool[source],8,seed,used)
         used.update(r['group'] for r in selected[source])
     rows=[]
     for index in range(8):
@@ -59,7 +59,7 @@ def prepare(run,design_path,charged_seconds,concurrency_report):
     if sha(data/'manifest.json')!=design['data_manifest_sha256']:raise ValueError('Data changed')
     old=ROOT/'runs/parameter-study-timeout-recovery-2026-09-10'
     search=read(old/'search-suite.json');write(run/'search-suite.json',search)
-    references=fresh_suite(run,parent,search)
+    references=fresh_suite(run,parent,search,design.get('confirmation_seed','long-horizon-20260910'))
     configs={c['id']:c['parameters'] for c in design['configurations']}
     jobs=[]
     for entry in design['runs']:
@@ -67,6 +67,7 @@ def prepare(run,design_path,charged_seconds,concurrency_report):
                  parameters=copy.deepcopy(configs[entry['condition']]),data_seed=entry['data_seed'],model_seed=2026091010,
                  train_seconds=7200,checkpoint_seconds=300,checkpoint_reserve_seconds=60,
                  snapshot_tokens=[15000000,30000000,50000000,75000000,100000000,150000000])
+        if 'schedule_tokens' in design:job['schedule_tokens']=design['schedule_tokens']
         write(run/'jobs'/(job['id']+'.json'),job);jobs.append(job['id'])
     spent=math.ceil(charged_seconds)
     plan=dict(version=1,parent=str(parent),parent_checkpoint=design['parent_checkpoint'],
@@ -77,10 +78,12 @@ def prepare(run,design_path,charged_seconds,concurrency_report):
               original_design=str(design_path),original_design_sha256=sha(design_path),
               concurrency_report=str(concurrency_report),concurrency_report_sha256=sha(concurrency_report),
               code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip())
+    for key in ['report_title','contrasts','factorial_interaction','condition_labels']:
+        if key in design:plan[key]=design[key]
     plan['maximum_stage_seconds']=validate_plan(plan)
     write(run/'plan.json',plan)
     write(run/'RUN_CONDITIONS.json',dict(recorded_at=datetime.now().astimezone().isoformat(),
-          performance_mode='User-authorized high performance with concurrent EvoNN CPU campaign; overlap recorded per stage',
+          performance_mode=design.get('performance_mode','User-authorized high performance with concurrent EvoNN CPU campaign; overlap recorded per stage'),
           power_settings=subprocess.check_output(['pmset','-g','custom'],text=True),
           power_source=subprocess.check_output(['pmset','-g','batt'],text=True)))
     files=[ROOT/p for p in subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitlines() if p.endswith(('.py','.json','.md'))]
