@@ -1,5 +1,7 @@
 # Hardware-Optimierung und Ausgabequalität
 
+**Aktualisierung: Studie läuft seit 11.09.2026, 21:20:00 Europe/Berlin auf Netzstrom. Harte Deadline: 12.09.2026, 03:19:59. Alle vier realen Checkpoint-Fortsetzungskontrollen bestanden. Der nachfolgende Wartehinweis beschreibt die abgeschlossene Startvorbereitung.**
+
 Der Nutzer hat ausdrücklich eine neue **sechsstündige Studie samt Start** beauftragt.
 
 - [Plan, Messgrößen und Budget](/Users/timokruth/Projekte/SLM-quality-optimization/QUALITY_OPTIMIZATION_6H.md)
