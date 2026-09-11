@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "status": "preparation_only",
+  "activated": false,
+  "external_tests_loaded": false,
+  "sources": {
+    "triviaqa": {
+      "original_split": "train",
+      "revision": "0f7faf33a3908546c6fd5b73a660e0f8ff173c2f",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/mandarjoshi/trivia_qa/resolve/0f7faf33a3908546c6fd5b73a660e0f8ff173c2f/rc.nocontext/train-00000-of-00001.parquet",
+          "sha256": "455223e4a3ba6977611914d96b1b812fe19a6cd4ea3aef4df381f093b297670c",
+          "bytes": 55391498
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/mandarjoshi/trivia_qa/resolve/0f7faf33a3908546c6fd5b73a660e0f8ff173c2f/README.md",
+          "sha256": "c177aa2d70c4fff3b3427317801c32803805a2c9185ffa081715e93028bf5a3c",
+          "bytes": 26668
+        }
+      ],
+      "task": "Closed-book QA adaptation of rc.nocontext; no evidence corpus; original answer value and aliases",
+      "license_note": "HF card unknown; UW does not own copyright of underlying questions. Local research staging only; no redistribution clearance.",
+      "primary_url": "https://nlp.cs.washington.edu/triviaqa/"
+    },
+    "tydiqa": {
+      "original_split": "train",
+      "revision": "da78f23f9119363459acbaf46bf89426ff26c259",
+      "files": [
+        {
+          "path": "train.parquet",
+          "url": "https://huggingface.co/datasets/google-research-datasets/tydiqa/resolve/da78f23f9119363459acbaf46bf89426ff26c259/secondary_task/train-00000-of-00001.parquet",
+          "sha256": "8139944554bcd89f6c4b167b93c9a63ec44a6d97b8caebe049061f78fcc0e786",
+          "bytes": 26918058
+        },
+        {
+          "path": "README.md",
+          "url": "https://huggingface.co/datasets/google-research-datasets/tydiqa/resolve/da78f23f9119363459acbaf46bf89426ff26c259/README.md",
+          "sha256": "da9c2ab4588734310b6a527f5895d15b952c178949e5e298b07287bb40c266cc",
+          "bytes": 11085
+        }
+      ],
+      "task": "TyDiQA-GoldP, nine languages; original questions, no translated or generated answers",
+      "license_note": "HF metadata Apache-2.0; underlying Wikipedia text retains its attribution/share-alike requirements.",
+      "primary_url": "https://github.com/google-research-datasets/tydiqa",
+      "download_note": "Official versioned GoldP train URL returned HTTP 403; pinned HF secondary_task train mirror used."
+    },
+    "tabmwp": {
+      "original_split": "train",
+      "revision": "5a1a52214521590b075f545b76a4f5ce666345e3",
+      "files": [
+        {
+          "path": "train.json",
+          "url": "https://raw.githubusercontent.com/lupantech/PromptPG/5a1a52214521590b075f545b76a4f5ce666345e3/data/tabmwp/problems_train.json",
+          "sha256": "63e57d9a212740f080d4e08657d7aeda3d9f95b26c74a1bdfd9c576846d9b828",
+          "bytes": 25733404
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/lupantech/PromptPG/5a1a52214521590b075f545b76a4f5ce666345e3/README.md",
+          "sha256": "dd61c99cca31e38ac48341f8daabe5b834187f76c37ca44ca5f57ff35f32a340",
+          "bytes": 24202
+        },
+        {
+          "path": "LICENSE.md",
+          "url": "https://raw.githubusercontent.com/lupantech/PromptPG/5a1a52214521590b075f545b76a4f5ce666345e3/LICENSE.md",
+          "sha256": "6ce21fd09fe2552b49e28a15e5af3555f2495be7e79b173f81d878b528074a8b",
+          "bytes": 1062
+        }
+      ],
+      "task": "Text tables and original final answers; visual-reference solutions retained as metadata only",
+      "license_note": "Dataset CC BY-NC-SA 4.0, distinct from MIT code license; local noncommercial research only.",
+      "primary_url": "https://github.com/lupantech/PromptPG"
+    },
+    "tatqa": {
+      "original_split": "train",
+      "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+      "files": [
+        {
+          "path": "train.json",
+          "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/dataset_raw/tatqa_dataset_train.json",
+          "sha256": "2df6e722cdbaaa37efcbfb280f5c9a15be29a6ec18f618ef936fe63cc6d07c69",
+          "bytes": 12845647
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/README.md",
+          "sha256": "85c398173d771a2531abea5b81f3696914296642da2af78c2c34545715c14d5f",
+          "bytes": 4689
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/LICENSE",
+          "sha256": "46e27ffbc49c3fd44a9595c2213f8a5f4319a81b53238e49ce1eec39e7e25662",
+          "bytes": 1068
+        }
+      ],
+      "task": "Financial table/text QA, screened separately pending report-level grouping",
+      "license_note": "Dataset CC BY 4.0, distinct from MIT code license.",
+      "primary_url": "https://github.com/NExTplusplus/TAT-QA"
+    }
+  }
+}

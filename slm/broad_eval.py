@@ -8,7 +8,7 @@ import re
 import string
 import time
 
-from .breadth import SOURCE_FAMILY
+from .breadth import EVALUATION_SOURCE_FAMILY as SOURCE_FAMILY
 from .train import atomic_json
 
 NARRATIVE = {'hellaswag', 'piqa'}
@@ -51,6 +51,9 @@ def score_general(row, generated, memorization=False):
     source = row['source']
     if memorization:
         return {'metric': 'training_answer_recall', 'correct': generated.strip() == row['answer'].strip()}
+    if source in {'triviaqa', 'tydiqa', 'tabmwp'}:
+        from benchmark_expansion.scoring import score_prepared
+        return score_prepared(row, generated)
     if source in CODE:
         import ast
         try:
@@ -161,6 +164,8 @@ def main():
             metric = score_general(row, response['generated'], args.partition=='memorization')
             result = dict(source=row['source'], id=row['original_id'], family=SOURCE_FAMILY[row['source']],
                           expected=row['answer'], **response, **metric)
+            if 'language' in row:
+                result['language'] = row['language']
             results.append(result)
             f.write(json.dumps(result, ensure_ascii=False)+'\n')
     if args.partition == 'dev' and not args.skip_code:
@@ -192,9 +197,16 @@ def main():
         if data['scored']:
             family_scores[data['family']].append(data['correct']/data['scored'])
     by_family = {family:sum(values)/len(values) for family,values in family_scores.items()}
+    by_language = {}
+    for source, language in sorted({(r['source'], r['language']) for r in results if 'language' in r}):
+        subset = [r for r in results if r['source'] == source and r.get('language') == language]
+        scored = [r for r in subset if 'correct' in r and r.get('reference_parseable', True)]
+        by_language[source + '.' + language] = dict(generated=len(subset), scored=len(scored),
+                                                   correct=sum(r['correct'] for r in scored))
     summary = dict(completed=datetime.now().astimezone().isoformat(), partition=args.partition,
                    selected_general=len(rows), evaluated_general=len(results), by_source=by_source,
-                   mean_source_accuracy_by_family=by_family, code_evaluated=len(code_results),
+                   mean_source_accuracy_by_family=by_family, by_source_language=by_language,
+                   code_evaluated=len(code_results),
                    code_statuses=dict(Counter(r['status'] for r in code_results)),
                    code_passes_with_stronger_tests=sum(r['stronger_test_pass'] for r in code_results),
                    code_exclusions=dict(excluded), answer_loss=answer_loss, deadline_reached=time.time()>=cutoff,
@@ -202,6 +214,9 @@ def main():
     atomic_json(out/'summary.json', summary)
     lines = ['# Broad development evaluation', '', summary['interpretation'], '', '| Source | Metric | Correct / scored |', '| --- | --- | --- |']
     lines += [f"| {source} | {row['metric']} | {row['correct']} / {row['scored']} |" for source,row in by_source.items()]
+    if by_language:
+        lines += ['', '| Source / language | Correct / scored |', '| --- | --- |']
+        lines += [f"| {name} | {row['correct']} / {row['scored']} |" for name,row in by_language.items()]
     lines += ['', 'Code outcomes: '+json.dumps(summary['code_statuses']), 'Passes with stronger test coverage: '+str(summary['code_passes_with_stronger_tests'])]
     (out/'REPORT.md').write_text('\n'.join(lines)+'\n')
     print(json.dumps(summary), flush=True)

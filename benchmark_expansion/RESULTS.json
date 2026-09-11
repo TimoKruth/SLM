@@ -1,0 +1,160 @@
+{
+  "status": "verified_preparation_only",
+  "sources": 35,
+  "new_records": {
+    "triviaqa.train": 68888,
+    "triviaqa.dev": 3786,
+    "tydiqa.train": 33148,
+    "tydiqa.dev": 1882,
+    "tabmwp.train": 20655,
+    "tabmwp.dev": 1172,
+    "triviaqa.confirmation": 3820,
+    "tydiqa.confirmation": 1807,
+    "tabmwp.confirmation": 1232
+  },
+  "raw_counts": {
+    "triviaqa": 138384,
+    "tydiqa": 49881,
+    "tabmwp": 23059
+  },
+  "reference_audit": {
+    "tydiqa.original_offsets_match": 36373,
+    "tydiqa.original_offsets_mismatch_text_verified": 13508
+  },
+  "rejections": {
+    "triviaqa.overlap_group": 49,
+    "triviaqa.conflicting_reference_group": 4,
+    "triviaqa.duplicate_prompt": 61837,
+    "tydiqa.overlap_group": 171,
+    "tydiqa.conflicting_reference_group": 120,
+    "tydiqa.over_1024.finnish": 33,
+    "tydiqa.duplicate_prompt": 102,
+    "tydiqa.over_1024.telugu": 3876,
+    "tydiqa.over_1024.russian": 1663,
+    "tydiqa.over_1024.arabic": 4790,
+    "tydiqa.over_1024.indonesian": 25,
+    "tydiqa.over_1024.english": 7,
+    "tydiqa.over_1024.swahili": 50,
+    "tydiqa.over_1024.korean": 286,
+    "tydiqa.over_1024.bengali": 1921
+  },
+  "lengths": {
+    "triviaqa.english": {
+      "measured": 76494,
+      "within_1024": 76494,
+      "median": 44.0,
+      "p95": 66.0,
+      "maximum": 339
+    },
+    "tydiqa.finnish": {
+      "measured": 6798,
+      "within_1024": 6765,
+      "median": 261.0,
+      "p95": 538.0,
+      "maximum": 8497
+    },
+    "tydiqa.telugu": {
+      "measured": 5550,
+      "within_1024": 1674,
+      "median": 1208.5,
+      "p95": 3557.9500000000016,
+      "maximum": 36320
+    },
+    "tydiqa.russian": {
+      "measured": 6472,
+      "within_1024": 4809,
+      "median": 699.0,
+      "p95": 1907.249999999999,
+      "maximum": 27307
+    },
+    "tydiqa.arabic": {
+      "measured": 14774,
+      "within_1024": 9984,
+      "median": 804.0,
+      "p95": 2142.699999999997,
+      "maximum": 22339
+    },
+    "tydiqa.indonesian": {
+      "measured": 5585,
+      "within_1024": 5560,
+      "median": 268.0,
+      "p95": 569.8000000000002,
+      "maximum": 8983
+    },
+    "tydiqa.english": {
+      "measured": 3666,
+      "within_1024": 3659,
+      "median": 180.0,
+      "p95": 352.75,
+      "maximum": 4507
+    },
+    "tydiqa.swahili": {
+      "measured": 2642,
+      "within_1024": 2592,
+      "median": 172.0,
+      "p95": 478.84999999999945,
+      "maximum": 3152
+    },
+    "tydiqa.korean": {
+      "measured": 1625,
+      "within_1024": 1339,
+      "median": 621.0,
+      "p95": 1615.0,
+      "maximum": 17338
+    },
+    "tydiqa.bengali": {
+      "measured": 2376,
+      "within_1024": 455,
+      "median": 1624.0,
+      "p95": 3823.25,
+      "maximum": 19174
+    },
+    "tabmwp.english": {
+      "measured": 23059,
+      "within_1024": 23059,
+      "median": 123.0,
+      "p95": 176.0,
+      "maximum": 541
+    }
+  },
+  "tatqa": {
+    "status": "screened_not_admitted",
+    "questions": 13215,
+    "context_groups": 2201,
+    "within_1024": 12192,
+    "answer_types": {
+      "multi-span": 1645,
+      "span": 5722,
+      "arithmetic": 5543,
+      "count": 305
+    },
+    "scales": {
+      "": 6457,
+      "percent": 2104,
+      "thousand": 2481,
+      "million": 2153,
+      "billion": 20
+    },
+    "reason": "Original raw file has table/paragraph UUIDs, but no report identifiers. Report-level grouping and numeric reference review remain pending; no TAT-QA training files emitted."
+  },
+  "suites": {
+    "dev-suite.json": {
+      "examples": 170,
+      "sha256": "05a8aa9d49e9c07119b02506084531402989ba26e45b2dbd0618797e71be5229"
+    },
+    "confirmation-suite.json": {
+      "examples": 176,
+      "sha256": "fc66e97006fdaf04b2e9563553b4c856ee1dca872f61b3c19cfdb908d6089937"
+    }
+  },
+  "manifest_sha256": "354de48bd6c0783fa7a33054509f9582291e8309975ae886ce49b8b5b5c2d8ff",
+  "training_started": false,
+  "limitations": [
+    "Exact normalized prompts, questions, extracted contexts and available article groups checked against all retained v4 train/dev records. No comprehensive near-duplicate, translated-document or semantic cross-benchmark audit.",
+    "Internal holdouts are drawn from original train splits; they are not official scores or external transfer tests.",
+    "TriviaQA canonical values are training targets. Original aliases can contain noisy references and require review before alias-aware scoring.",
+    "TabMWP original solutions may refer to unseen visual highlighting; they are metadata, not training targets.",
+    "TyDiQA original offsets are preserved and mismatches counted. Every original answer text is verified as an exact substring; offsets are not training targets and are not repaired.",
+    "Language coverage and family sampling are not proof of acquired knowledge. No new model trained."
+  ]
+}
