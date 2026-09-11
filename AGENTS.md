@@ -1,7 +1,7 @@
 # Aktueller Projektstand – 11. September 2026
 
 - Neuer ausdrücklicher Auftrag: nach technisch erfolgreichem ersten Block die nächsten Parameter laufen lassen. Erster Block vollständig abgeschlossen, kein bestätigter Qualitätsgewinner.
-- Zweiter Langzeitblock wird unter `runs/long-horizon-round2-2026-09-11/` ausgeführt; `status.json` ist nach Start verbindlich. Code im Worktree `/Users/timokruth/Projekte/SLM-long-round2`, Branch `codex/long-horizon-round2`. Plan und Grenzen: `LANGZEIT_RUNDE_2.md`.
+- Zweiter Langzeitblock ist gestartet und läuft unter `runs/long-horizon-round2-2026-09-11/` ausgeführt; `status.json` ist verbindlich. Start 2026-09-11T13:08:47+02:00, harte Frist 2026-09-12T12:48:47+02:00. Eingefrorener Code-Commit `4c30196`. Code im Worktree `/Users/timokruth/Projekte/SLM-long-round2`, Branch `codex/long-horizon-round2`. Plan und Grenzen: `LANGZEIT_RUNDE_2.md`.
 - Kontrolle LR 3e-5, LR 3e-6, LR 1e-4, Kosinus 3e-5 bis 3e-6 über 100M zusätzliche Tokens; zwei Datenreihenfolgen, je zwei Stunden. Ein Folgeblock mit derselben maximalen 24h-Größe einschließlich Vorbereitung/Auswertung, keine automatische weitere Rotation. Alte Restreserve bleibt ungenutzt.
 - Eingefrorene Kampagneneingaben unverändert lassen. Light-Monitoring und PowerWatch aktiv; keine automatische Modellübernahme. Historische Daten und Worktrees erhalten.
 - Zentrale bisherige Einordnung: ERKENNTNISSE.md; aggregierte historische Belege: results/2026-09-11/INDEX.md. Lokale ZIP64-Archive: SICHERUNG.md; keine externe Sicherung beauftragt. Neue Kampagnendaten sind noch nicht Bestandteil dieser Archive.

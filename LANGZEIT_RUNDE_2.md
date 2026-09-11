@@ -26,7 +26,7 @@ Bisherige Kriterien bleiben: mindestens +2 Prozentpunkte in beiden Wiederholunge
 
 ## Begrenzung und Betrieb
 
-Die bisherige Blockgröße wird für diesen Folgeauftrag übernommen: maximal 24 Stunden einschließlich Vorbereitung und Auswertung. Es wurde eine optionale Budgetfrage gestellt; ohne abweichende Antwort gilt die kommunizierte gleiche Blockgröße. 1200 Sekunden Vorbereitung werden konservativ vorab belastet, der Supervisor erhält höchstens 85.200 Sekunden. Maximal geplante Stufen einschließlich Bericht: 79.110 Sekunden. Acht Trainings benötigen 16 Stunden; 33 Auswertungen erhalten je 600 Sekunden plus 30 Sekunden Prozessreserve. Kein automatischer weiterer Block, keine Verwendung der alten Restreserve und keine Verlängerung einzelner Trainings.
+Der Nutzer hat das Budget ausdrücklich bestätigt: „Wie bisher: maximal 24 Stunden“. Dies umfasst Vorbereitung und Auswertung. 1200 Sekunden Vorbereitung werden konservativ vorab belastet, der Supervisor erhält höchstens 85.200 Sekunden. Maximal geplante Stufen einschließlich Bericht: 79.110 Sekunden. Acht Trainings benötigen 16 Stunden; 33 Auswertungen erhalten je 600 Sekunden plus 30 Sekunden Prozessreserve. Kein automatischer weiterer Block, keine Verwendung der alten Restreserve und keine Verlängerung einzelner Trainings.
 
 Light-Monitoring, zehn Aufwärmschritte, 60s-Zwischenstände und PowerWatch bleiben aktiv. Checkpoints mit Adam/Sampler alle 300 Sekunden; zusätzliche Tokenstände bei 15/30/50/75/100/150M, sofern erreicht. STOP und Budgetkontrollen sowie höchstens zwei begrenzte GPU-Recovery-Versuche bleiben erhalten. Andere Fehler pausieren sofort. Historische Worktrees und Versuchsdaten bleiben unverändert.
 
@@ -38,3 +38,7 @@ Bei Vorbereitung Netzbetrieb, AC powermode 0, normale Thermik, ungefähr 31 GiB 
 
 Stoppen: `touch /Users/timokruth/Projekte/SLM/runs/long-horizon-round2-2026-09-11/STOP`.
 Start erfolgt einmalig über `run_slm.py --module long_study.campaign` im neuen Worktree; `status.json` verhindert einen zweiten Start mit zurückgesetztem Budget.
+
+## Tatsächlicher Start
+
+Start: 2026-09-11T13:08:47.662733+02:00. Harte Deadline: 2026-09-12T12:48:47.662729+02:00 (Europe/Berlin). Eingefrorener Kampagnencode: Commit `4c30196`. GPU-Gesundheitsprüfung und numerische Kontrolle bestanden; die neue Gegenprüfung enthält 200 Aufgaben aus 25 Quellen ohne geprüfte Trainings-/frühere Gegenprüfungsgruppenüberschneidung. Vollständiger Auftrag und Budgetbestätigung in `START_AUTHORIZATION.json`.
