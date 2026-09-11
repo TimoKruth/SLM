@@ -1,7 +1,7 @@
 # Vorbereitetes Unterprojekt zur Hardware-Optimierung
 
 Das separate Unterprojekt liegt im Worktree `/Users/timokruth/Projekte/SLM-optimization`,
-Branch `codex/hardware-optimization`. Implementierung `ed78584`, Verifikation `dokumentiert im Unterprojekt`.
+Branch `codex/hardware-optimization`. Implementierung `ed78584`, Verifikation `1a44aab`.
 
 - [Einstieg und Bedienung](/Users/timokruth/Projekte/SLM-optimization/optimization_lab/README.md)
 - [Messprotokoll](/Users/timokruth/Projekte/SLM-optimization/optimization_lab/MEASUREMENT.md)
