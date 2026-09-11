@@ -1,0 +1,352 @@
+{
+  "created_at": "2026-09-11T12:29:42.885547+02:00",
+  "storage": "local_only",
+  "archive_count": 54,
+  "total_archive_bytes": 150120930862,
+  "total_entries": 15439,
+  "verified": true,
+  "verified_at": "2026-09-11T12:39:08.094062+02:00",
+  "verification": "All archive SHA-256, complete member list, extracted size, SHA-256 and ZIP CRC checked",
+  "restore_test": {
+    "tested_at": "2026-09-11T12:39:02.743814+02:00",
+    "parts": [
+      "code",
+      "powerwatch-support",
+      "runs--broad-campaign-2026-09-07"
+    ],
+    "success": true,
+    "restored_file_hashes_checked": 304,
+    "sqlite_integrity_check": "ok",
+    "sqlite_samples": 57026,
+    "sqlite_snapshot_counts_match": true,
+    "git_bundle_verified": true,
+    "git_clone_commit": "bca55d70c938367683ecebb283e92c90aa00d122"
+  },
+  "code_snapshot_commit": "bca55d70c938367683ecebb283e92c90aa00d122",
+  "archives": [
+    {
+      "archive": "data--broad-checks-2026-09-07.zip",
+      "archive_bytes": 858928,
+      "archive_sha256": "104964dd971ca805757d380629a2906ca656ac0c848848f6bdaf356d12a0453a",
+      "entries": 590
+    },
+    {
+      "archive": "data--candidates-2026-09-07.zip",
+      "archive_bytes": 7945030001,
+      "archive_sha256": "d7ebe00b1accb052c6b26b977289e01369e43a058e0a0fb99ecdf1416b488cd5",
+      "entries": 349
+    },
+    {
+      "archive": "data--candidates-next-2026-09-08.zip",
+      "archive_bytes": 217223790,
+      "archive_sha256": "a9ac2dbca06f0346fc223bacfdbf175e528193db018fc566203a6e7ed9b8ad5a",
+      "entries": 10
+    },
+    {
+      "archive": "data--candidates-wave3-2026-09-07.zip",
+      "archive_bytes": 74387263,
+      "archive_sha256": "b01285fa42df27f8514ca7654a57b4f090a8189528846c84ec93f0ba1a7fe391",
+      "entries": 158
+    },
+    {
+      "archive": "data--raw.zip",
+      "archive_bytes": 83391850,
+      "archive_sha256": "afc4daaab70cb1668c4d2f4c4cabdf427f9b51b01930d27856e93eb85643b1f8",
+      "entries": 144
+    },
+    {
+      "archive": "data--v2.zip",
+      "archive_bytes": 834040893,
+      "archive_sha256": "197f109591fb9524787cdf318e601d61893b483b207bc00daeed1f79395e6125",
+      "entries": 149
+    },
+    {
+      "archive": "data--v3-broad.zip",
+      "archive_bytes": 433925408,
+      "archive_sha256": "365c88631232d7c122bfd98be712f6171f293dfa056aaf64f50d294be669cb7b",
+      "entries": 197
+    },
+    {
+      "archive": "data--v4-broad-corrected-2026-09-08.zip",
+      "archive_bytes": 444040728,
+      "archive_sha256": "f1964e9b6fe61619aa9de1ad4966de6c48a75b24cbeb4bd045397eda0a321b58",
+      "entries": 197
+    },
+    {
+      "archive": "data--root.zip",
+      "archive_bytes": 233841667,
+      "archive_sha256": "9a4f20081c25c6de7a609b4c0e78ffe7497f7e565d88a4b40a6b876656bc2847",
+      "entries": 66
+    },
+    {
+      "archive": "runs--broad-886-2026-09-08.zip",
+      "archive_bytes": 669367,
+      "archive_sha256": "0b9f2b936e2e2c104e01ce3152a83e444d75575db1360e86040be05ff7529c7b",
+      "entries": 39
+    },
+    {
+      "archive": "runs--broad-baseline-2026-09-07.zip",
+      "archive_bytes": 274646,
+      "archive_sha256": "cdb32595b4fbb48707ea64b56d00c1939d835e6e6793b5a72f47ffa81f9b7f5a",
+      "entries": 16
+    },
+    {
+      "archive": "runs--broad-campaign-2026-09-07.zip",
+      "archive_bytes": 560733,
+      "archive_sha256": "f8c7a9a728af731ddd32ae184cbd05d5b01641a1be00ebf06536f0904f6849bc",
+      "entries": 116
+    },
+    {
+      "archive": "runs--broad-control-2026-09-07.zip",
+      "archive_bytes": 764699219,
+      "archive_sha256": "840f2adbea7581e771c6c93261f43fdfc538b3bf4645edd5f89e7982c58b34e5",
+      "entries": 51
+    },
+    {
+      "archive": "runs--broad-families-2026-09-07-3h.zip",
+      "archive_bytes": 2731719147,
+      "archive_sha256": "fb83bf8ae9647045bc22302c71f98d8c4c91b30a56b3ae6a751c12958d40156a",
+      "entries": 34
+    },
+    {
+      "archive": "runs--broad-monitoring-2026-09-07.zip",
+      "archive_bytes": 3069406024,
+      "archive_sha256": "c2225126209957c87e2b5ab6f45d2c619d0b1461b77bdfee10b3e042666426a2",
+      "entries": 1615
+    },
+    {
+      "archive": "runs--broad-monitoring-confirmation-2026-09-07.zip",
+      "archive_bytes": 3077950886,
+      "archive_sha256": "22c7d774f79518bb5fb1754cd3d3eaeb74bb70c8cabfaa57a6f607746cdf7f03",
+      "entries": 1584
+    },
+    {
+      "archive": "runs--broad-sources-2026-09-07-3h.zip",
+      "archive_bytes": 2731713916,
+      "archive_sha256": "d9c49051ad924ab818f90daf0394b0ebf09be913e20e70ae01a2e3515b3eaaa7",
+      "entries": 34
+    },
+    {
+      "archive": "runs--broad-validation-2026-09-07.zip",
+      "archive_bytes": 9252,
+      "archive_sha256": "2a1ea56f6b36e6aeb96da6f8dc67b9989c8905e6600d66cf774fc10e5e4e44b1",
+      "entries": 6
+    },
+    {
+      "archive": "runs--code-eval-2026-09-07.zip",
+      "archive_bytes": 81965,
+      "archive_sha256": "0eab26fa2d5c47e5e9c48691e529c67c239b8c56acb94bf9f2397f02f469a333",
+      "entries": 15
+    },
+    {
+      "archive": "runs--code-eval-preflight-2026-09-07.zip",
+      "archive_bytes": 21880,
+      "archive_sha256": "8d2be34cdc5044fc2e007df799ab20c5ee2ba3aa953950c475d867f358981cce",
+      "entries": 6
+    },
+    {
+      "archive": "runs--eval-preparation-2026-09-07.zip",
+      "archive_bytes": 542347,
+      "archive_sha256": "0d5d7f63aced7bd45c03b624058f55c04255831bee5b754bc13594bde13cf8c2",
+      "entries": 41
+    },
+    {
+      "archive": "runs--expanded-2026-09-07-6h.zip",
+      "archive_bytes": 2732462846,
+      "archive_sha256": "f0d6e21d6a218375132d2fdb104c0f1bbaf2c1d1662ce7592dec23d24bac1d3d",
+      "entries": 57
+    },
+    {
+      "archive": "runs--long-horizon-2026-09-10.zip",
+      "archive_bytes": 3937405383,
+      "archive_sha256": "3763b9763a4ea7a2dd36229e5331b50e70494d8d66c9a30d652e455b2fe3d488",
+      "entries": 356
+    },
+    {
+      "archive": "runs--long-horizon-resume-2026-09-10.zip",
+      "archive_bytes": 9186684548,
+      "archive_sha256": "73f9739132cb670f62ed79c30e88246616626d2d29f65b3685bf526bf3a9c892",
+      "entries": 805
+    },
+    {
+      "archive": "runs--long-horizon-validation-2026-09-10.zip",
+      "archive_bytes": 764798485,
+      "archive_sha256": "c57e190871a60fabec0799c039b4b52f814ceebcb2dfaeccf9233ab0149e17a3",
+      "entries": 39
+    },
+    {
+      "archive": "runs--monitoring-2026-09-07.zip",
+      "archive_bytes": 244959,
+      "archive_sha256": "ffcf52287d36d62be0232783bcba035faa7cb46668001995fb9dcd37bd8dc748",
+      "entries": 88
+    },
+    {
+      "archive": "runs--next-preparation-2026-09-08.zip",
+      "archive_bytes": 2294878449,
+      "archive_sha256": "c7b11e175390a6c1435ea6ded650392d805b5c6cac8341a144184264e24c5ed2",
+      "entries": 156
+    },
+    {
+      "archive": "runs--night-2026-09-06.zip",
+      "archive_bytes": 2732279826,
+      "archive_sha256": "23566d28de3a94dadaca30262cc4f57c9683067288bba0cba5b0c5ecf990c8f9",
+      "entries": 42
+    },
+    {
+      "archive": "runs--parallel-probe-2026-09-10.zip",
+      "archive_bytes": 655663477,
+      "archive_sha256": "a6a2eddf2c99c12a763c4631bb183128e217099aa389ce3d6a7f6c461f721d24",
+      "entries": 54
+    },
+    {
+      "archive": "runs--parameter-study-2026-09-09.zip",
+      "archive_bytes": 10179275018,
+      "archive_sha256": "93cc201996c48c96b7b3eafd9340da61db66f3ea7d82f29e2b990ba5a8f9752c",
+      "entries": 1816
+    },
+    {
+      "archive": "runs--parameter-study-recovery-2026-09-09.zip",
+      "archive_bytes": 32040029284,
+      "archive_sha256": "46fc795681c1c8e1a7b7944c8a72ff2cb841194906da16dc38d3d67fc1fd14c5",
+      "entries": 2427
+    },
+    {
+      "archive": "runs--parameter-study-timeout-recovery-2026-09-10.zip",
+      "archive_bytes": 40905089478,
+      "archive_sha256": "9bd9ad3b281ef2eefd75a2b8af26a041b464729366a2f05eb2c7a4e56d622dea",
+      "entries": 2684
+    },
+    {
+      "archive": "runs--performance-2026-09-07.zip",
+      "archive_bytes": 7763,
+      "archive_sha256": "7153a87f92f57dbe722a984fb1b34ffa876404d879622f8f543a7ec23d04defa",
+      "entries": 10
+    },
+    {
+      "archive": "runs--pr-1-review-2026-09-07.zip",
+      "archive_bytes": 1229,
+      "archive_sha256": "2d549ff03a630b59c0f970d5f3e7c4079e57f541a14d186300065f4e3a802bfa",
+      "entries": 2
+    },
+    {
+      "archive": "runs--profile.zip",
+      "archive_bytes": 2731383898,
+      "archive_sha256": "63e9424848b5b909da720d0d60cc678b0d74597e73de910cb5d1df0b6cf08e37",
+      "entries": 21
+    },
+    {
+      "archive": "runs--random-search-pilot-2026-09-08.zip",
+      "archive_bytes": 160714,
+      "archive_sha256": "ef783727972d7236dd9ace37cc959318a930be447115dcba8dac173e18e306c3",
+      "entries": 17
+    },
+    {
+      "archive": "runs--research-pilot-2026-09-09.zip",
+      "archive_bytes": 1967562886,
+      "archive_sha256": "0b0d6d3eae63e59620e0c187aa0b780800c2b1271b5bdc2a196816bb6cbd4e20",
+      "entries": 240
+    },
+    {
+      "archive": "runs--research-round2-2026-09-09.zip",
+      "archive_bytes": 1967849584,
+      "archive_sha256": "aad678046e94c82594f8c245bf14c2c26b939fb7f52adec9f81e8b9086759dcf",
+      "entries": 248
+    },
+    {
+      "archive": "runs--size-27m-2026-09-08-3h.zip",
+      "archive_bytes": 1093813939,
+      "archive_sha256": "ee38244391cea3c4b4f4442ce5efedb05936dcce9912a7ea1945e0fe33300cd5",
+      "entries": 89
+    },
+    {
+      "archive": "runs--size-27m-2026-09-09-plus3h.zip",
+      "archive_bytes": 765257520,
+      "archive_sha256": "c0c30904294adb217f374e46c3e8271e3fd8e19d94bb9d0b454d3338cc2e30e9",
+      "entries": 53
+    },
+    {
+      "archive": "runs--size-97m-2026-09-08-3h.zip",
+      "archive_bytes": 3903248802,
+      "archive_sha256": "8117ca32fd1fb570a205e00f8e24ac7d90189da05f9ae4006aa1573f1a6400a4",
+      "entries": 79
+    },
+    {
+      "archive": "runs--size-97m-2026-09-09-plus3h.zip",
+      "archive_bytes": 2731787166,
+      "archive_sha256": "227f4fe1de04929d78d15dda0dd5abd5c88e514e4212b7e12089b6f14e7b0c69",
+      "entries": 35
+    },
+    {
+      "archive": "runs--size-campaign-2026-09-08.zip",
+      "archive_bytes": 1250684,
+      "archive_sha256": "282c030f94a470fe8413b5c1f5d2d6fe5b940e2ff86564f6afccfdaa1da127c2",
+      "entries": 227
+    },
+    {
+      "archive": "runs--size-continuation-2026-09-09.zip",
+      "archive_bytes": 1772364,
+      "archive_sha256": "4cb86485664ac0a74835d350a1b86534e49b23ad895d2b5e39bcf1cd73f27220",
+      "entries": 21
+    },
+    {
+      "archive": "runs--size-eval-preparation-2026-09-08.zip",
+      "archive_bytes": 465827,
+      "archive_sha256": "12c22477b3dcaabbe7e60ec2d3f28f1619ec42446ee33f53ad6c6a5b8965699b",
+      "entries": 9
+    },
+    {
+      "archive": "runs--size-preflight-2026-09-08.zip",
+      "archive_bytes": 546447880,
+      "archive_sha256": "855401aecffe32fa3fe24d61efcf902572d90fe1217162b443a749db93198725",
+      "entries": 35
+    },
+    {
+      "archive": "runs--study-repair-2026-09-09.zip",
+      "archive_bytes": 109500961,
+      "archive_sha256": "a4100e80f2b1001e19141f3d90d0ed69e451cbf68f4b5f64ba4069f23132fe36",
+      "entries": 42
+    },
+    {
+      "archive": "runs--system-resources.zip",
+      "archive_bytes": 25832,
+      "archive_sha256": "b4289d6de06a09a474789009e8c93a1f165d7bfdf6e04c91501fd7b41d95db54",
+      "entries": 4
+    },
+    {
+      "archive": "runs--timeout-repair-2026-09-10.zip",
+      "archive_bytes": 390451579,
+      "archive_sha256": "1d33ae4f7e4303a955ea5b3cf824d99e8cf76fc38e614490b16825845eb8e812",
+      "entries": 19
+    },
+    {
+      "archive": "runs--v2-smoke-2026-09-07.zip",
+      "archive_bytes": 2731403476,
+      "archive_sha256": "c8fdc05d9ebec45298a7b867ac8f561d6527e66c39c6892a17a17689e8250d24",
+      "entries": 21
+    },
+    {
+      "archive": "runs--warmup-2026-09-06.zip",
+      "archive_bytes": 2738698876,
+      "archive_sha256": "f8ee873886726c96df58d40c4ae46baf9da558d901104bb06ac525d7d511a13a",
+      "entries": 74
+    },
+    {
+      "archive": "runs--root.zip",
+      "archive_bytes": 7369,
+      "archive_sha256": "dd898894850fc491eefca7bd1cf7d63a329067535adf0541fe19887c90ee8668",
+      "entries": 3
+    },
+    {
+      "archive": "powerwatch-support.zip",
+      "archive_bytes": 365642223,
+      "archive_sha256": "ab45ed98363b30eadf8c000a44d8f86b7092efda118fa37028984f0803647a4a",
+      "entries": 17
+    },
+    {
+      "archive": "code.zip",
+      "archive_bytes": 988627,
+      "archive_sha256": "8822b856bcfed7f7a49b138cac65c3bf222b732048a57029866cf61aaf14d7df",
+      "entries": 232
+    }
+  ]
+}

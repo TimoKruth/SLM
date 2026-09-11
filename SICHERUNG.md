@@ -2,6 +2,12 @@
 
 Stand: 11. September 2026. Auf Nutzerwunsch zunächst **lokale ZIP-Archive**, kein externer Upload. Ablage auf dem ursprünglichen Mac: `/Users/timokruth/SLM-Sicherungen/2026-09-11/`. Eine lokale Sicherung auf derselben SSD schützt nicht vor Verlust dieser SSD. Der öffentliche GitHub-Stand enthält Code, Dokumentation und aggregierte Ergebnisse; keine Rohdaten, Modellgewichte oder systemweiten Prozessprotokolle.
 
+## Geprüfter Bestand
+
+54 ZIP-Archive mit insgesamt 139,81 GiB (150,12 GB) und 15.439 Einträgen. Sämtliche Archive wurden vollständig gelesen und mit ihren SHA-256-/CRC-Prüfsummen geprüft. Eine tatsächliche Teilwiederherstellung von Code, PowerWatch und einem Laufbericht bestand: 304 wiederhergestellte Dateien erneut gehasht, Git-Bundle erfolgreich geklont und SQLite-Integritätsprüfung mit 57.026 Messpunkten erfolgreich. Prüfzeit und Einzelbestand: [backup-index.json](results/2026-09-11/backup-index.json).
+
+Der Code-Snapshot im ZIP ist Commit `bca55d7`; der anschließende Git-Commit ergänzt nur Sicherungsnachweise und Dokumentation. `SHA256SUMS` liegt neben den Archiven.
+
 ## Inhalt
 
 - `data--<Version>.zip`: jede Datenversion separat, zusätzlich lose Dateien in `data--root.zip`.
@@ -41,7 +47,7 @@ Historische JSON-Dateien und eingefrorene Hashlisten enthalten absolute Quellpfa
 
 ```sh
 git bundle verify /wiederhergestellt/code/repository.bundle
-git clone /wiederhergestellt/code/repository.bundle SLM-restored
+git clone --branch main /wiederhergestellt/code/repository.bundle SLM-restored
 cd SLM-restored
 uv sync --locked
 ```
