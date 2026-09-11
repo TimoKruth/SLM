@@ -1,0 +1,276 @@
+{
+  "schema": "slm.long_horizon_plan.v1",
+  "status": "planned_not_started",
+  "start_authorized": false,
+  "executable": false,
+  "created": "2026-09-10T11:42:44.757542+02:00",
+  "total_budget_seconds": 86400,
+  "budget": {
+    "preflight_seconds": 1200,
+    "training_seconds": 57600,
+    "evaluation_seconds": 20790,
+    "report_seconds": 600,
+    "reserve_seconds": 6210
+  },
+  "premise": "First block of a rotation retaining all 57 historical variants; no elimination based on previous short results.",
+  "parent": "/Users/timokruth/Projekte/SLM/runs/size-27m-2026-09-09-plus3h",
+  "parent_checkpoint": "checkpoint-0135594",
+  "data": "/Users/timokruth/Projekte/SLM/runs/size-campaign-2026-09-08/data-families",
+  "data_manifest_sha256": "a2939409af9341ea38abf45a49786c86c61f2e707871e275e06acb7f95254487",
+  "configurations": [
+    {
+      "id": "A",
+      "parameters": {
+        "lr": 3e-05,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "families",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    },
+    {
+      "id": "B",
+      "parameters": {
+        "lr": 3e-05,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "sources",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    },
+    {
+      "id": "C",
+      "parameters": {
+        "lr": 1e-05,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "families",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    },
+    {
+      "id": "D",
+      "parameters": {
+        "lr": 1e-05,
+        "schedule": "constant",
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-08,
+        "clip": 1.0,
+        "answer_weight": 1.0,
+        "prompt_weight": 1.0,
+        "reset_optimizer": false,
+        "microbatch": 2,
+        "accumulation": 1,
+        "precision": "fp32",
+        "execution": "compiled",
+        "train_context": 1024,
+        "eligibility": 1024,
+        "mixture": "sources",
+        "boost_family": null,
+        "initialization": "parent",
+        "init_std": 0.02,
+        "bias_correction": true,
+        "warmup_steps": 0,
+        "model": {
+          "vocab_size": 16384,
+          "dim": 512,
+          "layers": 6,
+          "heads": 8,
+          "hidden": 1368,
+          "context": 1024
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "long-horizon-r0-A",
+      "condition": "A",
+      "data_seed": 2026091001,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r0-B",
+      "condition": "B",
+      "data_seed": 2026091001,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r0-C",
+      "condition": "C",
+      "data_seed": 2026091001,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r0-D",
+      "condition": "D",
+      "data_seed": 2026091001,
+      "repetition": 0,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r1-D",
+      "condition": "D",
+      "data_seed": 2026091002,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r1-C",
+      "condition": "C",
+      "data_seed": 2026091002,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r1-B",
+      "condition": "B",
+      "data_seed": 2026091002,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    },
+    {
+      "id": "long-horizon-r1-A",
+      "condition": "A",
+      "data_seed": 2026091002,
+      "repetition": 1,
+      "training_process_seconds": 7200
+    }
+  ],
+  "training_endpoint": "fixed_process_wall_time_including_load_and_checkpoints",
+  "comparison_token_snapshots": [
+    15000000,
+    50000000
+  ],
+  "additional_saved_token_snapshots": [
+    30000000,
+    75000000,
+    100000000,
+    150000000
+  ],
+  "evaluations": {
+    "per_run": [
+      "15M_search",
+      "50M_search",
+      "final_search",
+      "final_fresh_confirmation"
+    ],
+    "parent": [
+      "fresh_confirmation"
+    ],
+    "maximum_processes": 33,
+    "compute_seconds": 600,
+    "process_seconds": 630,
+    "maximum_generated_tokens": 256,
+    "search_suite": "/Users/timokruth/Projekte/SLM/runs/parameter-study-timeout-recovery-2026-09-10/search-suite.json",
+    "confirmation_suite": "TO_BE_CREATED_AND_AUDITED_BEFORE_START",
+    "confirmation_target_tasks": 200,
+    "incomplete_snapshot_policy": "Mark unavailable; no time extension and no imputation."
+  },
+  "operating_conditions": {
+    "required_user_mode": "high_performance",
+    "ac_power": true,
+    "monitoring": "light",
+    "warmup_steps": 10,
+    "flush_seconds": 60,
+    "system_monitor": "PowerWatch",
+    "gpu_training_serial": true,
+    "evonn_overlap": "not_scheduled; serial project execution preferred for controlled comparisons"
+  },
+  "safeguards": {
+    "stop_file": "STOP",
+    "no_automatic_model_adoption": true,
+    "no_automatic_budget_extension": true,
+    "freeze_before_start": true,
+    "gpu_hang_recovery": "bounded, inherited from 43ac41c",
+    "evaluation_timeout": "pause immediately"
+  },
+  "implementation_required": [
+    "Fixed-wall-time endpoint must count as valid completion, unlike current fixed-token study.trial.",
+    "Periodic resumable checkpoints with optimizer/sampler and explicit active-budget accounting.",
+    "New 8-job supervisor; do not use existing 114-job campaign loop.",
+    "Fresh group-disjoint confirmation suite excluding all previous confirmation groups.",
+    "Verify full input hashes, actual high-performance mode, free resources and serialized GPU admission.",
+    "CPU failure-injection tests plus bounded GPU preflight only after explicit start authorization."
+  ]
+}

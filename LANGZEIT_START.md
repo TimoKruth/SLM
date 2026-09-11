@@ -21,3 +21,5 @@ Die GPU-Stufen bleiben seriell, jeweils durch `run_slm.py` und Monitoring light.
 Konservativ werden volle 1200s Vorabudget für Paralleltest, technische GPU-Prüfung, CPU-Tests, Suitenaufbereitung und Eingabeprüfung berechnet. Der nachfolgende Supervisor erhält 85.200s (23h40m) aus demselben neuen 24h-Budget. Das ist keine Verlängerung oder Wiederaufnahme der früheren abgeschlossenen Studie. Vorabkontrollen im Supervisor sind zusätzlich innerhalb dieser Restfrist berücksichtigt. Maximal geplante Stufen inkl. Bericht 79.110s. Unverbrauchte Reserve führt nicht zu längeren Trainings oder weiteren Varianten.
 
 Die tatsächliche Startzeit und harte Deadline stehen nach Start ausschließlich in `runs/long-horizon-2026-09-10/status.json`. Die Kampagne darf nicht bei laufendem Evonn automatisch dessen Einstellungen ändern oder dessen Prozesse beenden. Code und Dateneingaben werden vor Start eingefroren.
+
+Tatsächlicher Start: 2026-09-10T12:08:12.475366+02:00. Harte Deadline: 2026-09-11T11:48:12.475361+02:00. Neue Gegenprüfung: 200 Aufgaben aus 25 Quellen, keine Überschneidung der geprüften Gruppen.

@@ -104,3 +104,6 @@ runs/research-round2-2026-09-09`
 
 Start: `.venv/bin/python run_slm.py --module research.campaign --run
 runs/research-round2-2026-09-09`
+
+Gestartet am 2026-09-09T09:05:11.996530+02:00. Budgetgrenze: 2026-09-09T10:05:11.996510+02:00.
+Auswahl: 473 Aufgaben aus 31 Quellen; Gegenprüfung: 200 Aufgaben aus 25 Quellen.

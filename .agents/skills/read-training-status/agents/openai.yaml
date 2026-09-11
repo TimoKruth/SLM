@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trainingsstatus prüfen"
+  short_description: "Laufstatus, Fortschritt und Ergebnisse schnell lesen"
+  default_prompt: "Prüfe mit $read-training-status den aktuellen Trainingslauf und fasse neue Ergebnisse kurz zusammen."

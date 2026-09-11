@@ -21,3 +21,5 @@ Bisher kumuliert 24.563,759 Sekunden; aufgerundet 24.564. Weitere Reserve: 247 S
 ## Start
 
 Neue Kampagne: `runs/parameter-study-timeout-recovery-2026-09-10/`. Vorbereitung validiert und kopiert vollständige Ergebnisse unabhängig; alte Läufe und STOP-Sperren bleiben erhalten. Start ausschließlich über `run_slm.py --module study.campaign` aus diesem Worktree. Status, tatsächlicher Start und verbindliche Deadline stehen nach Start in `status.json`; der Nutzerauftrag ist in `START_AUTHORIZATION.json` vermerkt. Light-Monitoring und PowerWatch bleiben aktiv.
+
+Tatsächlicher Start: 2026-09-10T07:49:34.908356+02:00. Harte Budgetgrenze: 2026-09-11T00:56:03.908346+02:00. 92 Trainings und 87 Auswertungen übernommen; maximal geplante offene Stufen 45.020 Sekunden.

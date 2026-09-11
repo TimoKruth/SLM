@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-09-10T11:42:44.759856+02:00",
+  "window_start": "2026-09-10T11:37:47+02:00",
+  "window_end": "2026-09-10T11:42:32+02:00",
+  "sample_count": 20,
+  "latest_age_seconds": 12.264698028564453,
+  "metrics": {
+    "cpu": {
+      "mean_percent": 26.2635,
+      "min_percent": 21.870000000000005,
+      "max_percent": 33.2,
+      "latest_percent": 24.450000000000003
+    },
+    "gpu": {
+      "mean_percent": 8.45,
+      "min_percent": 1.0,
+      "max_percent": 32.0,
+      "latest_percent": 16.0
+    }
+  },
+  "available_ram_gib": 37.87141418457031,
+  "thermal_state": "normal",
+  "swapout_counter_delta": 0,
+  "power_settings": "Battery Power:\n Sleep On Power Button 1\n powermode            2\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         0\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n powermode            2\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         0\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10\n",
+  "power_source": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=24576099)\t100%; charged; 0:00 remaining present: true\n",
+  "interpretation": "System-wide samples, not per-process GPU attribution. No concurrent SLM probe was run.",
+  "evonn_evidence": {
+    "active_phase": "CPU contenders observed",
+    "protocol_device": "cpu",
+    "protocol_source": "/Users/timokruth/Projekte/EvoNN-confirmation-v2-20260909/EvoNN-Compare/src/evonn_compare/campaign.py:257",
+    "contender_source": "/Users/timokruth/Projekte/EvoNN-confirmation-v2-20260909/EvoNN-Contenders/src/evonn_contenders/runner.py:132"
+  }
+}
