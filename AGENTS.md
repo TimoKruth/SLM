@@ -142,3 +142,12 @@ Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring fü
 - Vollständige Adam-/Sampler-Checkpoints alle 300s, Tokenstände 15/30/50/75/100/150M. Auswertung bei 15M/50M und Zeitende auf 473er-Suite sowie Zeitende auf neuer 200er-Gegenprüfung aus 25 Quellen. Audit bestätigt keine Trainings-/früheren Gegenprüfungsgruppenüberschneidungen. Keine externe Transferbehauptung.
 - 89 CPU-Tests plus echter Test von Unterbrechung/Checkpoint/Wiederaufnahme/Zeitende bestanden. Light-Monitoring, PowerWatch und begrenzte GPU-Recovery aktiv. Weitere Fehler pausieren. Evonn wird weder signalisiert noch verändert; sein Fortschritt wird pro Stufe und alle 60s erfasst. Veränderte Überlappung und Hochleistungsmodus bei Vergleichen beachten.
 - Historische Planungsdateien bleiben unverändert eingefroren; ihre frühere Startsperre ist kein aktueller Status der jetzt autorisierten Kampagne. Aktive Code-/Daten-/Planeingaben nicht ändern.
+
+
+# Langzeitvergleich nach Nutzerpause fortgesetzt (10. September 2026)
+
+- Nutzerauftrag „fortsetzen“. Historische Kampagne `runs/long-horizon-2026-09-10/` bleibt STOP-gesperrt. Neue aktive Sitzung `runs/long-horizon-resume-2026-09-10/`, Code `/Users/timokruth/Projekte/SLM-long-resume`, Branch `codex/long-horizon-resume`, Commit `5312766`. Details `LANGZEIT_FORTSETZUNG.md`.
+- Drei vollständige Trainings und sämtliche Auswertungen unabhängig kopiert und gehasht. Lauf r0-D setzt Checkpoint `checkpoint-0137865` inklusive Adam/Sampler fort; 6968,325s Restprozessbudget, danach vier unveränderte Zweistundenläufe. Keine Wiederholung fertiger Trainings, kein Zurücksetzen der Tokenzahlen.
+- Startbudget 62723,296s nach 23263,704s bisherigem Verbrauch plus 413s konservativer Vorbereitung. Pausenzeit ausgenommen. Neue Deadline 2026-09-11T13:10:46.176870+02:00; Status/Frist in status.json verbindlich. Kein neues 24h-Budget.
+- Netzbetrieb jetzt powermode 1 statt zuvor 2, Änderungszeit unbekannt. Einstellung unverändert gelassen; RUN_CONDITIONS/START_AUTHORIZATION beachten. EvoNN bereits abgeschlossen.
+- Neuer Resume-Supervisor, numerischer Kern unverändert. 99 Tests und tatsächlicher Light-Monitoring-Einstieg bis zur STOP-Sperre bestanden; erster Launcher-Registrierungsfehler vor GPU-Arbeit korrigiert. Initiale Eingaben/Kopien vor GPU-Arbeit geprüft, kurze Health-Stufe im Restbudget. Light-Monitoring, PowerWatch und begrenzte Recovery bleiben aktiv. Keine aktiven Eingaben verändern, keine automatische Verlängerung oder Modellübernahme.
