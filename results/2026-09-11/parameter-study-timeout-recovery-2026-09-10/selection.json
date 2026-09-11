@@ -1,0 +1,41 @@
+{
+  "contender": "mixture-sources",
+  "search_passed": false,
+  "contrast": {
+    "accuracy_deltas": [
+      0.005249669312169358,
+      0.0515873015873016
+    ],
+    "mean_accuracy_delta": 0.02841848544973548,
+    "family_deltas": {
+      "entailment": 0.07291666666666669,
+      "mathematics": 0.0,
+      "science_and_causality": -0.01438492063492064,
+      "reading_and_extraction": -0.02083333333333333,
+      "commonsense_and_social": 0.0390625,
+      "dialogue": 0.09375
+    },
+    "mean_answer_loss_delta": -0.0036818523221570088,
+    "passes_screen": false,
+    "reference": "baseline",
+    "phase": "adaptation",
+    "block": "adaptation",
+    "speed_ratios": [
+      1.0808625588784846,
+      1.0887992505564434
+    ],
+    "parent_guard": {
+      "accuracy_deltas": [
+        0.0028521825396825573,
+        0.007316468253968256
+      ],
+      "answer_loss_deltas": [
+        -0.009447205246373436,
+        0.0062579754577059
+      ],
+      "passed": false
+    }
+  },
+  "criterion": "Among completed adaptation (not context/cold) variants, require both paired accuracy gains >=2pp, no average family decline >5pp, and no loss/accuracy decline against unchanged parent in either repetition. Rank passing status then mean accuracy gain then reference answer loss. Even if none passes, take best exploratory contender into paired 15M-token replication. Long confirmation uses fresh groups, two new data seeds and unchanged-parent control; never auto-adopt.",
+  "selected_before_confirmation": true
+}

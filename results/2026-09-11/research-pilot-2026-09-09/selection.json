@@ -1,0 +1,42 @@
+{
+  "contender": "answer-weight",
+  "search_passed": false,
+  "contrasts": {
+    "higher-lr": {
+      "accuracy_deltas": [
+        -0.02728174603174599,
+        -0.033730158730158694
+      ],
+      "mean_accuracy_delta": -0.030505952380952342,
+      "family_deltas": {
+        "entailment": -0.12499999999999997,
+        "mathematics": 0.0,
+        "science_and_causality": -0.026785714285714288,
+        "reading_and_extraction": 0.0,
+        "commonsense_and_social": -0.03125,
+        "dialogue": 0.0
+      },
+      "mean_answer_loss_delta": 0.08850701280396378,
+      "passes_screen": false
+    },
+    "answer-weight": {
+      "accuracy_deltas": [
+        -0.016121031746031744,
+        0.002480158730158777
+      ],
+      "mean_accuracy_delta": -0.006820436507936484,
+      "family_deltas": {
+        "entailment": 0.0,
+        "mathematics": 0.0,
+        "science_and_causality": 0.0267857142857143,
+        "reading_and_extraction": 0.010416666666666671,
+        "commonsense_and_social": -0.015625,
+        "dialogue": -0.0625
+      },
+      "mean_answer_loss_delta": 0.0074949419527735595,
+      "passes_screen": false
+    }
+  },
+  "rule": "Mean of equally weighted source accuracies within each scored family, then family macro. Contender ranked by mean paired accuracy gain; reference answer loss breaks ties. Pass requires >=2pp gain in both data-order repetitions and no mean family regression >5pp. Repeat criterion on separate confirmation suite. Never auto-promote or extend budget.",
+  "selected_before_confirmation": true
+}

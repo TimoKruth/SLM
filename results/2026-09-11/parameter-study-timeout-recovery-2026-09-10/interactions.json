@@ -1,0 +1,61 @@
+{
+  "status": "completed",
+  "effects": {
+    "lr": {
+      "accuracy_contrasts": [
+        -0.018084490740740783,
+        -0.007357804232804174
+      ],
+      "mean": -0.012721147486772479,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    },
+    "answer_weight": {
+      "accuracy_contrasts": [
+        -0.011140046296296308,
+        -0.016906415343915362
+      ],
+      "mean": -0.014023230820105835,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    },
+    "weight_decay": {
+      "accuracy_contrasts": [
+        -0.0008680555555555525,
+        0.0003720238095237943
+      ],
+      "mean": -0.0002480158730158791,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    },
+    "lr x answer_weight": {
+      "accuracy_contrasts": [
+        -0.012442129629629595,
+        0.0012400793650793884
+      ],
+      "mean": -0.005601025132275103,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    },
+    "lr x weight_decay": {
+      "accuracy_contrasts": [
+        -0.001736111111111105,
+        -0.0027281746031746212
+      ],
+      "mean": -0.002232142857142863,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    },
+    "answer_weight x weight_decay": {
+      "accuracy_contrasts": [
+        0.001736111111111105,
+        0.0007440476190475886
+      ],
+      "mean": 0.0012400793650793468,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    },
+    "lr x answer_weight x weight_decay": {
+      "accuracy_contrasts": [
+        0.00347222222222221,
+        -0.0054563492063492425
+      ],
+      "mean": -0.0009920634920635163,
+      "interpretation": "High-minus-low; interactions are differences of differences, averaged over remaining factors."
+    }
+  }
+}

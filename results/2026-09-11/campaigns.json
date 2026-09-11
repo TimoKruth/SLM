@@ -1,0 +1,225 @@
+[
+  {
+    "name": "broad-886-2026-09-08",
+    "status": "completed",
+    "finished_at": "2026-09-08T07:01:30.369337+02:00"
+  },
+  {
+    "name": "broad-baseline-2026-09-07"
+  },
+  {
+    "name": "broad-campaign-2026-09-07",
+    "status": "completed",
+    "finished_at": "2026-09-09T20:27:33.942095+02:00"
+  },
+  {
+    "name": "broad-control-2026-09-07",
+    "status": "completed",
+    "finished_at": "2026-09-07T16:11:46.573016+02:00"
+  },
+  {
+    "name": "broad-families-2026-09-07-3h",
+    "status": "completed",
+    "finished_at": "2026-09-07T19:19:32.164755+02:00"
+  },
+  {
+    "name": "broad-monitoring-2026-09-07"
+  },
+  {
+    "name": "broad-monitoring-confirmation-2026-09-07"
+  },
+  {
+    "name": "broad-sources-2026-09-07-3h",
+    "status": "completed",
+    "finished_at": "2026-09-07T22:22:41.116958+02:00"
+  },
+  {
+    "name": "broad-validation-2026-09-07"
+  },
+  {
+    "name": "code-eval-2026-09-07"
+  },
+  {
+    "name": "code-eval-preflight-2026-09-07"
+  },
+  {
+    "name": "eval-preparation-2026-09-07"
+  },
+  {
+    "name": "expanded-2026-09-07-6h",
+    "status": "completed",
+    "finished_at": "2026-09-07T15:19:13.621527+02:00"
+  },
+  {
+    "name": "long-horizon-2026-09-10",
+    "status": "paused",
+    "phase": "long-horizon-r0-D",
+    "started": "2026-09-10T12:08:12.475366+02:00",
+    "finished": "2026-09-10T18:15:56.179067+02:00",
+    "deadline": "2026-09-11T11:48:12.475361+02:00",
+    "elapsed_seconds": 22063.703722953796,
+    "total_budget_spent_seconds": 23263.70372390747,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "name": "long-horizon-resume-2026-09-10",
+    "status": "completed",
+    "phase": "finished",
+    "started": "2026-09-10T19:45:22.880600+02:00",
+    "finished": "2026-09-11T05:53:37.092842+02:00",
+    "deadline": "2026-09-11T13:10:46.176870+02:00",
+    "elapsed_seconds": 36494.21226596832,
+    "total_budget_spent_seconds": 60170.91599082947,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "name": "long-horizon-validation-2026-09-10"
+  },
+  {
+    "name": "monitoring-2026-09-07",
+    "status": "calibration_failed"
+  },
+  {
+    "name": "next-preparation-2026-09-08"
+  },
+  {
+    "name": "night-2026-09-06",
+    "status": "completed",
+    "finished_at": "2026-09-07T05:50:00.315085+02:00"
+  },
+  {
+    "name": "parallel-probe-2026-09-10",
+    "status": "completed",
+    "phase": "evonn-only-after",
+    "started": "2026-09-10T11:54:14.081448+02:00",
+    "finished": "2026-09-10T12:02:39.721412+02:00",
+    "elapsed_seconds": 505.6386912090238
+  },
+  {
+    "name": "parameter-study-2026-09-09",
+    "status": "stopped",
+    "phase": "interaction-r1-factorial-01",
+    "started": "2026-09-09T09:45:02.651476+02:00",
+    "finished": "2026-09-09T11:36:08.846228+02:00",
+    "deadline": "2026-09-10T09:45:02.651469+02:00",
+    "elapsed_seconds": 6666.194799900055,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "name": "parameter-study-recovery-2026-09-09",
+    "status": "paused_infrastructure",
+    "phase": "cold-r1-cold-dim-640-search",
+    "started": "2026-09-09T22:05:42.638012+02:00",
+    "finished": "2026-09-10T03:01:59.397176+02:00",
+    "deadline": "2026-09-10T20:12:35.638007+02:00",
+    "elapsed_seconds": 17776.7592420578,
+    "total_budget_spent_seconds": 24563.7592420578,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "name": "parameter-study-timeout-recovery-2026-09-10",
+    "status": "completed",
+    "phase": "finished",
+    "started": "2026-09-10T07:49:34.908356+02:00",
+    "finished": "2026-09-10T11:16:07.622523+02:00",
+    "deadline": "2026-09-11T00:56:03.908346+02:00",
+    "elapsed_seconds": 12392.714262723923,
+    "total_budget_spent_seconds": 37203.71426272392,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "name": "performance-2026-09-07",
+    "status": "completed",
+    "finished_at": "2026-09-07T15:30:51.946158+02:00"
+  },
+  {
+    "name": "pr-1-review-2026-09-07",
+    "status": "complete"
+  },
+  {
+    "name": "profile",
+    "status": "completed",
+    "finished_at": "2026-09-06T23:06:15.614770+02:00"
+  },
+  {
+    "name": "random-search-pilot-2026-09-08",
+    "status": "completed",
+    "elapsed_seconds": 212.25831294059753
+  },
+  {
+    "name": "research-pilot-2026-09-09",
+    "status": "completed",
+    "phase": "finished",
+    "started": "2026-09-09T07:41:07.458230+02:00",
+    "finished": "2026-09-09T08:16:20.980347+02:00",
+    "deadline": "2026-09-09T08:41:07.458211+02:00",
+    "elapsed_seconds": 2113.522125720978
+  },
+  {
+    "name": "research-round2-2026-09-09",
+    "status": "completed",
+    "phase": "finished",
+    "started": "2026-09-09T09:05:11.996530+02:00",
+    "finished": "2026-09-09T09:45:01.483712+02:00",
+    "deadline": "2026-09-09T10:05:11.996510+02:00",
+    "elapsed_seconds": 2389.4871950149536
+  },
+  {
+    "name": "size-27m-2026-09-08-3h",
+    "status": "completed",
+    "finished_at": "2026-09-08T11:58:32.275047+02:00"
+  },
+  {
+    "name": "size-27m-2026-09-09-plus3h",
+    "status": "completed",
+    "finished_at": "2026-09-09T03:38:53.407260+02:00"
+  },
+  {
+    "name": "size-97m-2026-09-08-3h",
+    "status": "completed",
+    "finished_at": "2026-09-08T15:08:52.647667+02:00"
+  },
+  {
+    "name": "size-97m-2026-09-09-plus3h",
+    "status": "completed",
+    "finished_at": "2026-09-09T06:41:40.950233+02:00"
+  },
+  {
+    "name": "size-campaign-2026-09-08",
+    "status": "completed",
+    "finished_at": "2026-09-08T15:25:39.824064+02:00"
+  },
+  {
+    "name": "size-continuation-2026-09-09",
+    "status": "completed",
+    "finished_at": "2026-09-09T06:45:14.602130+02:00"
+  },
+  {
+    "name": "size-eval-preparation-2026-09-08"
+  },
+  {
+    "name": "size-preflight-2026-09-08",
+    "status": "completed",
+    "finished_at": "2026-09-08T08:49:34.312652+02:00"
+  },
+  {
+    "name": "study-repair-2026-09-09"
+  },
+  {
+    "name": "system-resources",
+    "status": "ok"
+  },
+  {
+    "name": "timeout-repair-2026-09-10"
+  },
+  {
+    "name": "v2-smoke-2026-09-07",
+    "status": "completed",
+    "finished_at": "2026-09-07T09:17:26.607593+02:00"
+  },
+  {
+    "name": "warmup-2026-09-06",
+    "status": "completed",
+    "finished_at": "2026-09-06T23:13:03.395032+02:00"
+  }
+]

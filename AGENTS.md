@@ -1,3 +1,13 @@
+# Aktueller Projektstand – 11. September 2026
+
+- Alle acht Langzeittrainings und Auswertungen sind abgeschlossen; keine aktive Trainingskampagne und keine automatische Nutzung der Restreserve. Historische Start- und Pausenabschnitte unten sind keine aktuelle Startfreigabe.
+- Codezweige werden auf main zusammengeführt. Zentrale Einordnung: ERKENNTNISSE.md; versionierte aggregierte Belege: results/2026-09-11/INDEX.md.
+- Nutzer wünscht zunächst getrennte lokale ZIP64-Archive. Keine externe Datensicherung beauftragt, nachdem die Speicherfrage auf lokale ZIPs eingegrenzt wurde. Umfang/Prüfung/Wiederherstellung: SICHERUNG.md. Rohdaten und systemweite Prozessprotokolle nicht ins öffentliche Repository aufnehmen.
+- Künftige Änderungen zeitnah committen und bei beauftragter Remote-Sicherung pushen. Historische Worktrees und eingefrorene Laufdaten erhalten. Erkenntnisse nach Auswertung versioniert dokumentieren, nicht nur im Chat oder ignorierten runs/.
+- read-training-status bleibt ausschließlich Projekt-Skill unter .agents/skills/. Der allgemeine read-system-resources-Skill ist global.
+
+# Historische Betriebs- und Versuchsprotokolle
+
 # Künftige Trainingsläufe
 
 Der Nutzer hat am 7. September 2026 leichtgewichtiges Performance-Monitoring für die nächsten Läufe aktiviert.

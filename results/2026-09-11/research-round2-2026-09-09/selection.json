@@ -1,0 +1,64 @@
+{
+  "contender": "lower-lr",
+  "search_passed": false,
+  "contrasts": {
+    "lower-lr": {
+      "accuracy_deltas": [
+        -0.014343584656084651,
+        -0.0018601190476190688
+      ],
+      "mean_accuracy_delta": -0.00810185185185186,
+      "family_deltas": {
+        "entailment": 0.0,
+        "mathematics": 0.0,
+        "science_and_causality": -0.027777777777777762,
+        "reading_and_extraction": 0.010416666666666657,
+        "commonsense_and_social": 0.0,
+        "dialogue": -0.03125
+      },
+      "mean_answer_loss_delta": -0.01927172057058857,
+      "passes_screen": false,
+      "parent_guard": {
+        "accuracy_deltas": [
+          -0.029844576719576688,
+          0.0014880952380952328
+        ],
+        "answer_loss_deltas": [
+          -0.017299536727612752,
+          -0.020358134528501548
+        ],
+        "passed": false
+      }
+    },
+    "mild-answer-weight": {
+      "accuracy_deltas": [
+        -0.01736111111111116,
+        -0.012896825396825407
+      ],
+      "mean_accuracy_delta": -0.015128968253968283,
+      "family_deltas": {
+        "entailment": 0.031249999999999944,
+        "mathematics": -0.010416666666666666,
+        "science_and_causality": -0.028273809523809493,
+        "reading_and_extraction": -0.005208333333333343,
+        "commonsense_and_social": 0.015625,
+        "dialogue": -0.09375
+      },
+      "mean_answer_loss_delta": 0.002727880815779238,
+      "passes_screen": false,
+      "parent_guard": {
+        "accuracy_deltas": [
+          -0.0328621031746032,
+          -0.009548611111111105
+        ],
+        "answer_loss_deltas": [
+          0.005261854044422254,
+          0.0010796774721990587
+        ],
+        "passed": false
+      }
+    }
+  },
+  "rule": "Mean of equally weighted source accuracies within each scored family, then family macro. Contender ranked by mean paired accuracy gain; reference answer loss breaks ties. Pass requires >=2pp gain in both data-order repetitions and no mean family regression >5pp. Repeat criterion on separate confirmation suite. Never auto-promote or extend budget. Followup additionally requires each contender repetition to match or beat the unchanged parent accuracy and reference answer loss on BOTH suites. This is a conservative screening guard, not significance.",
+  "selected_before_confirmation": true
+}

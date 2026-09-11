@@ -1,0 +1,22 @@
+{
+  "long-r0-baseline": {
+    "accuracy_delta": -0.022776124338624304,
+    "answer_loss_delta": 0.005559232968195937,
+    "interpretation": "Same trajectory at ~1.5M and ~15M added tokens, fixed search suite."
+  },
+  "long-r0-mixture-sources": {
+    "accuracy_delta": 0.01388888888888884,
+    "answer_loss_delta": -0.0364006104078165,
+    "interpretation": "Same trajectory at ~1.5M and ~15M added tokens, fixed search suite."
+  },
+  "long-r1-baseline": {
+    "accuracy_delta": -0.014798280423280435,
+    "answer_loss_delta": -0.007829162128867084,
+    "interpretation": "Same trajectory at ~1.5M and ~15M added tokens, fixed search suite."
+  },
+  "long-r1-mixture-sources": {
+    "accuracy_delta": -0.0006200396825396526,
+    "answer_loss_delta": -0.038535776832267166,
+    "interpretation": "Same trajectory at ~1.5M and ~15M added tokens, fixed search suite."
+  }
+}

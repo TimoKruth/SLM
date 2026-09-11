@@ -1,0 +1,30 @@
+{
+  "accuracy_deltas": [
+    0.016319444444444442,
+    0.02604166666666663
+  ],
+  "mean_accuracy_delta": 0.021180555555555536,
+  "family_deltas": {
+    "entailment": 0.0625,
+    "mathematics": 0.020833333333333332,
+    "science_and_causality": 0.012500000000000011,
+    "reading_and_extraction": -0.046875,
+    "commonsense_and_social": 0.015625,
+    "dialogue": 0.0625
+  },
+  "mean_answer_loss_delta": -0.01757291740854272,
+  "passes_screen": false,
+  "contender": "lower-lr",
+  "confirmed_candidate": false,
+  "parent_guard": {
+    "accuracy_deltas": [
+      -0.009027777777777746,
+      -0.014236111111111116
+    ],
+    "answer_loss_deltas": [
+      -0.030811951921787095,
+      -0.02529648056486633
+    ],
+    "passed": false
+  }
+}

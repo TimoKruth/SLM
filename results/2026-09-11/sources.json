@@ -1,0 +1,127 @@
+[
+  {
+    "source": "runs/code-eval-2026-09-07/REPORT.md",
+    "export": "code-eval-2026-09-07/REPORT.md",
+    "sha256": "70269b74bf5548eb16a16b3eb2f8727125e9c5205b8049f4f9bbde47f59ebd6a"
+  },
+  {
+    "source": "runs/broad-886-2026-09-08/REPORT.md",
+    "export": "broad-886-2026-09-08/REPORT.md",
+    "sha256": "862bbbebef12d7cc80206c4f976f3262aed9c8999aabdc4de1266b5a21733cfa"
+  },
+  {
+    "source": "runs/broad-campaign-2026-09-07/REPORT.md",
+    "export": "broad-campaign-2026-09-07/REPORT.md",
+    "sha256": "7cb8fbf1c52d9187426171f8774dfe516f06ec7a196fe1e6299faa19be82e4b4"
+  },
+  {
+    "source": "runs/broad-monitoring-2026-09-07/REPORT.md",
+    "export": "broad-monitoring-2026-09-07/REPORT.md",
+    "sha256": "587371d6d0484d4b79dbd0e0f71f696a14ca6254cde99d633175b33ff5e566ee"
+  },
+  {
+    "source": "runs/broad-monitoring-confirmation-2026-09-07/REPORT.md",
+    "export": "broad-monitoring-confirmation-2026-09-07/REPORT.md",
+    "sha256": "ea42c37bb56536430f0160d092478933dcc7cef733b047639936664925e70964"
+  },
+  {
+    "source": "runs/size-campaign-2026-09-08/REPORT.md",
+    "export": "size-campaign-2026-09-08/REPORT.md",
+    "sha256": "8fedf2ba802728061e590d0698530a43f0091a38fe4616cd87663dc9e54882aa"
+  },
+  {
+    "source": "runs/size-continuation-2026-09-09/REPORT.md",
+    "export": "size-continuation-2026-09-09/REPORT.md",
+    "sha256": "6b0f42b979c717fb33ac3fad34b026493d29a36195a2174f25dd174c7478e251"
+  },
+  {
+    "source": "runs/random-search-pilot-2026-09-08/REPORT.md",
+    "export": "random-search-pilot-2026-09-08/REPORT.md",
+    "sha256": "90b5a49c22d83750cb87f56b702f0ba3141a90069b2f6e1b3284158a86f70c65"
+  },
+  {
+    "source": "runs/research-pilot-2026-09-09/REPORT.md",
+    "export": "research-pilot-2026-09-09/REPORT.md",
+    "sha256": "bd28047f7657c544e7a843c6246ba1d2ae0fd1c7aaec16c6e4be86949f2e0037"
+  },
+  {
+    "source": "runs/research-pilot-2026-09-09/confirmation.json",
+    "export": "research-pilot-2026-09-09/confirmation.json",
+    "sha256": "4fee7d1cc844c91f7dfb941c549133a3a17ea2dd00e47898f6326d274db82b63"
+  },
+  {
+    "source": "runs/research-pilot-2026-09-09/selection.json",
+    "export": "research-pilot-2026-09-09/selection.json",
+    "sha256": "dad8aac95124e6e34c660fbd3af93e1f754aa1d1e066355aad40da0fb3488d07"
+  },
+  {
+    "source": "runs/research-round2-2026-09-09/REPORT.md",
+    "export": "research-round2-2026-09-09/REPORT.md",
+    "sha256": "e9c04fa58d3b2aacf8850089599ada6d47183433360681e401bdb8806c97dfba"
+  },
+  {
+    "source": "runs/research-round2-2026-09-09/confirmation.json",
+    "export": "research-round2-2026-09-09/confirmation.json",
+    "sha256": "63b56eaef51cbded98d7254dd3ba2666ee4eba7bddfb9dc49d8dcb70ce505db9"
+  },
+  {
+    "source": "runs/research-round2-2026-09-09/selection.json",
+    "export": "research-round2-2026-09-09/selection.json",
+    "sha256": "c4542d44678c32525046689d4d6f48d0054c9ff17ea887174ab4e704471e4311"
+  },
+  {
+    "source": "runs/parameter-study-timeout-recovery-2026-09-10/REPORT.md",
+    "export": "parameter-study-timeout-recovery-2026-09-10/REPORT.md",
+    "sha256": "3f2c8cd771208de2b6cfb2af027576620bb67fe62a7e3fe47e0dda4d4b395819"
+  },
+  {
+    "source": "runs/parameter-study-timeout-recovery-2026-09-10/effects.json",
+    "export": "parameter-study-timeout-recovery-2026-09-10/effects.json",
+    "sha256": "6c264c613b4ed5f328fe45ccdb79c8d646d65fd0d1115b226a94536f6f804ff3"
+  },
+  {
+    "source": "runs/parameter-study-timeout-recovery-2026-09-10/interactions.json",
+    "export": "parameter-study-timeout-recovery-2026-09-10/interactions.json",
+    "sha256": "cfebe478e51520d261046755d8c0477fb4b42078a2c61436cbe190dc95490041"
+  },
+  {
+    "source": "runs/parameter-study-timeout-recovery-2026-09-10/duration-effects.json",
+    "export": "parameter-study-timeout-recovery-2026-09-10/duration-effects.json",
+    "sha256": "7c84738e899cb81d5a3ad82e20f45eecef5af4413533299a4ead6416b9f85603"
+  },
+  {
+    "source": "runs/parameter-study-timeout-recovery-2026-09-10/confirmation.json",
+    "export": "parameter-study-timeout-recovery-2026-09-10/confirmation.json",
+    "sha256": "0f83fcc50a2ef9c0e180d02d97b136bd940c4e63808635a7b49f73ba712af850"
+  },
+  {
+    "source": "runs/parameter-study-timeout-recovery-2026-09-10/selection.json",
+    "export": "parameter-study-timeout-recovery-2026-09-10/selection.json",
+    "sha256": "d0ff70149d6d0140b591fdeb32e9f588ae71d94c44232ba057bf735b6988ed13"
+  },
+  {
+    "source": "runs/parallel-probe-2026-09-10/REPORT.md",
+    "export": "parallel-probe-2026-09-10/REPORT.md",
+    "sha256": "08ec07775856166d5465162b66023c11bacf8249093ffb935dfceeece46dcd09"
+  },
+  {
+    "source": "runs/long-horizon-resume-2026-09-10/REPORT.md",
+    "export": "long-horizon-resume-2026-09-10/REPORT.md",
+    "sha256": "1148dbaa755182f39fcaf6225e00776dfbfcb63b94484a7f19aa18c0014a9fcc"
+  },
+  {
+    "source": "runs/long-horizon-resume-2026-09-10/quality.json",
+    "export": "long-horizon-resume-2026-09-10/quality.json",
+    "sha256": "f7dc64ebe5e645725f6b4737e38d3683c6432077a329f55654eb336f127b2920"
+  },
+  {
+    "source": "runs/long-horizon-resume-2026-09-10/assessment.json",
+    "export": "long-horizon-resume-2026-09-10/assessment.json",
+    "sha256": "022a37ec54d00dbdae73f6c5858803f3e6b14c4e04aa826f1e2037d8d9de83a8"
+  },
+  {
+    "source": "runs/long-horizon-resume-2026-09-10/contrasts.json",
+    "export": "long-horizon-resume-2026-09-10/contrasts.json",
+    "sha256": "609c6ad5b45066210d50526a7d90d5bd264d0afdb36ff8d2b2f8f8424a77c7d5"
+  }
+]

@@ -50,7 +50,7 @@ def run_python(code, stdin='', timeout=3):
         (d / 'runner.py').write_text("import resource\nresource.setrlimit(resource.RLIMIT_CPU, (2, 2))\nresource.setrlimit(resource.RLIMIT_FSIZE, (1048576, 1048576))\nresource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))\nresource.setrlimit(resource.RLIMIT_CORE, (0, 0))\nexec(compile(open('candidate.py').read(), 'candidate.py', 'exec'), {'__name__': '__main__'})\n")
         (d / 'input').write_text(stdin)
         with (d / 'input').open() as inp, (d / 'stdout').open('w+') as out, (d / 'stderr').open('w+') as err:
-            p = subprocess.Popen(['/usr/bin/sandbox-exec', '-f', str(d / 'sandbox.sb'), sys.executable, '-I', '-B', str(d / 'runner.py')], stdin=inp, stdout=out, stderr=err, cwd=d, start_new_session=True, env={'PATH': '/usr/bin:/bin', 'TMPDIR': str(d), 'HOME': str(d), 'LC_ALL': 'C.UTF-8'})
+            p = subprocess.Popen(['/usr/bin/sandbox-exec', '-f', str(d / 'sandbox.sb'), str(Path(sys.executable).resolve()), '-I', '-B', str(d / 'runner.py')], stdin=inp, stdout=out, stderr=err, cwd=d, start_new_session=True, env={'PATH': '/usr/bin:/bin', 'TMPDIR': str(d), 'HOME': str(d), 'LC_ALL': 'C.UTF-8'})
             timed_out = False
             memory_exceeded = False
             deadline = time.monotonic() + timeout

@@ -1,0 +1,19 @@
+{
+  "accuracy_deltas": [
+    -0.03541666666666665,
+    -0.04930555555555555
+  ],
+  "mean_accuracy_delta": -0.0423611111111111,
+  "family_deltas": {
+    "entailment": -0.041666666666666685,
+    "mathematics": 0.0,
+    "science_and_causality": -0.02500000000000001,
+    "reading_and_extraction": -0.03125,
+    "commonsense_and_social": -0.03125,
+    "dialogue": -0.125
+  },
+  "mean_answer_loss_delta": 0.016996744847856515,
+  "passes_screen": false,
+  "contender": "answer-weight",
+  "confirmed_candidate": false
+}

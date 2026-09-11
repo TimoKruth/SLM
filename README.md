@@ -1,6 +1,6 @@
 **SLM aus Benchmarks — Projektskizze**
 
-Stand: 7. September 2026. Die ersten beiden Trainingsläufe sind abgeschlossen. Die nächste [breite Versuchsreihe](BREITES_LERNEN.md) verwendet 32 Quellen und getrennte Fähigkeitsmessungen. Ziel ist ein vielseitiges Sprachmodell; Coding ist eine mögliche Fähigkeit unter mehreren. Historische Betriebsdetails stehen in [NACHTLAUF.md](NACHTLAUF.md) und [Lauf 2](LAUF_2.md).
+Stand: **11. September 2026**. Größenvergleich, Fortsetzungen und Parameterstudien einschließlich des letzten 2×2-Langzeitvergleichs sind abgeschlossen. Es gibt noch keinen bestätigten allgemeinen Transfergewinn. Aktuelle [Erkenntnisse](ERKENNTNISSE.md), [versionierte Ergebnisberichte](results/2026-09-11/INDEX.md) und [Sicherung/Wiederherstellung](SICHERUNG.md) sind die zentralen Einstiegspunkte. Die folgenden Absätze enthalten auch die ursprüngliche Projektskizze und historische Pilotstände.
 
 Wir untersuchen, ob die Aufgabenvielfalt bestehender Sprachmodell-Benchmarks ausreicht, um ein kleines Sprachmodell von Grund auf zu trainieren, das auf unbekannte Aufgaben transferiert. Die Hypothese: Aufgabenstellungen, Kontext, Referenzantworten und vorhandene Lösungswege enthalten verdichtete Lernsignale für Sprache, Schlussfolgern und Programmieren. Ein Netz könnte daraus wiederverwendbare Fähigkeiten entwickeln.
 
