@@ -1,6 +1,31 @@
 # Hardware-Optimierung und Ausgabequalität
 
-**Aktualisierung: Studie läuft seit 11.09.2026, 21:20:00 Europe/Berlin auf Netzstrom. Harte Deadline: 12.09.2026, 03:19:59. Alle vier realen Checkpoint-Fortsetzungskontrollen bestanden. Der nachfolgende Wartehinweis beschreibt die abgeschlossene Startvorbereitung.**
+## Konservativer Vergleich vorbereitet — nicht gestartet
+
+Neuer ausdrücklicher Auftrag: sechs Stunden Vergleich vorbereiten, **ohne Start**.
+Code `e43367d` im separaten Worktree `/Users/timokruth/Projekte/SLM-conservative-optimization`,
+Branch `codex/conservative-optimization`.
+
+- [Vollständiger Plan und spätere Bedienung](/Users/timokruth/Projekte/SLM-conservative-optimization/CONSERVATIVE_FP32_6H.md)
+- [Vorbereitungsbeleg](/Users/timokruth/Projekte/SLM-conservative-optimization/runs/conservative-fp32-6h-2026-09-12/READY.json)
+
+FP32 bleibt unverändert; einziger Faktor ist Warten auf GPU-Ergebnisse nach jedem
+Update oder nach vier Updates. 20 kurze Kontrollen, sechs längere Läufe über drei
+Datenreihenfolgen und 26 Qualitätsauswertungen. Budget einschließlich Reserven:
+höchstens 21.600 Sekunden; je längerer Lauf 2.750 Sekunden inklusive Checkpoints.
+Neue Auswahlsuite 384 und Gegenprüfung 288 Aufgaben aus 24 Quellen. Beide Suiten
+prüfen den Stand nach 16.384 identischen Updates sowie den Zeitendpunkt.
+
+51 CPU-Tests bestanden, Daten-/Codeeingaben gehasht, STOP gesetzt. Keine nutzbare
+Autorisierung, keine GPU-Prüfung, kein gestarteter Prozess, keine automatische
+Warteschlange. Der laufende Langzeitblock wurde nicht verändert. Ein späterer Start
+benötigt einen eigenen ausdrücklichen Auftrag und freie Projekt-GPU-Kapazität.
+
+## Historie: erste größere Optimierungsstudie abgeschlossen
+
+**Die Studie vom 11./12.09.2026 endete vollständig um 01:31:50 Europe/Berlin.
+Kein Kandidat erfüllte alle vorab gesetzten Kriterien; keine Optimierung übernommen.
+Die nachfolgenden Start-/Warte-/Pausenangaben dokumentieren ausschließlich den damaligen Ablauf.**
 
 Der Nutzer hat ausdrücklich eine neue **sechsstündige Studie samt Start** beauftragt.
 
