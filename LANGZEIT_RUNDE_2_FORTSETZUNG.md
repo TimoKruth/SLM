@@ -21,3 +21,7 @@ Alle 413 historischen eingefrorenen Eingaben erneut gehasht und unverändert. Ch
 Beim Start am Netz, Akku 100%, ungefähr 42 GiB verfügbarer RAM; keine konkurrierenden SLM-GPU-Prozesse. Leistungseinstellungen unverändert, genau erfasst in `RUN_CONDITIONS.json` / `START_AUTHORIZATION.json`, zusätzlich je Lauf. Light-Monitoring und PowerWatch bleiben aktiv. Historische Betriebsunterschiede bei Zeit-/Tokenvergleichen beachten.
 
 Stoppen: `touch runs/long-horizon-round2-resume-2026-09-12/STOP`. Neue Ergebnisse noch nicht in den früheren ZIP-Archiven. Kein Remote-Push beauftragt.
+
+## Auf Nutzerwunsch gestoppt
+
+Am 12.09.2026 um 13:20:50 Europe/Berlin nach „Stop the run please“ sicher pausiert. Fünf Trainings abgeschlossen; r1-C speicherte `checkpoint-0154741` mit Modell, Adam und Sampler. 34.706.025 zusätzliche, 280.569.394 kumulierte Tokens. Beide Prozesse beendet, STOP gesetzt, eingefrorene Eingaben unverändert. Verbleibendes ursprüngliches Budget 40231.802s; keine automatische Wiederaufnahme. Details und Dateihashes in `STOP_VERIFIED_2026-09-12.json`.
