@@ -25,3 +25,15 @@ Stoppen: `touch runs/long-horizon-round2-resume-2026-09-12/STOP`. Neue Ergebniss
 ## Auf Nutzerwunsch gestoppt
 
 Am 12.09.2026 um 13:20:50 Europe/Berlin nach „Stop the run please“ sicher pausiert. Fünf Trainings abgeschlossen; r1-C speicherte `checkpoint-0154741` mit Modell, Adam und Sampler. 34.706.025 zusätzliche, 280.569.394 kumulierte Tokens. Beide Prozesse beendet, STOP gesetzt, eingefrorene Eingaben unverändert. Verbleibendes ursprüngliches Budget 40231.802s; keine automatische Wiederaufnahme. Details und Dateihashes in `STOP_VERIFIED_2026-09-12.json`.
+
+## Erneute Fortsetzung am 14. September 2026
+
+Auftrag „Continue the run“. Neue Sitzung `runs/long-horizon-round2-resume-2026-09-14/`, unveränderter Code auf `4c30196` im Worktree `SLM-long-round2`. Start 2026-09-14T18:20:56.745881+02:00, neue harte Frist 2026-09-15T05:28:35.547763+02:00 (Europe/Berlin).
+
+Fünf abgeschlossene Trainings samt sämtlichen Auswertungen unabhängig per APFS-Kopie übernommen und gehasht. r1-C setzt den letzten vollständigen `checkpoint-0154741` bei Schritt 154741, 34.706.025 zusätzlichen und 280.569.394 kumulierten Tokens fort. Adam-Datei auf Integrität geprüft; Modell-/Job-/Sampler-Signaturen unverändert. 430 historische eingefrorene Eingaben und 393 kopierte Dateien geprüft, keine Hardlinks. Historische STOP-Dateien bleiben erhalten; die lokale kopierte Sperre liegt als `STOP.before-resume-20260914` vor.
+
+Bisheriger Gesamtverbrauch 46168,198s plus 173s Vorbereitung (gemessene Arbeit plus 90s Abschlussreserve); verbleiben 40058.802s. Die Nutzerpause seit 12. September zählt nicht. r1-C erhält noch 4613.515s einschließlich Lade-/Checkpointzeit, danach r1-B und r1-A mit jeweils 7200s. Maximale verbleibende Stufenzeit samt Auswertung/Bericht 27193.515s. Kein neues Budget, keine automatische Verlängerung oder zusätzliche Kampagne.
+
+Keine Code- oder Konfigurationsänderung. Vorhandene Resume-Tests bleiben maßgeblich; Budget-/Signatur-/Auswertungsprüfungen erneut am tatsächlichen Fortsetzungsplan ausgeführt. GPU-Gesundheitsprüfung bestanden; Training meldet bereits höhere Schritt-/Tokenzahlen. Beim Start Netzbetrieb, AC powermode 0, rund 47 GiB RAM verfügbar; Einstellungen unverändert. Aktuelle Bedingungen und Autorisierung in `RUN_CONDITIONS.json` / `START_AUTHORIZATION.json`. Light-Monitoring und PowerWatch aktiv.
+
+Stoppen: `touch runs/long-horizon-round2-resume-2026-09-14/STOP`. Neue Ergebnisse noch nicht archiviert; kein Remote-Push.
