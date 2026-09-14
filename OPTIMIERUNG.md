@@ -1,5 +1,13 @@
 # Hardware-Optimierung und Ausgabequalität
 
+**Neuer Startauftrag:** Der konservative FP32-Vergleich ist für **15.09.2026 um
+00:00 Europe/Berlin** vorgemerkt. Der lokale Starter ist aktiv und wartet auf
+Mitternacht. Falls die aktuelle Langzeitkampagne noch läuft, wartet er auf ihren
+erfolgreichen Abschluss; keine Unterbrechung oder GPU-Konkurrenz. Spätester Start
+06:00, danach verfällt dieser Versuch. Sechs Stunden Budget ab tatsächlichem Start.
+[Startprotokoll](/Users/timokruth/Projekte/SLM/CONSERVATIVE_MIDNIGHT_START.md).
+Die folgenden Angaben „nicht gestartet/keine Autorisierung“ beschreiben die ursprüngliche Vorbereitung.
+
 ## Konservativer Vergleich vorbereitet — nicht gestartet
 
 Neuer ausdrücklicher Auftrag: sechs Stunden Vergleich vorbereiten, **ohne Start**.
