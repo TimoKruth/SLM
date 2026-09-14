@@ -1,3 +1,5 @@
+Aktuell (15.09.2026): konservativer Vergleich nach Zeitplanungsfehler repariert und mit Restbudget neu gestartet. Siehe [Start und Grenzen](CONSERVATIVE_RECOVERY_START.md). Verbindlicher Status im Worktree `SLM-conservative-recovery`, Run `conservative-fp32-recovery-2026-09-15`.
+
 # Hardware-Optimierung und Ausgabequalität
 
 **Neuer Startauftrag:** Der konservative FP32-Vergleich ist für **15.09.2026 um
