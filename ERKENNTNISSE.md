@@ -111,6 +111,14 @@ Gepaarte Gruppen-Bootstraps mit 5.000 Ziehungen ergeben für den mittleren Kosin
 
 Eine größere Diagnose mit denselben 25 Quellen liegt STOP-gesperrt vor: 64 Gruppen je bewertbarer Quelle, 16 je unbewertbarer Quelle, insgesamt 1.360 Aufgaben und 1.280 bewertbare Gruppen. Ausschließlich bereits konsumierte Suiten abgeschlossener Kampagnen, kein Trainingsgruppenüberlapp; noch keine Modell-Auswertung. Eine passende frische Gegenprüfung bleibt wegen fehlender unbenutzter/unreservierter Gruppen bei ARC, DREAM, QuaRel und Quoref unvollständig. Die verbleibende Datenarbeit und Grenzen stehen im Protokoll; keine stillschweigende Wiederverwendung alter Aufgaben als frischer Test.
 
+## Größere Checkpoint-Diagnose abgeschlossen
+
+Die beauftragte Auswertung der gespeicherten Eltern-/A-/D-Modelle ist vollständig: neun Auswertungen, 12.240 Antworten auf jeweils 1.360 Aufgaben, davon 1.280 korrektheitsbewertbar. Keine neuen Trainings. [Durchführung und Einordnung](EXPANDED_DIAGNOSTIC_RUN.md), [Bericht](results/2026-09-15/expanded-checkpoint-diagnostic/REPORT.md).
+
+Das Elternmodell erreicht 26,87% Familien-Makro; bei 50M zusätzlichen Tokens liegen A im Mittel bei 25,71% und D bei 25,00%, am Zeitende A bei 25,45% und D bei 25,93%. D−A beträgt bei 50M −0,72pp (exploratives 95%-Intervall −1,75 bis +0,32pp), final +0,48pp (−1,18 bis +2,10pp), wieder mit Vorzeichenwechsel zwischen Datenreihenfolgen. Keine konsistent bestätigte Verbesserung gegenüber dem Elternmodell, keine Übernahme. Die größere bereits geöffnete Diagnose liefert keine frische Bestätigung.
+
+Finale A-/D-Modelle zeigen deskriptive Gewinne bei einigen Fähigkeiten, aber Rückgänge bei Lesen/Extraktion, Alltagswissen und Dialog. Mathematik bleibt bei 4–7 richtigen Antworten von 192 je finalem Modell beziehungsweise Elternmodell schwach. Der niedrigere D-Referenzloss bestätigt keine höhere Gesamtgenauigkeit freier Antworten. Nächste Arbeit: bestätigte Referenzprobleme in neuer Datenversion korrigieren und fehlende frische Gruppen beschaffen/prüfen, bevor aus dieser Diagnose ein neuer enger Trainingsvergleich abgeleitet wird. Die historische Konfiguration LR 3e-5 und das ursprüngliche Elternmodell bleiben Vergleichsreferenzen.
+
 ## Empfohlene nächste Schritte – keine Startfreigabe
 
 1. Bestehende Antworten von A und D sowie die Loss-/Genauigkeitsabweichung bei B auf den bereits geöffneten Suiten untersuchen. Je Fähigkeit Inhaltsfehler, Antwortformat, Wiederholungen, Trunkierung und fragwürdige Referenzen getrennt zählen. Dieselben Aufgaben und vorhandene 15M-/50M-/Endstände verwenden; Originalscores erhalten. Das ist der nächste Untersuchungsschritt vor zusätzlichem Training.

@@ -14,3 +14,7 @@ Dieser Export umfasst aggregierte Ergebnisse des Parametervergleichs. Er ist kei
 ## Fehleranalyse und Evaluationsvorbereitung
 
 [Auswertung](../../PARAMETER_ERROR_ANALYSIS.md) und [Protokoll](../../PARAMETER_EVALUATION_PROTOCOL.md): 33 Auswertungen / 13.152 gespeicherte Antworten nachgerechnet, gepaarte Gruppenintervalle, manuelle Referenz-/Parserprüfung und größere Diagnose vorbereitet. [Aggregierte Belege](parameter-error-analysis/analysis.json), [Abdeckung](parameter-error-analysis/coverage-audit.json), [gezielte Fallprüfung](parameter-error-analysis/manual-review.json). Herkunft in `analysis-provenance.json`, `preparation-provenance.json` und `exports.json` im selben Unterverzeichnis. Rohantworten und neue Aufgabentexte bleiben lokal. Frische Gegenprüfung wegen Abdeckungslücken nicht bereit; keine neuen Trainings oder Modell-Auswertungen gestartet.
+
+## Größere gespeicherte Checkpoint-Diagnose
+
+[Abgeschlossener Bericht](expanded-checkpoint-diagnostic/REPORT.md): neun vollständige Auswertungen und 12.240 validierte Antworten, keine bestätigte Verbesserung gegenüber dem Elternmodell. [Durchführung und Einordnung](../../EXPANDED_DIAGNOSTIC_RUN.md). Aggregierte Metriken, Unsicherheiten, Herkunft und Budget in `analysis.json`, `provenance.json`, `exports.json` und `completion.json` im selben Unterverzeichnis. Keine Rohantworten, neuen Trainings oder Modellübernahme.

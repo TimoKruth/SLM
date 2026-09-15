@@ -1,0 +1,4291 @@
+{
+  "completed": "2026-09-15T09:53:10.056376+02:00",
+  "endpoints": [
+    {
+      "id": "parent",
+      "condition": "parent",
+      "order": null,
+      "endpoint": "parent",
+      "additional_tokens": null,
+      "accuracy": 0.2686631944444445,
+      "answer_loss": 1.4686800393833983,
+      "family_accuracy": {
+        "entailment": 0.6145833333333334,
+        "mathematics": 0.020833333333333332,
+        "science_and_causality": 0.21875,
+        "reading_and_extraction": 0.25390625,
+        "commonsense_and_social": 0.26953125,
+        "dialogue": 0.234375
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 33,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 31
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 12,
+          "token_limit_flag": 11,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 43,
+          "token_limit_flag": 41,
+          "required_answer_unparseable": 41,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 17
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 57
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 41,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 23
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 10,
+          "token_limit_flag": 10,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 57
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 51
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 42,
+          "token_limit_flag": 19,
+          "required_answer_unparseable": 19,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 22
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 4,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 62,
+          "token_limit_flag": 56,
+          "required_answer_unparseable": 58,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 1
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 14,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 3,
+          "token_limit_flag": 3,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 13,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 50
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 30,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 34
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 46,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 18
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 39,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 26,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 36
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 24,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 40
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 118,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 74
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 22,
+          "token_limit_flag": 21,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 147,
+          "token_limit_flag": 116,
+          "required_answer_unparseable": 118,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 40
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 70,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 248
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 65,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 189
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 69,
+          "empty": 0,
+          "repetition_flag": 10,
+          "token_limit_flag": 6,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 184
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 341,
+        "empty": 0,
+        "repetition_flag": 183,
+        "token_limit_flag": 145,
+        "required_answer_unparseable": 118,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 784
+      }
+    },
+    {
+      "id": "r0-A-50M",
+      "condition": "A",
+      "order": 0,
+      "endpoint": "50M",
+      "additional_tokens": 50000683,
+      "accuracy": 0.2573784722222222,
+      "answer_loss": 1.4728685577027136,
+      "family_accuracy": {
+        "entailment": 0.6510416666666666,
+        "mathematics": 0.026041666666666668,
+        "science_and_causality": 0.21875,
+        "reading_and_extraction": 0.203125,
+        "commonsense_and_social": 0.2890625,
+        "dialogue": 0.15625
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 34,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 30
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 7,
+          "token_limit_flag": 7,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 43,
+          "token_limit_flag": 36,
+          "required_answer_unparseable": 36,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 18
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 57
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 38,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 26
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 14,
+          "token_limit_flag": 15,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 2,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 62
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 1,
+          "empty": 0,
+          "repetition_flag": 38,
+          "token_limit_flag": 12,
+          "required_answer_unparseable": 12,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 26
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 60,
+          "token_limit_flag": 53,
+          "required_answer_unparseable": 57,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 2
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 3,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 2,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 47
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 29,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 35
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 50,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 14
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 41,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 23
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 22,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 41
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 32,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 32
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 125,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 67
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 21,
+          "token_limit_flag": 22,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 141,
+          "token_limit_flag": 101,
+          "required_answer_unparseable": 105,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 46
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 70,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 2,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 248
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 52,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 204
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 74,
+          "empty": 0,
+          "repetition_flag": 5,
+          "token_limit_flag": 4,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 181
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 336,
+        "empty": 0,
+        "repetition_flag": 169,
+        "token_limit_flag": 129,
+        "required_answer_unparseable": 107,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 800
+      }
+    },
+    {
+      "id": "r0-D-50M",
+      "condition": "D",
+      "order": 0,
+      "endpoint": "50M",
+      "additional_tokens": 50000683,
+      "accuracy": 0.25017361111111114,
+      "answer_loss": 1.4566952874590424,
+      "family_accuracy": {
+        "entailment": 0.625,
+        "mathematics": 0.041666666666666664,
+        "science_and_causality": 0.225,
+        "reading_and_extraction": 0.203125,
+        "commonsense_and_social": 0.265625,
+        "dialogue": 0.140625
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 34,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 30
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 7,
+          "token_limit_flag": 8,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 41,
+          "token_limit_flag": 35,
+          "required_answer_unparseable": 35,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 18
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 38,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 26
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 13,
+          "token_limit_flag": 14,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 9,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 55
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 2,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 62
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 42,
+          "token_limit_flag": 11,
+          "required_answer_unparseable": 12,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 20
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 62,
+          "token_limit_flag": 54,
+          "required_answer_unparseable": 57,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 2
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 20,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 44
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 14,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 50
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 28,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 36
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 47,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 17
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 39,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 23,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 40
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 27,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 37
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 120,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 72
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 20,
+          "token_limit_flag": 22,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 145,
+          "token_limit_flag": 100,
+          "required_answer_unparseable": 104,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 40
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 72,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 248
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 52,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 203
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 68,
+          "empty": 0,
+          "repetition_flag": 5,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 187
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 9,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 55
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 329,
+        "empty": 0,
+        "repetition_flag": 171,
+        "token_limit_flag": 124,
+        "required_answer_unparseable": 104,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 805
+      }
+    },
+    {
+      "id": "r1-A-50M",
+      "condition": "A",
+      "order": 1,
+      "endpoint": "50M",
+      "additional_tokens": 50000289,
+      "accuracy": 0.25690104166666666,
+      "answer_loss": 1.465488788517323,
+      "family_accuracy": {
+        "entailment": 0.6145833333333334,
+        "mathematics": 0.026041666666666668,
+        "science_and_causality": 0.225,
+        "reading_and_extraction": 0.22265625,
+        "commonsense_and_social": 0.234375,
+        "dialogue": 0.21875
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 31,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 33
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 12,
+          "token_limit_flag": 9,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 49,
+          "token_limit_flag": 42,
+          "required_answer_unparseable": 42,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 12
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 39,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 12,
+          "token_limit_flag": 10,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 14,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 50
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 1,
+          "empty": 0,
+          "repetition_flag": 45,
+          "token_limit_flag": 19,
+          "required_answer_unparseable": 20,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 19
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 3,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 58,
+          "token_limit_flag": 48,
+          "required_answer_unparseable": 52,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 4
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 17,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 47
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 14,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 50
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 27,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 37
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 53
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 49,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 15
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 38,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 26
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 20,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 44
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 26,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 38
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 118,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 74
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 24,
+          "token_limit_flag": 19,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 152,
+          "token_limit_flag": 109,
+          "required_answer_unparseable": 114,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 35
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 72,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 248
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 57,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 197
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 60,
+          "empty": 0,
+          "repetition_flag": 4,
+          "token_limit_flag": 3,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 196
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 14,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 50
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 326,
+        "empty": 0,
+        "repetition_flag": 182,
+        "token_limit_flag": 133,
+        "required_answer_unparseable": 114,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 800
+      }
+    },
+    {
+      "id": "r1-D-50M",
+      "condition": "D",
+      "order": 1,
+      "endpoint": "50M",
+      "additional_tokens": 50000289,
+      "accuracy": 0.2497829861111111,
+      "answer_loss": 1.4490129458244336,
+      "family_accuracy": {
+        "entailment": 0.59375,
+        "mathematics": 0.026041666666666668,
+        "science_and_causality": 0.234375,
+        "reading_and_extraction": 0.21484375,
+        "commonsense_and_social": 0.2421875,
+        "dialogue": 0.1875
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 29,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 35
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 8,
+          "token_limit_flag": 6,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 49,
+          "token_limit_flag": 46,
+          "required_answer_unparseable": 45,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 11
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 40,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 24
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 5,
+          "token_limit_flag": 5,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 57
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 9,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 61
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 48,
+          "token_limit_flag": 21,
+          "required_answer_unparseable": 22,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 15
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 5,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 59,
+          "token_limit_flag": 52,
+          "required_answer_unparseable": 55,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 4
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 18,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 46
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 3,
+          "token_limit_flag": 3,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 13,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 1,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 30,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 34
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 47,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 17
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 38,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 26
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 23,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 41
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 23,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 41
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 114,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 78
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 13,
+          "token_limit_flag": 11,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 156,
+          "token_limit_flag": 119,
+          "required_answer_unparseable": 122,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 30
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 75,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 1,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 243
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 55,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 201
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 62,
+          "empty": 0,
+          "repetition_flag": 9,
+          "token_limit_flag": 6,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 193
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 323,
+        "empty": 0,
+        "repetition_flag": 180,
+        "token_limit_flag": 137,
+        "required_answer_unparseable": 123,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 797
+      }
+    },
+    {
+      "id": "r0-A-final",
+      "condition": "A",
+      "order": 0,
+      "endpoint": "final",
+      "additional_tokens": 126001643,
+      "accuracy": 0.2703993055555556,
+      "answer_loss": 1.460849078127867,
+      "family_accuracy": {
+        "entailment": 0.671875,
+        "mathematics": 0.036458333333333336,
+        "science_and_causality": 0.234375,
+        "reading_and_extraction": 0.2421875,
+        "commonsense_and_social": 0.25,
+        "dialogue": 0.1875
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 39,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 9,
+          "token_limit_flag": 7,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 47,
+          "token_limit_flag": 44,
+          "required_answer_unparseable": 44,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 14
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 43,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 21
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 11,
+          "token_limit_flag": 11,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 57
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 2,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 41,
+          "token_limit_flag": 13,
+          "required_answer_unparseable": 14,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 20
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 4,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 58,
+          "token_limit_flag": 53,
+          "required_answer_unparseable": 56,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 4
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 3,
+          "token_limit_flag": 3,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 1,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 48
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 33,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 31
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 11,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 53
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 51,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 13
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 39,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 26,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 37
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 27,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 37
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 129,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 63
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 20,
+          "token_limit_flag": 18,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 146,
+          "token_limit_flag": 110,
+          "required_answer_unparseable": 114,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 38
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 75,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 1,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 244
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 62,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 192
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 64,
+          "empty": 0,
+          "repetition_flag": 8,
+          "token_limit_flag": 5,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 191
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 349,
+        "empty": 0,
+        "repetition_flag": 177,
+        "token_limit_flag": 136,
+        "required_answer_unparseable": 115,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 780
+      }
+    },
+    {
+      "id": "r0-D-final",
+      "condition": "D",
+      "order": 0,
+      "endpoint": "final",
+      "additional_tokens": 82908374,
+      "accuracy": 0.2624565972222222,
+      "answer_loss": 1.439539212671516,
+      "family_accuracy": {
+        "entailment": 0.625,
+        "mathematics": 0.036458333333333336,
+        "science_and_causality": 0.253125,
+        "reading_and_extraction": 0.21875,
+        "commonsense_and_social": 0.25390625,
+        "dialogue": 0.1875
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 35,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 29
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 12,
+          "token_limit_flag": 9,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 44,
+          "token_limit_flag": 38,
+          "required_answer_unparseable": 38,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 17
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 40,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 24
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 13,
+          "token_limit_flag": 13,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 61
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 2,
+          "empty": 0,
+          "repetition_flag": 34,
+          "token_limit_flag": 9,
+          "required_answer_unparseable": 9,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 28
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 4,
+          "token_limit_flag": 3,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 53,
+          "token_limit_flag": 48,
+          "required_answer_unparseable": 51,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 9
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 15,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 49
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 21,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 43
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 32,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 32
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 56
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 47,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 17
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 38,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 26
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 27,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 37
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 24,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 40
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 120,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 72
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 25,
+          "token_limit_flag": 22,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 131,
+          "token_limit_flag": 95,
+          "required_answer_unparseable": 98,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 81,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 239
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 56,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 200
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 65,
+          "empty": 0,
+          "repetition_flag": 5,
+          "token_limit_flag": 4,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 191
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 341,
+        "empty": 0,
+        "repetition_flag": 161,
+        "token_limit_flag": 121,
+        "required_answer_unparseable": 98,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 808
+      }
+    },
+    {
+      "id": "r1-A-final",
+      "condition": "A",
+      "order": 1,
+      "endpoint": "final",
+      "additional_tokens": 88126776,
+      "accuracy": 0.238671875,
+      "answer_loss": 1.484269746396276,
+      "family_accuracy": {
+        "entailment": 0.609375,
+        "mathematics": 0.03125,
+        "science_and_causality": 0.225,
+        "reading_and_extraction": 0.1875,
+        "commonsense_and_social": 0.22265625,
+        "dialogue": 0.15625
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 33,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 31
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 8,
+          "token_limit_flag": 8,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 49,
+          "token_limit_flag": 41,
+          "required_answer_unparseable": 41,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 13
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 29,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 35
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 9,
+          "token_limit_flag": 9,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 55
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 1,
+          "empty": 0,
+          "repetition_flag": 39,
+          "token_limit_flag": 12,
+          "required_answer_unparseable": 13,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 55,
+          "token_limit_flag": 51,
+          "required_answer_unparseable": 52,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 9
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 17,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 47
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 17,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 47
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 26,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 38
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 2,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 62
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 45,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 19
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 39,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 24,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 40
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 19,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 45
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 117,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 75
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 17,
+          "token_limit_flag": 17,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 143,
+          "token_limit_flag": 104,
+          "required_answer_unparseable": 106,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 47
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 72,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 248
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 48,
+          "empty": 0,
+          "repetition_flag": 2,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 206
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 57,
+          "empty": 0,
+          "repetition_flag": 4,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 198
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 10,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 54
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 310,
+        "empty": 0,
+        "repetition_flag": 166,
+        "token_limit_flag": 123,
+        "required_answer_unparseable": 106,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 828
+      }
+    },
+    {
+      "id": "r1-D-final",
+      "condition": "D",
+      "order": 1,
+      "endpoint": "final",
+      "additional_tokens": 115507385,
+      "accuracy": 0.2562065972222222,
+      "answer_loss": 1.4406194351020531,
+      "family_accuracy": {
+        "entailment": 0.640625,
+        "mathematics": 0.020833333333333332,
+        "science_and_causality": 0.23125,
+        "reading_and_extraction": 0.22265625,
+        "commonsense_and_social": 0.234375,
+        "dialogue": 0.1875
+      },
+      "sources": {
+        "anli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 35,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 29
+        },
+        "apps": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 10,
+          "token_limit_flag": 8,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "aqua_rat": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 49,
+          "token_limit_flag": 43,
+          "required_answer_unparseable": 43,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 12
+        },
+        "arc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 7,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 57
+        },
+        "boolq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 40,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 24
+        },
+        "code_contests": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 3,
+          "token_limit_flag": 3,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "commonsenseqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "cosmos_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 55
+        },
+        "dream": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        },
+        "drop": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 3,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 60
+        },
+        "gsm8k": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 1,
+          "empty": 0,
+          "repetition_flag": 38,
+          "token_limit_flag": 10,
+          "required_answer_unparseable": 11,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 25
+        },
+        "hellaswag": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 4,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "math": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 55,
+          "token_limit_flag": 45,
+          "required_answer_unparseable": 48,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 7
+        },
+        "openbookqa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 16,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 48
+        },
+        "piqa": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "qasc": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 16,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 47
+        },
+        "quarel": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 30,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 34
+        },
+        "quoref": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 6,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 58
+        },
+        "race": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 8,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 55
+        },
+        "sciq": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 5,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 59
+        },
+        "scitail": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 48,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 16
+        },
+        "snli": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 40,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 24
+        },
+        "social_i_qa": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 26,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 37
+        },
+        "wikisql": {
+          "evaluated": 16,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "winogrande": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 21,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 43
+        }
+      },
+      "family_diagnostics": {
+        "entailment": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 123,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 69
+        },
+        "programming_and_queries": {
+          "evaluated": 48,
+          "scored": 0,
+          "correct": 0,
+          "empty": 0,
+          "repetition_flag": 13,
+          "token_limit_flag": 11,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 0
+        },
+        "mathematics": {
+          "evaluated": 192,
+          "scored": 192,
+          "correct": 4,
+          "empty": 0,
+          "repetition_flag": 142,
+          "token_limit_flag": 98,
+          "required_answer_unparseable": 102,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 44
+        },
+        "science_and_causality": {
+          "evaluated": 320,
+          "scored": 320,
+          "correct": 74,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 245
+        },
+        "reading_and_extraction": {
+          "evaluated": 256,
+          "scored": 256,
+          "correct": 57,
+          "empty": 0,
+          "repetition_flag": 1,
+          "token_limit_flag": 1,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 197
+        },
+        "commonsense_and_social": {
+          "evaluated": 288,
+          "scored": 256,
+          "correct": 60,
+          "empty": 0,
+          "repetition_flag": 7,
+          "token_limit_flag": 2,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 194
+        },
+        "dialogue": {
+          "evaluated": 64,
+          "scored": 64,
+          "correct": 12,
+          "empty": 0,
+          "repetition_flag": 0,
+          "token_limit_flag": 0,
+          "required_answer_unparseable": 0,
+          "reference_unparseable": 0,
+          "incorrect_without_surface_flags": 52
+        }
+      },
+      "counts": {
+        "evaluated": 1360,
+        "scored": 1280,
+        "correct": 330,
+        "empty": 0,
+        "repetition_flag": 164,
+        "token_limit_flag": 112,
+        "required_answer_unparseable": 102,
+        "reference_unparseable": 0,
+        "incorrect_without_surface_flags": 801
+      }
+    }
+  ],
+  "comparisons": {
+    "D-A-50M": {
+      "per_order": [
+        -0.007204861111111072,
+        -0.007118055555555558
+      ],
+      "mean": -0.007161458333333315,
+      "transitions": {
+        "unchanged": 2420,
+        "loss": 75,
+        "gain": 65
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.017450086805555556,
+          0.003168945312499993
+        ],
+        "per_order_interval95": [
+          [
+            -0.02330729166666666,
+            0.00898546006944443
+          ],
+          [
+            -0.02035590277777778,
+            0.0050358072916666516
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.02185329861111111,
+          0.0073144531249999855
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.0078125,
+            "per_order": [
+              -0.0234375,
+              0.0078125
+            ],
+            "interval95": [
+              -0.02734375,
+              0.01171875
+            ]
+          },
+          "dialogue": {
+            "delta": -0.0234375,
+            "per_order": [
+              -0.015625,
+              -0.03125
+            ],
+            "interval95": [
+              -0.0625,
+              0.015625
+            ]
+          },
+          "entailment": {
+            "delta": -0.0234375,
+            "per_order": [
+              -0.026041666666666668,
+              -0.020833333333333332
+            ],
+            "interval95": [
+              -0.0546875,
+              0.0078125
+            ]
+          },
+          "mathematics": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.015625,
+              0.0
+            ],
+            "interval95": [
+              -0.0078125,
+              0.026041666666666664
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": -0.00390625,
+            "per_order": [
+              0.0,
+              -0.0078125
+            ],
+            "interval95": [
+              -0.0234375,
+              0.015625
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.00625,
+              0.009375
+            ],
+            "interval95": [
+              -0.0109375,
+              0.026562500000000003
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "A-parent-50M": {
+      "per_order": [
+        -0.011284722222222265,
+        -0.011762152777777812
+      ],
+      "mean": -0.011523437500000039,
+      "transitions": {
+        "unchanged": 2206,
+        "gain": 167,
+        "loss": 187
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.03365885416666667,
+          0.009223632812499993
+        ],
+        "per_order_interval95": [
+          [
+            -0.03519965277777778,
+            0.012456597222222221
+          ],
+          [
+            -0.038976779513888886,
+            0.01501844618055554
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.03997395833333333,
+          0.016558159722222226
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.0078125,
+            "per_order": [
+              0.01953125,
+              -0.03515625
+            ],
+            "interval95": [
+              -0.056640625,
+              0.0390625
+            ]
+          },
+          "dialogue": {
+            "delta": -0.046875,
+            "per_order": [
+              -0.078125,
+              -0.015625
+            ],
+            "interval95": [
+              -0.1484375,
+              0.046875
+            ]
+          },
+          "entailment": {
+            "delta": 0.018229166666666668,
+            "per_order": [
+              0.036458333333333336,
+              0.0
+            ],
+            "interval95": [
+              -0.028645833333333336,
+              0.06770833333333333
+            ]
+          },
+          "mathematics": {
+            "delta": 0.005208333333333333,
+            "per_order": [
+              0.005208333333333333,
+              0.005208333333333333
+            ],
+            "interval95": [
+              -0.020833333333333332,
+              0.03125
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": -0.041015625,
+            "per_order": [
+              -0.05078125,
+              -0.03125
+            ],
+            "interval95": [
+              -0.07421875,
+              -0.009765625
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.003125,
+            "per_order": [
+              0.0,
+              0.00625
+            ],
+            "interval95": [
+              -0.029687500000000002,
+              0.0359375
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "D-parent-50M": {
+      "per_order": [
+        -0.018489583333333337,
+        -0.01888020833333337
+      ],
+      "mean": -0.018684895833333354,
+      "transitions": {
+        "unchanged": 2266,
+        "gain": 132,
+        "loss": 162
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.039040798611111115,
+          0.0017361111111111093
+        ],
+        "per_order_interval95": [
+          [
+            -0.040236545138888885,
+            0.0028645833333333336
+          ],
+          [
+            -0.04440104166666667,
+            0.006294487847222208
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.0449001736111111,
+          0.006706271701388882
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.015625,
+            "per_order": [
+              -0.00390625,
+              -0.02734375
+            ],
+            "interval95": [
+              -0.060546875,
+              0.02734375
+            ]
+          },
+          "dialogue": {
+            "delta": -0.0703125,
+            "per_order": [
+              -0.09375,
+              -0.046875
+            ],
+            "interval95": [
+              -0.1640625,
+              0.0234375
+            ]
+          },
+          "entailment": {
+            "delta": -0.005208333333333333,
+            "per_order": [
+              0.010416666666666666,
+              -0.020833333333333332
+            ],
+            "interval95": [
+              -0.046875,
+              0.03645833333333333
+            ]
+          },
+          "mathematics": {
+            "delta": 0.013020833333333332,
+            "per_order": [
+              0.020833333333333332,
+              0.005208333333333333
+            ],
+            "interval95": [
+              -0.013020833333333336,
+              0.041666666666666664
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": -0.044921875,
+            "per_order": [
+              -0.05078125,
+              -0.0390625
+            ],
+            "interval95": [
+              -0.07421875,
+              -0.015625
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0109375,
+            "per_order": [
+              0.00625,
+              0.015625
+            ],
+            "interval95": [
+              -0.021875,
+              0.04375
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "D-A-final": {
+      "per_order": [
+        -0.007942708333333381,
+        0.017534722222222215
+      ],
+      "mean": 0.004796006944444417,
+      "transitions": {
+        "unchanged": 2218,
+        "loss": 165,
+        "gain": 177
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.011828342013888885,
+          0.020965711805555527
+        ],
+        "per_order_interval95": [
+          [
+            -0.03246527777777778,
+            0.01579861111111111
+          ],
+          [
+            -0.00416775173611111,
+            0.03867296006944443
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.015842556423611112,
+          0.0265625
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.00390625,
+              0.01171875
+            ],
+            "interval95": [
+              -0.025390625,
+              0.041015625
+            ]
+          },
+          "dialogue": {
+            "delta": 0.015625,
+            "per_order": [
+              0.0,
+              0.03125
+            ],
+            "interval95": [
+              -0.0546875,
+              0.0859375
+            ]
+          },
+          "entailment": {
+            "delta": -0.0078125,
+            "per_order": [
+              -0.046875,
+              0.03125
+            ],
+            "interval95": [
+              -0.04173177083333331,
+              0.028645833333333336
+            ]
+          },
+          "mathematics": {
+            "delta": -0.005208333333333333,
+            "per_order": [
+              0.0,
+              -0.010416666666666666
+            ],
+            "interval95": [
+              -0.026041666666666668,
+              0.018229166666666664
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": 0.005859375,
+            "per_order": [
+              -0.0234375,
+              0.03515625
+            ],
+            "interval95": [
+              -0.03515625,
+              0.04301757812499929
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0125,
+            "per_order": [
+              0.01875,
+              0.00625
+            ],
+            "interval95": [
+              -0.015664062499999985,
+              0.0421875
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "A-parent-final": {
+      "per_order": [
+        0.001736111111111105,
+        -0.02999131944444447
+      ],
+      "mean": -0.014127604166666682,
+      "transitions": {
+        "unchanged": 2175,
+        "gain": 181,
+        "loss": 204
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.03606879340277778,
+          0.007206488715277754
+        ],
+        "per_order_interval95": [
+          [
+            -0.022961154513888894,
+            0.027174479166666606
+          ],
+          [
+            -0.05473090277777778,
+            -0.005511067708333347
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.04147243923611111,
+          0.013499348958333319
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.033203125,
+            "per_order": [
+              -0.01953125,
+              -0.046875
+            ],
+            "interval95": [
+              -0.080078125,
+              0.013671875
+            ]
+          },
+          "dialogue": {
+            "delta": -0.0625,
+            "per_order": [
+              -0.046875,
+              -0.078125
+            ],
+            "interval95": [
+              -0.1640625,
+              0.03144531249999716
+            ]
+          },
+          "entailment": {
+            "delta": 0.026041666666666664,
+            "per_order": [
+              0.057291666666666664,
+              -0.005208333333333333
+            ],
+            "interval95": [
+              -0.018229166666666668,
+              0.0703125
+            ]
+          },
+          "mathematics": {
+            "delta": 0.013020833333333332,
+            "per_order": [
+              0.015625,
+              0.010416666666666666
+            ],
+            "interval95": [
+              -0.013020833333333332,
+              0.0390625
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": -0.0390625,
+            "per_order": [
+              -0.01171875,
+              -0.06640625
+            ],
+            "interval95": [
+              -0.080078125,
+              0.001953125
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0109375,
+            "per_order": [
+              0.015625,
+              0.00625
+            ],
+            "interval95": [
+              -0.025,
+              0.045351562499999436
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "D-parent-final": {
+      "per_order": [
+        -0.0062065972222222765,
+        -0.012456597222222254
+      ],
+      "mean": -0.009331597222222265,
+      "transitions": {
+        "unchanged": 2275,
+        "gain": 137,
+        "loss": 148
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.02842881944444444,
+          0.009830729166666666
+        ],
+        "per_order_interval95": [
+          [
+            -0.02756184895833333,
+            0.015235460069444429
+          ],
+          [
+            -0.03446397569444445,
+            0.009072265624999985
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.03455078125,
+          0.016385091145833326
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.025390625,
+            "per_order": [
+              -0.015625,
+              -0.03515625
+            ],
+            "interval95": [
+              -0.0703125,
+              0.017578125
+            ]
+          },
+          "dialogue": {
+            "delta": -0.046875,
+            "per_order": [
+              -0.046875,
+              -0.046875
+            ],
+            "interval95": [
+              -0.1328125,
+              0.03125
+            ]
+          },
+          "entailment": {
+            "delta": 0.018229166666666668,
+            "per_order": [
+              0.010416666666666666,
+              0.026041666666666668
+            ],
+            "interval95": [
+              -0.028645833333333336,
+              0.06770833333333333
+            ]
+          },
+          "mathematics": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.015625,
+              0.0
+            ],
+            "interval95": [
+              -0.018229166666666668,
+              0.033854166666666664
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": -0.033203125,
+            "per_order": [
+              -0.03515625,
+              -0.03125
+            ],
+            "interval95": [
+              -0.0625,
+              -0.005859375
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0234375,
+            "per_order": [
+              0.034375,
+              0.0125
+            ],
+            "interval95": [
+              -0.0109375,
+              0.05625
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "A-final-minus-50M": {
+      "per_order": [
+        0.01302083333333337,
+        -0.018229166666666657
+      ],
+      "mean": -0.0026041666666666435,
+      "transitions": {
+        "unchanged": 2165,
+        "loss": 199,
+        "gain": 196
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.01794759114583333,
+          0.012892795138888857
+        ],
+        "per_order_interval95": [
+          [
+            -0.009723307291666669,
+            0.036806640624999984
+          ],
+          [
+            -0.044228515625,
+            0.007595486111111112
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.025564778645833335,
+          0.019705403645833324
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.025390625,
+            "per_order": [
+              -0.0390625,
+              -0.01171875
+            ],
+            "interval95": [
+              -0.060546875,
+              0.01171875
+            ]
+          },
+          "dialogue": {
+            "delta": -0.015625,
+            "per_order": [
+              0.03125,
+              -0.0625
+            ],
+            "interval95": [
+              -0.078125,
+              0.046875
+            ]
+          },
+          "entailment": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.020833333333333332,
+              -0.005208333333333333
+            ],
+            "interval95": [
+              -0.03125,
+              0.046875
+            ]
+          },
+          "mathematics": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.010416666666666666,
+              0.005208333333333333
+            ],
+            "interval95": [
+              -0.013020833333333332,
+              0.028645833333333336
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": 0.001953125,
+            "per_order": [
+              0.0390625,
+              -0.03515625
+            ],
+            "interval95": [
+              -0.02734375,
+              0.033203125
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0078125,
+            "per_order": [
+              0.015625,
+              0.0
+            ],
+            "interval95": [
+              -0.021875000000000002,
+              0.037539062499999436
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    },
+    "D-final-minus-50M": {
+      "per_order": [
+        0.01228298611111106,
+        0.006423611111111116
+      ],
+      "mean": 0.009353298611111088,
+      "transitions": {
+        "unchanged": 2317,
+        "loss": 112,
+        "gain": 131
+      },
+      "uncertainty": {
+        "draws": 5000,
+        "seed": 20260915,
+        "fixed_source_interval95": [
+          -0.0045361328125,
+          0.023699001736111093
+        ],
+        "per_order_interval95": [
+          [
+            -0.007161458333333333,
+            0.03251193576388885
+          ],
+          [
+            -0.014844835069444446,
+            0.028125000000000008
+          ]
+        ],
+        "source_resampling_sensitivity_interval95": [
+          -0.010265842013888889,
+          0.029196506076388767
+        ],
+        "families": {
+          "commonsense_and_social": {
+            "delta": -0.009765625,
+            "per_order": [
+              -0.01171875,
+              -0.0078125
+            ],
+            "interval95": [
+              -0.037109375,
+              0.017578125
+            ]
+          },
+          "dialogue": {
+            "delta": 0.0234375,
+            "per_order": [
+              0.046875,
+              0.0
+            ],
+            "interval95": [
+              -0.03125,
+              0.0859375
+            ]
+          },
+          "entailment": {
+            "delta": 0.0234375,
+            "per_order": [
+              0.0,
+              0.046875
+            ],
+            "interval95": [
+              -0.013020833333333332,
+              0.05989583333333333
+            ]
+          },
+          "mathematics": {
+            "delta": -0.005208333333333333,
+            "per_order": [
+              -0.005208333333333333,
+              -0.005208333333333333
+            ],
+            "interval95": [
+              -0.028645833333333332,
+              0.018229166666666668
+            ]
+          },
+          "reading_and_extraction": {
+            "delta": 0.01171875,
+            "per_order": [
+              0.015625,
+              0.0078125
+            ],
+            "interval95": [
+              -0.0078125,
+              0.029296875
+            ]
+          },
+          "science_and_causality": {
+            "delta": 0.0125,
+            "per_order": [
+              0.028125,
+              -0.003125
+            ],
+            "interval95": [
+              -0.01875,
+              0.0421875
+            ]
+          }
+        },
+        "interpretation": "Exploratory percentile intervals conditional on these two data orders and fixed parent. Groups paired across orders; no independent-seed inference, multiplicity adjustment, or new acceptance decision. Secondary source resampling changes the target to source composition within fixed families."
+      }
+    }
+  },
+  "validated_evaluations": 9,
+  "validated_generations": 12240,
+  "automatic_adoption": false,
+  "interpretation": "Already-opened diagnostic groups, exploratory evidence. Fixed parent and two data orders; not fresh confirmation, independent initializations or external transfer. Surface flags overlap; no causal attribution from flags alone."
+}
