@@ -127,3 +127,7 @@ Finale A-/D-Modelle zeigen deskriptive Gewinne bei einigen Fähigkeiten, aber R�
 4. Breiteres Lernen separat untersuchen: Nach Prüfung der vorbereiteten 47-Quellen-Mischung einen klar abgegrenzten Datenvergleich planen. Quellenanzahl allein ist kein Qualitätsnachweis; LR, Daten und Modellgröße nicht zugleich ändern. Die Entscheidung über GPU-Synchronisation aus dem separaten konservativen FP32-Vergleich anhand seiner eigenen Qualitäts- und Geschwindigkeitskriterien treffen.
 
 Arbeitsreferenz bleibt A mit LR 3e-5; das erklärt sie nicht zur global optimalen Konfiguration und übernimmt keinen neuen Modellcheckpoint. Diese Empfehlungen starten keine zusätzlichen Läufe und verändern keine eingefrorenen Eingaben.
+
+## Referenzbereinigung und neue Gegenprüfungsdaten
+
+Nutzerauftrag „go for it“ am 15.09.2026: [separate Referenzbereinigung und Abdeckungsergänzung](PARAMETER_REFERENCE_REFRESH.md). Sechs bekannte problematische/mehrdeutige Gruppen mit 23 Entwicklungsdatensätzen quarantänisiert; alle 1.433.943 Trainingspaare bytegleich. Die neue Gegenprüfung hat 1.360 Aufgaben aus 25 Quellen, davon 1.280 bewertbar; die vier bisherigen Lücken sind durch originales Validierungsmaterial geschlossen. Training, bestehende/reservierte Suiten und exakte Inhaltsüberschneidungen geprüft; keine vollständige semantische Unabhängigkeitsgarantie. Neue Daten vorbereitet, keine Modell-Auswertung oder neues Training und keine Übernahme.

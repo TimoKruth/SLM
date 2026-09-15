@@ -1,0 +1,27 @@
+{
+  "created": "2026-09-15T10:30:25.708615+02:00",
+  "files": {
+    "reference-quarantine.json": {
+      "source": "/Users/timokruth/Projekte/SLM/data/v4-reference-audited-2026-09-15/audit.json",
+      "sha256": "4b9a8e30a4c66f5da6fecf56f6308048ed8c82161a33cb2e3b9cd92560babcc6"
+    },
+    "validation-sources.json": {
+      "source": "/Users/timokruth/Projekte/SLM/data/evaluation-validation-refresh-2026-09-15/manifest.json",
+      "sha256": "d6fbc172d3b8ab1308f1170908b91606793ce879df98139d93b925b9bb1e1518"
+    },
+    "coverage-audit.json": {
+      "source": "/Users/timokruth/Projekte/SLM/runs/parameter-confirmation-refresh-2026-09-15/coverage-audit.json",
+      "sha256": "65a376d9be3b07704b55dd745a419cb5b233fc135a21642b5e471902c25cf80d"
+    },
+    "preparation-provenance.json": {
+      "source": "/Users/timokruth/Projekte/SLM/runs/parameter-confirmation-refresh-2026-09-15/provenance.json",
+      "sha256": "de2fab09879922edd90dfb817fc2f06a868d67b747f025fa60dd913e73434b6f"
+    },
+    "verification.json": {
+      "source": "/Users/timokruth/Projekte/SLM/runs/parameter-confirmation-refresh-2026-09-15/verification.json",
+      "sha256": "205cccc33cd37eec538c2ac441b138630b37275a015e381acfa06be6b7628e43"
+    }
+  },
+  "raw_tasks_exported": false,
+  "model_outputs_generated": false
+}

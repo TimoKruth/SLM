@@ -1,6 +1,6 @@
 # Parameter evaluation protocol: diagnostic preparation
 
-Version 1, 15 September 2026. Scope: stronger evaluation for the existing 27.3M FP32 comparison. This is not a training plan or a launch authorization. Existing campaign metrics and acceptance gates remain unchanged.
+Version 2, 15 September 2026; updated after the completed diagnostic and data refresh. Scope: stronger evaluation for the existing 27.3M FP32 comparison. This is not a training plan or a launch authorization. Existing campaign metrics and acceptance gates remain unchanged.
 
 ## Prepared diagnostic set
 
@@ -27,10 +27,12 @@ These are exploratory intervals conditional on the parent, existing data orders,
 
 For any future A-versus-D training comparison, fix the common additional-token endpoint, data-order pairing, parent checkpoint, hypothesis, selection rule and resource budget before evaluating fresh confirmation. Use the existing 15M/50M search outputs for retrospective analysis only. The existing two-hour final comparisons remain affected by unequal tokens and different positions along the cosine schedule.
 
-## Fresh confirmation: unresolved data requirements
+## Fresh confirmation: original gap inventory and completed data refresh
 
-Target the same source coverage and at least 64 independent groups per scored source. The fresh inventory excludes training and all discovered existing/reserved suite groups across local SLM worktrees. It currently lacks **245 groups across ARC, DREAM, QuaRel and Quoref** to meet that target. Do not substitute extra SNLI/math tasks for missing dialogue or extraction groups, shrink quotas silently, or reuse diagnostic groups while calling them fresh.
+Target the same source coverage and at least 64 independent groups per scored source. The fresh inventory excludes training and all discovered existing/reserved suite groups across local SLM worktrees. The original inventory lacked **245 groups across ARC, DREAM, QuaRel and Quoref** to meet that target. Do not substitute extra SNLI/math tasks for missing dialogue or extraction groups, shrink quotas silently, or reuse diagnostic groups while calling them fresh.
 
 Next preparation must identify unused source development material, preserve source provenance, and audit passage/dialogue/question groups and content overlap against training and every reserved suite. Context and original-reference checks must precede selection. The metadata inventory is not an exclusive reservation across concurrent tasks; rescan before use. Do not open the reserved external final benchmarks for this purpose.
 
-No fresh confirmation suite or READY claim is issued until coverage, overlap checks, fixed hypothesis and selection rule are all complete. No new model evaluation or training starts from this document.
+A STOP-guarded data-preparation suite may be sealed after coverage and overlap checks. No execution-ready claim is issued until the fixed hypothesis, selection rule, endpoints and budget are also complete. No new model evaluation or training starts from this document.
+
+Update, 15 September 2026: [reference quarantine and confirmation refresh](PARAMETER_REFERENCE_REFRESH.md) complete the data-coverage step. A separate STOP-guarded suite now has all 1,360 tasks / 1,280 scored tasks, including 64 original-validation groups each for ARC, DREAM, QuaRel and Quoref. The other 21 sources retain unconsumed internal-development provenance; original validation never enters training. Nine local corpus files and 61 existing/reserved suites were checked for group and exact-content overlap. This supersedes the earlier 245-group data deficit, while the fixed-hypothesis, selection-rule, endpoint and resource-budget requirements above still apply before execution. No model outputs exist for this new suite.

@@ -18,3 +18,7 @@ Dieser Export umfasst aggregierte Ergebnisse des Parametervergleichs. Er ist kei
 ## Größere gespeicherte Checkpoint-Diagnose
 
 [Abgeschlossener Bericht](expanded-checkpoint-diagnostic/REPORT.md): neun vollständige Auswertungen und 12.240 validierte Antworten, keine bestätigte Verbesserung gegenüber dem Elternmodell. [Durchführung und Einordnung](../../EXPANDED_DIAGNOSTIC_RUN.md). Aggregierte Metriken, Unsicherheiten, Herkunft und Budget in `analysis.json`, `provenance.json`, `exports.json` und `completion.json` im selben Unterverzeichnis. Keine Rohantworten, neuen Trainings oder Modellübernahme.
+
+## Referenzbereinigung und vollständige Gegenprüfungsabdeckung
+
+[Bericht](../../PARAMETER_REFERENCE_REFRESH.md): 23 Entwicklungsdatensätze aus sechs Referenzgruppen quarantänisiert, Training bytegleich; neue separate Suite mit 1.360 Aufgaben / 1.280 bewertbaren Aufgaben und geschlossenen ARC-/DREAM-/QuaRel-/Quoref-Lücken. [Abdeckung](parameter-reference-refresh/coverage-audit.json), [Quarantäne](parameter-reference-refresh/reference-quarantine.json), [Quellenrevisionen](parameter-reference-refresh/validation-sources.json). Eingabehashes und CPU-Abschlussprüfung im selben Verzeichnis. Keine Rohaufgaben, Modellausgaben oder Trainingsstarts. Die frühere Aussage fehlender Datenabdeckung ist damit historisch; Versuchsparameter und Ausführungsbudget bleiben vor Nutzung festzulegen.
