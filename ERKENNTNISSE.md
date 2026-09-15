@@ -103,6 +103,14 @@ Die Genauigkeit ist ein Mittel über sechs bewertbare Fähigkeitsgruppen, kein A
 
 Belege: [Ergebnisarchiv mit Herkunft und Verifikation](results/2026-09-15/INDEX.md), [unveränderter Bericht](results/2026-09-15/long-horizon-round2-resume-2026-09-14/REPORT.md), [vorab festgelegter Plan](LANGZEIT_RUNDE_2.md).
 
+## Fehleranalyse und Evaluationsvorbereitung vom 15. September
+
+Die ersten beiden empfohlenen Schritte wurden bearbeitet: [Fehleranalyse](PARAMETER_ERROR_ANALYSIS.md) und [Evaluationsprotokoll](PARAMETER_EVALUATION_PROTOCOL.md). Alle 13.152 gespeicherten Antworten aus 33 Auswertungen stimmen mit dem eingefrorenen Scorer überein. Beim Kontrollmodell sind 190 von 232 falschen Gegenprüfungsantworten ohne die untersuchten Oberflächenwarnungen; Mathematik zeigt zugleich viele Wiederholungen, Format- und Inhaltsfehler. Die gezielte manuelle Prüfung dokumentiert zwei neue Referenzprobleme; ihr Ausschluss ändert die finalen Makroscores nicht. Eine reine Optionsbuchstaben-Normalisierung würde neben einem plausiblen Formatfall drei numerisch widersprüchliche Antworten akzeptieren.
+
+Gepaarte Gruppen-Bootstraps mit 5.000 Ziehungen ergeben für den mittleren Kosinusvorteil von +0,24pp ein exploratives 95%-Intervall von −4,03 bis +4,44pp. Datenreihenfolgen wurden gemeinsam gepaart; keine unabhängigen Modellseeds, keine neue Signifikanz- oder Annahmeentscheidung. Die alte Gegenprüfung ist für weitere Auswahl jetzt explorativ.
+
+Eine größere Diagnose mit denselben 25 Quellen liegt STOP-gesperrt vor: 64 Gruppen je bewertbarer Quelle, 16 je unbewertbarer Quelle, insgesamt 1.360 Aufgaben und 1.280 bewertbare Gruppen. Ausschließlich bereits konsumierte Suiten abgeschlossener Kampagnen, kein Trainingsgruppenüberlapp; noch keine Modell-Auswertung. Eine passende frische Gegenprüfung bleibt wegen fehlender unbenutzter/unreservierter Gruppen bei ARC, DREAM, QuaRel und Quoref unvollständig. Die verbleibende Datenarbeit und Grenzen stehen im Protokoll; keine stillschweigende Wiederverwendung alter Aufgaben als frischer Test.
+
 ## Empfohlene nächste Schritte – keine Startfreigabe
 
 1. Bestehende Antworten von A und D sowie die Loss-/Genauigkeitsabweichung bei B auf den bereits geöffneten Suiten untersuchen. Je Fähigkeit Inhaltsfehler, Antwortformat, Wiederholungen, Trunkierung und fragwürdige Referenzen getrennt zählen. Dieselben Aufgaben und vorhandene 15M-/50M-/Endstände verwenden; Originalscores erhalten. Das ist der nächste Untersuchungsschritt vor zusätzlichem Training.
