@@ -1,3 +1,5 @@
+Aktuell fortgesetzt (15.09.2026): [Fokussierter FP32-Vergleich nach Akkupause](FOCUSED_FP32_RESUME_START.md). Verbindlicher Status im Worktree `SLM-focused-resume`.
+
 Aktiver fokussierter Vergleich (15.09.2026): [12.000 identische Updates, Start und Grenzen](FOCUSED_FP32_START.md). Status im Worktree `SLM-focused-optimization`, Lauf `focused-fp32-12000-2026-09-15`.
 
 Abgeschlossen und analysiert (15.09.2026): [Ergebnisse und nächste gezielte Prüfung](CONSERVATIVE_RESULT_ANALYSIS.md). Kein neuer Lauf gestartet.

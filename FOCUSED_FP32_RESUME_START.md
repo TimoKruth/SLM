@@ -1,0 +1,13 @@
+# Focused comparison resumed — 15 September 2026
+
+On explicit user request “resume”, the focused FP32 comparison resumed **15 September 2026 at 09:54:11 Europe/Berlin**. Hard deadline **14:15:27**. Authoritative session: `/Users/timokruth/Projekte/SLM-focused-resume/runs/focused-fp32-resume-2026-09-15/`; `status.json` and `direct-status.json` are current. Code `7bb2ec1`, branch `codex/focused-resume`, worktree `/Users/timokruth/Projekte/SLM-focused-resume`; design and limits in its `FOCUSED_RESUME.md`.
+
+Two completed 12,000-update trials, their six evaluations and the fresh parent evaluation were retained in 115 independently copied, verified files. Trial r1-deferred4 resumed checkpoint `checkpoint-0137242` at 1,648 updates and 2,982,235 nonpadding tokens. Model, Adam and sampler are restored. A CPU replay of those 1,648 batches verified the exact saved RNG state, batch SHA256, source counters and token count, then reconstructed the running hash for continued exposure verification. No optimizer updates were repeated. Target, settings, all three suites and quality gates are unchanged.
+
+The previous session remains STOP-locked and untouched. All frozen input hashes were checked. 61 CPU tests passed, followed by real parent checkpoint controls, a four-update exact-stop/save smoke, and continuation controls on the actual partial model/Adam checkpoint. New training progress beyond the restored checkpoint was verified in `RESUME_START_VERIFIED.json`.
+
+The other authorized expanded checkpoint evaluation occupied the GPU during preparation; it completed at 09:53:04 before this resume. No competing job was interrupted. Mains power and the strict prestart resource interval passed; exclusive GPU ownership, light monitoring and PowerWatch remain active.
+
+Original budget 21,600s = initial preparation 612s + previous session 4,585s + new preparation/launch reserve 727s + resumed session maximum **15,676s (4h 21m 16s)**. New preparation conservatively includes the short GPU wait. The earlier battery pause is excluded; no fresh six-hour allocation. Remaining stage allowances require approximately 13,110 seconds. Early completion leaves unused reserve.
+
+The interrupted trial reports previous active process time plus its resumed process, including reload/replay overhead; pause time is excluded. Its safety allowance subtracts the earlier 269.985 process seconds. That pair is explicitly ineligible for the uninterrupted timing gate, although its identical-update quality comparison can still be assessed. Speed ratios for this interrupted pair are descriptive. No automatic adoption, restart, extension or further campaign. Create STOP in the new session to stop it.
