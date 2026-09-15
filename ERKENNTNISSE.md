@@ -1,8 +1,10 @@
-# Erkenntnisse und Grenzen – Stand 11. September 2026
+Aktualisierung 15.09.2026: [Analyse des konservativen FP32-Vergleichs](CONSERVATIVE_RESULT_ANALYSIS.md). Gleiche 8.192 Updates: keine beobachteten Korrektheitsregressionen, etwa 2,2% schneller; Zeitendpunkte bleiben wegen unterschiedlicher Updatezahlen und nicht bestandener Qualitäts-/Betriebskriterien unbestätigt. Keine Optimierung übernommen.
 
-Alle geplanten Trainings des letzten Vergleichs sind abgeschlossen. Es läuft keine neue Trainingskampagne. Es wurde kein Kandidat automatisch übernommen. Ziel bleibt ein vielseitiges, von Grund auf nur mit Benchmark-Trainingsmaterial gelerntes Sprachmodell; Coding ist eine mögliche Fähigkeit.
+# Erkenntnisse und Grenzen – Stand 15. September 2026
 
-Diese Übersicht verbindet die bisherigen Schlussfolgerungen mit dem [versionierten Ergebnisarchiv](results/2026-09-11/INDEX.md). Dessen Quellen und Prüfsummen stehen in `sources.json`. Vollständige Rohantworten, Pläne, Daten, fehlgeschlagene Versuche, Checkpoints und Leistungsprotokolle liegen zusätzlich in getrennten lokalen ZIP64-Archiven; Umfang und Wiederherstellung beschreibt [SICHERUNG.md](SICHERUNG.md). „Versioniert“ und „extern gesichert“ sind unterschiedliche Aussagen.
+Beide Langzeitblöcke zur Parametervariation sind vollständig abgeschlossen; kein Kandidat wurde automatisch übernommen. Der separate konservative FP32-Vergleich hat einen eigenen Status und ist nicht Teil dieser Parameterergebnisse. Ziel bleibt ein vielseitiges, von Grund auf nur mit Benchmark-Trainingsmaterial gelerntes Sprachmodell; Coding ist eine mögliche Fähigkeit.
+
+Diese Übersicht verbindet die bisherigen Schlussfolgerungen mit dem [historischen Ergebnisarchiv](results/2026-09-11/INDEX.md) und dem [Ergebnisarchiv des zweiten Langzeitblocks](results/2026-09-15/INDEX.md). Herkunft und Prüfsummen stehen beim älteren Export in `sources.json`, beim neuen in `verification.json`. Historische Rohantworten, Pläne, Daten, fehlgeschlagene Versuche, Checkpoints und Leistungsprotokolle liegen zusätzlich in getrennten lokalen ZIP64-Archiven; Umfang und Wiederherstellung beschreibt [SICHERUNG.md](SICHERUNG.md). Die neuen Laufartefakte sind noch nicht Bestandteil dieser ZIPs. „Versioniert“ und „extern gesichert“ sind unterschiedliche Aussagen.
 
 ## Daten und wissenschaftliche Aussage
 
@@ -78,6 +80,34 @@ Acht Anpassungen des ursprünglichen kleinen Sechs-Stunden-Modells: Familien-/Qu
 
 Quellen: [Langzeitbericht](results/2026-09-11/long-horizon-resume-2026-09-10/REPORT.md), zugehörige `quality.json`, `contrasts.json`, `assessment.json`; [Paralleltest](results/2026-09-11/parallel-probe-2026-09-10/REPORT.md). Vollständige Betriebsbedingungen und Antworten in den ZIPs.
 
-## Nächste offene Fragen – keine Startfreigabe
+## Zweiter Langzeitblock: Lernrate und Verlauf
 
-Vor weiteren langen Trainings vorhandene Antworten je Fähigkeit bei gleichen Tokenständen prüfen: Inhalt, Format, Wiederholungen und Trunkierung trennen. Danach größere gruppengetrennte Gegenprüfung und gleiche Tokenbudgets vorab festlegen. Kein Ausschluss einer Variante allein wegen dieser kleinen Studie. Keine Änderung historischer Scores oder eingefrorener Eingaben. Externe Tests erst nach fixierter Auswahl öffnen.
+Acht unabhängige Anpassungen desselben ursprünglichen 27,3M-Sechs-Stunden-Checkpoints mit FP32 und unveränderter Familienmischung aus 32 korrigierten Quellen. Vier Bedingungen mit jeweils zwei Datenreihenfolgen und 7200s Prozessbudget einschließlich Abschlussreserve. Alle acht Trainings und 33 Auswertungen abgeschlossen am 14. September um 23:55:05 Europe/Berlin. Gesamtverbrauch einschließlich voriger Sitzungen und Vorbereitung 66.390,316s aus 86.400s; 20.009,684s Reserve bleiben ungenutzt. Der Supervisor bestätigt unveränderte eingefrorene Eingaben.
+
+| Variante | Lernrate / Verlauf | Gegenprüfung Folge 0 | Folge 1 | Mittel |
+|---|---|---:|---:|---:|
+| Ausgangsmodell | gleicher ursprünglicher Checkpoint | 24,13% | gleicher Checkpoint | 24,13% |
+| A | konstant 3e-5 | 25,17% | 27,60% | 26,39% |
+| B | konstant 3e-6 | 21,88% | 24,90% | 23,39% |
+| C | konstant 1e-4 | 24,86% | 20,90% | 22,88% |
+| D | Kosinus 3e-5 → 3e-6 über 100M zusätzliche Tokens | 28,89% | 24,38% | 26,63% |
+
+Die Genauigkeit ist ein Mittel über sechs bewertbare Fähigkeitsgruppen, kein Anteil korrekter Antworten an allen 200 Aufgaben. Die Gegenprüfung umfasst 25 Quellen, 200 generierte und 160 auf Korrektheit bewertete Aufgaben. Der Loss bewertet die Originalreferenzen aller 200 Aufgaben bei vorgegebenen korrekten vorherigen Tokens. Die neue Gegenprüfung hat andere Gruppen als Block 1: 24,13% statt damals 27,74% beim identischen Elternmodell bedeutet deshalb keinen Qualitätsverlust.
+
+- Kein Kandidat erfüllt alle Kriterien: mindestens +2 Prozentpunkte gegenüber A in beiden Wiederholungen, kein mittlerer Familienrückgang über 5 Punkte und bestandene Elternmodellkontrolle. Keine automatische Übernahme.
+- B verliert auf der Gegenprüfung gegenüber A 3,30 / 2,71 Punkte, obwohl der Referenzloss sinkt und die Auswahlsuite besser ausfällt. Bessere Referenzvorhersage bestätigt hier keine bessere freie Antwortqualität.
+- C verliert 0,31 / 6,70 Punkte gegenüber A und erhöht den Referenzloss in beiden Wiederholungen. Das liefert unter diesen Bedingungen keinen Grund, die hohe LR weiter zu priorisieren.
+- D gewinnt im Mittel nur 0,24 Punkte gegenüber A: +3,72 in Folge 0, −3,23 in Folge 1. D besteht die Elternmodellkontrolle, aber nicht den geforderten konsistenten Vorteil gegenüber A. Auch bei gleichen 50M Tokens auf der Auswahlsuite wechselt das Vorzeichen (+1,27 / −1,15 Punkte). D bleibt eine Hypothese, kein bestätigter Gewinner.
+- Bei gleichen 50M Tokens liegt B auf der Auswahlsuite nur +0,06 / +0,45 Punkte vor A, C −5,30 / −1,34 Punkte dahinter. Diese Suche-Endpunkte ersetzen keine Gegenprüfung bei gleichen Tokens.
+- Die zusätzlichen Tokenmengen reichen bei knapp gleicher aktiver Trainingszeit von 82,9M bis 126,0M. D erreicht in Folge 0 das Ende seiner 100M-Kosinuskurve nicht, in Folge 1 schon. Pausen und Betriebsbedingungen begrenzen die Interpretation bei festem Zeitbudget. Zwei Datenreihenfolgen sind keine unabhängigen Modellinitialisierungen; keine Signifikanz- oder externe Transferbehauptung.
+
+Belege: [Ergebnisarchiv mit Herkunft und Verifikation](results/2026-09-15/INDEX.md), [unveränderter Bericht](results/2026-09-15/long-horizon-round2-resume-2026-09-14/REPORT.md), [vorab festgelegter Plan](LANGZEIT_RUNDE_2.md).
+
+## Empfohlene nächste Schritte – keine Startfreigabe
+
+1. Bestehende Antworten von A und D sowie die Loss-/Genauigkeitsabweichung bei B auf den bereits geöffneten Suiten untersuchen. Je Fähigkeit Inhaltsfehler, Antwortformat, Wiederholungen, Trunkierung und fragwürdige Referenzen getrennt zählen. Dieselben Aufgaben und vorhandene 15M-/50M-/Endstände verwenden; Originalscores erhalten. Das ist der nächste Untersuchungsschritt vor zusätzlichem Training.
+2. Messgrundlage verbessern: stärkere gruppengetrennte Abdeckung je Fähigkeit, insbesondere der kleinen Familien, und auf Aufgaben-/Quellgruppen gepaarte Unsicherheitsanalyse. Eine neue Gegenprüfung erst nach festgelegter Hypothese und Auswahlregel öffnen; bestehende Gegenprüfungen sind nach dieser Analyse explorativ. Reservierte externe Abschlusstests weiter geschlossen halten.
+3. Falls die Diagnose einen weiteren LR-Vergleich rechtfertigt, nur A gegen D vom selben Elterncheckpoint mit identischen zusätzlichen Tokenbudgets und mehr gepaarten Datenreihenfolgen prüfen. Vorab Tokenendpunkt, Qualitätskriterien und Abbruchbudget festlegen; benötigte Zeit anhand des langsameren gemessenen Durchsatzes samt Reserven kalkulieren. Für Aussagen über Modellinitialisierungen wären gesonderte unabhängige Trainings erforderlich. Keine weitere breite LR-Rotation allein aus dem kleinen Durchschnittsvorteil ableiten.
+4. Breiteres Lernen separat untersuchen: Nach Prüfung der vorbereiteten 47-Quellen-Mischung einen klar abgegrenzten Datenvergleich planen. Quellenanzahl allein ist kein Qualitätsnachweis; LR, Daten und Modellgröße nicht zugleich ändern. Die Entscheidung über GPU-Synchronisation aus dem separaten konservativen FP32-Vergleich anhand seiner eigenen Qualitäts- und Geschwindigkeitskriterien treffen.
+
+Arbeitsreferenz bleibt A mit LR 3e-5; das erklärt sie nicht zur global optimalen Konfiguration und übernimmt keinen neuen Modellcheckpoint. Diese Empfehlungen starten keine zusätzlichen Läufe und verändern keine eingefrorenen Eingaben.

@@ -1,0 +1,482 @@
+[
+  {
+    "repetition": 0,
+    "condition": "A",
+    "endpoint": "15M",
+    "accuracy": 0.26421957671957674,
+    "families": {
+      "entailment": 0.5833333333333334,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.23115079365079366,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.21875,
+      "dialogue": 0.3125
+    },
+    "answer_loss": 1.4546112804185158
+  },
+  {
+    "repetition": 0,
+    "condition": "A",
+    "endpoint": "50M",
+    "accuracy": 0.27777777777777773,
+    "families": {
+      "entailment": 0.6666666666666666,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.2708333333333333,
+      "reading_and_extraction": 0.20833333333333334,
+      "commonsense_and_social": 0.3125,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.446552795641767
+  },
+  {
+    "repetition": 0,
+    "condition": "A",
+    "endpoint": "final_search",
+    "accuracy": 0.26492228835978837,
+    "families": {
+      "entailment": 0.6458333333333334,
+      "mathematics": 0.0,
+      "science_and_causality": 0.2509920634920635,
+      "reading_and_extraction": 0.23958333333333334,
+      "commonsense_and_social": 0.203125,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.4444203772320805
+  },
+  {
+    "repetition": 0,
+    "condition": "A",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.2517361111111111,
+    "families": {
+      "entailment": 0.6666666666666666,
+      "mathematics": 0.0,
+      "science_and_causality": 0.25,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.25,
+      "dialogue": 0.125
+    },
+    "answer_loss": 1.4784724325384013
+  },
+  {
+    "repetition": 0,
+    "condition": "B",
+    "endpoint": "15M",
+    "accuracy": 0.2828621031746032,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.0,
+      "science_and_causality": 0.2648809523809524,
+      "reading_and_extraction": 0.25,
+      "commonsense_and_social": 0.265625,
+      "dialogue": 0.3125
+    },
+    "answer_loss": 1.4279030075527193
+  },
+  {
+    "repetition": 0,
+    "condition": "B",
+    "endpoint": "50M",
+    "accuracy": 0.27839781746031744,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.3005952380952381,
+      "reading_and_extraction": 0.22916666666666666,
+      "commonsense_and_social": 0.265625,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.4193890025900704
+  },
+  {
+    "repetition": 0,
+    "condition": "B",
+    "endpoint": "final_search",
+    "accuracy": 0.3065062830687831,
+    "families": {
+      "entailment": 0.6666666666666666,
+      "mathematics": 0.0625,
+      "science_and_causality": 0.30257936507936506,
+      "reading_and_extraction": 0.2604166666666667,
+      "commonsense_and_social": 0.296875,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.4143054105759059
+  },
+  {
+    "repetition": 0,
+    "condition": "B",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.21875,
+    "families": {
+      "entailment": 0.625,
+      "mathematics": 0.0,
+      "science_and_causality": 0.25,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.21875,
+      "dialogue": 0.0
+    },
+    "answer_loss": 1.458633785820566
+  },
+  {
+    "repetition": 0,
+    "condition": "C",
+    "endpoint": "15M",
+    "accuracy": 0.2408647486772487,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.24206349206349206,
+      "reading_and_extraction": 0.1875,
+      "commonsense_and_social": 0.203125,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.5194352199382308
+  },
+  {
+    "repetition": 0,
+    "condition": "C",
+    "endpoint": "50M",
+    "accuracy": 0.22482638888888887,
+    "families": {
+      "entailment": 0.5416666666666666,
+      "mathematics": 0.041666666666666664,
+      "science_and_causality": 0.20833333333333331,
+      "reading_and_extraction": 0.16666666666666666,
+      "commonsense_and_social": 0.265625,
+      "dialogue": 0.125
+    },
+    "answer_loss": 1.5081644282550895
+  },
+  {
+    "repetition": 0,
+    "condition": "C",
+    "endpoint": "final_search",
+    "accuracy": 0.2392526455026455,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.0,
+      "science_and_causality": 0.26884920634920634,
+      "reading_and_extraction": 0.1875,
+      "commonsense_and_social": 0.25,
+      "dialogue": 0.125
+    },
+    "answer_loss": 1.4630927002510525
+  },
+  {
+    "repetition": 0,
+    "condition": "C",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.24861111111111112,
+    "families": {
+      "entailment": 0.5416666666666666,
+      "mathematics": 0.0,
+      "science_and_causality": 0.2,
+      "reading_and_extraction": 0.25,
+      "commonsense_and_social": 0.25,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.5097617754666135
+  },
+  {
+    "repetition": 0,
+    "condition": "D",
+    "endpoint": "15M",
+    "accuracy": 0.265707671957672,
+    "families": {
+      "entailment": 0.5833333333333334,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.2400793650793651,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.21875,
+      "dialogue": 0.3125
+    },
+    "answer_loss": 1.4523865072278164
+  },
+  {
+    "repetition": 0,
+    "condition": "D",
+    "endpoint": "50M",
+    "accuracy": 0.2904679232804233,
+    "families": {
+      "entailment": 0.75,
+      "mathematics": 0.0625,
+      "science_and_causality": 0.26884920634920634,
+      "reading_and_extraction": 0.23958333333333334,
+      "commonsense_and_social": 0.296875,
+      "dialogue": 0.125
+    },
+    "answer_loss": 1.4360522764267984
+  },
+  {
+    "repetition": 0,
+    "condition": "D",
+    "endpoint": "final_search",
+    "accuracy": 0.27624834656084657,
+    "families": {
+      "entailment": 0.6458333333333334,
+      "mathematics": 0.041666666666666664,
+      "science_and_causality": 0.32936507936507936,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.234375,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.4251229502177076
+  },
+  {
+    "repetition": 0,
+    "condition": "D",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.2888888888888889,
+    "families": {
+      "entailment": 0.625,
+      "mathematics": 0.08333333333333333,
+      "science_and_causality": 0.275,
+      "reading_and_extraction": 0.25,
+      "commonsense_and_social": 0.25,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.4545035558613018
+  },
+  {
+    "repetition": 1,
+    "condition": "D",
+    "endpoint": "15M",
+    "accuracy": 0.2810433201058201,
+    "families": {
+      "entailment": 0.625,
+      "mathematics": 0.041666666666666664,
+      "science_and_causality": 0.31646825396825395,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.234375,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.4484824500458244
+  },
+  {
+    "repetition": 1,
+    "condition": "D",
+    "endpoint": "50M",
+    "accuracy": 0.26248346560846564,
+    "families": {
+      "entailment": 0.5625,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.23115079365079366,
+      "reading_and_extraction": 0.19791666666666666,
+      "commonsense_and_social": 0.25,
+      "dialogue": 0.3125
+    },
+    "answer_loss": 1.4398342653228948
+  },
+  {
+    "repetition": 1,
+    "condition": "D",
+    "endpoint": "final_search",
+    "accuracy": 0.25826719576719576,
+    "families": {
+      "entailment": 0.6458333333333334,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.25793650793650796,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.21875,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.4253396696995912
+  },
+  {
+    "repetition": 1,
+    "condition": "D",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.24375,
+    "families": {
+      "entailment": 0.75,
+      "mathematics": 0.0,
+      "science_and_causality": 0.275,
+      "reading_and_extraction": 0.25,
+      "commonsense_and_social": 0.1875,
+      "dialogue": 0.0
+    },
+    "answer_loss": 1.456162276059622
+  },
+  {
+    "repetition": 1,
+    "condition": "C",
+    "endpoint": "15M",
+    "accuracy": 0.22953869047619047,
+    "families": {
+      "entailment": 0.5208333333333334,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.2261904761904762,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.203125,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.5163703601426295
+  },
+  {
+    "repetition": 1,
+    "condition": "C",
+    "endpoint": "50M",
+    "accuracy": 0.26062334656084657,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.0,
+      "science_and_causality": 0.18353174603174605,
+      "reading_and_extraction": 0.22916666666666666,
+      "commonsense_and_social": 0.171875,
+      "dialogue": 0.375
+    },
+    "answer_loss": 1.5198762393871252
+  },
+  {
+    "repetition": 1,
+    "condition": "C",
+    "endpoint": "final_search",
+    "accuracy": 0.23912863756613756,
+    "families": {
+      "entailment": 0.5833333333333334,
+      "mathematics": 0.0,
+      "science_and_causality": 0.24206349206349206,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.203125,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.5135538760006033
+  },
+  {
+    "repetition": 1,
+    "condition": "C",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.20902777777777778,
+    "families": {
+      "entailment": 0.4166666666666667,
+      "mathematics": 0.0,
+      "science_and_causality": 0.275,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.09375,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.5537802948942407
+  },
+  {
+    "repetition": 1,
+    "condition": "B",
+    "endpoint": "15M",
+    "accuracy": 0.2828621031746032,
+    "families": {
+      "entailment": 0.6875,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.3273809523809524,
+      "reading_and_extraction": 0.23958333333333334,
+      "commonsense_and_social": 0.234375,
+      "dialogue": 0.1875
+    },
+    "answer_loss": 1.4247661645411336
+  },
+  {
+    "repetition": 1,
+    "condition": "B",
+    "endpoint": "50M",
+    "accuracy": 0.2784804894179894,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.31150793650793646,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.265625,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.4230492174682925
+  },
+  {
+    "repetition": 1,
+    "condition": "B",
+    "endpoint": "final_search",
+    "accuracy": 0.2873263888888889,
+    "families": {
+      "entailment": 0.6458333333333334,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.29166666666666663,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.234375,
+      "dialogue": 0.3125
+    },
+    "answer_loss": 1.4237241439112347
+  },
+  {
+    "repetition": 1,
+    "condition": "B",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.2489583333333333,
+    "families": {
+      "entailment": 0.625,
+      "mathematics": 0.0,
+      "science_and_causality": 0.275,
+      "reading_and_extraction": 0.3125,
+      "commonsense_and_social": 0.15625,
+      "dialogue": 0.125
+    },
+    "answer_loss": 1.460052738036029
+  },
+  {
+    "repetition": 1,
+    "condition": "A",
+    "endpoint": "15M",
+    "accuracy": 0.2810433201058201,
+    "families": {
+      "entailment": 0.625,
+      "mathematics": 0.041666666666666664,
+      "science_and_causality": 0.31646825396825395,
+      "reading_and_extraction": 0.21875,
+      "commonsense_and_social": 0.234375,
+      "dialogue": 0.25
+    },
+    "answer_loss": 1.45031626393041
+  },
+  {
+    "repetition": 1,
+    "condition": "A",
+    "endpoint": "50M",
+    "accuracy": 0.2740162037037037,
+    "families": {
+      "entailment": 0.5625,
+      "mathematics": 0.020833333333333332,
+      "science_and_causality": 0.22222222222222224,
+      "reading_and_extraction": 0.22916666666666666,
+      "commonsense_and_social": 0.234375,
+      "dialogue": 0.375
+    },
+    "answer_loss": 1.4575480730706727
+  },
+  {
+    "repetition": 1,
+    "condition": "A",
+    "endpoint": "final_search",
+    "accuracy": 0.27219742063492064,
+    "families": {
+      "entailment": 0.6041666666666666,
+      "mathematics": 0.041666666666666664,
+      "science_and_causality": 0.2738095238095238,
+      "reading_and_extraction": 0.19791666666666666,
+      "commonsense_and_social": 0.203125,
+      "dialogue": 0.3125
+    },
+    "answer_loss": 1.4701834899557102
+  },
+  {
+    "repetition": 1,
+    "condition": "A",
+    "endpoint": "final_confirmation",
+    "accuracy": 0.2760416666666667,
+    "families": {
+      "entailment": 0.75,
+      "mathematics": 0.0,
+      "science_and_causality": 0.25,
+      "reading_and_extraction": 0.25,
+      "commonsense_and_social": 0.28125,
+      "dialogue": 0.125
+    },
+    "answer_loss": 1.4852779449522495
+  }
+]

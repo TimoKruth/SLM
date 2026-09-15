@@ -1,0 +1,199 @@
+{
+  "verified_at": "2026-09-15T07:30:01.975192+02:00",
+  "training_results_completed": 8,
+  "complete_evaluation_summaries": 33,
+  "quality_rows_recomputed": 32,
+  "acceptance_decisions_recomputed": 3,
+  "all_checks_passed": true,
+  "scope": "CPU-only validation of existing aggregates and terminal status; no training, new evaluation, or full frozen-input rehash. Frozen-input integrity is the completed supervisor attestation.",
+  "sources": [
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/REPORT.md",
+      "export": "results/2026-09-15/long-horizon-round2-resume-2026-09-14/REPORT.md",
+      "sha256": "538df1115b6e8d8c7f57f10763c8003577953358979b0f459123df610df0750b"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/quality.json",
+      "export": "results/2026-09-15/long-horizon-round2-resume-2026-09-14/quality.json",
+      "sha256": "f6bbbf997c3b32cf2b8f89f900c6aa2c1641cc1c47924d6ddf800a86e91cd7d5"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/contrasts.json",
+      "export": "results/2026-09-15/long-horizon-round2-resume-2026-09-14/contrasts.json",
+      "sha256": "f52966c3a79d828ffb1d8182c68afea85a672c57b402ffaa571e35df59e7e364"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/assessment.json",
+      "export": "results/2026-09-15/long-horizon-round2-resume-2026-09-14/assessment.json",
+      "sha256": "e86f43a33123a1bb06338273b886b72c3111637fc904d154fe3ead2f8118322a"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-A/token-015000000/search/summary.json",
+      "sha256": "e850946242d6f6a3aa5dbdde3979aeb0980f76a3af99d9ab5bc99d717cccf1e7"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-A/token-050000000/search/summary.json",
+      "sha256": "c038554503db3fdbc7da13c2a6afff0f0b09c9fa5bb16c1d1ed25732cfd80856"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-A/search/summary.json",
+      "sha256": "96245ff437522a9d7efbc7a43452cf0578ee69ddf8ae92e0cf499e6e8be4f244"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-A/confirmation/summary.json",
+      "sha256": "7422d6c20478e0bf0d96130e8808a8b113c97f1d62ddad25741aa399e45b098b"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-B/token-015000000/search/summary.json",
+      "sha256": "814e968cd99e1a1b1b59f0c43a97d0307cb8412a934abd7c87182c2b0a0d9d04"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-B/token-050000000/search/summary.json",
+      "sha256": "edd216de38fabce447c20bf980add81c29f158b613f089216220f9a88efc8c64"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-B/search/summary.json",
+      "sha256": "1ea9db261208dc5081d5345cd31acd36d2166c16efe16d9f993ddd29a73781b6"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-B/confirmation/summary.json",
+      "sha256": "fbb69d4941030e519fa72bdf5b2d54441039116f30c1d91b63b505c314612d94"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-C/token-015000000/search/summary.json",
+      "sha256": "dde3b752f5158fa46a6d82e23dd6c45ceddd4cb46b9b9300154ea9b7404c1af0"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-C/token-050000000/search/summary.json",
+      "sha256": "61ce20501ecc5346d5d82d230e6e1b0e3279bb013991d5020f3279038e1f6164"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-C/search/summary.json",
+      "sha256": "404ecd360eb44da7349a5fe3098942e5254f1947376cbff6f748fb8fb437deee"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-C/confirmation/summary.json",
+      "sha256": "924bb3282bab116dd4d18d0940eaef3a2707dd7e9bee0c9d9ae2787f095b0c80"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-D/token-015000000/search/summary.json",
+      "sha256": "2c0fbf7cf208183b638e6a9d91187c6ddb532be75fe4821351cd8513aa58fb35"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-D/token-050000000/search/summary.json",
+      "sha256": "98b3f528c9034254b0fe7ff0cb8f91f695a21e12f49d3136b186d8a4dfb468f3"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-D/search/summary.json",
+      "sha256": "dc573661fa4f7fb4892f02db88a37c716366d2e7360b598dc3d74937c2bbdced"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-D/confirmation/summary.json",
+      "sha256": "758458f035a26839479eb6b2637d2d7bab58e1fd210e9bdebbcebcf2fdaf6491"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-D/token-015000000/search/summary.json",
+      "sha256": "716824395dfcc470953e775df7d9ce543249ddb15803eda5abe64e4be0ab0c90"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-D/token-050000000/search/summary.json",
+      "sha256": "66e4b1c4c480a1a247271f5dc1bf1f32acb0ced8f3fc917f0f2b9bec788a6a93"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-D/search/summary.json",
+      "sha256": "02cec104d724e0690caf0e275c24519e5d96fca166bb02a1ffd3c3d0624f156d"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-D/confirmation/summary.json",
+      "sha256": "a7997af2a40cee29a74e80a73ff6a29b37722724787b909dce193223aa91f696"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-C/token-015000000/search/summary.json",
+      "sha256": "7dc245eb5d148c83faf161808db2d8f16a13d00da73269a0f3a767e29245dc03"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-C/token-050000000/search/summary.json",
+      "sha256": "edc4636aa8bc5df51a1974d7979aa652d0458d9833e1505d3215f3225814de5e"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-C/search/summary.json",
+      "sha256": "8f5e8087689bd2be57ee3895d048c3d2ad272830c3f1d57a67448629c80ec54e"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-C/confirmation/summary.json",
+      "sha256": "7f8600242407f36e5ca8d981cca8092900b7ccd34103fa67e9da66a892b77415"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-B/token-015000000/search/summary.json",
+      "sha256": "41001e20c68bc92cbfb9cb285864edee5037e3e52a1763146213fbacce0a8a48"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-B/token-050000000/search/summary.json",
+      "sha256": "8a99a1d582a6ccc61d7618f9fce78d1382cefb6d4fb2b4d4985f3c81e8b94337"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-B/search/summary.json",
+      "sha256": "a9a393500fe544bbfd7392765481f3ebbbceb7b9c09e1f96886dddf1ccf5ead8"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-B/confirmation/summary.json",
+      "sha256": "3774ea48dec71f53c1929dddc12235b3bca32808e6723dd33619f75e381def6e"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-A/token-015000000/search/summary.json",
+      "sha256": "24dc233e272908d68f841ed537b5e572da034529268c70ee41caa8160386f752"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-A/token-050000000/search/summary.json",
+      "sha256": "d53f4f5c740d76dd577f70a7810e2ad654d48be45999db28f7a54d0b739351f9"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-A/search/summary.json",
+      "sha256": "f4b4e1b5e01b73f157999ff20254c187b3883cc5e49b7f0a1c8f6bf152ccdef5"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-A/confirmation/summary.json",
+      "sha256": "91f2f8059a879a0f53a33516edc6851913d54185e4b4d97dbdfde3e883e49ed2"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/parent-confirmation/summary.json",
+      "sha256": "08b14ee22bac8b749e20d155ca5eff59f350d361500fc79ab80bff76fea873bf"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/status.json",
+      "sha256": "657c2b2853e492b7a0b11f4f0ac4d4932b4a21f5cd582b05f9c79c6f77e926dd"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-A/result.json",
+      "sha256": "0c14b25ab14397417cd661ed346b673538fb2021ef8e618cf1118287260afecb"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-B/result.json",
+      "sha256": "35ff1ba69c7a29249458e88876c9e7d504b304acf485e048d2c22b5e963d3bd4"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-C/result.json",
+      "sha256": "e7c7faed8011996c014aa11842bf2dc59bc9b96904e125c2d66ecc7b3a129e94"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r0-D/result.json",
+      "sha256": "12b8173c8e9ba3a7e029f99615887347788b30cf7feeb9a9d117e397c12a0b3a"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-A/result.json",
+      "sha256": "1ff41f0b275f05dcfda661f99b38aa0d6d8c8e403571a8b781f1d49a76d45069"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-B/result.json",
+      "sha256": "d91846b7140a0464492c406f2d3a1826a4453d622d91e7587633b0d23477cf62"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-C/result.json",
+      "sha256": "9638eabb601d1440b33637032a45776b79fcb577c0e56a28bdb47042bfd3e26f"
+    },
+    {
+      "source": "runs/long-horizon-round2-resume-2026-09-14/trials/long-round2-r1-D/result.json",
+      "sha256": "16958b38dbeef88d10acb53891451ea991c1c00b057e45a64149c0abdf1cdc41"
+    }
+  ]
+}
