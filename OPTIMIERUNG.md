@@ -1,3 +1,5 @@
+Aktiver fokussierter Vergleich (15.09.2026): [12.000 identische Updates, Start und Grenzen](FOCUSED_FP32_START.md). Status im Worktree `SLM-focused-optimization`, Lauf `focused-fp32-12000-2026-09-15`.
+
 Abgeschlossen und analysiert (15.09.2026): [Ergebnisse und nächste gezielte Prüfung](CONSERVATIVE_RESULT_ANALYSIS.md). Kein neuer Lauf gestartet.
 
 Aktuell (15.09.2026): konservativer Vergleich nach Zeitplanungsfehler repariert und mit Restbudget neu gestartet. Siehe [Start und Grenzen](CONSERVATIVE_RECOVERY_START.md). Verbindlicher Status im Worktree `SLM-conservative-recovery`, Run `conservative-fp32-recovery-2026-09-15`.
