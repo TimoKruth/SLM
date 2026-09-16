@@ -1,0 +1,32 @@
+[
+  {
+    "source": "anli",
+    "original_id": "4356d65b-47d2-44f4-baf3-dfed217d688d",
+    "reason": "reference_ambiguity"
+  },
+  {
+    "source": "aqua_rat",
+    "original_id": "62285",
+    "reason": "reference_quality_and_invalid_reasoning"
+  },
+  {
+    "source": "apps",
+    "original_id": "4184",
+    "reason": "reference_quality_and_repetition"
+  },
+  {
+    "source": "boolq",
+    "original_id": "7445",
+    "reason": "reference_question_mismatch"
+  },
+  {
+    "source": "aqua_rat",
+    "original_id": "32965",
+    "reason": "reference_incorrect"
+  },
+  {
+    "source": "aqua_rat",
+    "original_id": "79813",
+    "reason": "reference_inconsistent"
+  }
+]

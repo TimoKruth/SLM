@@ -47,3 +47,28 @@ def test_read_only_snapshot_and_failed_publish_preserves_old_report(tmp_path,mon
     assert (out/'latest.html').read_bytes()==previous
     assert not (out/'latest.tmp.html').exists()
     with sqlite3.connect(db_path) as db:assert db.execute('select count(*) from samples').fetchone()[0]==1
+
+
+def test_installer_uses_working_interpreter_before_service_replacement(tmp_path,monkeypatch):
+    import sys
+    import types
+    import plistlib
+    import resource_monitor.install as installer
+    application=tmp_path/'PowerWatch';application.mkdir();(application/'powerwatch').write_text('# existing collector')
+    user=tmp_path/'user';(user/'Library/LaunchAgents').mkdir(parents=True)
+    calls=[]
+    def run(args,**kwargs):
+        calls.append(args)
+        return types.SimpleNamespace(returncode=0)
+    monkeypatch.setattr(installer,'HOME',application)
+    monkeypatch.setattr(installer.Path,'home',lambda:user)
+    monkeypatch.setattr(installer.subprocess,'run',run)
+    monkeypatch.setattr(sys,'argv',['install','--output',str(tmp_path/'monitor'),'--python',sys.executable])
+    installer.main()
+    path=user/'Library/LaunchAgents/com.local.powerwatch.slm-report.plist'
+    args=plistlib.loads(path.read_bytes())['ProgramArguments']
+    assert args[0]==str(installer.Path(sys.executable).resolve())
+    verification=calls.index(args)
+    replacement=next(i for i,c in enumerate(calls) if c[:2]==['launchctl','bootout'])
+    assert verification<replacement
+    assert not any(c[:2]==['launchctl','bootout'] and c[-1].endswith('/com.local.powerwatch') for c in calls)

@@ -1,0 +1,1398 @@
+{
+  "cpu_tests_passed": 79,
+  "data": {
+    "counts": {
+      "anli.confirmation": {
+        "groups": 239,
+        "records": 3529
+      },
+      "anli.dev": {
+        "groups": 240,
+        "records": 3744,
+        "tokens": 444197
+      },
+      "anli.train": {
+        "groups": 10237,
+        "records": 155358,
+        "tokens": 18624949
+      },
+      "apps.confirmation": {
+        "groups": 106,
+        "records": 726
+      },
+      "apps.dev": {
+        "groups": 109,
+        "records": 777,
+        "tokens": 354580
+      },
+      "apps.train": {
+        "groups": 4340,
+        "records": 30654,
+        "tokens": 14444262
+      },
+      "aqua_rat.confirmation": {
+        "groups": 2045,
+        "records": 2385
+      },
+      "aqua_rat.dev": {
+        "groups": 2045,
+        "records": 2410,
+        "tokens": 404975
+      },
+      "aqua_rat.train": {
+        "groups": 76530,
+        "records": 92558,
+        "tokens": 15587534
+      },
+      "arc.confirmation": {
+        "groups": 87,
+        "records": 87
+      },
+      "arc.dev": {
+        "groups": 88,
+        "records": 89,
+        "tokens": 6902
+      },
+      "arc.train": {
+        "groups": 3186,
+        "records": 3193,
+        "tokens": 252608
+      },
+      "boolq.confirmation": {
+        "groups": 186,
+        "records": 245
+      },
+      "boolq.dev": {
+        "groups": 186,
+        "records": 211,
+        "tokens": 36602
+      },
+      "boolq.train": {
+        "groups": 7547,
+        "records": 8969,
+        "tokens": 1525017
+      },
+      "cb.confirmation": {
+        "groups": 8,
+        "records": 8
+      },
+      "cb.dev": {
+        "groups": 10,
+        "records": 10,
+        "tokens": 1257
+      },
+      "cb.train": {
+        "groups": 232,
+        "records": 232,
+        "tokens": 25233
+      },
+      "code_contests.confirmation": {
+        "groups": 154,
+        "records": 1048
+      },
+      "code_contests.dev": {
+        "groups": 156,
+        "records": 1080,
+        "tokens": 601426
+      },
+      "code_contests.train": {
+        "groups": 5703,
+        "records": 39520,
+        "tokens": 22529108
+      },
+      "commonsenseqa.confirmation": {
+        "groups": 233,
+        "records": 233
+      },
+      "commonsenseqa.dev": {
+        "groups": 234,
+        "records": 234,
+        "tokens": 13313
+      },
+      "commonsenseqa.train": {
+        "groups": 9273,
+        "records": 9274,
+        "tokens": 533676
+      },
+      "copa.confirmation": {
+        "groups": 25,
+        "records": 25
+      },
+      "copa.dev": {
+        "groups": 32,
+        "records": 32,
+        "tokens": 1947
+      },
+      "copa.train": {
+        "groups": 343,
+        "records": 343,
+        "tokens": 21054
+      },
+      "cosmos_qa.confirmation": {
+        "groups": 347,
+        "records": 633
+      },
+      "cosmos_qa.dev": {
+        "groups": 348,
+        "records": 615,
+        "tokens": 101651
+      },
+      "cosmos_qa.train": {
+        "groups": 13751,
+        "records": 24014,
+        "tokens": 4006753
+      },
+      "dream.confirmation": {
+        "groups": 87,
+        "records": 149
+      },
+      "dream.dev": {
+        "groups": 87,
+        "records": 153,
+        "tokens": 32701
+      },
+      "dream.train": {
+        "groups": 3689,
+        "records": 5781,
+        "tokens": 1293707
+      },
+      "drop.confirmation": {
+        "groups": 147,
+        "records": 2112
+      },
+      "drop.dev": {
+        "groups": 148,
+        "records": 2134,
+        "tokens": 678390
+      },
+      "drop.train": {
+        "groups": 5173,
+        "records": 68750,
+        "tokens": 21828097
+      },
+      "go_emotions.confirmation": {
+        "groups": 2127,
+        "records": 2127
+      },
+      "go_emotions.dev": {
+        "groups": 2160,
+        "records": 2160,
+        "tokens": 225327
+      },
+      "go_emotions.train": {
+        "groups": 38839,
+        "records": 38839,
+        "tokens": 4036844
+      },
+      "gsm8k.confirmation": {
+        "groups": 190,
+        "records": 190
+      },
+      "gsm8k.dev": {
+        "groups": 191,
+        "records": 191,
+        "tokens": 33257
+      },
+      "gsm8k.train": {
+        "groups": 7092,
+        "records": 7092,
+        "tokens": 1236949
+      },
+      "hellaswag.confirmation": {
+        "groups": 823,
+        "records": 1004
+      },
+      "hellaswag.dev": {
+        "groups": 823,
+        "records": 1018,
+        "tokens": 103507
+      },
+      "hellaswag.train": {
+        "groups": 30477,
+        "records": 37777,
+        "tokens": 3872938
+      },
+      "hotpotqa.train": {
+        "groups": 5968,
+        "records": 5969,
+        "tokens": 4938712
+      },
+      "logiqa.confirmation": {
+        "groups": 556,
+        "records": 597
+      },
+      "logiqa.dev": {
+        "groups": 555,
+        "records": 582,
+        "tokens": 148814
+      },
+      "logiqa.train": {
+        "groups": 10051,
+        "records": 10497,
+        "tokens": 2688709
+      },
+      "math.confirmation": {
+        "groups": 178,
+        "records": 178
+      },
+      "math.dev": {
+        "groups": 179,
+        "records": 179,
+        "tokens": 53700
+      },
+      "math.train": {
+        "groups": 6969,
+        "records": 6969,
+        "tokens": 2031886
+      },
+      "mbpp.confirmation": {
+        "groups": 7,
+        "records": 7
+      },
+      "mbpp.dev": {
+        "groups": 8,
+        "records": 8,
+        "tokens": 1331
+      },
+      "mbpp.train": {
+        "groups": 359,
+        "records": 359,
+        "tokens": 42306
+      },
+      "medqa.confirmation": {
+        "groups": 481,
+        "records": 481
+      },
+      "medqa.dev": {
+        "groups": 529,
+        "records": 529,
+        "tokens": 135984
+      },
+      "medqa.train": {
+        "groups": 9164,
+        "records": 9166,
+        "tokens": 2370777
+      },
+      "mrpc.confirmation": {
+        "groups": 170,
+        "records": 183
+      },
+      "mrpc.dev": {
+        "groups": 157,
+        "records": 169,
+        "tokens": 14198
+      },
+      "mrpc.train": {
+        "groups": 3057,
+        "records": 3316,
+        "tokens": 281626
+      },
+      "multinli.confirmation": {
+        "groups": 6406,
+        "records": 19614
+      },
+      "multinli.dev": {
+        "groups": 6289,
+        "records": 19333,
+        "tokens": 1289737
+      },
+      "multinli.train": {
+        "groups": 115145,
+        "records": 353453,
+        "tokens": 23494960
+      },
+      "multirc.confirmation": {
+        "groups": 20,
+        "records": 1278
+      },
+      "multirc.dev": {
+        "groups": 17,
+        "records": 1082,
+        "tokens": 559071
+      },
+      "multirc.train": {
+        "groups": 409,
+        "records": 24166,
+        "tokens": 10097698
+      },
+      "openbookqa.confirmation": {
+        "groups": 132,
+        "records": 137
+      },
+      "openbookqa.dev": {
+        "groups": 133,
+        "records": 136,
+        "tokens": 7898
+      },
+      "openbookqa.train": {
+        "groups": 4562,
+        "records": 4675,
+        "tokens": 268274
+      },
+      "piqa.confirmation": {
+        "groups": 376,
+        "records": 376
+      },
+      "piqa.dev": {
+        "groups": 377,
+        "records": 377,
+        "tokens": 20210
+      },
+      "piqa.train": {
+        "groups": 14069,
+        "records": 14069,
+        "tokens": 771928
+      },
+      "qasc.confirmation": {
+        "groups": 183,
+        "records": 216
+      },
+      "qasc.dev": {
+        "groups": 183,
+        "records": 198,
+        "tokens": 19099
+      },
+      "qasc.train": {
+        "groups": 7196,
+        "records": 7718,
+        "tokens": 759518
+      },
+      "qqp.confirmation": {
+        "groups": 9215,
+        "records": 16258
+      },
+      "qqp.dev": {
+        "groups": 9414,
+        "records": 17342,
+        "tokens": 1040280
+      },
+      "qqp.train": {
+        "groups": 167992,
+        "records": 329554,
+        "tokens": 19489029
+      },
+      "quarel.confirmation": {
+        "groups": 43,
+        "records": 43
+      },
+      "quarel.dev": {
+        "groups": 44,
+        "records": 44,
+        "tokens": 3072
+      },
+      "quarel.train": {
+        "groups": 1854,
+        "records": 1854,
+        "tokens": 125927
+      },
+      "quartz.confirmation": {
+        "groups": 4,
+        "records": 38
+      },
+      "quartz.dev": {
+        "groups": 4,
+        "records": 36,
+        "tokens": 2801
+      },
+      "quartz.train": {
+        "groups": 275,
+        "records": 2610,
+        "tokens": 199592
+      },
+      "quoref.confirmation": {
+        "groups": 63,
+        "records": 587
+      },
+      "quoref.dev": {
+        "groups": 63,
+        "records": 495,
+        "tokens": 269487
+      },
+      "quoref.train": {
+        "groups": 2018,
+        "records": 18135,
+        "tokens": 9690508
+      },
+      "race.confirmation": {
+        "groups": 649,
+        "records": 2244
+      },
+      "race.dev": {
+        "groups": 649,
+        "records": 2261,
+        "tokens": 999996
+      },
+      "race.train": {
+        "groups": 23740,
+        "records": 82884,
+        "tokens": 36683110
+      },
+      "ropes.confirmation": {
+        "groups": 10,
+        "records": 110
+      },
+      "ropes.dev": {
+        "groups": 10,
+        "records": 189,
+        "tokens": 45876
+      },
+      "ropes.train": {
+        "groups": 492,
+        "records": 10549,
+        "tokens": 2738505
+      },
+      "samsum.confirmation": {
+        "groups": 710,
+        "records": 710
+      },
+      "samsum.dev": {
+        "groups": 662,
+        "records": 662,
+        "tokens": 139669
+      },
+      "samsum.train": {
+        "groups": 12386,
+        "records": 12407,
+        "tokens": 2610790
+      },
+      "sciq.confirmation": {
+        "groups": 292,
+        "records": 293
+      },
+      "sciq.dev": {
+        "groups": 292,
+        "records": 292,
+        "tokens": 39944
+      },
+      "sciq.train": {
+        "groups": 11075,
+        "records": 11088,
+        "tokens": 1546460
+      },
+      "scitail.confirmation": {
+        "groups": 562,
+        "records": 582
+      },
+      "scitail.dev": {
+        "groups": 563,
+        "records": 586,
+        "tokens": 38760
+      },
+      "scitail.train": {
+        "groups": 21129,
+        "records": 21875,
+        "tokens": 1434743
+      },
+      "snli.confirmation": {
+        "groups": 3812,
+        "records": 13796
+      },
+      "snli.dev": {
+        "groups": 3812,
+        "records": 14145,
+        "tokens": 716190
+      },
+      "snli.train": {
+        "groups": 143063,
+        "records": 520773,
+        "tokens": 26584009
+      },
+      "social_i_qa.confirmation": {
+        "groups": 798,
+        "records": 808
+      },
+      "social_i_qa.dev": {
+        "groups": 798,
+        "records": 809,
+        "tokens": 58610
+      },
+      "social_i_qa.train": {
+        "groups": 31404,
+        "records": 31764,
+        "tokens": 2301177
+      },
+      "spider.confirmation": {
+        "groups": 4,
+        "records": 183
+      },
+      "spider.dev": {
+        "groups": 5,
+        "records": 191,
+        "tokens": 42132
+      },
+      "spider.train": {
+        "groups": 128,
+        "records": 6400,
+        "tokens": 2247173
+      },
+      "squad.confirmation": {
+        "groups": 12,
+        "records": 2007
+      },
+      "squad.dev": {
+        "groups": 13,
+        "records": 2769,
+        "tokens": 597075
+      },
+      "squad.train": {
+        "groups": 417,
+        "records": 82630,
+        "tokens": 17989528
+      },
+      "tabmwp.confirmation": {
+        "groups": 1133,
+        "records": 1232
+      },
+      "tabmwp.dev": {
+        "groups": 1172,
+        "records": 1172,
+        "tokens": 147024
+      },
+      "tabmwp.train": {
+        "groups": 20315,
+        "records": 20655,
+        "tokens": 2584669
+      },
+      "triviaqa.confirmation": {
+        "groups": 3820,
+        "records": 3820
+      },
+      "triviaqa.dev": {
+        "groups": 3786,
+        "records": 3786,
+        "tokens": 170638
+      },
+      "triviaqa.train": {
+        "groups": 68888,
+        "records": 68888,
+        "tokens": 3108097
+      },
+      "tydiqa.confirmation": {
+        "groups": 1225,
+        "records": 1807
+      },
+      "tydiqa.dev": {
+        "groups": 1203,
+        "records": 1882,
+        "tokens": 466741
+      },
+      "tydiqa.train": {
+        "groups": 21442,
+        "records": 33148,
+        "tokens": 8328574
+      },
+      "wic.confirmation": {
+        "groups": 104,
+        "records": 248
+      },
+      "wic.dev": {
+        "groups": 96,
+        "records": 259,
+        "tokens": 17207
+      },
+      "wic.train": {
+        "groups": 1605,
+        "records": 4921,
+        "tokens": 322270
+      },
+      "wikisql.confirmation": {
+        "groups": 436,
+        "records": 1380
+      },
+      "wikisql.dev": {
+        "groups": 436,
+        "records": 1378,
+        "tokens": 149929
+      },
+      "wikisql.train": {
+        "groups": 17108,
+        "records": 53390,
+        "tokens": 5773612
+      },
+      "winogrande.confirmation": {
+        "groups": 961,
+        "records": 961
+      },
+      "winogrande.dev": {
+        "groups": 962,
+        "records": 962,
+        "tokens": 48438
+      },
+      "winogrande.train": {
+        "groups": 38390,
+        "records": 38471,
+        "tokens": 1938181
+      },
+      "wiqa.confirmation": {
+        "groups": 4,
+        "records": 416
+      },
+      "wiqa.dev": {
+        "groups": 5,
+        "records": 536,
+        "tokens": 62990
+      },
+      "wiqa.train": {
+        "groups": 252,
+        "records": 28387,
+        "tokens": 3691104
+      },
+      "wsc.confirmation": {
+        "groups": 21,
+        "records": 38
+      },
+      "wsc.dev": {
+        "groups": 13,
+        "records": 25,
+        "tokens": 1860
+      },
+      "wsc.train": {
+        "groups": 245,
+        "records": 489,
+        "tokens": 42416
+      }
+    },
+    "coverage": {
+      "anli.confirmation": {
+        "eligible_groups": 239,
+        "family": "entailment",
+        "selected": 32
+      },
+      "anli.dev": {
+        "eligible_groups": 240,
+        "family": "entailment",
+        "selected": 32
+      },
+      "apps.confirmation": {
+        "eligible_groups": 101,
+        "family": "programming_and_queries",
+        "selected": 32
+      },
+      "apps.dev": {
+        "eligible_groups": 108,
+        "family": "programming_and_queries",
+        "selected": 32
+      },
+      "aqua_rat.confirmation": {
+        "eligible_groups": 2045,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "aqua_rat.dev": {
+        "eligible_groups": 2045,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "arc.confirmation": {
+        "eligible_groups": 87,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "arc.dev": {
+        "eligible_groups": 88,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "boolq.confirmation": {
+        "eligible_groups": 186,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "boolq.dev": {
+        "eligible_groups": 186,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "cb.confirmation": {
+        "eligible_groups": 8,
+        "family": "entailment",
+        "selected": 8
+      },
+      "cb.dev": {
+        "eligible_groups": 10,
+        "family": "entailment",
+        "selected": 10
+      },
+      "code_contests.confirmation": {
+        "eligible_groups": 153,
+        "family": "programming_and_queries",
+        "selected": 32
+      },
+      "code_contests.dev": {
+        "eligible_groups": 150,
+        "family": "programming_and_queries",
+        "selected": 32
+      },
+      "commonsenseqa.confirmation": {
+        "eligible_groups": 233,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "commonsenseqa.dev": {
+        "eligible_groups": 234,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "copa.confirmation": {
+        "eligible_groups": 25,
+        "family": "science_and_causality",
+        "selected": 25
+      },
+      "copa.dev": {
+        "eligible_groups": 32,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "cosmos_qa.confirmation": {
+        "eligible_groups": 347,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "cosmos_qa.dev": {
+        "eligible_groups": 348,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "dream.confirmation": {
+        "eligible_groups": 86,
+        "family": "dialogue",
+        "selected": 32
+      },
+      "dream.dev": {
+        "eligible_groups": 87,
+        "family": "dialogue",
+        "selected": 32
+      },
+      "drop.confirmation": {
+        "eligible_groups": 146,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "drop.dev": {
+        "eligible_groups": 146,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "go_emotions.confirmation": {
+        "eligible_groups": 2127,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "go_emotions.dev": {
+        "eligible_groups": 2160,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "gsm8k.confirmation": {
+        "eligible_groups": 190,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "gsm8k.dev": {
+        "eligible_groups": 191,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "hellaswag.confirmation": {
+        "eligible_groups": 823,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "hellaswag.dev": {
+        "eligible_groups": 823,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "hotpotqa.confirmation": {
+        "eligible_groups": 0,
+        "family": "reading_and_extraction",
+        "selected": 0
+      },
+      "hotpotqa.dev": {
+        "eligible_groups": 0,
+        "family": "reading_and_extraction",
+        "selected": 0
+      },
+      "logiqa.confirmation": {
+        "eligible_groups": 556,
+        "family": "logical_reasoning",
+        "selected": 32
+      },
+      "logiqa.dev": {
+        "eligible_groups": 555,
+        "family": "logical_reasoning",
+        "selected": 32
+      },
+      "math.confirmation": {
+        "eligible_groups": 178,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "math.dev": {
+        "eligible_groups": 178,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "mbpp.confirmation": {
+        "eligible_groups": 7,
+        "family": "programming_and_queries",
+        "selected": 7
+      },
+      "mbpp.dev": {
+        "eligible_groups": 8,
+        "family": "programming_and_queries",
+        "selected": 8
+      },
+      "medqa.confirmation": {
+        "eligible_groups": 481,
+        "family": "medical_knowledge",
+        "selected": 32
+      },
+      "medqa.dev": {
+        "eligible_groups": 529,
+        "family": "medical_knowledge",
+        "selected": 32
+      },
+      "mrpc.confirmation": {
+        "eligible_groups": 170,
+        "family": "language_meaning",
+        "selected": 32
+      },
+      "mrpc.dev": {
+        "eligible_groups": 157,
+        "family": "language_meaning",
+        "selected": 32
+      },
+      "multinli.confirmation": {
+        "eligible_groups": 6406,
+        "family": "entailment",
+        "selected": 32
+      },
+      "multinli.dev": {
+        "eligible_groups": 6289,
+        "family": "entailment",
+        "selected": 32
+      },
+      "multirc.confirmation": {
+        "eligible_groups": 20,
+        "family": "reading_and_extraction",
+        "selected": 20
+      },
+      "multirc.dev": {
+        "eligible_groups": 17,
+        "family": "reading_and_extraction",
+        "selected": 17
+      },
+      "openbookqa.confirmation": {
+        "eligible_groups": 132,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "openbookqa.dev": {
+        "eligible_groups": 133,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "piqa.confirmation": {
+        "eligible_groups": 376,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "piqa.dev": {
+        "eligible_groups": 377,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "qasc.confirmation": {
+        "eligible_groups": 183,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "qasc.dev": {
+        "eligible_groups": 183,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "qqp.confirmation": {
+        "eligible_groups": 9215,
+        "family": "language_meaning",
+        "selected": 32
+      },
+      "qqp.dev": {
+        "eligible_groups": 9414,
+        "family": "language_meaning",
+        "selected": 32
+      },
+      "quarel.confirmation": {
+        "eligible_groups": 43,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "quarel.dev": {
+        "eligible_groups": 44,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "quartz.confirmation": {
+        "eligible_groups": 4,
+        "family": "science_and_causality",
+        "selected": 4
+      },
+      "quartz.dev": {
+        "eligible_groups": 4,
+        "family": "science_and_causality",
+        "selected": 4
+      },
+      "quoref.confirmation": {
+        "eligible_groups": 63,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "quoref.dev": {
+        "eligible_groups": 63,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "race.confirmation": {
+        "eligible_groups": 640,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "race.dev": {
+        "eligible_groups": 643,
+        "family": "reading_and_extraction",
+        "selected": 32
+      },
+      "ropes.confirmation": {
+        "eligible_groups": 10,
+        "family": "reading_and_extraction",
+        "selected": 10
+      },
+      "ropes.dev": {
+        "eligible_groups": 10,
+        "family": "reading_and_extraction",
+        "selected": 10
+      },
+      "samsum.confirmation": {
+        "eligible_groups": 710,
+        "family": "summarization",
+        "selected": 32
+      },
+      "samsum.dev": {
+        "eligible_groups": 661,
+        "family": "summarization",
+        "selected": 32
+      },
+      "sciq.confirmation": {
+        "eligible_groups": 292,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "sciq.dev": {
+        "eligible_groups": 292,
+        "family": "science_and_causality",
+        "selected": 32
+      },
+      "scitail.confirmation": {
+        "eligible_groups": 562,
+        "family": "entailment",
+        "selected": 32
+      },
+      "scitail.dev": {
+        "eligible_groups": 563,
+        "family": "entailment",
+        "selected": 32
+      },
+      "snli.confirmation": {
+        "eligible_groups": 3812,
+        "family": "entailment",
+        "selected": 32
+      },
+      "snli.dev": {
+        "eligible_groups": 3812,
+        "family": "entailment",
+        "selected": 32
+      },
+      "social_i_qa.confirmation": {
+        "eligible_groups": 798,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "social_i_qa.dev": {
+        "eligible_groups": 798,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "spider.confirmation": {
+        "eligible_groups": 4,
+        "family": "programming_and_queries",
+        "selected": 4
+      },
+      "spider.dev": {
+        "eligible_groups": 5,
+        "family": "programming_and_queries",
+        "selected": 5
+      },
+      "squad.confirmation": {
+        "eligible_groups": 12,
+        "family": "reading_and_extraction",
+        "selected": 12
+      },
+      "squad.dev": {
+        "eligible_groups": 13,
+        "family": "reading_and_extraction",
+        "selected": 13
+      },
+      "tabmwp.confirmation": {
+        "eligible_groups": 1133,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "tabmwp.dev": {
+        "eligible_groups": 1172,
+        "family": "mathematics",
+        "selected": 32
+      },
+      "triviaqa.confirmation": {
+        "eligible_groups": 3820,
+        "family": "factual_knowledge",
+        "selected": 32
+      },
+      "triviaqa.dev": {
+        "eligible_groups": 3786,
+        "family": "factual_knowledge",
+        "selected": 32
+      },
+      "tydiqa.confirmation": {
+        "eligible_groups": 1222,
+        "family": "multilingual_reading",
+        "selected": 32
+      },
+      "tydiqa.dev": {
+        "eligible_groups": 1203,
+        "family": "multilingual_reading",
+        "selected": 32
+      },
+      "wic.confirmation": {
+        "eligible_groups": 104,
+        "family": "language_meaning",
+        "selected": 32
+      },
+      "wic.dev": {
+        "eligible_groups": 96,
+        "family": "language_meaning",
+        "selected": 32
+      },
+      "wikisql.confirmation": {
+        "eligible_groups": 436,
+        "family": "programming_and_queries",
+        "selected": 32
+      },
+      "wikisql.dev": {
+        "eligible_groups": 436,
+        "family": "programming_and_queries",
+        "selected": 32
+      },
+      "winogrande.confirmation": {
+        "eligible_groups": 961,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "winogrande.dev": {
+        "eligible_groups": 962,
+        "family": "commonsense_and_social",
+        "selected": 32
+      },
+      "wiqa.confirmation": {
+        "eligible_groups": 4,
+        "family": "science_and_causality",
+        "selected": 4
+      },
+      "wiqa.dev": {
+        "eligible_groups": 5,
+        "family": "science_and_causality",
+        "selected": 5
+      },
+      "wsc.confirmation": {
+        "eligible_groups": 21,
+        "family": "commonsense_and_social",
+        "selected": 21
+      },
+      "wsc.dev": {
+        "eligible_groups": 13,
+        "family": "commonsense_and_social",
+        "selected": 13
+      }
+    },
+    "created": "2026-09-16T08:30:13.948370+02:00",
+    "families": 13,
+    "filtered": {
+      "apps.confirmation.over_context": 12,
+      "apps.train.over_context": 225,
+      "code_contests.confirmation.over_context": 5,
+      "code_contests.dev.over_context": 1,
+      "code_contests.train.over_context": 131,
+      "drop.dev.over_context": 46,
+      "hotpotqa.train.over_context": 51,
+      "math.confirmation.over_context": 1,
+      "math.train.over_context": 25,
+      "race.train.over_context": 2
+    },
+    "group_overlap": 0,
+    "initial_preparation_script_sha256": "62dde49ddeeef4a796f2d2f7ad19d8ebb0e5154f375bb422991da85c5d1121bd",
+    "manifest_sha256": "8f737b1cd0088f73231e14a052922af716068e638db8f06de3b2853a6b864ee3",
+    "metadata_normalization": {
+      "reason": "Remove optional inherited token counts from old tokenizer; current token lengths are in the independent indices. Prompts, answers, splits, tokenizer, token arrays and masks unchanged.",
+      "removed_old_token_counts": {
+        "confirmation.jsonl": 48426,
+        "records.jsonl": 959099
+      }
+    },
+    "model_initialized": false,
+    "quarantined_groups": 6,
+    "reference_policy_sha256": "1afafa2a7566b290817a229469295de3009925df2ee39158d6107bb4db80973f",
+    "script_sha256": "ecab647d541496607480fee58c7bf5ed504cdf72e3d20c44a006cb2040235924",
+    "self_contained_files": true,
+    "sources": 47,
+    "status": "ready_for_prepared_campaign_only",
+    "suites": {
+      "confirmation": {
+        "sha256": "58af517d0db33749c91fd1e0e64085646d5c332fe9f6e5845f0dc620a72e7cc0",
+        "tasks": 1267
+      },
+      "dev": {
+        "sha256": "d0bee631eff9497e0492294099710c215d37963656bcc25d5317d88a809c3a62",
+        "tasks": 1269
+      }
+    },
+    "token_and_mask_samples_verified": 1474,
+    "training_records": 2343583,
+    "training_started": false
+  },
+  "frozen_input_count": 337,
+  "gpu_evaluation_started": false,
+  "independent_checks": {
+    "all_derived_hashes_verified": 282,
+    "all_holdout_original_splits": "train",
+    "exact_prompt_answer_overlap": 0,
+    "gpu_work_started": false,
+    "metrics": {
+      "anli": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "apps": {
+        "correctness_scored": false,
+        "metric": "syntax_only_not_functional"
+      },
+      "aqua_rat": {
+        "correctness_scored": true,
+        "metric": "final_answer_match"
+      },
+      "arc": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "boolq": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "cb": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "code_contests": {
+        "correctness_scored": false,
+        "metric": "syntax_only_not_functional"
+      },
+      "commonsenseqa": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "copa": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "cosmos_qa": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "dream": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "drop": {
+        "correctness_scored": true,
+        "metric": "answer_exact_and_token_f1"
+      },
+      "go_emotions": {
+        "correctness_scored": true,
+        "metric": "emotion_label_set_exact_and_f1"
+      },
+      "gsm8k": {
+        "correctness_scored": true,
+        "metric": "final_answer_match"
+      },
+      "hellaswag": {
+        "correctness_scored": false,
+        "metric": "unscored_open_generation"
+      },
+      "logiqa": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "math": {
+        "correctness_scored": true,
+        "metric": "final_answer_match"
+      },
+      "mbpp": {
+        "correctness_scored": false,
+        "metric": "syntax_only_not_functional"
+      },
+      "medqa": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "mrpc": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "multinli": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "multirc": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "openbookqa": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "piqa": {
+        "correctness_scored": false,
+        "metric": "unscored_open_generation"
+      },
+      "qasc": {
+        "correctness_scored": true,
+        "metric": "final_answer_match"
+      },
+      "qqp": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "quarel": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "quartz": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "quoref": {
+        "correctness_scored": true,
+        "metric": "answer_exact_and_token_f1"
+      },
+      "race": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "ropes": {
+        "correctness_scored": true,
+        "metric": "answer_exact_and_token_f1"
+      },
+      "samsum": {
+        "correctness_scored": false,
+        "metric": "summary_unigram_f1_proxy_not_factuality"
+      },
+      "sciq": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "scitail": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "snli": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "social_i_qa": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "spider": {
+        "correctness_scored": false,
+        "metric": "sql_text_match_not_execution"
+      },
+      "squad": {
+        "correctness_scored": true,
+        "metric": "answer_exact_and_token_f1"
+      },
+      "tabmwp": {
+        "correctness_scored": true,
+        "metric": "original_answer_exact_proxy"
+      },
+      "triviaqa": {
+        "correctness_scored": true,
+        "metric": "original_answer_exact_proxy"
+      },
+      "tydiqa": {
+        "correctness_scored": true,
+        "metric": "original_answer_exact_proxy"
+      },
+      "wic": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      },
+      "wikisql": {
+        "correctness_scored": false,
+        "metric": "sql_text_match_not_execution"
+      },
+      "winogrande": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "wiqa": {
+        "correctness_scored": true,
+        "metric": "answer_match"
+      },
+      "wsc": {
+        "correctness_scored": true,
+        "metric": "original_label_or_answer_match"
+      }
+    },
+    "model_initialized": false,
+    "no_external_test_loaded": true,
+    "record_counts": {
+      "confirmation": 85129,
+      "dev": 87272,
+      "suite_confirmation": 1267,
+      "suite_dev": 1269,
+      "train": 2343583
+    },
+    "reference_self_scores_passed": {
+      "confirmation": 1064,
+      "dev": 1064
+    },
+    "scored_sources": 38,
+    "script_sha256": "f245f6de65fd0c8e520904887802b3101f701c83f3bba19aefe230fa2a675c52",
+    "status": "passed",
+    "suite_sources": 46
+  },
+  "limitations": [
+    "47 training sources, 46 directly held-out sources, 38 correctness-scored sources",
+    "Inherited pool filtering and holdout research exposure; no semantic independence guarantee",
+    "No external tests, functional code/SQL or summary factuality evaluation",
+    "Runtime budget/model are prepared defaults, not start authorization"
+  ],
+  "model_initialized": false,
+  "monitoring_collector_unchanged": true,
+  "monitoring_reporter_repaired": true,
+  "plan_sha256": "83d898528d5fbbaccbadf75cfbc4eb69e3ddde40b24a70ae4453fbf3b780ab0e",
+  "scope": "Preparation and CPU validation only. GPU execution is intentionally untested until explicit start.",
+  "starter_installed": false,
+  "status": "prepared_not_started",
+  "tests_command": ".venv/bin/python -m pytest -q tests/test_fresh47.py tests/backup tests/test_benchmarks47.py tests/test_benchmark_expansion.py tests/performance/test_run_defaults.py tests/performance/test_gpu_lease.py tests/test_resource_monitor.py",
+  "training_started": false
+}

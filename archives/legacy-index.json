@@ -1,0 +1,523 @@
+{
+  "status": "deprecated_archived_verified_and_pruned",
+  "retired": "2026-09-16",
+  "private_archive_directory": "/Users/timokruth/SLM-Sicherungen/2026-09-16-legacy-retired",
+  "private_archive_count": 70,
+  "private_archive_bytes": 266613611659,
+  "archives": [
+    {
+      "archive": "SLM--runs--broad-886-2026-09-08.zip",
+      "archive_bytes": 670285,
+      "archive_sha256": "b11d792201afc50bb34278cd95582a84ab211d69066f51f7b1493d748bbc538a",
+      "entries": 40,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-baseline-2026-09-07.zip",
+      "archive_bytes": 275288,
+      "archive_sha256": "fb77510fd4768e9c7d3257a7e4069051f405c00a0e556d91fe7f0535f6b38160",
+      "entries": 17,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-campaign-2026-09-07.zip",
+      "archive_bytes": 586610,
+      "archive_sha256": "6449327b476247ba8df531964daf2f9faec5096ed4b01fb55a76dffe1def8905",
+      "entries": 129,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-control-2026-09-07.zip",
+      "archive_bytes": 764700281,
+      "archive_sha256": "0a5d79dd713848d15810947cbfed223061a147fd27ad3f90185dd99670bc9345",
+      "entries": 52,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-families-2026-09-07-3h.zip",
+      "archive_bytes": 2731720005,
+      "archive_sha256": "0ca987712e9bd394dbad6c60520e71062231cd656c1008ed31ebde3e064b1255",
+      "entries": 35,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-monitoring-2026-09-07.zip",
+      "archive_bytes": 3069425854,
+      "archive_sha256": "c0313a268c300bb6c3aaa1f26e99a9013ebdcc07ad755d1426f60f0ba3d72168",
+      "entries": 1616,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-monitoring-confirmation-2026-09-07.zip",
+      "archive_bytes": 3077970344,
+      "archive_sha256": "6b5462ac9bf6bb97dc4c1a38b3a224d8c26ee767765f99fecc6b1769758de813",
+      "entries": 1585,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-sources-2026-09-07-3h.zip",
+      "archive_bytes": 2731714774,
+      "archive_sha256": "a762461f2570006df92bf9f18e6c303ea7114d3cccab13d99ec04b4ba5fd8268",
+      "entries": 35,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--broad-validation-2026-09-07.zip",
+      "archive_bytes": 9774,
+      "archive_sha256": "68aed272f184e9674745f05ac18be42411ba09e859ceadd3d09a6a7da981cb6a",
+      "entries": 7,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--code-eval-2026-09-07.zip",
+      "archive_bytes": 82595,
+      "archive_sha256": "3eb92d4e1e061b8c3f0528c24c746e31e0f31043794928f6265746ec482b142f",
+      "entries": 16,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--code-eval-preflight-2026-09-07.zip",
+      "archive_bytes": 22402,
+      "archive_sha256": "6fa16242b8288f9d66260410b025ae0e8ce00f11942ad4e976d239cf81daa2a9",
+      "entries": 7,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--conservative-analysis-2026-09-15.zip",
+      "archive_bytes": 221077,
+      "archive_sha256": "6990878ee55ac757797530972094e80e80907443db41a5a44e3d13e864a5c562",
+      "entries": 5,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--conservative-analysis-2026-09-15-final.zip",
+      "archive_bytes": 223041,
+      "archive_sha256": "805bbdb1fd372819dc9648118c2275c2a570955d6de81e14b6a5a981d6a732b3",
+      "entries": 6,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--conservative-analysis-2026-09-15-verified.zip",
+      "archive_bytes": 223055,
+      "archive_sha256": "c00037d1fb768b193f2f409e960dcc35975ca2207f4fae5936f919df07f0f293",
+      "entries": 6,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--eval-preparation-2026-09-07.zip",
+      "archive_bytes": 561540,
+      "archive_sha256": "26890d83683e3051f46c19ee4b8ea3f989ad39c66b3d8f20f6c5b356bc032b4e",
+      "entries": 54,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--expanded-2026-09-07-6h.zip",
+      "archive_bytes": 2732463980,
+      "archive_sha256": "70cd2ec9ce4bca4aba2fbb9b1e68afb9332efae64b02b86e9d64d8e9fd171a1e",
+      "entries": 58,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--expanded-checkpoint-diagnostic-2026-09-15.zip",
+      "archive_bytes": 986447442,
+      "archive_sha256": "b9987a584fad2eb26979b928ac2582d2a824042ce075e4f9d993792eb4354a23",
+      "entries": 185,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-horizon-2026-09-10.zip",
+      "archive_bytes": 3937410105,
+      "archive_sha256": "cddf92ab8f86d42da76dc0c05c6cd84e644f5d6be6e31f2fe043516849da9962",
+      "entries": 357,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-horizon-resume-2026-09-10.zip",
+      "archive_bytes": 9186694658,
+      "archive_sha256": "cb4e2c803f3738ffd83e282ea477cc0848be98302e3a51681c36044f8ad1e8ac",
+      "entries": 806,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-horizon-round2-2026-09-11.zip",
+      "archive_bytes": 4374333092,
+      "archive_sha256": "4402aabe6b8ba41acf85740c8de42a07cb2455c0893b4f2d24e45662da8ead07",
+      "entries": 370,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-horizon-round2-resume-2026-09-12.zip",
+      "archive_bytes": 6780509341,
+      "archive_sha256": "b1c5615d4a86965885d49911359364f02604b8097b75fd8c3bf8e0cc4f487966",
+      "entries": 544,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-horizon-round2-resume-2026-09-14.zip",
+      "archive_bytes": 9296302371,
+      "archive_sha256": "95b5f288fed1665105ea7ec9f12fea07c318f0b0365770eeb96c8e7a6ec08ff1",
+      "entries": 773,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-horizon-validation-2026-09-10.zip",
+      "archive_bytes": 764799403,
+      "archive_sha256": "4d7e2f651dcc3fcf3164046e97e94425411c621035e45dc7f0fd91c69fbe1f46",
+      "entries": 40,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--long-round2-validation-2026-09-11.zip",
+      "archive_bytes": 764798585,
+      "archive_sha256": "cbf9135209ffb5e56876418d6d2888375a9f0c9abeec3b1617f62606d2c4b9d7",
+      "entries": 41,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--monitoring-2026-09-07.zip",
+      "archive_bytes": 246465,
+      "archive_sha256": "e9ffd00957ff659e1824c69864a1af9ea7b483c15f9f1d1c938cf0f9bf4aae0a",
+      "entries": 89,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--monitoring-coverage-2026-09-07.json.zip",
+      "archive_bytes": 4107,
+      "archive_sha256": "3d5a72512f0157454fe3e978f18d84121ee155c6df234a2ed20dfcdd868a2566",
+      "entries": 2,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--next-preparation-2026-09-08.zip",
+      "archive_bytes": 2294880771,
+      "archive_sha256": "8bdf4340c51c2db9ba6edb9d80dba68e742664facbb25b6175918396cf646b16",
+      "entries": 157,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--night-2026-09-06.zip",
+      "archive_bytes": 2732280780,
+      "archive_sha256": "ad82e34e1b8bf5bafbf0e74f2014ec5e707fd96eb679405c4d2b8ddb1f5f36d4",
+      "entries": 43,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parallel-probe-2026-09-10.zip",
+      "archive_bytes": 655664575,
+      "archive_sha256": "ccc03944787b108982aa890209e0c5fd78ecc00b5fd7ee70a1df98d951f1ef1c",
+      "entries": 55,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-confirmation-75m-2026-09-15.zip",
+      "archive_bytes": 548253017,
+      "archive_sha256": "6e8fda62694e9c2c003ff821f4877339ad3dbd62afca4f422fa34dcc35cd849e",
+      "entries": 112,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-confirmation-refresh-2026-09-15.zip",
+      "archive_bytes": 486242,
+      "archive_sha256": "0f26b3bd9501035d32dadcee2b76302c6c76a1bc106e80ae9a2ceb3b4d2d9017",
+      "entries": 7,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-error-analysis-2026-09-15.zip",
+      "archive_bytes": 649274,
+      "archive_sha256": "4a98938de780bf7425097f4141f15d7895821261fcf958c1d64d1fb1d885ebfd",
+      "entries": 6,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-error-analysis-2026-09-15-verified.zip",
+      "archive_bytes": 651259,
+      "archive_sha256": "c7eecf8e42fedbef7e8183980237d99cacef1501fe869514dc07f5d1f42f549d",
+      "entries": 6,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-evaluation-preparation-2026-09-15.zip",
+      "archive_bytes": 1781612,
+      "archive_sha256": "d0d039cb40ecf6603d93ed26ffca9fa77c07d69727d6f82d2afdda6cfc93d567",
+      "entries": 8,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-evaluation-preparation-2026-09-15-verified.zip",
+      "archive_bytes": 1799873,
+      "archive_sha256": "de7061c59199e6686a0bc855b5ec9f47abfa70caa6ce054927f16d7134f17622",
+      "entries": 7,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-study-2026-09-09.zip",
+      "archive_bytes": 10179297260,
+      "archive_sha256": "424908afe624795059d2d59921cfdb054383120a33d0c0bc0dc6206a6c2acdb1",
+      "entries": 1817,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-study-recovery-2026-09-09.zip",
+      "archive_bytes": 32040058858,
+      "archive_sha256": "fd3a6a60ad6f61bfe491f42b949577b1a35304b6e766bd970cf3b32731176c37",
+      "entries": 2428,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--parameter-study-timeout-recovery-2026-09-10.zip",
+      "archive_bytes": 40905122136,
+      "archive_sha256": "13ffcfd5c97f6d88ade2f30f471ed3f16239f2831c3d7eb28c7afb10d5f43b4f",
+      "entries": 2685,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--performance-2026-09-07.zip",
+      "archive_bytes": 8333,
+      "archive_sha256": "d1eef406befd20478a6254f7583302d16a589e865ae48ceb4bc4caaf5784e801",
+      "entries": 11,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--pr-1-review-2026-09-07.zip",
+      "archive_bytes": 1703,
+      "archive_sha256": "a0ff9557f945c1ae731c433285e2547c9c8b59c2ecd7c4a67979b05370249c5c",
+      "entries": 3,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--profile.zip",
+      "archive_bytes": 2731384600,
+      "archive_sha256": "4589c02307a7fe8d911780295c6c3b813539b124850bd65fb1d7a4a9f6f7b487",
+      "entries": 22,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--random-search-pilot-2026-09-08.zip",
+      "archive_bytes": 161368,
+      "archive_sha256": "dc37084d9b671b751e17b35d717be567cd17e71f9eccb2c885bed4ce62d5d383",
+      "entries": 18,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--research-pilot-2026-09-09.zip",
+      "archive_bytes": 1967566216,
+      "archive_sha256": "a9508e983560044859f7fc85195f16b495de66e3d382a08594ed146e40bf539b",
+      "entries": 241,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--research-round2-2026-09-09.zip",
+      "archive_bytes": 1967853010,
+      "archive_sha256": "8d887a9359106dbdaaf19e5194257155673ae338ade287ac581352c6915fc924",
+      "entries": 249,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-27m-2026-09-08-3h.zip",
+      "archive_bytes": 1093815457,
+      "archive_sha256": "1603dbe6dd9c0eb92e2eebf9ab6d730f25e4be017d5c5070d37961339925e1d0",
+      "entries": 90,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-27m-2026-09-09-plus3h.zip",
+      "archive_bytes": 765267851,
+      "archive_sha256": "a8cf419d1b692b7912a10802f0d9270d2f252c017f69a66b90c23010dd1836a1",
+      "entries": 57,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-97m-2026-09-08-3h.zip",
+      "archive_bytes": 3903250200,
+      "archive_sha256": "ab5d445208b50030ad7ccdb8420984a36794eecf1ccb0944f825327fa696de44",
+      "entries": 80,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-97m-2026-09-09-plus3h.zip",
+      "archive_bytes": 2731788036,
+      "archive_sha256": "426ea13ea60e9716c45ec11860c28f0c1a7c74253a6b5b19898b2d8983737225",
+      "entries": 36,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-campaign-2026-09-08.zip",
+      "archive_bytes": 1253858,
+      "archive_sha256": "b7e041d5b3cd3591662b6b05dbc06485b4c7edb8152479b6b2718c80403a9647",
+      "entries": 228,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-continuation-2026-09-09.zip",
+      "archive_bytes": 1773066,
+      "archive_sha256": "35eb54cdbcb4eb4c78e1df699620e6d4f2e2a119b24050d17e260fc82ca66162",
+      "entries": 22,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-eval-preparation-2026-09-08.zip",
+      "archive_bytes": 466385,
+      "archive_sha256": "1813c28c06d8c7ed96bd4b3d353ef96a51eee537f6bd93c2524cbc78532fbec0",
+      "entries": 10,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--size-preflight-2026-09-08.zip",
+      "archive_bytes": 546448750,
+      "archive_sha256": "b96311b6b8941415548a38a4ed99311c5c2627481c9a6d3c7d19e28237704fbe",
+      "entries": 36,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--study-repair-2026-09-09.zip",
+      "archive_bytes": 109501915,
+      "archive_sha256": "63452ecdb7642823c37b859b73ea359ecdab4f084e3244890348cfbf0227f396",
+      "entries": 43,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--timeout-repair-2026-09-10.zip",
+      "archive_bytes": 390452257,
+      "archive_sha256": "a7a1f43c0f4fe122a4f45304726f6d16d117f18c5975251b57a9c11236b567d9",
+      "entries": 20,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--v2-resume.log.zip",
+      "archive_bytes": 1856,
+      "archive_sha256": "c7fbc9075523974b3fcf7573eed5178efb0f55311629a368222df699b4d24cc1",
+      "entries": 2,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--v2-smoke-2026-09-07.zip",
+      "archive_bytes": 2731404178,
+      "archive_sha256": "c3a77753e2e0934cc8713af40190de416e746c2e464ae8c8b0aa0d94b9d71811",
+      "entries": 22,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--v2-smoke.log.zip",
+      "archive_bytes": 2836,
+      "archive_sha256": "769ea232a5c61377c901a1218e7de9b5a1b817a60698949bd38a2ddaf19f0a56",
+      "entries": 2,
+      "verified": true
+    },
+    {
+      "archive": "SLM--runs--warmup-2026-09-06.zip",
+      "archive_bytes": 2738700214,
+      "archive_sha256": "0ec002a50149a7d7d321ce194a4318ee42d6eb9ec58c21ca0620c0082df23580",
+      "entries": 75,
+      "verified": true
+    },
+    {
+      "archive": "SLM-conservative-optimization--runs--conservative-fp32-6h-2026-09-12.zip",
+      "archive_bytes": 7879192772,
+      "archive_sha256": "df1aaea068fb7ebdab924d6b0fd155940d793ff3bd2af34fe578b44c5ec2c9b3",
+      "entries": 271,
+      "verified": true
+    },
+    {
+      "archive": "SLM-conservative-recovery--runs--conservative-fp32-recovery-2026-09-15.zip",
+      "archive_bytes": 12452192754,
+      "archive_sha256": "eb4894069924544a80d79def11cc77fc9cd3613a55e70c3096658042497db099",
+      "entries": 602,
+      "verified": true
+    },
+    {
+      "archive": "SLM-focused-optimization--runs--focused-fp32-12000-2026-09-15.zip",
+      "archive_bytes": 2950888621,
+      "archive_sha256": "86dabd024f818c1a2d5acaee3c0097a67b18445bd4329f19e082fe1c730c41b1",
+      "entries": 236,
+      "verified": true
+    },
+    {
+      "archive": "SLM-focused-optimization--runs--focused-fp32-12000-2026-09-15-suite-quota-attempt.zip",
+      "archive_bytes": 1079,
+      "archive_sha256": "4861d724262442ffc009954f2cce7867f7c17bc83be1783bdb0a53e0b7edf534",
+      "entries": 3,
+      "verified": true
+    },
+    {
+      "archive": "SLM-focused-optimization--runs--focused-fp32-12000-2026-09-15-suite-quota-attempt2.zip",
+      "archive_bytes": 1083,
+      "archive_sha256": "ecc67422f70f418ec8d944999832959f42dadeb5e46f33659898d07f542ae01f",
+      "entries": 3,
+      "verified": true
+    },
+    {
+      "archive": "SLM-focused-resume--runs--focused-fp32-resume-2026-09-15.zip",
+      "archive_bytes": 6665923484,
+      "archive_sha256": "13fb30b17161902927863b9acf0d96c6a6a3735ecd6a73fac0a2628338538ba0",
+      "entries": 490,
+      "verified": true
+    },
+    {
+      "archive": "SLM-jepa--runs--jepa-stp-2026-09-14.zip",
+      "archive_bytes": 7977616377,
+      "archive_sha256": "84fafdb9128e3eb90b6375310ac536e477b16951817d6007b244d6ade7eb2030",
+      "entries": 818,
+      "verified": true
+    },
+    {
+      "archive": "SLM-optimization--runs--optimization-preparation-2026-09-11.zip",
+      "archive_bytes": 46257,
+      "archive_sha256": "e5ccb800be04ef688799649ade445dcecfaecafaea89bc10ef0e4542ebf96365",
+      "entries": 16,
+      "verified": true
+    },
+    {
+      "archive": "SLM-optimization--runs--optimization-screen-2026-09-11.zip",
+      "archive_bytes": 19671433441,
+      "archive_sha256": "9494e3be6d63e1a8eeafbd72cee0c8f9eb149a7bd1bbf11732749cd74d66bf6d",
+      "entries": 517,
+      "verified": true
+    },
+    {
+      "archive": "SLM-quality-optimization--runs--quality-optimization-6h-2026-09-11.zip",
+      "archive_bytes": 46756644396,
+      "archive_sha256": "3fdc2a729368e4a925c6374286cc935ba5bda1377c8c59996997353246a3c8e5",
+      "entries": 1543,
+      "verified": true
+    },
+    {
+      "archive": "legacy-code-and-branches.zip",
+      "archive_bytes": 15222325,
+      "archive_sha256": "9d2dfae697f2b902dd64dffaea5a716fd6a97994ec483ca256e87adf9a81e101",
+      "entries": 4953,
+      "verified": true
+    },
+    {
+      "archive": "legacy-launch-agents.zip",
+      "archive_bytes": 4850,
+      "archive_sha256": "b81458ef3fd39077b045038371ca4b702d14689211a65abe22777791640e0202",
+      "entries": 4,
+      "verified": true
+    }
+  ],
+  "pruned_run_paths": 68,
+  "retired_worktrees": 26,
+  "restore_test": {
+    "status": "passed",
+    "git_bundle_restored": true,
+    "worktree_commits_verified": 27,
+    "model_restored_and_sha256_verified": true,
+    "model_archive": "SLM--runs--broad-control-2026-09-07.zip",
+    "model_entry": "worktrees/SLM/runs/broad-control-2026-09-07/checkpoint-0003612/model.safetensors",
+    "temporary_restore_removed": true
+  },
+  "obsolete_launch_agents": [
+    "local.slm.broad-campaign-2026-09-07",
+    "local.slm.conservative-midnight-20260915",
+    "local.slm.eval-preparation-2026-09-07"
+  ],
+  "system_monitoring_preserved": true,
+  "git_history_preserved": true,
+  "public_reports": {
+    "path": "deprecated-reports-2026-09-16.zip",
+    "bytes": 344559,
+    "sha256": "6a7d5726e62fa38990833b266f8c525d7131305c883a1f427f6ed4b785cdc07c",
+    "deprecated_files": 115
+  }
+}

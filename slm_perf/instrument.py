@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MODULES = {f'slm.{name}' for name in ('train','data','report','code_eval','interface_eval','prepare','prepare_v2','audit_v2','collect','rescore','overnight','sixhour','inference','broad_eval','validation','campaign')}
 MODULES.add('slm_perf.workload')
+MODULES.add('fresh47.campaign')
 MODULES.add('random_search.pilot')
 MODULES.add('experiments.size_report')
 MODULES.add('next_run.performance')
