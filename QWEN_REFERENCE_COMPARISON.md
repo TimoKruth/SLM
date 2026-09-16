@@ -1,6 +1,6 @@
 # Qwen reference comparison after fresh training
 
-The user requested a comparison with locally installed Qwen models as targets for the fresh SLM. This document prepares the comparison protocol. **No Qwen inference, server start, GPU work or queue has been initiated.** The user selected a separate **six-hour cap, confirmation suite only**. The evaluator is being prepared in an isolated worktree so the active campaign’s frozen launcher and monitoring files remain unchanged. Proposal and local model inventory: `plans/qwen-reference-2026-09-16/plan.json`, guarded by STOP.
+The user requested a comparison with locally installed Qwen models as targets for the fresh SLM. This document prepares the comparison protocol. **No Qwen inference, server start, GPU work or queue has been initiated.** The user selected a separate **six-hour cap, confirmation suite only**. The evaluator and controller are prepared in `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`, preserving the active campaign’s frozen launcher and monitoring files. **46 CPU tests passed**, including mock API success/failure, admission gates, partial-result handling and actual cleanup of a small owned CPU process tree. No real Qwen inference or model loading has occurred. Proposal and local model inventory: `plans/qwen-reference-2026-09-16/plan.json`, guarded by STOP.
 
 ## Models found locally
 
@@ -24,13 +24,29 @@ These Qwen models are roughly 275–280 times larger than the SLM. Treat them as
 6. Score final answer content, retain raw responses locally, and report formatting failures, length cutoffs and missing tasks. Score syntax/SQL/narrative/summary proxies separately from correctness. Do not compare cross-tokenizer loss/perplexity as if they were the same measure.
 7. Report a source/family table with denominators, paired SLM–Qwen differences, wins/losses on identical tasks, latency and output-token counts. Any paired uncertainty intervals describe these task groups only, not independent model-training repetitions. These are internal task proxies, not official benchmark scores or guaranteed unseen generalization.
 
-## Separate budget proposal
+## Selected separate budget
 
-| Profile | Coverage | Total cap | Allocation |
-| --- | --- | ---: | --- |
-| Recommended | Confirmation only, both Qwen models | 6 hours | 15m setup, 2h45 per model, 15m report |
-| Expanded | Confirmation and development, both Qwen models | 12 hours | 15m setup, 5h45 per model, 15m report |
+| Phase | Cap |
+| --- | ---: |
+| Input/model verification and server setup | 15 minutes |
+| `batiai/qwen3.6-27b:q4` confirmation | 2h45 |
+| `qwen3.8:27b` confirmation | 2h45 |
+| Verification and report | 15 minutes |
+| Total | **6 hours** |
 
-These are additional wall-time caps, not completion-time estimates or additions to the active training cap. No throughput assumption has been measured for these models here. If a cap is reached, preserve and label partial results; do not rank a partial suite against a complete one. No automatic retry, extension or model adoption.
+These are separate wall-time caps, not completion-time estimates or additions to the active training cap. No throughput assumption has been measured for these models here. If a cap is reached, preserve and label partial results; do not rank a partial suite against a complete one. No automatic retry, extension or model adoption.
 
-Once a budget is selected, implement and test a separate evaluator/controller without editing the active campaign's frozen files. Admission must require successful SLM completion, mains power, no competing GPU job and the same exclusive GPU lease. The local Ollama process must be supervised so a deadline/STOP actually ends inference and releases model memory. A network timeout alone is insufficient. Freeze exact model digests, suite/scorer hashes, template and generation settings before the first benchmark response. No auto-start mechanism is installed by this preparation.
+The executable preparation is `qwen_reference/core.py` and `qwen_reference/campaign.py` in the isolated worktree. The controller requires successful SLM completion, matching explicit comparison authorization, mains power, no competing SLM/Ollama process, and the exclusive GPU lease. It launches a dedicated loopback Ollama server on port 11439 with one loaded model and serial requests. STOP, lost mains power or a phase deadline ends its owned server/runner tree; a network timeout does not leave inference intentionally running. No existing user Ollama service is stopped or reconfigured.
+
+The frozen request uses the same task text and a fixed neutral system message for both Qwen models. Top-k 1, top-p 1, repeat penalty 1 and zero frequency/presence penalties override model defaults. Native template and server metadata, residency, token counts, completion reason, elapsed generation time and raw responses are retained locally. Empty answers and token-limit cutoffs are counted; raw records support later formatting-error review without automatic answer repair. Full-suite source/family comparisons require all 1,267 responses. On failure the controller preserves partial evidence and stops; it does not retry or silently move to a different profile.
+
+Local run preparation: `/Users/timokruth/Projekte/SLM/runs/qwen-reference-confirmation-2026-09-16/`. The STOP file remains present and only a false authorization example exists. Full model-weight verification, actual template/runtime compatibility and neutral generation smoke checks remain for authorized runtime after the SLM campaign completes. Installed client 0.33.3 and its binary hash are pinned; a runtime update requires a new preparation rather than silent substitution.
+
+CPU-only inspection (does not launch Ollama):
+
+```sh
+cd /Users/timokruth/Projekte/SLM-qwen-reference
+.venv/bin/python -m qwen_reference.campaign --run /Users/timokruth/Projekte/SLM/runs/qwen-reference-confirmation-2026-09-16 --dry-run
+```
+
+A later explicit comparison start must record matching authorization and remove its STOP, then use the isolated worktree’s `run_slm.py --module qwen_reference.campaign` so light monitoring remains active. Do not merge its launcher modifications into the running SLM checkout. No queue or auto-start mechanism has been installed. The six-hour cap begins at admitted comparison execution and is entirely separate from the SLM’s 24-hour cap.

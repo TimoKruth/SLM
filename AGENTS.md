@@ -10,6 +10,13 @@
 - Start regular training/evaluation through `.venv/bin/python run_slm.py --run ... --module ...`. `run_defaults.json`: monitoring `light`, 10 warmup steps, 60-second flushes. Only explicit user instruction disables monitoring. Keep PowerWatch active.
 - Fresh training initializes model and AdamW randomly/new, with no legacy checkpoint. Preserve frozen inputs once a run starts.
 
+## Prepared Qwen comparison
+
+- User selected **six additional hours, confirmation suite only** for `batiai/qwen3.6-27b:q4` and `qwen3.8:27b`. This does not change the active SLM budget.
+- Preparation only: `runs/qwen-reference-confirmation-2026-09-16/` remains STOP-blocked with no actual start authorization or queue. Code is in `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`; details `QWEN_REFERENCE_COMPARISON.md`.
+- Before an explicit comparison start, require successful SLM training, both final evaluations and report, mains power, and free GPU lease. Use the isolated worktree launcher; do not merge its launcher/monitoring modifications into this active frozen checkout.
+- 46 CPU tests passed. Real Qwen model loading and full blob verification are deferred until after SLM completion.
+
 ## Legacy archive policy — supersedes historical run instructions
 
 - **Every report, score and run artifact from before the fresh 47-source restart is DEPRECATED.** They are not current baselines or evidence for selecting a new model.
