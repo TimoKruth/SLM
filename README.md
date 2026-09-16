@@ -1,6 +1,6 @@
 # Benchmark-only SLM
 
-The active work is a fresh model trained on **47 benchmark sources across 13 capability families**. Preparation is complete; model training has **not started**.
+The active work is a fresh model trained on **47 benchmark sources across 13 capability families**. The fresh 97.54M model **started training on 16 September 2026 at 11:08:52 Europe/Berlin**. Its hard campaign deadline is 17 September at 11:08:52. See [start record](FRESH_47_START.md); the local campaign `status.json` is authoritative.
 
 [Fresh training plan](FRESH_47_TRAINING.md) · [Source coverage](BENCHMARKS_47.md) · [Deprecated archives](archives/README.md)
 
