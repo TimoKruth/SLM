@@ -1,6 +1,6 @@
 # Qwen reference comparison after fresh training
 
-The user requested a comparison with locally installed Qwen models as targets for the fresh SLM. This document prepares the comparison protocol. **No Qwen inference, server start, GPU work or queue has been initiated.** The separate budget choice is pending; the runner is not yet implemented. Proposal and local model inventory: `plans/qwen-reference-2026-09-16/plan.json`, guarded by STOP.
+The user requested a comparison with locally installed Qwen models as targets for the fresh SLM. This document prepares the comparison protocol. **No Qwen inference, server start, GPU work or queue has been initiated.** The user selected a separate **six-hour cap, confirmation suite only**. The evaluator is being prepared in an isolated worktree so the active campaign’s frozen launcher and monitoring files remain unchanged. Proposal and local model inventory: `plans/qwen-reference-2026-09-16/plan.json`, guarded by STOP.
 
 ## Models found locally
 

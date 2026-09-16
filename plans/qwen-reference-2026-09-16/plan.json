@@ -1,5 +1,5 @@
 {
-  "status": "protocol_prepared_budget_pending",
+  "status": "budget_selected_preparation_in_progress",
   "prepared_at": "2026-09-16T12:28:56.388978+02:00",
   "start_authorized": false,
   "queue_installed": false,
@@ -129,7 +129,7 @@
       ]
     }
   },
-  "selected_budget_profile": null,
+  "selected_budget_profile": "confirmation_only_6h",
   "separate_from_slm_24h_budget": true,
   "proposed_generation": {
     "temperature": 0,
@@ -160,5 +160,15 @@
     "256 native tokens is not equal text length or compute across tokenizers",
     "Holdouts cover 46 sources; correctness covers 38 sources; HotpotQA training-only",
     "A wall-time ceiling is not a promise all tasks will finish; incomplete evaluations cannot claim full-suite results"
-  ]
+  ],
+  "budget": {
+    "total_seconds": 21600,
+    "preflight_seconds": 900,
+    "per_model_seconds": 9900,
+    "report_seconds": 900,
+    "suites": [
+      "confirmation"
+    ]
+  },
+  "budget_selected_by_user": true
 }
