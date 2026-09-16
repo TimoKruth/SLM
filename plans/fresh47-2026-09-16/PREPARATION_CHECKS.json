@@ -1384,13 +1384,22 @@
     "47 training sources, 46 directly held-out sources, 38 correctness-scored sources",
     "Inherited pool filtering and holdout research exposure; no semantic independence guarantee",
     "No external tests, functional code/SQL or summary factuality evaluation",
-    "Runtime budget/model are prepared defaults, not start authorization"
+    "97M model and 24-hour cap selected by user; no start authorization"
   ],
+  "model_budget_revision_checks": {
+    "controller_tests_passed": 7,
+    "dry_run_verified": true,
+    "frozen_inputs_verified": 337,
+    "model_initialized": false,
+    "start_blocked": true
+  },
   "model_initialized": false,
   "monitoring_collector_unchanged": true,
   "monitoring_reporter_repaired": true,
-  "plan_sha256": "83d898528d5fbbaccbadf75cfbc4eb69e3ddde40b24a70ae4453fbf3b780ab0e",
+  "plan_sha256": "6b963b91190e9c7b691b60304d5994b46d5465f27c2c4e00c49ab1e4139c8740",
   "scope": "Preparation and CPU validation only. GPU execution is intentionally untested until explicit start.",
+  "selected_model_parameters": 97536768,
+  "selected_total_seconds": 86400,
   "starter_installed": false,
   "status": "prepared_not_started",
   "tests_command": ".venv/bin/python -m pytest -q tests/test_fresh47.py tests/backup tests/test_benchmarks47.py tests/test_benchmark_expansion.py tests/performance/test_run_defaults.py tests/performance/test_gpu_lease.py tests/test_resource_monitor.py",

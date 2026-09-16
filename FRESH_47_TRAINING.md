@@ -1,11 +1,11 @@
 # Fresh training on 47 sources — prepared, not started
 
-The 16 September 2026 request is to archive the previous experiments and prepare a completely new training. The prepared default is **27,294,208 parameters with a six-hour future campaign cap**. No model has been initialized, no GPU training/evaluation has run, and no starter or queue is installed. The campaign has a STOP file and no start authorization.
+The 16 September 2026 request is to archive the previous experiments and prepare a completely new training. The user-selected preparation is **97,536,768 parameters with a 24-hour future campaign cap**. No model has been initialized, no GPU training/evaluation has run, and no starter or queue is installed. The campaign has a STOP file and no start authorization.
 
 ## Model and training recipe
 
 - Random initialization, seed `20260916`; new AdamW state; no parent checkpoint or resume argument.
-- Decoder: 6 layers, width 512, 8 heads, gated feed-forward width 1,368, tied embeddings, context 1,024; FP32, compiled execution, batch size 2.
+- Decoder: 12 layers, width 768, 12 heads, gated feed-forward width 2,048, tied embeddings, context 1,024; FP32, compiled execution, batch size 2.
 - New byte-level BPE tokenizer with 16,384 tokens, fitted only to training-partition text. No pretrained tokenizer or weights.
 - AdamW: peak learning rate `3e-4`, betas `(0.9, 0.95)`, weight decay `0.1`, 100-update warmup. Token-clock cosine decay to `3e-5` over 200M tokens, then the floor. This is a fixed fresh-training recipe, not a claimed winner from deprecated studies.
 - Equal sequence sampling mass per capability family, then per source within each family. Token exposure will differ with sequence length and is reported separately. The next-token loss covers the complete formatted sequence; answer loss is evaluated separately.
@@ -37,18 +37,18 @@ Successful technical completion requires both suites' generation and reference-l
 | Phase | Maximum |
 | --- | ---: |
 | Runtime input/resource checks | 15 minutes |
-| Training, inline development and checkpoint saving | 4 hours 30 minutes |
+| Training, inline development and checkpoint saving | 22 hours 30 minutes |
 | Two final evaluations | 1 hour |
 | Verification and CPU report | 15 minutes |
-| Total | **6 hours** |
+| Total | **24 hours** |
 
-The training child gets a deadline 90 seconds before its phase boundary to save its final checkpoint. Each evaluation has at most 1,740 seconds of workload time plus 30 seconds of process-exit reserve. Optional token snapshots are saved but not evaluated automatically. Unused phase time does not extend training. Today's completed CPU dataset/tokenizer preparation is recorded separately; the proposed future six-hour cap starts only at an explicitly authorized campaign launch.
+The training child gets a deadline 90 seconds before its phase boundary to save its final checkpoint. Each evaluation has at most 1,740 seconds of workload time plus 30 seconds of process-exit reserve. Optional token snapshots are saved but not evaluated automatically. Unused phase time does not extend training. Today's completed CPU dataset/tokenizer preparation is recorded separately; the proposed future 24-hour cap starts only at an explicitly authorized campaign launch.
 
 The supervisor requires mains power and an exclusive GPU lease, records runtime power conditions, and uses light monitoring with PowerWatch. STOP, signals, a child failure, lost mains power or a deadline stop the campaign. Existing status prevents reusing the run directory to reset the budget. A future continuation needs an explicit instruction and a budget-adjusted plan. No retry, automatic extension, scheduling or model adoption is configured.
 
 ## Artifacts and inspection
 
-- Local frozen plan and STOP: `runs/fresh47-27m-2026-09-16/`.
+- Local frozen plan and STOP: `runs/fresh47-97m-2026-09-16/`.
 - Committed plan and aggregate checks: `plans/fresh47-2026-09-16/`.
 - Data audit: `data/v7-benchmarks47-fresh-2026-09-16/READY.json` and `INDEPENDENT_CHECKS.json`.
 - CPU preparation: `fresh47/prepare.py`; independent audit: `fresh47/verify.py`; future controller: `fresh47/campaign.py`.
@@ -56,7 +56,7 @@ The supervisor requires mains power and an exclusive GPU lease, records runtime 
 Read the proposed command without starting work:
 
 ```sh
-.venv/bin/python -m fresh47.campaign --run runs/fresh47-27m-2026-09-16 --dry-run
+.venv/bin/python -m fresh47.campaign --run runs/fresh47-97m-2026-09-16 --dry-run
 ```
 
 On a later explicit start request, recheck the frozen inputs and resource conditions, record authorization matching the exact `plan.json` SHA256, and remove only this campaign's STOP immediately before launching through `run_slm.py --module fresh47.campaign`. These preparation instructions are not a start authorization. A real GPU smoke/admission check belongs to that future runtime preflight; only CPU preparation and orchestration tests have run so far.

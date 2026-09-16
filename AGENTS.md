@@ -4,8 +4,8 @@
 
 - The user requested commit/push to `main`, retirement of all previous reports/results, and preparation of a completely new training on the larger benchmark list.
 - Current data: `data/v7-benchmarks47-fresh-2026-09-16/`, 47 sources / 13 families, 2,343,583 training examples, fresh train-only tokenizer. All files are independent regular files.
-- Current prepared campaign: `runs/fresh47-27m-2026-09-16/`. Plan: `FRESH_47_TRAINING.md`; committed aggregate preparation evidence under `plans/fresh47-2026-09-16/`.
-- **Preparation only. No model training or GPU evaluation has started. STOP remains set.** A six-hour cap and 27.29M model are the prepared default; they are not an authorization to start. Do not install a starter or queue.
+- Current prepared campaign: `runs/fresh47-97m-2026-09-16/`. Plan: `FRESH_47_TRAINING.md`; committed aggregate preparation evidence under `plans/fresh47-2026-09-16/`.
+- **Preparation only. No model training or GPU evaluation has started. STOP remains set.** A 24-hour cap and 97.54M model are the user-selected preparation; they are not an authorization to start. Do not install a starter or queue.
 - A future explicit start must match the frozen plan hash and recheck inputs, mains power, free GPU lease and actual resource conditions. No automatic retry, extension, model adoption, or budget reset. A paused run requires a budget-correct continuation plan.
 - Start regular training/evaluation through `.venv/bin/python run_slm.py --run ... --module ...`. `run_defaults.json`: monitoring `light`, 10 warmup steps, 60-second flushes. Only explicit user instruction disables monitoring. Keep PowerWatch active.
 - Fresh training initializes model and AdamW randomly/new, with no legacy checkpoint. Preserve frozen inputs once a run starts.

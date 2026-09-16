@@ -1,7 +1,7 @@
 {
   "automatic_adoption": false,
   "automatic_retry": false,
-  "budget_status": "prepared default, not start-authorized",
+  "budget_status": "User-selected 97M model and 24-hour cap; preparation only, not start-authorized",
   "data": "/Users/timokruth/Projekte/SLM/data/v7-benchmarks47-fresh-2026-09-16",
   "evaluation": {
     "maximum_new_tokens": 256,
@@ -356,10 +356,10 @@
   "legacy_results_deprecated": true,
   "model": {
     "context": 1024,
-    "dim": 512,
-    "heads": 8,
-    "hidden": 1368,
-    "layers": 6,
+    "dim": 768,
+    "heads": 12,
+    "hidden": 2048,
+    "layers": 12,
     "vocab_size": 16384
   },
   "monitoring": "light",
@@ -375,20 +375,20 @@
     "weight_decay": 0.1
   },
   "optimizer_initialization": "new",
-  "parameters": 27294208,
+  "parameters": 97536768,
   "parent_checkpoint": null,
   "phase_seconds": {
     "evaluation": 3600,
     "preflight": 900,
     "report": 900,
-    "training": 16200
+    "training": 81000
   },
   "preparation_today_outside_future_runtime_cap": true,
   "schedule_tokens": 200000000,
   "schema": "fresh47.random.v1",
   "seed": 20260916,
   "source_count": 47,
-  "total_seconds": 21600,
+  "total_seconds": 86400,
   "training_phase_includes": [
     "initialization",
     "training",
