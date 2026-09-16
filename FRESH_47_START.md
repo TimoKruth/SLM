@@ -26,3 +26,9 @@ Continuation launched at **19:30:46 Europe/Berlin**, with restored-state trainin
 Local evidence: `RESUME_2026-09-16.json`, its preflight/conditions/consumption/launch records, preserved prior model configuration/status, and `controller-resume-2026-09-16.log`. Supervisor PID at continuation launch: 90236; trainer: 90293. These are historical identifiers, not future liveness evidence. The Qwen comparison remains STOP-blocked and unstarted.
 
 Validation: **39 CPU tests passed**, including continuation deadline preservation, changed-checkpoint and replay rejection, fake-child complete evaluation flow, failed training/evaluation stopping without retries, original campaign tests and GPU lease tests. Actual trainer output confirmed `resumed: true` at the saved step and subsequent progress.
+
+## User-requested pause — 16 September 21:16
+
+User requested “please pause the current run for now”. A campaign STOP requested shutdown; both controller and trainer were confirmed exited at 21:16:37. The child exhausted the controller's 45-second SIGTERM grace without writing a final checkpoint. The complete automatic checkpoint `checkpoint-0102904` remains recoverable: **102,904 updates / 188,145,730 tokens**, with model, optimizer and sampler state. Last reported progress was 102,990 / 188,304,976: at least 86 subsequent updates were not checkpointed. `model/status.json` still reports its last running sample and is stale; campaign `status.json` correctly reports paused.
+
+The trainer performs a development evaluation before its final checkpoint on an early stop; any future continuation should account for this shutdown behavior without changing the frozen numerical inputs. No continuation is authorized by this pause request. STOP remains present, Qwen remains unstarted, and the original absolute budget/deadline is unchanged. Runtime evidence is in `PAUSE_2026-09-16_2116.json`.
