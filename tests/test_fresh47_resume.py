@@ -264,3 +264,67 @@ def test_existing_extension_rejects_reset_and_replay(prepared,tamper):
     request.write_text(json.dumps(auth))
     with pytest.raises(ValueError):resume.continuation(run,plan,request)
     assert (run/'STOP').exists()
+
+
+def prepare_finalization(prepared):
+    run,plan,request=authorize_existing_extension(prepared)
+    auth=json.loads(request.read_text());auth.update(finalize_training=True,finalize_authorized=True,endpoint_amendment='User ended training early after observing a development-loss plateau; final chronological checkpoint retained.')
+    status=dict(status='completed',reason='signal_15',checkpoint=auth['checkpoint'],step=42,tokens=4200)
+    (run/'model/status.json').write_text(json.dumps(status))
+    (run/'model'/auth['checkpoint']/'state.json').write_text(json.dumps(dict(step=42,tokens=4200)))
+    auth['resume_inputs']['model/status.json']=sha(run/'model/status.json')
+    for rel in auth['resume_inputs']:auth['resume_inputs'][rel]=sha(run/rel)
+    request.write_text(json.dumps(auth))
+    return run,plan,request
+
+
+def test_finalization_requires_explicit_approval_and_matching_saved_endpoint(prepared):
+    run,plan,request=prepare_finalization(prepared)
+    auth,state,deadline,until=resume.continuation(run,plan,request)
+    # Can finalize after training cutoff while evaluation/report reserve remains.
+    resume.continuation(run,plan,request,now=until+1)
+    with pytest.raises(ValueError,match='budget'):
+        resume.continuation(run,plan,request,now=deadline-100)
+    auth['finalize_authorized']=False;request.write_text(json.dumps(auth))
+    with pytest.raises(ValueError,match='authorization'):resume.continuation(run,plan,request)
+    auth['finalize_authorized']=True
+    (run/'model/status.json').write_text('{"status":"running"}')
+    auth['resume_inputs']['model/status.json']=sha(run/'model/status.json');request.write_text(json.dumps(auth))
+    with pytest.raises(ValueError,match='not complete'):resume.continuation(run,plan,request)
+
+
+def test_finalization_runs_only_two_evaluations_on_the_final_checkpoint(prepared,monkeypatch):
+    run,plan,request=prepare_finalization(prepared);auth=json.loads(request.read_text());calls=[]
+    import slm_perf.__main__ as launcher
+    import slm_perf.gpu_lease as leases
+    import psutil,shutil
+    from types import SimpleNamespace
+    class Lease:
+        def __enter__(self):return self
+        def __exit__(self,*a):pass
+        def child_options(self):return {}
+    class Child:
+        pid=98765;returncode=0
+        def poll(self):return self.returncode
+        def wait(self,**k):return self.returncode
+        def terminate(self):pass
+    def popen(args,**kwargs):
+        if args[0]=='/usr/bin/caffeinate':return Child()
+        module=args[args.index('--module')+1];calls.append(module)
+        assert module=='slm.broad_eval' and args[args.index('--checkpoint')+1]=='latest'
+        out=Path(args[args.index('--output')+1]);out.mkdir(parents=True)
+        suite=Path(args[args.index('--suite')+1])
+        (out/'summary.json').write_text(json.dumps(dict(evaluated_general=2,answer_loss=dict(examples=2),deadline_reached=False,by_source={},mean_source_accuracy_by_family={})))
+        (out/'protocol.json').write_text(json.dumps(dict(checkpoint_sha256=auth['resume_inputs'][f"model/{auth['checkpoint']}/model.safetensors"],suite_sha256=sha(suite))))
+        return Child()
+    monkeypatch.setattr(leases,'GPULease',Lease);monkeypatch.setattr(launcher,'active_jobs',lambda:[])
+    monkeypatch.setattr(resume.subprocess,'Popen',popen);monkeypatch.setattr(resume.subprocess,'check_output',lambda *a,**k:'AC Power')
+    monkeypatch.setattr(psutil,'virtual_memory',lambda:SimpleNamespace(available=32*1024**3));monkeypatch.setattr(shutil,'disk_usage',lambda *a:SimpleNamespace(free=32*1024**3))
+    monkeypatch.setattr(sys,'argv',['resume','--run',str(run),'--authorization',str(request)])
+    resume.main()
+    result=json.loads((run/'RESULT.json').read_text())
+    assert calls==['slm.broad_eval','slm.broad_eval']
+    assert result['training_end_reason']=='user_requested_early_stop'
+    assert result['training']['tokens']==4200
+    assert result['endpoint_amendment']==auth['endpoint_amendment']
+    assert json.loads((run/'status.json').read_text())['phase']=='finished'

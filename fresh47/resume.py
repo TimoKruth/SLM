@@ -92,7 +92,13 @@ def continuation(run, plan, request, now=None):
             raise ValueError('Original campaign exceeds budget')
     if training_until+90 > deadline-plan['phase_seconds']['evaluation']-plan['phase_seconds']['report']:
         raise ValueError('Insufficient final evaluation/report reserve')
-    if now >= training_until-90:
+    finalizing = auth.get('finalize_training') is True
+    if finalizing:
+        if auth.get('finalize_authorized') is not True:
+            raise ValueError('Explicit final evaluation authorization required')
+        if deadline-now < plan['phase_seconds']['evaluation']+plan['phase_seconds']['report']+60:
+            raise ValueError('Insufficient final evaluation/report budget')
+    elif now >= training_until-90:
         raise ValueError('Insufficient remaining training time; no budget reset')
     pointer = json.loads((run/'model/latest.json').read_text())['checkpoint']
     if pointer != auth['checkpoint'] or Path(pointer).name != pointer:
@@ -102,6 +108,13 @@ def continuation(run, plan, request, now=None):
         rel = f'model/{pointer}/{filename}'
         if rel not in auth['resume_inputs'] or not (run/rel).is_file():
             raise ValueError(f'Checkpoint component missing: {filename}')
+    if finalizing:
+        training=json.loads((run/'model/status.json').read_text())
+        saved=json.loads((run/'model'/pointer/'state.json').read_text())
+        if training.get('status') != 'completed' or training.get('checkpoint') != pointer or any(training.get(k) != saved.get(k) for k in ['step','tokens']):
+            raise ValueError('Final training checkpoint is not complete or does not match status')
+        if 'model/status.json' not in auth['resume_inputs']:
+            raise ValueError('Final training status hash missing')
     import psutil
     for pid in [state.get('pid'), state.get('active_pid')]:
         if pid and psutil.pid_exists(pid):
@@ -195,12 +208,17 @@ def main():
                 (run/'STOP').rename(request.with_suffix('.prior-stop.txt'))
                 write(request.with_suffix('.prior-status.json'),previous)
                 caffeine=subprocess.Popen(['/usr/bin/caffeinate','-i','-w',str(os.getpid())])
-                training_end=time.monotonic()+wall_training_until+90-time.time()
-                emit(status='running',phase='training',training_started=True,**budget())
-                job('train',train_args(plan,run,auth['training_until'])+['--resume'],training_end,lease)
-                training=json.loads((run/'model/status.json').read_text())
-                if training['status']!='completed' or training.get('reason') not in ['deadline','token_limit','step_limit']:
-                    raise RuntimeError('Training interrupted; checkpoint preserved, no automatic continuation')
+                if auth.get('finalize_training'):
+                    training=json.loads((run/'model/status.json').read_text())
+                    emit(status='running',phase='evaluation',training_end_reason='user_requested_early_stop',
+                         endpoint_amendment=auth.get('endpoint_amendment'),**budget())
+                else:
+                    training_end=time.monotonic()+wall_training_until+90-time.time()
+                    emit(status='running',phase='training',training_started=True,**budget())
+                    job('train',train_args(plan,run,auth['training_until'])+['--resume'],training_end,lease)
+                    training=json.loads((run/'model/status.json').read_text())
+                    if training['status']!='completed' or training.get('reason') not in ['deadline','token_limit','step_limit']:
+                        raise RuntimeError('Training interrupted; checkpoint preserved, no automatic continuation')
                 eval_end=min(time.monotonic()+plan['phase_seconds']['evaluation'],deadline-plan['phase_seconds']['report'])
                 jobs=[('final-dev',run/'model','dev','latest'),('final-confirmation',run/'model','confirmation','latest')]
                 emit(phase='evaluation')
@@ -213,16 +231,22 @@ def main():
                     summary=json.loads((out/'summary.json').read_text());n=len(json.loads(suite.read_text())['general'])
                     assert summary['evaluated_general']==n and summary['answer_loss']['examples']==n and not summary['deadline_reached']
                     assert not any(v['context_exceeded'] for v in summary['by_source'].values())
+                    if auth.get('finalize_training'):
+                        protocol=json.loads((out/'protocol.json').read_text())
+                        assert protocol['checkpoint_sha256']==auth['resume_inputs'][f"model/{auth['checkpoint']}/model.safetensors"]
+                        assert protocol['suite_sha256']==sha(suite)
             emit(phase='report')
             results={p.parent.name:json.loads(p.read_text()) for p in (run/'evaluations').glob('*/summary.json')}
             for path,expected in plan['inputs'].items():assert sha(path)==expected,path
             report=dict(status='completed',initialization='random',source_count=47,training=training,evaluations=results,
                         automatic_adoption=False,historical_results_comparable=False,inputs_unchanged=True,
                         continuation=dict(checkpoint=auth['checkpoint'],deadline=auth['deadline'],training_until=auth['training_until'],extension=auth.get('extension')),
-                        budget=budget())
+                        budget=budget(),training_end_reason=state.get('training_end_reason',training.get('reason')),
+                        endpoint_amendment=auth.get('endpoint_amendment'))
             if cancelled():raise RuntimeError('Final deadline/stop')
             write(run/'RESULT.json',report)
             (run/'REPORT.md').write_text('# Fresh 47-source training\n\nRandom initialization, new train-only tokenizer, no legacy checkpoint. Primary endpoint: final checkpoint on sealed confirmation.\n\n'+
+                ('User-requested early training stop: '+auth['endpoint_amendment']+'\n\n' if auth.get('finalize_training') else '')+
                 '\n'.join(f"- {name}: {s['evaluated_general']} tasks; per-family accuracy {s['mean_source_accuracy_by_family']}" for name,s in results.items())+
                 '\n\nHistorical small-list results are deprecated. These are internal source-specific proxies, not official benchmark scores or proof of transfer. Code/SQL functionality and summary factuality remain unmeasured.\n')
             if cancelled():raise RuntimeError('Final deadline/stop')
