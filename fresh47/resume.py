@@ -1,4 +1,4 @@
-"""Explicit one-shot continuation, preserving the original absolute deadlines.
+"""Explicit one-shot continuation with fixed, recorded budget authorization.
 
 CPU-only supervisor; all GPU children use the frozen run_slm launcher.
 The original campaign and every frozen numerical input remain unchanged.
@@ -38,6 +38,9 @@ def continuation(run, plan, request, now=None):
         raise ValueError('Continuation controller mismatch')
     if request.with_suffix('.consumed.json').exists():
         raise ValueError('Continuation authorization already consumed; no automatic retry')
+    for relative in ['status.json','STOP','model/config.json','model/latest.json']:
+        if relative not in auth['resume_inputs']:
+            raise ValueError(f'Missing continuation input hash: {relative}')
     for relative, expected in auth['resume_inputs'].items():
         if sha(run/relative) != expected:
             raise ValueError(f'Continuation input changed: {relative}')
@@ -46,16 +49,35 @@ def continuation(run, plan, request, now=None):
         raise ValueError('Only a paused training phase can continue')
     if not (run/'STOP').exists():
         raise ValueError('Expected preserved pause STOP')
-    if state['deadline'] != auth['deadline'] or state['started'] != auth['original_started']:
-        raise ValueError('Original budget timestamps changed')
+    extension = auth.get('extension')
+    if state['started'] != auth['original_started']:
+        raise ValueError('Original start timestamp changed')
     config = json.loads((run/'model/config.json').read_text())
-    if config['until'] != auth['training_until']:
-        raise ValueError('Original training cutoff changed')
-    deadline = datetime.fromisoformat(state['deadline']).timestamp()
-    started = datetime.fromisoformat(state['started']).timestamp()
-    training_until = datetime.fromisoformat(auth['training_until']).timestamp()
-    if deadline-started > plan['total_seconds']+0.01:
-        raise ValueError('Original campaign exceeds budget')
+    if extension is not None:
+        if extension.get('authorized') is not True or extension.get('seconds') != 52800:
+            raise ValueError('Explicit 14h40 extension authorization required')
+        if state['deadline'] != extension['prior_deadline'] or config['until'] != extension['prior_training_until']:
+            raise ValueError('Prior budget timestamps changed')
+        budget_start = datetime.fromisoformat(extension['budget_started']).timestamp()
+        deadline = datetime.fromisoformat(auth['deadline']).timestamp()
+        training_until = datetime.fromisoformat(auth['training_until']).timestamp()
+        if abs(deadline-budget_start-extension['seconds']) > 0.001 or budget_start > now:
+            raise ValueError('Extension deadline must be fixed to its authorized start')
+        if abs(training_until-(deadline-plan['phase_seconds']['evaluation']-plan['phase_seconds']['report']-90)) > 0.001:
+            raise ValueError('Extension training cutoff must preserve evaluation/report reserves')
+        prior_active = state.get('active_controller_seconds', state['budget_spent_seconds'])
+        if prior_active != extension['prior_active_seconds'] or prior_active+extension['seconds'] > plan['total_seconds']:
+            raise ValueError('Extension exceeds the agreed remaining active budget')
+    else:
+        if state['deadline'] != auth['deadline']:
+            raise ValueError('Original budget timestamps changed')
+        if config['until'] != auth['training_until']:
+            raise ValueError('Original training cutoff changed')
+        deadline = datetime.fromisoformat(state['deadline']).timestamp()
+        started = datetime.fromisoformat(state['started']).timestamp()
+        training_until = datetime.fromisoformat(auth['training_until']).timestamp()
+        if deadline-started > plan['total_seconds']+0.01:
+            raise ValueError('Original campaign exceeds budget')
     if training_until+90 > deadline-plan['phase_seconds']['evaluation']-plan['phase_seconds']['report']:
         raise ValueError('Insufficient final evaluation/report reserve')
     if now >= training_until-90:
@@ -77,6 +99,14 @@ def continuation(run, plan, request, now=None):
     return auth, state, deadline, training_until
 
 
+def shutdown_grace(active_job, monotonic_deadline, wall_training_until):
+    """Give an early training stop time to save, without extending any deadline."""
+    remaining=monotonic_deadline-time.monotonic()-10
+    if active_job=='train':
+        remaining=min(remaining,wall_training_until+90-time.time()-10)
+    return max(0.,min(300. if active_job=='train' else 30.,remaining))
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run',type=Path,required=True);p.add_argument('--authorization',type=Path,required=True);p.add_argument('--dry-run',action='store_true');a=p.parse_args()
     run=a.run.resolve();plan=json.loads((run/'plan.json').read_text());validate(plan)
@@ -94,16 +124,27 @@ def main():
         origin=time.monotonic();deadline=origin+wall_deadline-time.time();stop=[];child=None;caffeine=None
         for sig in [signal.SIGTERM,signal.SIGINT]:signal.signal(sig,lambda *_:stop.append(True))
         state=dict(previous,status='preflight',pid=os.getpid(),active_pid=None,active_job=None,
-                   resumed_at=datetime.now().astimezone().isoformat(),resume_checkpoint=auth['checkpoint'])
+                   resumed_at=datetime.now().astimezone().isoformat(),resume_checkpoint=auth['checkpoint'],deadline=auth['deadline'])
+        if auth.get('extension'):
+            state.update(original_deadline=previous['deadline'],extension=auth['extension'])
         state.pop('error',None)
         def budget():
-            return dict(budget_spent_seconds=time.time()-datetime.fromisoformat(state['started']).timestamp(),
-                        active_controller_seconds=previous.get('active_controller_seconds',previous['budget_spent_seconds'])+time.monotonic()-origin)
-        def emit(**changes):state.update(changes,heartbeat=datetime.now().astimezone().isoformat());write(run/'status.json',state)
+            elapsed=time.monotonic()-origin
+            prior=previous.get('active_controller_seconds',previous['budget_spent_seconds'])
+            values=dict(budget_spent_seconds=prior+elapsed if auth.get('extension') else time.time()-datetime.fromisoformat(state['started']).timestamp(),
+                        active_controller_seconds=prior+elapsed,wall_elapsed_since_initial_start=time.time()-datetime.fromisoformat(state['started']).timestamp())
+            if auth.get('extension'):
+                values['extension_elapsed_seconds']=time.time()-datetime.fromisoformat(auth['extension']['budget_started']).timestamp()
+            return values
+        def emit(**changes):
+            state.update(budget());state.update(changes,heartbeat=datetime.now().astimezone().isoformat());write(run/'status.json',state)
         def terminate():
             if child is not None and child.poll() is None:
                 os.killpg(child.pid,signal.SIGTERM)
-                try:child.wait(timeout=45)
+                # Early-stop training performs a dev pass before saving. Allow up to
+                # five minutes, bounded by the fixed training/report budget.
+                grace=shutdown_grace(state.get('active_job'),deadline,wall_training_until)
+                try:child.wait(timeout=grace)
                 except subprocess.TimeoutExpired:os.killpg(child.pid,signal.SIGKILL);child.wait(timeout=10)
         def cancelled():return bool(stop) or (run/'STOP').exists() or time.monotonic()>=deadline
         def job(name,args,cutoff,lease):
@@ -165,7 +206,9 @@ def main():
             for path,expected in plan['inputs'].items():assert sha(path)==expected,path
             report=dict(status='completed',initialization='random',source_count=47,training=training,evaluations=results,
                         automatic_adoption=False,historical_results_comparable=False,inputs_unchanged=True,
-                        continuation=dict(checkpoint=auth['checkpoint'],deadline=auth['deadline'],training_until=auth['training_until']))
+                        continuation=dict(checkpoint=auth['checkpoint'],deadline=auth['deadline'],training_until=auth['training_until'],extension=auth.get('extension')),
+                        budget=budget())
+            if cancelled():raise RuntimeError('Final deadline/stop')
             write(run/'RESULT.json',report)
             (run/'REPORT.md').write_text('# Fresh 47-source training\n\nRandom initialization, new train-only tokenizer, no legacy checkpoint. Primary endpoint: final checkpoint on sealed confirmation.\n\n'+
                 '\n'.join(f"- {name}: {s['evaluated_general']} tasks; per-family accuracy {s['mean_source_accuracy_by_family']}" for name,s in results.items())+
