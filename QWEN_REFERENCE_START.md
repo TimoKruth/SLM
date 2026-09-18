@@ -1,4 +1,6 @@
-# Qwen confirmation comparison — authorized start
+# Qwen confirmation comparison — historical start record
+
+**Current state: user-stopped on 18 September at 22:49:18 CEST.** 510 saved responses; second model unstarted. See [partial evaluation](reports/qwen-partial-2026-09-18/REPORT.md). The following records the original authorization and launch.
 
 User instruction: **“Start Qwen once for comparison and note the results”**. Started **18 September 2026 at 20:38:17 Europe/Berlin**; hard deadline **19 September 2026 at 02:38:17**. The separate six-hour cap includes verification, both model phases and reporting. One answer per model/task, no automatic retry, extension or adoption.
 
@@ -37,4 +39,4 @@ Local run: `runs/qwen-reference-confirmation-2026-09-16/`.
 - `RESULT.json` and `REPORT.md`: automatically written after successful completion and final hash verification.
 - `PARTIAL.json` and STOP: written on failure or exhaustion; no automatic retry or ranking of partial subsets.
 
-Results are pending at this start record. No Qwen performance number is inferred from setup success. Final comparison must retain small-source/label-imbalance and generation-cap limitations, the large model-size difference, and unknown Qwen pretraining exposure. Raw answers, weights and system-wide logs stay out of the public repository.
+Results were pending at launch; the comparison subsequently ended incomplete at the user’s request. No Qwen performance number is inferred from setup success. Final comparison must retain small-source/label-imbalance and generation-cap limitations, the large model-size difference, and unknown Qwen pretraining exposure. Raw answers, weights and system-wide logs stay out of the public repository.

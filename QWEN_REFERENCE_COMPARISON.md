@@ -1,6 +1,6 @@
 # Qwen reference comparison after fresh training
 
-**Started 18 September 2026 at 20:38:17 Europe/Berlin**, following the user's explicit instruction “Start Qwen once for comparison and note the results”. Hard deadline: **19 September 02:38:17**, with the previously selected separate six-hour confirmation-only cap. The first model loaded, passed its neutral thinking-disabled smoke check and began answering tasks. Final results are pending; local `status.json` is authoritative. See [the start record](QWEN_REFERENCE_START.md).
+**Stopped at the user’s request on 18 September 2026 at 22:49:18 Europe/Berlin.** First model completed 510/1,267 tasks; second model never started. The controller and owned inference server exited and STOP remains present. Partial results and evaluation limitations are documented in [the partial report](reports/qwen-partial-2026-09-18/REPORT.md). No full-suite comparison or model ranking is available. Historical start and budget evidence: [start record](QWEN_REFERENCE_START.md).
 
 The following is the frozen prepared protocol and its original inventory. Execution uses `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`, commit `d228a8f4e39a4ad59efcd8732998e659a74d210f`. All 51 frozen inputs and local weight blobs verified at runtime; 46 CPU tests passed. No numerical/scoring/launcher changes were merged into the SLM checkout.
 
