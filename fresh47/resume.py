@@ -56,7 +56,13 @@ def continuation(run, plan, request, now=None):
     if extension is not None:
         if extension.get('authorized') is not True or extension.get('seconds') != 52800:
             raise ValueError('Explicit 14h40 extension authorization required')
-        if state['deadline'] != extension['prior_deadline'] or config['until'] != extension['prior_training_until']:
+        continuing = auth.get('continue_existing_extension') is True
+        if continuing:
+            if state.get('extension') != extension or state['deadline'] != auth['deadline'] or config['until'] != auth['training_until']:
+                raise ValueError('Existing extension window changed')
+        elif state.get('extension') is not None:
+            raise ValueError('Existing extension requires explicit continuation, not another extension')
+        elif state['deadline'] != extension['prior_deadline'] or config['until'] != extension['prior_training_until']:
             raise ValueError('Prior budget timestamps changed')
         budget_start = datetime.fromisoformat(extension['budget_started']).timestamp()
         deadline = datetime.fromisoformat(auth['deadline']).timestamp()
@@ -66,7 +72,13 @@ def continuation(run, plan, request, now=None):
         if abs(training_until-(deadline-plan['phase_seconds']['evaluation']-plan['phase_seconds']['report']-90)) > 0.001:
             raise ValueError('Extension training cutoff must preserve evaluation/report reserves')
         prior_active = state.get('active_controller_seconds', state['budget_spent_seconds'])
-        if prior_active != extension['prior_active_seconds'] or prior_active+extension['seconds'] > plan['total_seconds']:
+        grant_prior = extension['prior_active_seconds']
+        if grant_prior+extension['seconds'] > plan['total_seconds']:
+            raise ValueError('Extension exceeds the agreed remaining active budget')
+        if continuing:
+            if not grant_prior <= prior_active <= grant_prior+extension['seconds']:
+                raise ValueError('Invalid cumulative active budget')
+        elif prior_active != grant_prior:
             raise ValueError('Extension exceeds the agreed remaining active budget')
     else:
         if state['deadline'] != auth['deadline']:
@@ -126,7 +138,7 @@ def main():
         state=dict(previous,status='preflight',pid=os.getpid(),active_pid=None,active_job=None,
                    resumed_at=datetime.now().astimezone().isoformat(),resume_checkpoint=auth['checkpoint'],deadline=auth['deadline'])
         if auth.get('extension'):
-            state.update(original_deadline=previous['deadline'],extension=auth['extension'])
+            state.update(original_deadline=previous.get('original_deadline',previous['deadline']),extension=auth['extension'])
         state.pop('error',None)
         def budget():
             elapsed=time.monotonic()-origin

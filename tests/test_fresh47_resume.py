@@ -225,3 +225,42 @@ def test_training_shutdown_grace_is_bounded_by_both_deadlines(monkeypatch):
     assert resume.shutdown_grace('train',10000,950)==30
     assert resume.shutdown_grace('train',10000,900)==0
     assert resume.shutdown_grace('final-dev',10000,10000)==30
+
+
+def authorize_existing_extension(prepared):
+    run,plan,request=authorize_extension(prepared)
+    auth=json.loads(request.read_text());state=json.loads((run/'status.json').read_text())
+    state.update(extension=auth['extension'],original_deadline=state['deadline'],deadline=auth['deadline'],active_controller_seconds=40000,budget_spent_seconds=40000)
+    (run/'status.json').write_text(json.dumps(state))
+    (run/'model/config.json').write_text(json.dumps(dict(until=auth['training_until'])))
+    auth['continue_existing_extension']=True
+    for rel in auth['resume_inputs']:auth['resume_inputs'][rel]=sha(run/rel)
+    request.write_text(json.dumps(auth))
+    return run,plan,request
+
+
+def test_existing_extension_continues_without_budget_reset(prepared):
+    run,plan,request=authorize_existing_extension(prepared)
+    auth,state,deadline,until=resume.continuation(run,plan,request)
+    assert deadline==datetime.fromisoformat(state['deadline']).timestamp()
+    assert deadline-until==4590
+    assert state['active_controller_seconds']==40000
+    assert state['extension']['prior_active_seconds']==33481.675
+    with pytest.raises(ValueError,match='remaining training'):
+        resume.continuation(run,plan,request,now=until)
+
+
+@pytest.mark.parametrize('tamper',['approval','deadline','cutoff','grant','replay','active'])
+def test_existing_extension_rejects_reset_and_replay(prepared,tamper):
+    run,plan,request=authorize_existing_extension(prepared);auth=json.loads(request.read_text())
+    if tamper=='approval':auth.pop('continue_existing_extension')
+    elif tamper=='deadline':auth['deadline']=iso(time.time()+99999)
+    elif tamper=='cutoff':auth['training_until']=auth['deadline']
+    elif tamper=='grant':auth['extension']['prior_active_seconds']=0
+    elif tamper=='replay':request.with_suffix('.consumed.json').write_text('{}')
+    else:
+        state=json.loads((run/'status.json').read_text());state['active_controller_seconds']=0
+        (run/'status.json').write_text(json.dumps(state));auth['resume_inputs']['status.json']=sha(run/'status.json')
+    request.write_text(json.dumps(auth))
+    with pytest.raises(ValueError):resume.continuation(run,plan,request)
+    assert (run/'STOP').exists()
