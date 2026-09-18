@@ -1,0 +1,1600 @@
+{
+  "best_development": {
+    "best": true,
+    "macro_answer_loss": 1.1791338212831664,
+    "step": 178642,
+    "time": "2026-09-18T15:51:26.106839+02:00",
+    "tokens": 326701345
+  },
+  "checkpoint": "checkpoint-0215720",
+  "checkpoint_sha256": "00e4435ad8e3ed50a5a71951e76d6298f320ee6d76909b9d0b69b9c557eb3ba6",
+  "endpoint_amendment": "User requested stopping training early because recent improvements appeared unlikely to help. Final chronological checkpoint after the requested stop is evaluated, not the checkpoint with the best development loss. This endpoint timing was chosen after observing development results; confirmation remains uninspected before final evaluation.",
+  "evaluations": {
+    "confirmation": {
+      "correct": 300,
+      "families": {
+        "commonsense_and_social": {
+          "correct": 55,
+          "generated": 245,
+          "mean_source_accuracy": 0.3055555555555555,
+          "scored": 181,
+          "sources": 8
+        },
+        "dialogue": {
+          "correct": 5,
+          "generated": 32,
+          "mean_source_accuracy": 0.15625,
+          "scored": 32,
+          "sources": 1
+        },
+        "entailment": {
+          "correct": 75,
+          "generated": 136,
+          "mean_source_accuracy": 0.6,
+          "scored": 136,
+          "sources": 5
+        },
+        "factual_knowledge": {
+          "correct": 1,
+          "generated": 32,
+          "mean_source_accuracy": 0.03125,
+          "scored": 32,
+          "sources": 1
+        },
+        "language_meaning": {
+          "correct": 65,
+          "generated": 96,
+          "mean_source_accuracy": 0.6770833333333334,
+          "scored": 96,
+          "sources": 3
+        },
+        "logical_reasoning": {
+          "correct": 2,
+          "generated": 32,
+          "mean_source_accuracy": 0.0625,
+          "scored": 32,
+          "sources": 1
+        },
+        "mathematics": {
+          "correct": 11,
+          "generated": 128,
+          "mean_source_accuracy": 0.0859375,
+          "scored": 128,
+          "sources": 4
+        },
+        "medical_knowledge": {
+          "correct": 8,
+          "generated": 32,
+          "mean_source_accuracy": 0.25,
+          "scored": 32,
+          "sources": 1
+        },
+        "multilingual_reading": {
+          "correct": 3,
+          "generated": 32,
+          "mean_source_accuracy": 0.09375,
+          "scored": 32,
+          "sources": 1
+        },
+        "programming_and_queries": {
+          "correct": 0,
+          "generated": 107,
+          "mean_source_accuracy": null,
+          "scored": 0,
+          "sources": 5
+        },
+        "reading_and_extraction": {
+          "correct": 33,
+          "generated": 170,
+          "mean_source_accuracy": 0.20357142857142857,
+          "scored": 170,
+          "sources": 7
+        },
+        "science_and_causality": {
+          "correct": 42,
+          "generated": 193,
+          "mean_source_accuracy": 0.249375,
+          "scored": 193,
+          "sources": 8
+        },
+        "summarization": {
+          "correct": 0,
+          "generated": 32,
+          "mean_source_accuracy": null,
+          "scored": 0,
+          "sources": 1
+        }
+      },
+      "generation": {
+        "empty": 0,
+        "generated_tokens": 32400,
+        "stop_reasons": {
+          "special_token": 1192,
+          "token_limit": 75
+        },
+        "token_limits_by_source": {
+          "apps": 9,
+          "aqua_rat": 16,
+          "code_contests": 7,
+          "gsm8k": 6,
+          "hellaswag": 5,
+          "math": 28,
+          "piqa": 3,
+          "qasc": 1
+        }
+      },
+      "label_diagnostics": {
+        "anli": {
+          "count": 32,
+          "distinct_predictions": 3,
+          "most_frequent_prediction_count": 16,
+          "most_frequent_reference_label_count": 15
+        },
+        "boolq": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 27,
+          "most_frequent_reference_label_count": 18
+        },
+        "cb": {
+          "count": 8,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 6,
+          "most_frequent_reference_label_count": 5
+        },
+        "mrpc": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 27,
+          "most_frequent_reference_label_count": 21
+        },
+        "multinli": {
+          "count": 32,
+          "distinct_predictions": 3,
+          "most_frequent_prediction_count": 12,
+          "most_frequent_reference_label_count": 32
+        },
+        "qqp": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 25,
+          "most_frequent_reference_label_count": 25
+        },
+        "scitail": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 22,
+          "most_frequent_reference_label_count": 19
+        },
+        "snli": {
+          "count": 32,
+          "distinct_predictions": 3,
+          "most_frequent_prediction_count": 12,
+          "most_frequent_reference_label_count": 15
+        },
+        "wic": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 21,
+          "most_frequent_reference_label_count": 18
+        }
+      },
+      "mixed_item_accuracy": 0.2819548872180451,
+      "protocol": {
+        "checkpoint_sha256": "00e4435ad8e3ed50a5a71951e76d6298f320ee6d76909b9d0b69b9c557eb3ba6",
+        "external_tests_loaded": false,
+        "monitoring": "Provided by project launcher; not included in quality score",
+        "partition": "dev",
+        "protocol": "Fresh random-initialization campaign on 47 sources. Preserved original train membership; grouped dev/confirmation. New train-only tokenizer. Up to 32 groups per source, all references fit context plus 256 generation tokens. HotpotQA training-only due shared-document grouping; no external benchmark or functional-code claims.",
+        "selected": 1267,
+        "suite_sha256": "58af517d0db33749c91fd1e0e64085646d5c332fe9f6e5845f0dc620a72e7cc0"
+      },
+      "proxies": {
+        "go_emotions_label_f1": {
+          "count": 32,
+          "mean": 0.3958333333333333
+        },
+        "nonempty": {
+          "count": 64,
+          "positive": 64
+        },
+        "samsum_token_f1": {
+          "count": 32,
+          "mean": 0.3419950899219418
+        },
+        "syntax_valid": {
+          "count": 71,
+          "positive": 38
+        },
+        "text_match": {
+          "count": 36,
+          "positive": 5
+        }
+      },
+      "scored": 1064,
+      "summary": {
+        "answer_loss": {
+          "examples": 1267,
+          "family_answer_loss": {
+            "commonsense_and_social": 1.3769002320817283,
+            "dialogue": 0.8649049251689576,
+            "entailment": 0.1925308845937252,
+            "factual_knowledge": 2.696130088530481,
+            "language_meaning": 0.36933238059282303,
+            "logical_reasoning": 0.7879764977842569,
+            "mathematics": 1.711283580516465,
+            "medical_knowledge": 0.6228808924497571,
+            "multilingual_reading": 1.03686205111444,
+            "programming_and_queries": 1.8083275942664059,
+            "reading_and_extraction": 1.1930092646208192,
+            "science_and_causality": 0.9273167949705384,
+            "summarization": 2.8095027320086956
+          },
+          "interpretation": "Teacher-forced original references; lower loss is not free-answer correctness.",
+          "macro_source_answer_loss": 1.1643583068253356,
+          "source_answer_loss": {
+            "anli": 0.2567770890891552,
+            "apps": 2.3342257644981146,
+            "aqua_rat": 2.2449068687856197,
+            "arc": 0.8888755892403424,
+            "boolq": 0.18925922363996506,
+            "cb": 0.06328585743904114,
+            "code_contests": 2.1859534084796906,
+            "commonsenseqa": 1.4022763902321458,
+            "copa": 0.820100604891777,
+            "cosmos_qa": 0.4450923907570541,
+            "dream": 0.8649049251689576,
+            "drop": 1.8038244806230068,
+            "go_emotions": 0.7639985419809818,
+            "gsm8k": 1.7660083435475826,
+            "hellaswag": 3.4091801196336746,
+            "logiqa": 0.7879764977842569,
+            "math": 2.1332881785929203,
+            "mbpp": 2.802019374711173,
+            "medqa": 0.6228808924497571,
+            "mrpc": 0.6239762604236603,
+            "multinli": 0.2931234538555145,
+            "multirc": 0.17228513956069946,
+            "openbookqa": 1.207698656246066,
+            "piqa": 3.3496746197342873,
+            "qasc": 1.9879118967801332,
+            "qqp": 0.11928285658359528,
+            "quarel": 0.38869354128837585,
+            "quartz": 0.3697211742401123,
+            "quoref": 1.845282582566142,
+            "race": 0.9947299496270716,
+            "ropes": 1.2372751444578172,
+            "samsum": 2.8095027320086956,
+            "sciq": 1.4860442047938704,
+            "scitail": 0.1674240380525589,
+            "snli": 0.18204398453235626,
+            "social_i_qa": 0.7532725346973166,
+            "spider": 1.0434214919805527,
+            "squad": 2.1084083318710327,
+            "tabmwp": 0.7009309311397374,
+            "triviaqa": 2.696130088530481,
+            "tydiqa": 1.03686205111444,
+            "wic": 0.36473802477121353,
+            "wikisql": 0.6760179316624999,
+            "winogrande": 0.6409079215954989,
+            "wiqa": 0.26948869228363037,
+            "wsc": 0.25079933802286786
+          }
+        },
+        "by_source": {
+          "anli": {
+            "context_exceeded": 0,
+            "correct": 15,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "apps": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 32,
+            "metric": "syntax_only_not_functional",
+            "scored": 0
+          },
+          "aqua_rat": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "arc": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "boolq": {
+            "context_exceeded": 0,
+            "correct": 17,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "cb": {
+            "context_exceeded": 0,
+            "correct": 7,
+            "family": "entailment",
+            "generated": 8,
+            "metric": "original_label_or_answer_match",
+            "scored": 8
+          },
+          "code_contests": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 32,
+            "metric": "syntax_only_not_functional",
+            "scored": 0
+          },
+          "commonsenseqa": {
+            "context_exceeded": 0,
+            "correct": 4,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "copa": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "science_and_causality",
+            "generated": 25,
+            "metric": "original_label_or_answer_match",
+            "scored": 25
+          },
+          "cosmos_qa": {
+            "context_exceeded": 0,
+            "correct": 7,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "dream": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "dialogue",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "drop": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 32
+          },
+          "go_emotions": {
+            "context_exceeded": 0,
+            "correct": 12,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "emotion_label_set_exact_and_f1",
+            "scored": 32
+          },
+          "gsm8k": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "hellaswag": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "unscored_open_generation",
+            "scored": 0
+          },
+          "logiqa": {
+            "context_exceeded": 0,
+            "correct": 2,
+            "family": "logical_reasoning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "math": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "mbpp": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 7,
+            "metric": "syntax_only_not_functional",
+            "scored": 0
+          },
+          "medqa": {
+            "context_exceeded": 0,
+            "correct": 8,
+            "family": "medical_knowledge",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "mrpc": {
+            "context_exceeded": 0,
+            "correct": 18,
+            "family": "language_meaning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "multinli": {
+            "context_exceeded": 0,
+            "correct": 11,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "multirc": {
+            "context_exceeded": 0,
+            "correct": 10,
+            "family": "reading_and_extraction",
+            "generated": 20,
+            "metric": "original_label_or_answer_match",
+            "scored": 20
+          },
+          "openbookqa": {
+            "context_exceeded": 0,
+            "correct": 6,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "piqa": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "unscored_open_generation",
+            "scored": 0
+          },
+          "qasc": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "qqp": {
+            "context_exceeded": 0,
+            "correct": 26,
+            "family": "language_meaning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "quarel": {
+            "context_exceeded": 0,
+            "correct": 15,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "quartz": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "science_and_causality",
+            "generated": 4,
+            "metric": "answer_match",
+            "scored": 4
+          },
+          "quoref": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 32
+          },
+          "race": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "ropes": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "reading_and_extraction",
+            "generated": 10,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 10
+          },
+          "samsum": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "summarization",
+            "generated": 32,
+            "metric": "summary_unigram_f1_proxy_not_factuality",
+            "scored": 0
+          },
+          "sciq": {
+            "context_exceeded": 0,
+            "correct": 7,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "scitail": {
+            "context_exceeded": 0,
+            "correct": 21,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "snli": {
+            "context_exceeded": 0,
+            "correct": 21,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "social_i_qa": {
+            "context_exceeded": 0,
+            "correct": 14,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "spider": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 4,
+            "metric": "sql_text_match_not_execution",
+            "scored": 0
+          },
+          "squad": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "reading_and_extraction",
+            "generated": 12,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 12
+          },
+          "tabmwp": {
+            "context_exceeded": 0,
+            "correct": 8,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "original_answer_exact_proxy",
+            "scored": 32
+          },
+          "triviaqa": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "factual_knowledge",
+            "generated": 32,
+            "metric": "original_answer_exact_proxy",
+            "scored": 32
+          },
+          "tydiqa": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "multilingual_reading",
+            "generated": 32,
+            "metric": "original_answer_exact_proxy",
+            "scored": 32
+          },
+          "wic": {
+            "context_exceeded": 0,
+            "correct": 21,
+            "family": "language_meaning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "wikisql": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 32,
+            "metric": "sql_text_match_not_execution",
+            "scored": 0
+          },
+          "winogrande": {
+            "context_exceeded": 0,
+            "correct": 11,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "wiqa": {
+            "context_exceeded": 0,
+            "correct": 2,
+            "family": "science_and_causality",
+            "generated": 4,
+            "metric": "answer_match",
+            "scored": 4
+          },
+          "wsc": {
+            "context_exceeded": 0,
+            "correct": 7,
+            "family": "commonsense_and_social",
+            "generated": 21,
+            "metric": "original_label_or_answer_match",
+            "scored": 21
+          }
+        },
+        "by_source_language": {
+          "cb.english": {
+            "correct": 7,
+            "generated": 8,
+            "scored": 8
+          },
+          "copa.english": {
+            "correct": 3,
+            "generated": 25,
+            "scored": 25
+          },
+          "go_emotions.english": {
+            "correct": 12,
+            "generated": 32,
+            "scored": 32
+          },
+          "logiqa.english": {
+            "correct": 2,
+            "generated": 32,
+            "scored": 32
+          },
+          "medqa.english": {
+            "correct": 8,
+            "generated": 32,
+            "scored": 32
+          },
+          "mrpc.english": {
+            "correct": 18,
+            "generated": 32,
+            "scored": 32
+          },
+          "multinli.english": {
+            "correct": 11,
+            "generated": 32,
+            "scored": 32
+          },
+          "multirc.english": {
+            "correct": 10,
+            "generated": 20,
+            "scored": 20
+          },
+          "qqp.english": {
+            "correct": 26,
+            "generated": 32,
+            "scored": 32
+          },
+          "samsum.english": {
+            "correct": 0,
+            "generated": 32,
+            "scored": 0
+          },
+          "tabmwp.english": {
+            "correct": 8,
+            "generated": 32,
+            "scored": 32
+          },
+          "triviaqa.english": {
+            "correct": 1,
+            "generated": 32,
+            "scored": 32
+          },
+          "tydiqa.arabic": {
+            "correct": 1,
+            "generated": 6,
+            "scored": 6
+          },
+          "tydiqa.english": {
+            "correct": 1,
+            "generated": 7,
+            "scored": 7
+          },
+          "tydiqa.finnish": {
+            "correct": 0,
+            "generated": 6,
+            "scored": 6
+          },
+          "tydiqa.indonesian": {
+            "correct": 0,
+            "generated": 5,
+            "scored": 5
+          },
+          "tydiqa.korean": {
+            "correct": 0,
+            "generated": 3,
+            "scored": 3
+          },
+          "tydiqa.russian": {
+            "correct": 0,
+            "generated": 3,
+            "scored": 3
+          },
+          "tydiqa.swahili": {
+            "correct": 1,
+            "generated": 2,
+            "scored": 2
+          },
+          "wic.english": {
+            "correct": 21,
+            "generated": 32,
+            "scored": 32
+          },
+          "wsc.english": {
+            "correct": 7,
+            "generated": 21,
+            "scored": 21
+          }
+        },
+        "code_evaluated": 0,
+        "code_exclusions": {},
+        "code_passes_with_stronger_tests": 0,
+        "code_statuses": {},
+        "completed": "2026-09-18T20:27:49.920303+02:00",
+        "deadline_reached": false,
+        "evaluated_general": 1267,
+        "interpretation": "Internal development proxies, not comparable across metric types or official benchmarks. Narrative and SQL functional quality remain unscored. No family-transfer claim.",
+        "mean_source_accuracy_by_family": {
+          "commonsense_and_social": 0.3055555555555555,
+          "dialogue": 0.15625,
+          "entailment": 0.6,
+          "factual_knowledge": 0.03125,
+          "language_meaning": 0.6770833333333334,
+          "logical_reasoning": 0.0625,
+          "mathematics": 0.0859375,
+          "medical_knowledge": 0.25,
+          "multilingual_reading": 0.09375,
+          "reading_and_extraction": 0.20357142857142857,
+          "science_and_causality": 0.249375
+        },
+        "partition": "dev",
+        "selected_general": 1267
+      },
+      "unscored": 203
+    },
+    "dev": {
+      "correct": 315,
+      "families": {
+        "commonsense_and_social": {
+          "correct": 51,
+          "generated": 237,
+          "mean_source_accuracy": 0.3036858974358974,
+          "scored": 173,
+          "sources": 8
+        },
+        "dialogue": {
+          "correct": 8,
+          "generated": 32,
+          "mean_source_accuracy": 0.25,
+          "scored": 32,
+          "sources": 1
+        },
+        "entailment": {
+          "correct": 83,
+          "generated": 138,
+          "mean_source_accuracy": 0.6012500000000001,
+          "scored": 138,
+          "sources": 5
+        },
+        "factual_knowledge": {
+          "correct": 0,
+          "generated": 32,
+          "mean_source_accuracy": 0.0,
+          "scored": 32,
+          "sources": 1
+        },
+        "language_meaning": {
+          "correct": 63,
+          "generated": 96,
+          "mean_source_accuracy": 0.65625,
+          "scored": 96,
+          "sources": 3
+        },
+        "logical_reasoning": {
+          "correct": 1,
+          "generated": 32,
+          "mean_source_accuracy": 0.03125,
+          "scored": 32,
+          "sources": 1
+        },
+        "mathematics": {
+          "correct": 6,
+          "generated": 128,
+          "mean_source_accuracy": 0.046875,
+          "scored": 128,
+          "sources": 4
+        },
+        "medical_knowledge": {
+          "correct": 8,
+          "generated": 32,
+          "mean_source_accuracy": 0.25,
+          "scored": 32,
+          "sources": 1
+        },
+        "multilingual_reading": {
+          "correct": 5,
+          "generated": 32,
+          "mean_source_accuracy": 0.15625,
+          "scored": 32,
+          "sources": 1
+        },
+        "programming_and_queries": {
+          "correct": 0,
+          "generated": 109,
+          "mean_source_accuracy": null,
+          "scored": 0,
+          "sources": 5
+        },
+        "reading_and_extraction": {
+          "correct": 47,
+          "generated": 168,
+          "mean_source_accuracy": 0.2852011958629606,
+          "scored": 168,
+          "sources": 7
+        },
+        "science_and_causality": {
+          "correct": 43,
+          "generated": 201,
+          "mean_source_accuracy": 0.26484375,
+          "scored": 201,
+          "sources": 8
+        },
+        "summarization": {
+          "correct": 0,
+          "generated": 32,
+          "mean_source_accuracy": null,
+          "scored": 0,
+          "sources": 1
+        }
+      },
+      "generation": {
+        "empty": 0,
+        "generated_tokens": 33777,
+        "stop_reasons": {
+          "special_token": 1189,
+          "token_limit": 80
+        },
+        "token_limits_by_source": {
+          "apps": 8,
+          "aqua_rat": 20,
+          "code_contests": 5,
+          "gsm8k": 8,
+          "hellaswag": 6,
+          "math": 29,
+          "mbpp": 1,
+          "piqa": 1,
+          "spider": 1,
+          "tydiqa": 1
+        }
+      },
+      "label_diagnostics": {
+        "anli": {
+          "count": 32,
+          "distinct_predictions": 3,
+          "most_frequent_prediction_count": 14,
+          "most_frequent_reference_label_count": 14
+        },
+        "boolq": {
+          "count": 32,
+          "distinct_predictions": 1,
+          "most_frequent_prediction_count": 32,
+          "most_frequent_reference_label_count": 22
+        },
+        "cb": {
+          "count": 10,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 5,
+          "most_frequent_reference_label_count": 6
+        },
+        "mrpc": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 25,
+          "most_frequent_reference_label_count": 26
+        },
+        "multinli": {
+          "count": 32,
+          "distinct_predictions": 3,
+          "most_frequent_prediction_count": 13,
+          "most_frequent_reference_label_count": 32
+        },
+        "qqp": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 21,
+          "most_frequent_reference_label_count": 23
+        },
+        "scitail": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 23,
+          "most_frequent_reference_label_count": 18
+        },
+        "snli": {
+          "count": 32,
+          "distinct_predictions": 3,
+          "most_frequent_prediction_count": 16,
+          "most_frequent_reference_label_count": 14
+        },
+        "wic": {
+          "count": 32,
+          "distinct_predictions": 2,
+          "most_frequent_prediction_count": 27,
+          "most_frequent_reference_label_count": 21
+        }
+      },
+      "mixed_item_accuracy": 0.29605263157894735,
+      "protocol": {
+        "checkpoint_sha256": "00e4435ad8e3ed50a5a71951e76d6298f320ee6d76909b9d0b69b9c557eb3ba6",
+        "external_tests_loaded": false,
+        "monitoring": "Provided by project launcher; not included in quality score",
+        "partition": "dev",
+        "protocol": "Fresh random-initialization campaign on 47 sources. Preserved original train membership; grouped dev/confirmation. New train-only tokenizer. Up to 32 groups per source, all references fit context plus 256 generation tokens. HotpotQA training-only due shared-document grouping; no external benchmark or functional-code claims.",
+        "selected": 1269,
+        "suite_sha256": "d0bee631eff9497e0492294099710c215d37963656bcc25d5317d88a809c3a62"
+      },
+      "proxies": {
+        "go_emotions_label_f1": {
+          "count": 32,
+          "mean": 0.5625
+        },
+        "nonempty": {
+          "count": 64,
+          "positive": 64
+        },
+        "samsum_token_f1": {
+          "count": 32,
+          "mean": 0.3076681792714606
+        },
+        "syntax_valid": {
+          "count": 72,
+          "positive": 39
+        },
+        "text_match": {
+          "count": 37,
+          "positive": 9
+        }
+      },
+      "scored": 1064,
+      "summary": {
+        "answer_loss": {
+          "examples": 1269,
+          "family_answer_loss": {
+            "commonsense_and_social": 1.5270390622575247,
+            "dialogue": 0.6751503248669906,
+            "entailment": 0.25136747539043425,
+            "factual_knowledge": 2.4898360949009657,
+            "language_meaning": 0.2923978790640831,
+            "logical_reasoning": 0.7810684270225465,
+            "mathematics": 1.7324227649951354,
+            "medical_knowledge": 0.6063372865319252,
+            "multilingual_reading": 1.0159132017288357,
+            "programming_and_queries": 1.7313823805795985,
+            "reading_and_extraction": 1.0628787725780982,
+            "science_and_causality": 1.0008540997514501,
+            "summarization": 2.5712266862392426
+          },
+          "interpretation": "Teacher-forced original references; lower loss is not free-answer correctness.",
+          "macro_source_answer_loss": 1.1635535370093901,
+          "source_answer_loss": {
+            "anli": 0.2684265598654747,
+            "apps": 2.2620405219495296,
+            "aqua_rat": 2.3084255885332823,
+            "arc": 1.0750920083373785,
+            "boolq": 0.1659296452999115,
+            "cb": 0.4241409540176392,
+            "code_contests": 2.2356142830103636,
+            "commonsenseqa": 1.6915047985967249,
+            "copa": 0.8818160085938871,
+            "cosmos_qa": 0.6445019578095526,
+            "dream": 0.6751503248669906,
+            "drop": 1.5463317707180977,
+            "go_emotions": 0.6473787222057581,
+            "gsm8k": 1.5851669702678919,
+            "hellaswag": 3.559066876769066,
+            "logiqa": 0.7810684270225465,
+            "math": 2.1235657781362534,
+            "mbpp": 2.7921367436647415,
+            "medqa": 0.6063372865319252,
+            "mrpc": 0.26976121217012405,
+            "multinli": 0.2918965592980385,
+            "multirc": 0.16053181536057415,
+            "openbookqa": 1.0921748583205044,
+            "piqa": 3.581581737846136,
+            "qasc": 1.9117659665644169,
+            "qqp": 0.1375412866473198,
+            "quarel": 0.26721104979515076,
+            "quartz": 0.594167597591877,
+            "quoref": 1.7177229984663427,
+            "race": 0.9913978879339993,
+            "ropes": 1.087873323261738,
+            "samsum": 2.5712266862392426,
+            "sciq": 1.943359293974936,
+            "scitail": 0.10801046341657639,
+            "snli": 0.1643628403544426,
+            "social_i_qa": 1.0570696144131944,
+            "spider": 0.7277808666229248,
+            "squad": 1.7703639670060232,
+            "tabmwp": 0.912532723043114,
+            "triviaqa": 2.4898360949009657,
+            "tydiqa": 1.0159132017288357,
+            "wic": 0.46989113837480545,
+            "wikisql": 0.6393394876504317,
+            "winogrande": 0.7797619896009564,
+            "wiqa": 0.24124601483345032,
+            "wsc": 0.2554468008188101
+          }
+        },
+        "by_source": {
+          "anli": {
+            "context_exceeded": 0,
+            "correct": 14,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "apps": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 32,
+            "metric": "syntax_only_not_functional",
+            "scored": 0
+          },
+          "aqua_rat": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "arc": {
+            "context_exceeded": 0,
+            "correct": 2,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "boolq": {
+            "context_exceeded": 0,
+            "correct": 22,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "cb": {
+            "context_exceeded": 0,
+            "correct": 6,
+            "family": "entailment",
+            "generated": 10,
+            "metric": "original_label_or_answer_match",
+            "scored": 10
+          },
+          "code_contests": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 32,
+            "metric": "syntax_only_not_functional",
+            "scored": 0
+          },
+          "commonsenseqa": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "copa": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "cosmos_qa": {
+            "context_exceeded": 0,
+            "correct": 7,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "dream": {
+            "context_exceeded": 0,
+            "correct": 8,
+            "family": "dialogue",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "drop": {
+            "context_exceeded": 0,
+            "correct": 2,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 32
+          },
+          "go_emotions": {
+            "context_exceeded": 0,
+            "correct": 18,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "emotion_label_set_exact_and_f1",
+            "scored": 32
+          },
+          "gsm8k": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "hellaswag": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "unscored_open_generation",
+            "scored": 0
+          },
+          "logiqa": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "logical_reasoning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "math": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "mbpp": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 8,
+            "metric": "syntax_only_not_functional",
+            "scored": 0
+          },
+          "medqa": {
+            "context_exceeded": 0,
+            "correct": 8,
+            "family": "medical_knowledge",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "mrpc": {
+            "context_exceeded": 0,
+            "correct": 23,
+            "family": "language_meaning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "multinli": {
+            "context_exceeded": 0,
+            "correct": 13,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "multirc": {
+            "context_exceeded": 0,
+            "correct": 10,
+            "family": "reading_and_extraction",
+            "generated": 17,
+            "metric": "original_label_or_answer_match",
+            "scored": 17
+          },
+          "openbookqa": {
+            "context_exceeded": 0,
+            "correct": 6,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "piqa": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "unscored_open_generation",
+            "scored": 0
+          },
+          "qasc": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "final_answer_match",
+            "scored": 32
+          },
+          "qqp": {
+            "context_exceeded": 0,
+            "correct": 24,
+            "family": "language_meaning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "quarel": {
+            "context_exceeded": 0,
+            "correct": 20,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "quartz": {
+            "context_exceeded": 0,
+            "correct": 2,
+            "family": "science_and_causality",
+            "generated": 4,
+            "metric": "answer_match",
+            "scored": 4
+          },
+          "quoref": {
+            "context_exceeded": 0,
+            "correct": 4,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 32
+          },
+          "race": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "reading_and_extraction",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "ropes": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "reading_and_extraction",
+            "generated": 10,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 10
+          },
+          "samsum": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "summarization",
+            "generated": 32,
+            "metric": "summary_unigram_f1_proxy_not_factuality",
+            "scored": 0
+          },
+          "sciq": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "science_and_causality",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "scitail": {
+            "context_exceeded": 0,
+            "correct": 27,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "snli": {
+            "context_exceeded": 0,
+            "correct": 23,
+            "family": "entailment",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "social_i_qa": {
+            "context_exceeded": 0,
+            "correct": 9,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "spider": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 5,
+            "metric": "sql_text_match_not_execution",
+            "scored": 0
+          },
+          "squad": {
+            "context_exceeded": 0,
+            "correct": 1,
+            "family": "reading_and_extraction",
+            "generated": 13,
+            "metric": "answer_exact_and_token_f1",
+            "scored": 13
+          },
+          "tabmwp": {
+            "context_exceeded": 0,
+            "correct": 3,
+            "family": "mathematics",
+            "generated": 32,
+            "metric": "original_answer_exact_proxy",
+            "scored": 32
+          },
+          "triviaqa": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "factual_knowledge",
+            "generated": 32,
+            "metric": "original_answer_exact_proxy",
+            "scored": 32
+          },
+          "tydiqa": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "multilingual_reading",
+            "generated": 32,
+            "metric": "original_answer_exact_proxy",
+            "scored": 32
+          },
+          "wic": {
+            "context_exceeded": 0,
+            "correct": 16,
+            "family": "language_meaning",
+            "generated": 32,
+            "metric": "original_label_or_answer_match",
+            "scored": 32
+          },
+          "wikisql": {
+            "context_exceeded": 0,
+            "correct": 0,
+            "family": "programming_and_queries",
+            "generated": 32,
+            "metric": "sql_text_match_not_execution",
+            "scored": 0
+          },
+          "winogrande": {
+            "context_exceeded": 0,
+            "correct": 11,
+            "family": "commonsense_and_social",
+            "generated": 32,
+            "metric": "answer_match",
+            "scored": 32
+          },
+          "wiqa": {
+            "context_exceeded": 0,
+            "correct": 2,
+            "family": "science_and_causality",
+            "generated": 5,
+            "metric": "answer_match",
+            "scored": 5
+          },
+          "wsc": {
+            "context_exceeded": 0,
+            "correct": 5,
+            "family": "commonsense_and_social",
+            "generated": 13,
+            "metric": "original_label_or_answer_match",
+            "scored": 13
+          }
+        },
+        "by_source_language": {
+          "cb.english": {
+            "correct": 6,
+            "generated": 10,
+            "scored": 10
+          },
+          "copa.english": {
+            "correct": 5,
+            "generated": 32,
+            "scored": 32
+          },
+          "go_emotions.english": {
+            "correct": 18,
+            "generated": 32,
+            "scored": 32
+          },
+          "logiqa.english": {
+            "correct": 1,
+            "generated": 32,
+            "scored": 32
+          },
+          "medqa.english": {
+            "correct": 8,
+            "generated": 32,
+            "scored": 32
+          },
+          "mrpc.english": {
+            "correct": 23,
+            "generated": 32,
+            "scored": 32
+          },
+          "multinli.english": {
+            "correct": 13,
+            "generated": 32,
+            "scored": 32
+          },
+          "multirc.english": {
+            "correct": 10,
+            "generated": 17,
+            "scored": 17
+          },
+          "qqp.english": {
+            "correct": 24,
+            "generated": 32,
+            "scored": 32
+          },
+          "samsum.english": {
+            "correct": 0,
+            "generated": 32,
+            "scored": 0
+          },
+          "tabmwp.english": {
+            "correct": 3,
+            "generated": 32,
+            "scored": 32
+          },
+          "triviaqa.english": {
+            "correct": 0,
+            "generated": 32,
+            "scored": 32
+          },
+          "tydiqa.arabic": {
+            "correct": 2,
+            "generated": 8,
+            "scored": 8
+          },
+          "tydiqa.english": {
+            "correct": 1,
+            "generated": 6,
+            "scored": 6
+          },
+          "tydiqa.finnish": {
+            "correct": 0,
+            "generated": 7,
+            "scored": 7
+          },
+          "tydiqa.indonesian": {
+            "correct": 0,
+            "generated": 1,
+            "scored": 1
+          },
+          "tydiqa.korean": {
+            "correct": 0,
+            "generated": 1,
+            "scored": 1
+          },
+          "tydiqa.russian": {
+            "correct": 2,
+            "generated": 7,
+            "scored": 7
+          },
+          "tydiqa.swahili": {
+            "correct": 0,
+            "generated": 2,
+            "scored": 2
+          },
+          "wic.english": {
+            "correct": 16,
+            "generated": 32,
+            "scored": 32
+          },
+          "wsc.english": {
+            "correct": 5,
+            "generated": 13,
+            "scored": 13
+          }
+        },
+        "code_evaluated": 0,
+        "code_exclusions": {},
+        "code_passes_with_stronger_tests": 0,
+        "code_statuses": {},
+        "completed": "2026-09-18T20:25:19.816368+02:00",
+        "deadline_reached": false,
+        "evaluated_general": 1269,
+        "interpretation": "Internal development proxies, not comparable across metric types or official benchmarks. Narrative and SQL functional quality remain unscored. No family-transfer claim.",
+        "mean_source_accuracy_by_family": {
+          "commonsense_and_social": 0.3036858974358974,
+          "dialogue": 0.25,
+          "entailment": 0.6012500000000001,
+          "factual_knowledge": 0.0,
+          "language_meaning": 0.65625,
+          "logical_reasoning": 0.03125,
+          "mathematics": 0.046875,
+          "medical_knowledge": 0.25,
+          "multilingual_reading": 0.15625,
+          "reading_and_extraction": 0.2852011958629606,
+          "science_and_causality": 0.26484375
+        },
+        "partition": "dev",
+        "selected_general": 1269
+      },
+      "unscored": 205
+    }
+  },
+  "final_development": {
+    "best": false,
+    "macro_answer_loss": 1.1909553646137472,
+    "step": 215720,
+    "time": "2026-09-18T20:20:22.656955+02:00",
+    "tokens": 394558006
+  },
+  "frozen_inputs_verified": 337,
+  "parameters": 97536768,
+  "plan_sha256": "6b963b91190e9c7b691b60304d5994b46d5465f27c2c4e00c49ab1e4139c8740",
+  "resources": {
+    "active_controller_seconds_before_final_evaluation": 72825.17831112599,
+    "device": {
+      "architecture": "applegpu_g13s",
+      "device_name": "Apple M1 Max",
+      "max_buffer_length": 41747087360,
+      "max_recommended_working_set_size": 55662788608,
+      "memory_size": 68719476736,
+      "resource_limit": 499000
+    },
+    "median_recorded_training_tokens_per_second": 5871.867893736899,
+    "minimum_sampled_available_gb": 25.680740352,
+    "peak_mlx_gb": 5.57331896
+  },
+  "run": "fresh47-97m-2026-09-16",
+  "tokens_after_best": 67856661,
+  "training": {
+    "best_dev_answer_loss": 1.1791338212831664,
+    "checkpoint": "checkpoint-0215720",
+    "finished_at": "2026-09-18T20:20:22.987016+02:00",
+    "reason": "signal_15",
+    "status": "completed",
+    "step": 215720,
+    "tokens": 394558006
+  },
+  "training_end_reason": "user_requested_early_stop"
+}
