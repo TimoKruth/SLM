@@ -16,12 +16,13 @@
 - Start regular training/evaluation through `.venv/bin/python run_slm.py --run ... --module ...`. `run_defaults.json`: monitoring `light`, 10 warmup steps, 60-second flushes. Only explicit user instruction disables monitoring. Keep PowerWatch active.
 - Fresh training initializes model and AdamW randomly/new, with no legacy checkpoint. Preserve frozen inputs once a run starts.
 
-## Prepared Qwen comparison
+## Active Qwen comparison
 
-- User selected **six additional hours, confirmation suite only** for `batiai/qwen3.6-27b:q4` and `qwen3.8:27b`. This does not change the active SLM budget.
-- Preparation only: `runs/qwen-reference-confirmation-2026-09-16/` remains STOP-blocked with no actual start authorization or queue. Code is in `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`; details `QWEN_REFERENCE_COMPARISON.md`.
-- Before an explicit comparison start, require successful SLM training, both final evaluations and report, mains power, and free GPU lease. Use the isolated worktree launcher; do not merge its launcher/monitoring modifications into this active frozen checkout.
-- 46 CPU tests passed. Real Qwen model loading and full blob verification are deferred until after SLM completion.
+- User explicitly authorized **“Start Qwen once for comparison and note the results”** on 18 September. One-shot comparison started **18 September 20:38:17 Europe/Berlin**, hard deadline **19 September 02:38:17**. Separate six-hour cap; confirmation suite only, one pass for `batiai/qwen3.6-27b:q4` followed by `qwen3.8:27b`, with 2h45 maximum per model. No retries, extensions or adoption.
+- Active local run: `runs/qwen-reference-confirmation-2026-09-16/`; authoritative `status.json`, `AUTHORIZATION.json` and `launch.json`. Historical STOP renamed `PREPARATION_STOP.txt`. Plan SHA256 `857c654f0b41069c87527e8b0179650e83e5c8ab555ce294eb308bcac5e87659`.
+- Uses isolated worktree `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`, frozen commit `d228a8f4e39a4ad59efcd8732998e659a74d210f`. Started through that worktree's `run_slm.py` with light monitoring. Dedicated owned Ollama server on `127.0.0.1:11439`, exclusive GPU lease, PowerWatch and mains guard active.
+- Both SLM final evaluations/report completed before admission. Baseline is the user-ended final checkpoint `checkpoint-0215720`, 300/1,064 scored confirmation tasks correct. All 1,267 baseline outputs rescore identically. All **51 frozen comparison inputs** and full local model blob hashes verified. **46 CPU tests passed**. First model loaded and passed neutral nonbenchmark smoke with thinking disabled; second model metadata/weights verified but its loading/smoke occur when its phase starts.
+- Results are saved locally in `model-0-responses.jsonl`, `model-1-responses.jsonl`, per-model summaries and final `RESULT.json`/`REPORT.md`; failures produce `PARTIAL.json` and STOP. Do not compare/rank partial subsets as full-suite scores. Raw responses and model files must not be committed. See `QWEN_REFERENCE_START.md` and `QWEN_REFERENCE_COMPARISON.md`.
 
 ## Legacy archive policy — supersedes historical run instructions
 

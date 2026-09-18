@@ -1,6 +1,8 @@
 # Qwen reference comparison after fresh training
 
-The user requested a comparison with locally installed Qwen models as targets for the fresh SLM. This document prepares the comparison protocol. **No Qwen inference, server start, GPU work or queue has been initiated.** The user selected a separate **six-hour cap, confirmation suite only**. The evaluator and controller are prepared in `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`, preserving the active campaign’s frozen launcher and monitoring files. **46 CPU tests passed**, including mock API success/failure, admission gates, partial-result handling and actual cleanup of a small owned CPU process tree. No real Qwen inference or model loading has occurred. Proposal and local model inventory: `plans/qwen-reference-2026-09-16/plan.json`, guarded by STOP.
+**Started 18 September 2026 at 20:38:17 Europe/Berlin**, following the user's explicit instruction “Start Qwen once for comparison and note the results”. Hard deadline: **19 September 02:38:17**, with the previously selected separate six-hour confirmation-only cap. The first model loaded, passed its neutral thinking-disabled smoke check and began answering tasks. Final results are pending; local `status.json` is authoritative. See [the start record](QWEN_REFERENCE_START.md).
+
+The following is the frozen prepared protocol and its original inventory. Execution uses `/Users/timokruth/Projekte/SLM-qwen-reference`, branch `codex/qwen-reference`, commit `d228a8f4e39a4ad59efcd8732998e659a74d210f`. All 51 frozen inputs and local weight blobs verified at runtime; 46 CPU tests passed. No numerical/scoring/launcher changes were merged into the SLM checkout.
 
 ## Models found locally
 
@@ -40,7 +42,7 @@ The executable preparation is `qwen_reference/core.py` and `qwen_reference/campa
 
 The frozen request uses the same task text and a fixed neutral system message for both Qwen models. Top-k 1, top-p 1, repeat penalty 1 and zero frequency/presence penalties override model defaults. Native template and server metadata, residency, token counts, completion reason, elapsed generation time and raw responses are retained locally. Empty answers and token-limit cutoffs are counted; raw records support later formatting-error review without automatic answer repair. Full-suite source/family comparisons require all 1,267 responses. On failure the controller preserves partial evidence and stops; it does not retry or silently move to a different profile.
 
-Local run preparation: `/Users/timokruth/Projekte/SLM/runs/qwen-reference-confirmation-2026-09-16/`. The STOP file remains present and only a false authorization example exists. Full model-weight verification, actual template/runtime compatibility and neutral generation smoke checks remain for authorized runtime after the SLM campaign completes. Installed client 0.33.3 and its binary hash are pinned; a runtime update requires a new preparation rather than silent substitution.
+Local run preparation: `/Users/timokruth/Projekte/SLM/runs/qwen-reference-confirmation-2026-09-16/`. The preparation STOP was renamed at authorized start and matching AUTHORIZATION.json recorded. Full model-weight verification and first-model runtime smoke have passed; second-model loading/smoke remain for its sequential phase. Installed client 0.33.3 and its binary hash are pinned; a runtime update requires a new preparation rather than silent substitution.
 
 CPU-only inspection (does not launch Ollama):
 
@@ -49,4 +51,4 @@ cd /Users/timokruth/Projekte/SLM-qwen-reference
 .venv/bin/python -m qwen_reference.campaign --run /Users/timokruth/Projekte/SLM/runs/qwen-reference-confirmation-2026-09-16 --dry-run
 ```
 
-A later explicit comparison start must record matching authorization and remove its STOP, then use the isolated worktree’s `run_slm.py --module qwen_reference.campaign` so light monitoring remains active. Do not merge its launcher modifications into the running SLM checkout. No queue or auto-start mechanism has been installed. The six-hour cap begins at admitted comparison execution and is entirely separate from the SLM’s 24-hour cap.
+The authorized comparison start recorded matching authorization and renamed its preparation STOP, using the isolated worktree’s `run_slm.py --module qwen_reference.campaign` so light monitoring remains active. Do not merge its launcher modifications into the running SLM checkout. No queue or auto-start mechanism has been installed. The six-hour cap begins at admitted comparison execution and is entirely separate from the SLM’s 24-hour cap.
