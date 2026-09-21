@@ -198,3 +198,43 @@ def test_system_prompt_preserved_and_context_counted(tmp_path):
     result=b.generate(t)
     assert calls[0]['messages'][0]==dict(role='system',content=t['system'])
     assert result['allocation']['prompt_tokens']==len(input_text(t).encode())+4096
+
+
+@pytest.mark.parametrize('name',['qwen36','qwen38'])
+def test_reasoning_profile_preserves_non_reasoning_reference(name):
+    profiles=Path(__file__).resolve().parents[2]/'benchmark_eval/profiles'
+    reasoning=Settings.load(profiles/(name+'-reasoning.json'))
+    reference=Settings.load(profiles/(name+'.json'))
+    assert reasoning.model==reference.model
+    assert reasoning.thinking and not reference.thinking
+    assert reasoning.context_tokens==65536 and reasoning.max_output_tokens==32768
+    assert reasoning.temperature==0.6 and reasoning.task_seconds==7200
+    assert reference.context_tokens==32768 and reference.max_output_tokens==16384
+    assert reasoning.allocation(4096)['supported']
+
+
+@pytest.mark.parametrize('truncated',[False,True])
+def test_reasoning_channel_is_saved_but_never_used_as_the_answer(tmp_path,truncated):
+    class Lease:
+        def child_options(self):return {'env':{}}
+    s=Settings(backend='ollama',model='test',context_tokens=65536,max_output_tokens=32768,
+               temperature=0.6,thinking=True,task_seconds=7200)
+    plan=dict(settings=s.to_dict(),prompt_overhead_bound=4096,model_manifest_sha256='digest')
+    b=Ollama(plan,tmp_path,Lease())
+    calls=[]
+    def api(endpoint,payload=None):
+        if endpoint=='ps':return dict(models=[dict(name='test',context_length=65536,digest='digest')])
+        calls.append(payload)
+        return dict(done=True,done_reason='length' if truncated else 'stop',
+                    message=dict(thinking='Final answer: B',content='' if truncated else 'Final answer: A'),
+                    prompt_eval_count=100,eval_count=32768 if truncated else 100)
+    b.api=api
+    result=b.generate(task())
+    assert calls[0]['think'] is True
+    assert calls[0]['options']['num_predict']==32768
+    assert calls[0]['options']['num_ctx']==65536
+    assert calls[0]['options']['temperature']==0.6
+    assert result['thinking']=='Final answer: B'
+    assert not grade(task(),result['text'])['correct']
+    assert result['stop_reason']==('output_limit' if truncated else 'eos')
+    assert result['generated_tokens']==(32768 if truncated else 100)

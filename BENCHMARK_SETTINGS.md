@@ -35,6 +35,27 @@ Qwen admission uses UTF-8 bytes plus the saved template/system byte lengths and 
 
 The output and wall limits are independent. At the previously measured ~10.85 output tokens/s, using the entire 16,384-token allowance takes about **25 minutes per response**, excluding prefill. A full 1,267-task suite at that maximum would take roughly **531 generation hours per model**. This is a worst-output planning scenario, not a runtime prediction. Measure a small development pilot before approving a large run. The former 2h45 per-model restriction is not present in this new runner; the explicitly chosen whole-run budget still applies.
 
+## Separate reasoning-enabled Qwen reference
+
+Added following the user's “Yes” to preparing distinct reasoning and non-reasoning references. Both saved local model inventories advertise `thinking` support. Existing profiles remain non-reasoning; use `qwen36-reasoning.json` or `qwen38-reasoning.json` for the additional mode.
+
+| Setting | Non-reasoning reference | Reasoning reference |
+| --- | ---: | ---: |
+| Thinking | Disabled | Enabled (`think: true`) |
+| Context | 32,768 | 65,536 |
+| Native generation allowance | 16,384 | 32,768, shared by thinking and answer |
+| Temperature | 0 | 0.6 |
+| Task wall cap | 3,600 seconds | 7,200 seconds |
+| Whole-run budget | Explicit approval/start argument | Explicit approval/start argument |
+
+The 0.6 temperature follows Artificial Analysis's general reasoning setting, subject to model-specific recommendations. The 32,768-generation limit is a practical local profile choice, **not an established model maximum or a claim to reproduce the provider's model-specific reasoning protocol**. These modes differ in sampling and budgets as well as thinking; a score difference would not isolate the effect of the thinking toggle alone.
+
+The runner sends `think: true` and preserves the separate thinking field locally. Only `message.content` enters grading. Thinking cannot supply a missing or wrong final answer. Ollama's native `eval_count` is retained; the runner does not invent separate answer/thinking token counts. The generation ceiling does not reserve a guaranteed portion for the final answer: exhausting it during thinking is still a truncated attempt. API/real-model behavior, memory use and throughput must be validated in an explicitly budgeted pilot before a broad comparison.
+
+At the previously measured non-reasoning speed, 32,768 tokens would take roughly 50 minutes, before prefill. Reasoning speed has not been measured. A two-hour per-task ceiling is not authorization for a two-hour run or a guarantee that every task finishes. Total-budget, mains, STOP, monitoring and GPU-lease safeguards still apply. The SLM gains no new mode or training from these profiles.
+
+CPU-only plans for all 1,269 development tasks are recorded in `plans/evaluation-settings-2026-09-21/reasoning-preparation.json`; no inference started. Both standard and reasoning results must be reported separately under their exact profiles.
+
 ## Answer contracts and scoring
 
 For locally scored tasks, both backends receive the same instruction to end with `Final answer: <answer>`. Extraction uses only the generated response, never the reference. Bare single-line answers are also accepted. Conflicting final markers, text after the final answer and missing final lines in multiline prose are rejected. Incorrect answers remain incorrect. No substring search for the expected answer, judge-based repair or reference hints are used.
