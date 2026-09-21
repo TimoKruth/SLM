@@ -1,5 +1,22 @@
 # Chat with the trained SLM locally
 
+## Start through the project skill
+
+Ask **"Start the latest trained SLM for chat"** or invoke **`$start-latest-slm`**.
+The project skill lives in
+[.agents/skills/start-latest-slm/SKILL.md](.agents/skills/start-latest-slm/SKILL.md).
+It checks current campaign records, resolves the latest complete checkpoint,
+and opens chat in a Terminal window you can type into. It starts inference only;
+it does not resume training. A question supplied with the request can instead
+be answered directly using the one-shot interface.
+
+The skill selects the latest completed, non-deprecated training campaign from
+local evidence. The plain command below uses the configured default campaign
+and its `latest.json` pointer; it does not search across campaigns. Use `--model`
+to choose a different campaign manually.
+
+## Start from a terminal
+
 Run from this repository on the Apple Silicon Mac with the existing Python 3.12
 environment (`uv sync` if dependencies have not been installed):
 
