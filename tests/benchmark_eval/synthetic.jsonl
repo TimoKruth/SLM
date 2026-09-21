@@ -1,0 +1,4 @@
+{"id":"choice-1","source":"synthetic","kind":"choice","prompt":"Which number is even?","choices":["3","4"],"reference":"B"}
+{"id":"number-1","source":"synthetic","kind":"number","prompt":"Compute 7 times 3.","reference":"21"}
+{"id":"text-1","source":"synthetic","kind":"text","prompt":"Name the capital of France.","reference":"Paris"}
+{"id":"external-1","source":"synthetic-external","kind":"external","prompt":"Write a Python function that returns its argument unchanged."}

@@ -1,0 +1,9 @@
+{
+  "backend": "slm",
+  "context_tokens": 1024,
+  "max_output_tokens": 16384,
+  "temperature": 0.0,
+  "thinking": false,
+  "task_seconds": 3600,
+  "context_policy": "use_remaining"
+}

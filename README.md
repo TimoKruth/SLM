@@ -1,5 +1,7 @@
 # Benchmark-only SLM
 
+**New evaluation settings:** [Artificial Analysis readiness, current limits and commands](BENCHMARK_SETTINGS.md). Qwen can now be configured for 16,384 output tokens; the existing SLM remains bound by its trained 1,024-token context. Implementation and CPU preparation are complete; no new benchmark run has started.
+
 Chat with the trained model locally (Apple Silicon, existing project environment):
 
 ```sh

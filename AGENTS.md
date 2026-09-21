@@ -1,5 +1,13 @@
 # Current project instructions — 18 September 2026
 
+## Evaluation settings implementation — 21 September 2026
+
+- User requested evaluation and implementation of settings suitable for Artificial Analysis-style benchmarking. New code/profiles: `benchmark_eval/`; assessment/limits: `BENCHMARK_SETTINGS.md`. This authorizes implementation/preparation, not a new long-running inference/training campaign.
+- Standard Qwen profiles: 32,768 context / 16,384 maximum output tokens; optional long-context profiles 262,144 context (local metadata ceiling, not runtime memory-validated). Temperature 0, thinking disabled, 3,600-second task cap; explicit whole-run budget required. Existing SLM: immutable 1,024 context, output uses remaining space, 247–1,006 tokens on prepared development tasks. No inference-only context extension.
+- Separate launcher `python -m benchmark_eval.launch` registers the module in memory with existing light monitoring; required because `run_slm.py` and numerical/scorer/monitoring files are frozen historical inputs. Shared GPU lease, mains/PowerWatch admission, owned-server cancellation, STOP and absolute deadlines retained. Historical 337 + 51 frozen inputs unchanged.
+- Preparation only under `runs/eval-settings-2026-09-21-*`; final valid plans/evidence listed in `plans/evaluation-settings-2026-09-21/`. Earlier preparation snapshots may be superseded by implementation changes and must not be started without hash validation. No new model loads, starts, retries or budget extensions were authorized/performed.
+- New answer contracts and extraction are a new protocol. Use development for tuning. Partial, truncated, unsupported and externally ungraded results remain explicit. Full Artificial Analysis Intelligence Index, agentic/tool environments and official grading are NOT implemented by this text runner. Never claim official comparability or long-context competence from settings alone.
+
 ## Active task and authorization
 
 - The user requested commit/push to `main`, retirement of all previous reports/results, and preparation of a completely new training on the larger benchmark list.
