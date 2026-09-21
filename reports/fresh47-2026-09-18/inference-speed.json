@@ -1,0 +1,19 @@
+{
+  "run": "runs/fresh47-97m-2026-09-16",
+  "checkpoint": "checkpoint-0215720",
+  "checkpoint_sha256": "00e4435ad8e3ed50a5a71951e76d6298f320ee6d76909b9d0b69b9c557eb3ba6",
+  "measurement": "evaluation_output_tokens_per_wall_second",
+  "output_tokens": 66177,
+  "prompts": 2536,
+  "started": "2026-09-18T20:22:41.952023+02:00",
+  "completed": "2026-09-18T20:27:49.920303+02:00",
+  "seconds": 307.96828,
+  "tokens_per_second": 214.88251971923862,
+  "interpretation": "Historical overall evaluation estimate, including startup, prompt processing, generation and scoring. Not isolated decoding speed or training throughput; not a prediction of CPU chat speed.",
+  "sources": [
+    "runs/fresh47-97m-2026-09-16/FINAL_EVAL_2026-09-18.launch.json",
+    "runs/fresh47-97m-2026-09-16/evaluations/final-dev/summary.json",
+    "runs/fresh47-97m-2026-09-16/evaluations/final-confirmation/summary.json",
+    "reports/fresh47-2026-09-18/aggregate.json"
+  ]
+}

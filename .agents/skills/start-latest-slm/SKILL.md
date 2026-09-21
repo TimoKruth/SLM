@@ -69,6 +69,12 @@ checkpoint before claiming success. Report the chosen campaign, checkpoint and
 device. Mention `/reset` to clear history and `/quit` to exit. If startup failed,
 report the actual error. No model registration in Ollama is performed.
 
+Chat displays output tokens, elapsed seconds and tokens/s after each answer;
+one-shot JSON includes `tokens_per_second`. This measures the current device's
+response generation including prompt processing, excluding model loading and
+user typing. Use this live value for chat speed, not training throughput or the
+historical overall evaluation estimate.
+
 The existing checkpoint is read-only; chat history stays in memory. Do not
 restart training, remove STOP files, adopt a model as a benchmark winner, or
 publish weights/responses. Conversational quality is experimental because this

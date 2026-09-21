@@ -27,4 +27,6 @@ Für Qualitätsaussagen die vorhandenen Scores unverändert nennen und ihre Aggr
 
 Für Performancevergleiche `RUN_CONDITIONS.json`/`.md` und aktuelle Leistungseinstellung berücksichtigen. Die Ausgabe nennt die Bedingungsdateien und vorhandenen Paralleljobstatus. Veränderte Überlappung, Leistungseinstellungen und Datenmischung können den Durchsatz beeinflussen. System-GPU ist nicht einem einzelnen Job zuordenbar; Ressourcen-Skill enthält die Messgrenzen.
 
+Vorhandene `historical_inference_speed` in Statusupdates mit Checkpoint und Messumfang nennen. Für den finalen Fresh47-Checkpoint `checkpoint-0215720` sind rund **215 Ausgabetokens/s** aus 66.177 Tokens über 2.536 Prompts in rund 308 Sekunden dokumentiert ([Messbeleg](../../../reports/fresh47-2026-09-18/inference-speed.json)). Dies ist ein historischer Gesamtdurchsatz einschließlich Start, Promptverarbeitung und Scoring, keine isolierte Decoding-Messung und keine CPU-Chat-Prognose. Nicht mit den 5.872 Trainingstokens/s verwechseln oder auf neue Checkpoints übertragen. Fehlende Geschwindigkeitsdaten offenlassen; eine Statusfrage startet keine neue Messung.
+
 Die Abfrage liest ausschließlich. Keine Statusdateien regenerieren, eingefrorene Eingaben ändern, Jobs starten/pausieren oder Dienste neu starten. Antworte kompakt; bei wiederholten Statusfragen neue Entwicklungen hervorheben.

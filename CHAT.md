@@ -48,6 +48,10 @@ Answers use greedy decoding, with a default limit of 128 output tokens and a
 60-second budget checked between decoding steps. Set `--max-tokens 256` or
 `--max-seconds 120` as needed. Answers appear when generation finishes. The
 interactive interface reports when an answer reaches a token or time limit.
+After every answer it also shows output tokens, elapsed seconds and tokens/s
+on stderr. The rate includes model prompt processing and generation through
+text decoding; it excludes model loading, prompt tokenization and user typing.
+CPU/GPU choice, prompt length and answer length affect this live measurement.
 
 For a single answer or use from another local program:
 
@@ -57,9 +61,11 @@ For a single answer or use from another local program:
 printf 'Explain this sentence:\nThe cat is sleeping.\n' | .venv/bin/python -m slm.chat --prompt - --json
 ```
 
-JSON includes `text`, token counts, `stop_reason`, elapsed seconds,
+JSON includes `text`, token counts, `stop_reason`, elapsed `seconds`, `tokens_per_second`,
 `dropped_turns`, and the checkpoint path. Diagnostics go to stderr; stdout is
 the answer or JSON. Invalid inputs and missing artifacts return a nonzero exit.
+Plain one-shot answers also print the speed on stderr. A zero-duration
+measurement has a null rate; an empty answer with positive duration has 0 tokens/s.
 
 To select another trained checkpoint of this project's architecture, supply its
 model directory (containing `config.json`, `tokenizer.json`, and checkpoint

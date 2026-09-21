@@ -91,8 +91,24 @@ def test_deadline_and_context_budget(saved_model, monkeypatch):
     result = generate(model, tok, [0, 3, 6, 4], 4, 1)
     assert result['stop_reason'] == 'time_limit'
     assert result['generated_tokens'] == 0
+    assert result['seconds'] == 3
+    assert result['tokens_per_second'] == 0
     with pytest.raises(ValueError, match='context'):
         generate(model, tok, [0] * 63, 4, 1)
+
+
+@pytest.mark.parametrize('seconds,rate', [(2, 1), (0, None)])
+def test_speed_counts_output_tokens_and_handles_zero_duration(saved_model, monkeypatch, seconds, rate):
+    _, tok, model = saved_model
+    ticks = iter([10, 10, 10, 10 + seconds])
+    monkeypatch.setattr('slm.chat.time.monotonic', lambda: next(ticks))
+    # Force two visible tokens, independent of the randomly initialized weights.
+    monkeypatch.setattr('slm.inference.cached_forward',
+                        lambda *args: (mx.array([[[0, 0, 0, 0, 0, 0, 1, 0, 0]]]), []))
+    result = generate(model, tok, [0, 3, 6, 4], 2, 60)
+    assert result['generated_tokens'] == 2
+    assert result['seconds'] == seconds
+    assert result['tokens_per_second'] == rate
 
 
 def test_stateless_mode_and_failed_prompt_keep_history_consistent(saved_model):
@@ -112,23 +128,31 @@ def test_cli_json_and_error_exit(saved_model, capsys):
     folder, _, _ = saved_model
     assert main(['--model', str(folder), '--prompt', 'hello', '--json', '--max-tokens', '3']) == 0
     output = capsys.readouterr()
-    assert json.loads(output.out)['checkpoint'].endswith('checkpoint-0000007/model.safetensors')
+    result = json.loads(output.out)
+    assert result['checkpoint'].endswith('checkpoint-0000007/model.safetensors')
+    assert result['tokens_per_second'] == pytest.approx(result['generated_tokens'] / result['seconds'])
     assert 'Loaded' in output.err
+    assert main(['--model', str(folder), '--prompt', 'hello', '--max-tokens', '3']) == 0
+    output = capsys.readouterr()
+    assert 'tokens/s' in output.err and 'tokens/s' not in output.out
     assert main(['--model', str(folder), '--checkpoint', 'checkpoint-missing']) == 1
     assert 'Missing model file' in capsys.readouterr().err
 
 
-def test_multiline_reset_and_eof(monkeypatch):
+def test_multiline_reset_and_eof(monkeypatch, capsys):
     prompts = []
     chat = SimpleNamespace(history=[('old', 'turn')])
     def reply(prompt):
         prompts.append(prompt)
-        return dict(text='yes', dropped_turns=0, stop_reason='special_token')
+        return dict(text='yes', dropped_turns=0, stop_reason='special_token',
+                    generated_tokens=10, seconds=0.5, tokens_per_second=20)
     chat.reply = reply
     inputs = iter(['/reset', '/multiline', 'hello', 'world', '/end', '/quit'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
     interactive(chat)
     assert prompts == ['hello\nworld'] and not chat.history
+    output = capsys.readouterr()
+    assert '20.0 tokens/s' in output.err and '10 output tokens' in output.err
     def eof(_):
         raise EOFError
     monkeypatch.setattr('builtins.input', eof)

@@ -98,8 +98,11 @@ def generate(model, tokenizer, ids, maximum, max_seconds):
             reason = 'special_token'
             break
         output.append(token)
-    return dict(text=tokenizer.decode(output), prompt_tokens=len(ids), generated_tokens=len(output),
-                stop_reason=reason, seconds=time.monotonic() - started)
+    text = tokenizer.decode(output)
+    seconds = time.monotonic() - started
+    return dict(text=text, prompt_tokens=len(ids), generated_tokens=len(output),
+                stop_reason=reason, seconds=seconds,
+                tokens_per_second=len(output) / seconds if seconds > 0 else None)
 
 
 class Chat:
@@ -134,6 +137,13 @@ class Chat:
 HELP = '/quit exits; /reset clears history; /multiline reads until /end; /help shows commands.'
 
 
+def print_speed(result):
+    speed = result['tokens_per_second']
+    rate = f'{speed:.1f} tokens/s' if speed is not None else 'speed unavailable'
+    print(f"[{result['generated_tokens']} output tokens in {result['seconds']:.2f}s; "
+          f"{rate} including prompt processing.]", file=sys.stderr)
+
+
 def interactive(chat):
     print(HELP, file=sys.stderr)
     while True:
@@ -159,6 +169,7 @@ def interactive(chat):
                 continue
             result = chat.reply(prompt)
             print('\nSLM> ' + (result['text'] or '[empty response]'))
+            print_speed(result)
             if result['dropped_turns']:
                 print(f"[Dropped {result['dropped_turns']} oldest turn(s) to fit context.]", file=sys.stderr)
             if result['stop_reason'] != 'special_token':
@@ -201,6 +212,8 @@ def main(argv=None):
                 result = chat.reply(prompt)
                 result['checkpoint'] = str(files.weights)
                 print(json.dumps(result, ensure_ascii=False) if args.json else result['text'])
+                if not args.json:
+                    print_speed(result)
             else:
                 print('Benchmark-trained model; conversation quality is experimental. History stays in memory.', file=sys.stderr)
                 interactive(chat)
