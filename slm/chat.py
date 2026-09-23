@@ -75,7 +75,12 @@ def prepare_prompt(tokenizer, prompt, history, context, maximum):
 
 
 def generate(model, tokenizer, ids, maximum, max_seconds):
-    """Greedy decoding with the existing cached forward pass and request-local state."""
+    """Greedy decoding with the existing cached forward pass and request-local state.
+
+    The next step is queued with mx.async_eval before the current token is read on
+    the host, so device work overlaps Python overhead. Tokens are unchanged; a step
+    queued after a stop token or deadline is discarded.
+    """
     import mlx.core as mx
     from .inference import cached_forward
 
@@ -84,16 +89,26 @@ def generate(model, tokenizer, ids, maximum, max_seconds):
     if max_seconds <= 0:
         raise ValueError('Generation time limit must be positive')
     stops = {tokenizer.token_to_id(token) for token in ('<bos>', '<eos>', '<pad>', '<question>')}
-    output, cache = [], None
+
+    def step(tokens, cache):
+        logits, cache = cached_forward(model, tokens, cache)
+        return mx.argmax(logits[:, -1:, :], axis=-1).astype(mx.int32), cache
+
+    output = []
     started = time.monotonic()
     reason = 'token_limit'
-    for _ in range(maximum):
+    pending, cache = step(mx.array([ids], dtype=mx.int32), None)
+    mx.async_eval(pending)
+    for n in range(maximum):
         if time.monotonic() - started >= max_seconds:
             reason = 'time_limit'
             break
-        tokens = ids if cache is None else output[-1:]
-        logits, cache = cached_forward(model, mx.array([tokens], dtype=mx.int32), cache)
-        token = int(mx.argmax(logits[:, -1, :], axis=-1).item())
+        current = pending
+        # Queue only positions inside the validated budget: len(ids) + n + 1 < context.
+        if n + 1 < maximum:
+            pending, cache = step(current, cache)
+            mx.async_eval(pending)
+        token = current.item()
         if token in stops:
             reason = 'special_token'
             break
