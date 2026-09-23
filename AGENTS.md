@@ -44,6 +44,7 @@
 - Verify archive SHA256, every member hash/CRC, and restoration before pruning sources. `tools/retire_legacy_results.py` rechecks the entire source against the verified ZIP before deletion.
 - For a requested historical inspection, read members directly from ZIP where possible. If restoration is necessary, use a temporary reference directory and remove the unpacked copy afterward. Never revive an old controller or treat archived start instructions as current authorization.
 - Existing Git history is not rewritten. Local historical refs are retained; retired worktrees are represented in the private code/branch ZIP.
+- Retired pre-restart controllers and analyses (`study/`, `research/`, `long_study/`, `next_run/`, `random_search/`, most of `experiments/` and `future_eval/`) and their tests were removed from the working tree on 23 September 2026; recover a file with `git show bc3c90c:<path>`. Kept: v3/v4 data-lineage scripts (`experiments/collect_wave3.py`, `prepare_broad.py`, `prepare_checks.py`, `audit_broad.py`, `audit_corrected.py`) and modules imported by frozen code (`experiments/continuation_report.py`, `experiments/size_report.py`, `future_eval/metrics.py`). Frozen `run_slm.py`/`slm_perf` still list the removed module names; selecting one now fails with `ModuleNotFoundError`.
 - Raw corpus inputs and live `runs/system-resources` monitoring are not old experiment results; preserve them. They must not be uploaded as public results. New 47-source run artifacts may remain unpacked while active.
 
 ## Data and evaluation
