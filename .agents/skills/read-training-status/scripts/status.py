@@ -173,6 +173,15 @@ def summarize(run, now, errors):
     assessment = read_json(run / "assessment.json", errors)
     if assessment:
         result["assessment"] = assessment
+    # Curated aggregate evidence only; never scan raw answers or load a model.
+    speed_reports = []
+    for path in sorted((run.parent.parent / "reports").glob("*/inference-speed.json")):
+        report = read_json(path, errors)
+        if (isinstance(report, dict) and isinstance(report.get("run"), str)
+                and (run.parent.parent / report["run"]).resolve() == run.resolve()):
+            speed_reports.append({**report, "report_file": str(path)})
+    if speed_reports:
+        result["historical_inference_speed"] = speed_reports
     result["condition_files"] = [str(run / name) for name in
                                  ("RUN_CONDITIONS.json", "RUN_CONDITIONS.md", "START_AUTHORIZATION.json") if (run / name).exists()]
     return result

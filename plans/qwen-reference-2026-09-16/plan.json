@@ -1,0 +1,239 @@
+{
+  "automatic_extension": false,
+  "automatic_model_adoption": false,
+  "automatic_retry": false,
+  "budget": {
+    "per_model_seconds": 9900,
+    "preflight_seconds": 900,
+    "report_seconds": 900,
+    "suites": [
+      "confirmation"
+    ],
+    "total_seconds": 21600
+  },
+  "budget_selected_by_user": true,
+  "cross_tokenizer_loss_comparison": false,
+  "generation": {
+    "frequency_penalty": 0,
+    "min_p": 0,
+    "native_chat_template": true,
+    "num_ctx": 8192,
+    "num_predict": 256,
+    "one_sample_per_task": true,
+    "presence_penalty": 0,
+    "prompt_specific_tuning": false,
+    "repeat_penalty": 1,
+    "seed": 20260916,
+    "system_message": "You are a helpful assistant.",
+    "task_prompt_byte_identical": true,
+    "temperature": 0,
+    "think": false,
+    "top_k": 1,
+    "top_p": 1
+  },
+  "inputs": {
+    "/Applications/Ollama.app/Contents/Resources/ollama": "75b6b83ab9c06712c7097807c91d2bb86a3ef3dd143d59359a5fbb3314970c0a",
+    "/Users/timokruth/.ollama/models/manifests/registry.ollama.ai/batiai/qwen3.6-27b/q4": "30824a1e4eaef7b2f603444477c24b3f5c23960c26cf2baf9d22462bc8651312",
+    "/Users/timokruth/.ollama/models/manifests/registry.ollama.ai/library/qwen3.8/27b": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/__init__.py": "08ac8e0ebcae90f834cf2733e344bbde0a3ae1c143c1d6072b019b32b8c5fc54",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/fetch.py": "6810ff6a4f25abbbbef87551940337d73f49b28dce3d5d7f24b5e8ccdd41e573",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/prepare.py": "3d8c17eb4f931c341ceee218c86459403a3a033a993916a094a5b8761636d404",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/scoring.py": "079d4322d3d4fce040bb91bd0570378055181425e9bd7be5d343beb86439d3da",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/scoring47.py": "5e750816ee371eac11b65c65898de30f9ae221eb0b215a939d1b327624b68555",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/verify.py": "5531211bbf7deaf9e16fd45825a6ede7375c7a7d5c642bdf56d1f185722beeaf",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/benchmark_expansion/wave6.py": "cffaad40d5ddee827401bf47c26d74ec4978a53f9ba123e017ad046d536f4a2d",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/fresh47/campaign.py": "1698b77bae54516cc49be7b0b1b473a221b011c43419747112e4d2688b0195ff",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/fresh47/prepare.py": "ecab647d541496607480fee58c7bf5ed504cdf72e3d20c44a006cb2040235924",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/fresh47/verify.py": "f245f6de65fd0c8e520904887802b3101f701c83f3bba19aefe230fa2a675c52",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/pyproject.toml": "94b0c98ff10e600b9b7146408c0418380fe26112be767935f257369707bbb33a",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/qwen_reference/campaign.py": "0485cc49c9710e686c3c1bb3a9557b0e546164b8965ff96b002d50ebcf979e8e",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/qwen_reference/core.py": "24b7033a143f8ac1bb33390428c03c0d5b4bbc41e2e9a0c9273e6d10c3c9358a",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/run_defaults.json": "9adee044ca2878678b74c0f851ab800cfda107420049c0bd2e1932d01e10ed8d",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/run_slm.py": "41934bb76f898489fa33efd99ef6fdd0961200a511ff6875e64607db3753d3d4",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/__init__.py": "6ef803b71afb71576cafa599dd2f78918812c8fafb1e097de52d7a6cf10aeb9b",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/audit_v2.py": "976299219f5595d942b240d9bc0465f4ed8eed920eb24419e98288ba8d97c929",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/breadth.py": "ccac4f55ce9f271871be87446efeab0a557cbce1ba0b6de07015c96c87d4a464",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/broad_eval.py": "5663405b0c10b9b1a058ab2d5bb37fd68ca0f41a71be98268d4068d77081038f",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/campaign.py": "86bb1e9a4db584c0223a63e0eb3184a97e90db2c0949783014f188c685049df5",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/code_eval.py": "c9c50d0cf5a93431da6c806680cf99b05b65c976b38f8456962a3d7e37c4f7ce",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/collect.py": "260606cce4bdea718bea0d2e6b613a3262ed62a3f65bb02f1bb45317e5e3fd5e",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/data.py": "54eb548fd730e18563a45fb5ba97f925016f50d45b79b3fac7b79036275f68f7",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/inference.py": "1ac5d5018107a19ed597f06fa66bbc9a5b30a0a09bdf31d4890aafce013f099a",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/interface_eval.py": "152f09b12e08305bb914419aaeb265001fdcc21cf1353b80f86c39f1198eeae2",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/model.py": "3cac839706877586afcb0e7d9f62ea24a7d7d7f3772a838e09a0cc5c591bb131",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/optimization.py": "876377aa0ff9579fc7ab9a98df797e4cc2704ed8674cd15b3c3ac799205f2c7a",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/overnight.py": "f821708f0a1c204a2b7d37fe45fcdb548a874c01e5e381d4310fc0bd85f2ebaf",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/precision.py": "fffe07827653e7bb79f57cf8d483e8142f68eb30cf366085a5f8a2965a5347a0",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/prepare.py": "97046df9cff8f8a2fa1d4158acb391b3dc82060e689e72e1d1b7eaf299a1fc14",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/prepare_v2.py": "dcdbab79a73524a73375d6fc424923555cd673581bb5bd703bc703f157c7e524",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/report.py": "3f3121cc65d9c643f3a7fd6d5ada66b48f0b42a77dd337d41edcbb40011ac258",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/rescore.py": "d3267b14d2553e945ff8c76bd99172299d34af7e3ece25663ce18906e4f9a9e9",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/sixhour.py": "f5bb21c4e5df21ee76443f3ca9f494e6ebf4d5cfafcce5ea30745dd6f96bebe2",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/train.py": "dc92fe26aa891879803489e745deacdf4aa6d3006b7f654cbeffebf97632aa94",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm/validation.py": "1689fa987b09340f2deb275214f29e04acd59c5ed3c72ac47d38ea4a59f3b847",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/__init__.py": "54c9f01e645aa9aa1b47e44591b3976fae4a201db329dd1bd0948188821c805e",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/__main__.py": "52dd366d0747ae1b3ade0592d0582e02a16a65bb7e37191b249af232873df3f3",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/ab.py": "d6332586fac156883f6698742b2f0163c0273a754e21b7b6c3a8a008b61ccdf2",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/after_idle.py": "0ce061174f63538e254ed5d8e7c4d3c7e0f07eb30637aa2618a7ab29148cf587",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/gpu_lease.py": "45f08b48c2123c2c56bcb0c13f70c4614fdb9c4424f3d4455ca786026509eabf",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/instrument.py": "24521fef61bea296d7fb0801c2e83420e8b232dd579ca51029a99edc979f1aba",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/report.py": "5d73be278755d0ea80cddcbaf193e095c567ab5b15c0a5f1ad3d9bc9d3f1ddfb",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/runtime.py": "dc8006ef251ba32638b3141d7c830a3359605a38485e73e6ff0f193fd69b0c0f",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/slm_perf/workload.py": "eef7aefef0cae318229988b589558b6526f8f64f94c445b4121ac6324c7b4bdd",
+    "/Users/timokruth/Projekte/SLM-qwen-reference/uv.lock": "be3d94f82ea8615675a809e60448d098545a8da38ea647e91c6d748e3400c267",
+    "/Users/timokruth/Projekte/SLM/data/v7-benchmarks47-fresh-2026-09-16/confirmation-suite.json": "58af517d0db33749c91fd1e0e64085646d5c332fe9f6e5845f0dc620a72e7cc0",
+    "/Users/timokruth/Projekte/SLM/data/v7-benchmarks47-fresh-2026-09-16/dev-suite.json": "d0bee631eff9497e0492294099710c215d37963656bcc25d5317d88a809c3a62"
+  },
+  "inventory_client_version": "0.33.3",
+  "limitations": [
+    "Model tags/config are local labels, not independent verification of upstream model provenance",
+    "Qwen models are about 275-280 times larger; pretraining and benchmark exposure differ or are unknown",
+    "256 native tokens is not equal text length or compute across tokenizers",
+    "Holdouts cover 46 sources; correctness covers 38 sources; HotpotQA training-only",
+    "A wall-time ceiling is not a promise all tasks will finish; incomplete evaluations cannot claim full-suite results"
+  ],
+  "models": [
+    {
+      "config_digest": "sha256:b828e3b7e3e41ef1dbb720917d3d3d7a432ea8bda162d04a9149aa6f9611dff9",
+      "declared_parameters": "26.9B",
+      "family": "qwen35",
+      "full_weight_hash_verified": false,
+      "layers": [
+        {
+          "bytes": 16547399200,
+          "digest": "sha256:f741bb17c9e5eae6629f211aed5675edad1120504654b27704fcdf5653e6417b",
+          "kind": "application/vnd.ollama.image.model",
+          "local_present": true
+        },
+        {
+          "bytes": 1724,
+          "digest": "sha256:77d66f4a6c108fb1f41b26e05c8173ceeaf2a0d3e4b35d095b39a09687b916c1",
+          "kind": "application/vnd.ollama.image.template",
+          "local_present": true
+        },
+        {
+          "bytes": 31,
+          "digest": "sha256:c8472cd9daed5e7c20aa53689e441e10620a002aacd58686aeac2cb188addb5c",
+          "kind": "application/vnd.ollama.image.system",
+          "local_present": true
+        },
+        {
+          "bytes": 144,
+          "digest": "sha256:4a0412795312c9417c4dae3883bc854be464bfe5dd24cd5895a747dc71b83037",
+          "kind": "application/vnd.ollama.image.params",
+          "local_present": true
+        }
+      ],
+      "manifest_path": "/Users/timokruth/.ollama/models/manifests/registry.ollama.ai/batiai/qwen3.6-27b/q4",
+      "manifest_sha256": "30824a1e4eaef7b2f603444477c24b3f5c23960c26cf2baf9d22462bc8651312",
+      "minimum_runtime": null,
+      "quantization": "Q4_K_M",
+      "tag": "batiai/qwen3.6-27b:q4"
+    },
+    {
+      "config_digest": "sha256:492b2922d38e553cabc2d319345644ed482874fbf5e5c9e4495cbf8e17b0cf5f",
+      "declared_parameters": "27.3B",
+      "family": "qwen35",
+      "full_weight_hash_verified": false,
+      "layers": [
+        {
+          "bytes": 931146016,
+          "digest": "sha256:ac3714bfdddeca31351f2752bf1a63f266f4df87c0b68c895e44945ca704448e",
+          "kind": "application/vnd.ollama.image.projector",
+          "local_present": true
+        },
+        {
+          "bytes": 16810714464,
+          "digest": "sha256:f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+          "kind": "application/vnd.ollama.image.model",
+          "local_present": true
+        },
+        {
+          "bytes": 11345,
+          "digest": "sha256:4c6a8e842ef0d8504549facfb03f1273a8d0022991519bc1888522cc1a5517d1",
+          "kind": "application/vnd.ollama.image.license",
+          "local_present": true
+        },
+        {
+          "bytes": 114,
+          "digest": "sha256:906ee87bde6cff7bf3c3b1550f55cbbec261e027187fbb9f511f908ffc418334",
+          "kind": "application/vnd.ollama.image.params",
+          "local_present": true
+        }
+      ],
+      "manifest_path": "/Users/timokruth/.ollama/models/manifests/registry.ollama.ai/library/qwen3.8/27b",
+      "manifest_sha256": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+      "minimum_runtime": "0.32.12",
+      "quantization": "Q4_K_M",
+      "tag": "qwen3.8:27b"
+    }
+  ],
+  "monitoring": "light",
+  "ollama_binary": "/Applications/Ollama.app/Contents/Resources/ollama",
+  "ollama_models": "/Users/timokruth/.ollama/models",
+  "prepared_at": "2026-09-16T12:28:56.388978+02:00",
+  "prerequisite": "Successful completion of training AND both final evaluations, no active GPU job, free lease and mains power.",
+  "prerequisite_run": "/Users/timokruth/Projekte/SLM/runs/fresh47-97m-2026-09-16",
+  "primary_metric": "Paired correctness differences by source/family versus the SLM final-confirmation checkpoint; same denominators, with format/truncation and unscored capabilities separate.",
+  "proposed_budget_profiles": {
+    "both_suites_12h": {
+      "per_model_seconds": 20700,
+      "preflight_seconds": 900,
+      "report_seconds": 900,
+      "suites": [
+        "confirmation",
+        "dev"
+      ],
+      "total_seconds": 43200
+    },
+    "confirmation_only_6h": {
+      "per_model_seconds": 9900,
+      "preflight_seconds": 900,
+      "report_seconds": 900,
+      "suites": [
+        "confirmation"
+      ],
+      "total_seconds": 21600
+    }
+  },
+  "queue_installed": false,
+  "run": "/Users/timokruth/Projekte/SLM/runs/qwen-reference-confirmation-2026-09-16",
+  "runner_branch": "codex/qwen-reference",
+  "runner_implemented": true,
+  "runner_worktree": "/Users/timokruth/Projekte/SLM-qwen-reference",
+  "runtime_validation_pending": [
+    "Full model blob hashes and pinned identity",
+    "Actual local model loading, native template and context accounting",
+    "Thinking-disabled behavior on neutral nonbenchmark probes",
+    "Complete successful SLM evaluation and exact final checkpoint identity"
+  ],
+  "scorer_sha256": {
+    "/Users/timokruth/Projekte/SLM/benchmark_expansion/scoring.py": "079d4322d3d4fce040bb91bd0570378055181425e9bd7be5d343beb86439d3da",
+    "/Users/timokruth/Projekte/SLM/benchmark_expansion/scoring47.py": "5e750816ee371eac11b65c65898de30f9ae221eb0b215a939d1b327624b68555",
+    "/Users/timokruth/Projekte/SLM/slm/breadth.py": "ccac4f55ce9f271871be87446efeab0a557cbce1ba0b6de07015c96c87d4a464",
+    "/Users/timokruth/Projekte/SLM/slm/broad_eval.py": "5663405b0c10b9b1a058ab2d5bb37fd68ca0f41a71be98268d4068d77081038f"
+  },
+  "selected_budget_profile": "confirmation_only_6h",
+  "separate_from_slm_24h_budget": true,
+  "server_running_at_inventory": false,
+  "start_authorized": false,
+  "status": "prepared_not_started",
+  "suites": {
+    "confirmation": {
+      "correctness_scored_tasks": 1064,
+      "max_prompt_utf8_bytes": 3161,
+      "path": "/Users/timokruth/Projekte/SLM/data/v7-benchmarks47-fresh-2026-09-16/confirmation-suite.json",
+      "sha256": "58af517d0db33749c91fd1e0e64085646d5c332fe9f6e5845f0dc620a72e7cc0",
+      "sources": 46,
+      "tasks": 1267
+    },
+    "dev": {
+      "correctness_scored_tasks": 1064,
+      "max_prompt_utf8_bytes": 3323,
+      "path": "/Users/timokruth/Projekte/SLM/data/v7-benchmarks47-fresh-2026-09-16/dev-suite.json",
+      "sha256": "d0bee631eff9497e0492294099710c215d37963656bcc25d5317d88a809c3a62",
+      "sources": 46,
+      "tasks": 1269
+    }
+  }
+}

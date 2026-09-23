@@ -1,10 +1,27 @@
 # Benchmark-only SLM
 
-The active work is a fresh model trained on **47 benchmark sources across 13 capability families**. Preparation is complete; model training has **not started**.
+**New evaluation settings:** [Artificial Analysis readiness, current limits and commands](BENCHMARK_SETTINGS.md). Qwen can now be configured for 16,384 output tokens; the existing SLM remains bound by its trained 1,024-token context. Implementation and CPU preparation are complete; no new benchmark run has started.
+
+Chat with the trained model locally (Apple Silicon, existing project environment):
+
+```sh
+.venv/bin/python -m slm.chat
+```
+
+Use `--device gpu` for faster inference or `--prompt 'Your question'` for a single
+answer. See [local chat instructions](CHAT.md) for checkpoint selection, JSON
+output, conversation controls, and Ollama format considerations.
+
+To open it through the project skill, ask **"Start the latest trained SLM for
+chat"** or invoke **`$start-latest-slm`**. The
+[skill](.agents/skills/start-latest-slm/SKILL.md) selects the latest completed
+training campaign from local records and opens an interactive Terminal window.
+
+The current trained model uses **47 benchmark sources across 13 capability families**. Training of the fresh 97.54M model ended at the user's request on **18 September 2026 at 20:20:23 Europe/Berlin**, with final chronological checkpoint `checkpoint-0215720`. Final evaluations completed at 20:27:53. See the [final report](reports/fresh47-2026-09-18/REPORT.md); local campaign `status.json` is authoritative.
 
 [Fresh training plan](FRESH_47_TRAINING.md) · [Source coverage](BENCHMARKS_47.md) · [Deprecated archives](archives/README.md)
 
-The user-selected preparation is a randomly initialized 97.54M-parameter decoder with a new 16,384-token tokenizer trained only on the training partition. The prepared future campaign has a 24-hour total cap, including checks, training, evaluation and reporting. It uses no old checkpoint or optimizer state.
+The model started from random initialization with a new 16,384-token tokenizer trained only on the training partition. It used no legacy checkpoint or optimizer state. The authorized training and continuation windows are recorded in [project instructions](AGENTS.md).
 
 All experiments and reports predating this restart are **deprecated**. Their scores are historical reference only. They are retained as verified ZIP archives; the unpacked reports, run artifacts and old worktrees have been retired. Git history is preserved. See [archive policy](SICHERUNG.md).
 

@@ -1,0 +1,10 @@
+{
+  "backend": "ollama",
+  "model": "batiai/qwen3.6-27b:q4",
+  "context_tokens": 262144,
+  "max_output_tokens": 16384,
+  "temperature": 0.0,
+  "thinking": false,
+  "task_seconds": 3600,
+  "context_policy": "require_full_output"
+}

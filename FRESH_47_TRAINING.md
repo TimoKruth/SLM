@@ -1,6 +1,6 @@
-# Fresh training on 47 sources — prepared, not started
+# Fresh training on 47 sources — frozen plan
 
-The 16 September 2026 request is to archive the previous experiments and prepare a completely new training. The user-selected preparation is **97,536,768 parameters with a 24-hour future campaign cap**. No model has been initialized, no GPU training/evaluation has run, and no starter or queue is installed. The campaign has a STOP file and no start authorization.
+The 16 September 2026 request is to archive the previous experiments and prepare a completely new training. The user-selected preparation is **97,536,768 parameters with a 24-hour future campaign cap**. This plan was prepared without model initialization. The user subsequently authorized launch: training started 16 September at 11:08:52 Europe/Berlin, with a hard deadline of 17 September at 11:08:52. See [the start record](FRESH_47_START.md). Local `AUTHORIZATION.json` records the exact frozen plan hash; preparation artifacts remain historical evidence and are not edited to authorize execution.
 
 ## Model and training recipe
 
@@ -48,7 +48,7 @@ The supervisor requires mains power and an exclusive GPU lease, records runtime 
 
 ## Artifacts and inspection
 
-- Local frozen plan and STOP: `runs/fresh47-97m-2026-09-16/`.
+- Local frozen plan, authorization and live status: `runs/fresh47-97m-2026-09-16/`.
 - Committed plan and aggregate checks: `plans/fresh47-2026-09-16/`.
 - Data audit: `data/v7-benchmarks47-fresh-2026-09-16/READY.json` and `INDEPENDENT_CHECKS.json`.
 - CPU preparation: `fresh47/prepare.py`; independent audit: `fresh47/verify.py`; future controller: `fresh47/campaign.py`.
@@ -59,4 +59,4 @@ Read the proposed command without starting work:
 .venv/bin/python -m fresh47.campaign --run runs/fresh47-97m-2026-09-16 --dry-run
 ```
 
-On a later explicit start request, recheck the frozen inputs and resource conditions, record authorization matching the exact `plan.json` SHA256, and remove only this campaign's STOP immediately before launching through `run_slm.py --module fresh47.campaign`. These preparation instructions are not a start authorization. A real GPU smoke/admission check belongs to that future runtime preflight; only CPU preparation and orchestration tests have run so far.
+The explicit start request was recorded against the exact plan hash after input/resource checks; only this campaign's preparation STOP was renamed immediately before launching through `run_slm.py --module fresh47.campaign`. The GPU initialized the fresh model, completed initial development loss and produced real training updates. The saved preparation evidence still describes the earlier CPU-only validation. Do not run this command again while the campaign is active; no automatic retry or budget reset is authorized.

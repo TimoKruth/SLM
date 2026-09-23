@@ -1,0 +1,50 @@
+{
+  "cpu_tests_passed": 51,
+  "historical_input_verification": {
+    "fresh47-97m-2026-09-16": {
+      "mismatches": 0,
+      "verified": 337
+    },
+    "qwen-reference-confirmation-2026-09-16": {
+      "mismatches": 0,
+      "verified": 51
+    }
+  },
+  "inference_started": false,
+  "methodology_url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+  "prepared_at": "2026-09-21T10:30:58.290828+02:00",
+  "profiles": {
+    "qwen36": {
+      "output_reduced": 0,
+      "plan_directory": "runs/eval-settings-2026-09-21-qwen36-dev-v3",
+      "plan_sha256": "f57a44fd4549ceed33516c982061af78fe9fe69d260208e74e30331bf7d308e3",
+      "rejected": 0,
+      "started": false,
+      "supported": 1269,
+      "tasks": 1269,
+      "token_count_method": "conservative UTF-8 byte bound plus template and 4096-token reserve; checked against runtime counts"
+    },
+    "qwen38": {
+      "output_reduced": 0,
+      "plan_directory": "runs/eval-settings-2026-09-21-qwen38-dev-v3",
+      "plan_sha256": "648c6ba26b9651874ca18bd2c28813d696721cfae352e57a1d81ff169359c802",
+      "rejected": 0,
+      "started": false,
+      "supported": 1269,
+      "tasks": 1269,
+      "token_count_method": "conservative UTF-8 byte bound plus template and 4096-token reserve; checked against runtime counts"
+    },
+    "slm97m": {
+      "maximum_output_tokens": 1006,
+      "minimum_output_tokens": 247,
+      "output_reduced": 1269,
+      "plan_directory": "runs/eval-settings-2026-09-21-slm97m-dev-v3",
+      "plan_sha256": "7650ac1cc32d7234a0863ada5b3e4bf539d387bdb9544890971928d60c0bb846",
+      "rejected": 0,
+      "started": false,
+      "supported": 1269,
+      "tasks": 1269,
+      "token_count_method": "exact SLM tokenizer including contract/wrapper"
+    }
+  }
+}

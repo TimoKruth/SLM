@@ -1,0 +1,4 @@
+interface:
+  display_name: "Start latest SLM"
+  short_description: "Open local chat with the latest trained SLM"
+  default_prompt: "Use $start-latest-slm to open a local chat with the latest trained model in this project."

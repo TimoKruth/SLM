@@ -1,0 +1,13 @@
+{
+  "active_slm_inputs_unchanged": true,
+  "cpu_tests_passed": 46,
+  "full_weight_hashing_deferred": true,
+  "inputs_frozen": 51,
+  "no_queue_installed": true,
+  "no_qwen_model_loaded": true,
+  "no_server_started": true,
+  "plan_sha256": "857c654f0b41069c87527e8b0179650e83e5c8ab555ce294eb308bcac5e87659",
+  "requires_actual_runtime_smoke": true,
+  "status": "prepared_not_started",
+  "tests_command": ".venv/bin/python -m pytest -q tests/qwen tests/performance/test_run_defaults.py tests/performance/test_gpu_lease.py"
+}
