@@ -84,6 +84,32 @@ def test_single_turn_uses_existing_inference_format_and_fresh_cache(saved_model)
     assert generate(model, tok, ids, 5, 60)['text'] == actual['text']
 
 
+def test_pipelined_decoding_matches_stepwise_greedy_tokens(saved_model):
+    _, tok, model = saved_model
+    for prompt in ('hello', 'world yes', 'yes yes hello'):
+        ids, _, _ = prepare_prompt(tok, prompt, [], 64, 40)
+        actual = generate(model, tok, ids, 40, 60)
+        expected = greedy_generate(model, tok, prompt, maximum=40)
+        assert (actual['text'], actual['generated_tokens']) == (expected['generated'], expected['generated_tokens'])
+
+
+def test_pipelined_decoding_fills_context_exactly_without_overrun(saved_model, monkeypatch):
+    _, tok, model = saved_model
+    import slm.inference
+    real, lengths = slm.inference.cached_forward, []
+    visible = mx.zeros((1, 1, 9)).at[:, :, 6].add(1)
+
+    def forced(model, tokens, cache):
+        # The real forward still enforces the context budget; only the chosen token is forced.
+        _, cache = real(model, tokens, cache)
+        lengths.append(cache[0][0].shape[2])
+        return visible, cache
+    monkeypatch.setattr('slm.inference.cached_forward', forced)
+    result = generate(model, tok, [0, 3, 6, 4] * 15, 4, 60)
+    assert result['generated_tokens'] == 4 and result['stop_reason'] == 'token_limit'
+    assert lengths == [60, 61, 62, 63]
+
+
 def test_deadline_and_context_budget(saved_model, monkeypatch):
     _, tok, model = saved_model
     ticks = iter([0, 2, 3])
